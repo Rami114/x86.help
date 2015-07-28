@@ -1,29 +1,33 @@
-## OPNAME
-> Operation
+## STC - Set Carry Flag
 
+> Operation
 ``` slim
+
+CF <- 1;
 
 ```
 
-Opcode | Instruction | Op/En | 64-bit Mode | Compat/Leg Mode | Description
--------| ----------- | ----- | ----------- | --------------- | -----------
-     |  |  |  |  | 
+ Opcode\*| Instruction| Op/En| 64-Bit Mode| Compat/Leg Mode| Description 
+ ---  | --- | --- | --- | --- | ---
+ F9     | STC        | NP   | Valid      | Valid          | Set CF flag.
 
 ### Instruction Operand Encoding
-Op/En  | Operand 1  | Operand 2  | Operand 3  | Operand 4
------- | ---------- | ---------- | ---------- | ---------
-  |   |   |   | 
+ Op/En| Operand 1| Operand 2| Operand 3| Operand 4
+ ---  | --- | --- | --- | ---
+ NP   | NA       | NA       | NA       | NA       
 
-###Flags Affected
+### Description
+Sets the CF flag in the EFLAGS register.
 
-### Protected Mode Exceptions
+This instruction's operation is the same in non-64-bit modes and 64-bit mode.
 
 
-### Real-Address Mode Exceptions
 
-### Virtual-8086 Mode Exceptions
+### Flags Affected
+The CF flag is set. The OF, ZF, SF, AF, and PF flags are unaffected.
 
-### Compatibility Mode Exceptions
 
-### 64-Bit Mode Exceptions
-
+### Exceptions (All Operating Modes)
+   | |  
+---- | -----
+ #UD| If the LOCK prefix is used.

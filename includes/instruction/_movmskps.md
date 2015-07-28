@@ -1,29 +1,91 @@
-## OPNAME
-> Operation
+## MOVMSKPS - Extract Packed Single-Precision Floating-Point Sign Mask
 
+> Operation
 ``` slim
+
+DEST[0] <- SRC[31];
+DEST[1] <- SRC[63];
+DEST[2] <- SRC[95];
+DEST[3] <- SRC[127];
+IF DEST = r32
+  THEN DEST[31:4] <- ZeroExtend;
+  ELSE DEST[63:4] <- ZeroExtend;
+FI;
+1.
+(V)MOVMSKPS (128-bit version)
+DEST[0] <- SRC[31]
+DEST[1] <- SRC[63]
+DEST[2] <- SRC[95]
+DEST[3] <- SRC[127]
+IF DEST = r32
+  THEN DEST[31:4] <- 0;
+  ELSE DEST[63:4] <- 0;
+FI
+VMOVMSKPS (VEX.256 encoded version)
+DEST[0] <- SRC[31]
+DEST[1] <- SRC[63]
+DEST[2] <- SRC[95]
+DEST[3] <- SRC[127]
+DEST[4] <- SRC[159]
+DEST[5] <- SRC[191]
+DEST[6] <- SRC[223]
+DEST[7] <- SRC[255]
+IF DEST = r32
+  THEN DEST[31:8] <- 0;
+  ELSE DEST[63:8] <- 0;
+FI
 
 ```
 
-Opcode | Instruction | Op/En | 64-bit Mode | Compat/Leg Mode | Description
--------| ----------- | ----- | ----------- | --------------- | -----------
-     |  |  |  |  | 
+ Opcode/Instruction                 | Op/En| 64/32-bit Mode| CPUID Feature Flag| Description                          
+ ---  | --- | --- | --- | ---
+ 0F 50 /r MOVMSKPS reg, xmm         | RM   | V/V           | SSE               | Extract 4-bit sign mask from xmm and 
+                                    |      |               |                   | store in reg. The upper bits of r32  
+                                    |      |               |                   | or r64 are filled with zeros.        
+ VEX.128.0F.WIG 50 /r VMOVMSKPS reg,| RM   | V/V           | AVX               | Extract 4-bit sign mask from xmm2 and
+ xmm2                               |      |               |                   | store in reg. The upper bits of r32  
+                                    |      |               |                   | or r64 are zeroed.                   
+ VEX.256.0F.WIG 50 /r VMOVMSKPS reg,| RM   | V/V           | AVX               | Extract 8-bit sign mask from ymm2 and
+ ymm2                               |      |               |                   | store in reg. The upper bits of r32  
+                                    |      |               |                   | or r64 are zeroed.                   
 
-### Instruction Operand Encoding
-Op/En  | Operand 1  | Operand 2  | Operand 3  | Operand 4
------- | ---------- | ---------- | ---------- | ---------
-  |   |   |   | 
+### Instruction Operand Encoding1
+ Op/En| Operand 1    | Operand 2    | Operand 3| Operand 4
+ ---  | --- | --- | --- | ---
+ RM   | ModRM:reg (w)| ModRM:r/m (r)| NA       | NA       
 
-###Flags Affected
+### Description
+Extracts the sign bits from the packed single-precision floating-point values
+in the source operand (second operand), formats them into a 4- or 8-bit mask,
+and stores the mask in the destination operand (first operand). The source operand
+is an XMM or YMM register, and the destination operand is a general-purpose
+register. The mask is stored in the 4 or 8 low-order bits of the destination
+operand. The upper bits of the destination operand beyond the mask are filled
+with zeros.
 
-### Protected Mode Exceptions
+In 64-bit mode, the instruction can access additional registers (XMM8-XMM15,
+R8-R15) when used with a REX.R prefix. The default operand size is 64-bit in
+64-bit mode.
+
+128-bit versions: The source operand is a YMM register. The destination operand
+is a general purpose register. VEX.256 encoded version: The source operand is
+### a YMM register. The destination operand is a general purpose register. Note
+In VEX-encoded versions, VEX.vvvv is reserved and must be 1111b, otherwise instructions
+will #UD.
 
 
-### Real-Address Mode Exceptions
 
-### Virtual-8086 Mode Exceptions
+### Intel C/C++ Compiler Intrinsic Equivalent
+int _mm_movemask_ps(__m128 a) int _mm256_movemask_ps(__m256 a)
 
-### Compatibility Mode Exceptions
 
-### 64-Bit Mode Exceptions
+### SIMD Floating-Point Exceptions
+None.
 
+
+### Other Exceptions
+See Exceptions Type 7; additionally
+
+   | |  
+---- | -----
+ #UD| If VEX.vvvv != 1111B.

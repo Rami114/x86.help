@@ -1,29 +1,130 @@
-## OPNAME
-> Operation
+## PEXTRW - Extract Word
 
+> Operation
 ``` slim
+
+IF (DEST = Mem16)
+THEN
+  SEL <- COUNT[2:0];
+  TEMP <- (Src >> SEL\*16) AND FFFFH;
+  Mem16 <- TEMP[15:0];
+ELSE IF (64-Bit Mode and destination is a general-purpose register)
+  THEN
+     FOR (PEXTRW instruction with 64-bit source operand)
+      { SEL <- COUNT[1:0];
+       TEMP <- (SRC >> (SEL \* 16)) AND FFFFH;
+       r64[15:0] <- TEMP[15:0];
+       r64[63:16] <- ZERO_FILL; };
+     FOR (PEXTRW instruction with 128-bit source operand)
+      { SEL <- COUNT[2:0];
+       TEMP <- (SRC >> (SEL \* 16)) AND FFFFH;
+       r64[15:0] <- TEMP[15:0];
+       r64[63:16] <- ZERO_FILL; }
+  ELSE
+     FOR (PEXTRW instruction with 64-bit source operand)
+      {
+       TEMP <- (SRC >> (SEL \* 16)) AND FFFFH;
+       r32[15:0] <- TEMP[15:0];
+       r32[31:16] <- ZERO_FILL; };
+     FOR (PEXTRW instruction with 128-bit source operand)
+      {
+       TEMP <- (SRC >> (SEL \* 16)) AND FFFFH;
+       r32[15:0] <- TEMP[15:0];
+       r32[31:16] <- ZERO_FILL; };
+  FI;
+FI;
+(V)PEXTRW ( dest=m16)
+SRC_Offset <- Imm8[2:0]
+Mem16 <- (Src >> Src_Offset\*16)
+(V)PEXTRW ( dest=reg)
+IF (64-Bit Mode )
+THEN
+  SRC_Offset <- Imm8[2:0]
+  DEST[15:0] <- ((Src >> Src_Offset\*16) AND 0FFFFh)
+  DEST[63:16] <-ZERO_FILL;
+ELSE
+  SRC_Offset <- Imm8[2:0]
+  DEST[15:0] <- ((Src >> Src_Offset\*16) AND 0FFFFh)
+  DEST[31:16] <-ZERO_FILL;
+FI
 
 ```
 
-Opcode | Instruction | Op/En | 64-bit Mode | Compat/Leg Mode | Description
--------| ----------- | ----- | ----------- | --------------- | -----------
-     |  |  |  |  | 
+ Opcode/Instruction                    | Op/En| 64/32 bit Mode Support| CPUID Feature Flag| Description                            
+ ---  | --- | --- | --- | ---
+ 0F C5 /r ib1 PEXTRW reg, mm, imm8     | RMI  | V/V                   | SSE               | Extract the word specified by imm8 from
+                                       |      |                       |                   | mm and move it to reg, bits 15-0. The  
+                                       |      |                       |                   | upper bits of r32 or r64 is zeroed.    
+ 66 0F C5 /r ib PEXTRW reg, xmm, imm8  | RMI  | V/V                   | SSE2              | Extract the word specified by imm8 from
+                                       |      |                       |                   | xmm and move it to reg, bits 15-0. The 
+                                       |      |                       |                   | upper bits of r32 or r64 is zeroed.    
+ 66 0F 3A 15 /r ib PEXTRW reg/m16, xmm,| MRI  | V/V                   | SSE4_1            | Extract the word specified by imm8 from
+ imm8                                  |      |                       |                   | xmm and copy it to lowest 16 bits of   
+                                       |      |                       |                   | reg or m16. Zero-extend the result in  
+                                       |      |                       |                   | the destination, r32 or r64.           
+ VEX.128.66.0F.W0 C5 /r ib VPEXTRW reg,| RMI  | V2/V                  | AVX               | Extract the word specified by imm8 from
+ xmm1, imm8                            |      |                       |                   | xmm1 and move it to reg, bits 15:0.    
+                                       |      |                       |                   | Zeroextend the result. The upper bits  
+                                       |      |                       |                   | of r64/r32 is filled with zeros.       
+ VEX.128.66.0F3A.W0 15 /r ib VPEXTRW   | MRI  | V/V                   | AVX               | Extract a word integer value from xmm2 
+ reg/m16, xmm2, imm8                   |      |                       |                   | at the source word offset specified    
+                                       |      |                       |                   | by imm8 into reg or m16. The upper bits
+                                       |      |                       |                   | of r64/r32 is filled with zeros.       
+<aside class="notification">
+1. See note in Section 2.4, “Instruction Exception Specification” in
+the Intel® 64 and IA-32 Architectures Software Developer's Manual, Volume 2A
+and Section 22.25.3, “Exception Conditions of Legacy SIMD Instructions Operating
+on MMX Registers” in the Intel® 64 and IA-32 Architectures Software Developer's
+Manual, Volume 3A. 2. In 64-bit mode, VEX.W1 is ignored for VPEXTRW (similar
+to legacy REX.W=1 prefix in PEXTRW).
+</aside>
+
 
 ### Instruction Operand Encoding
-Op/En  | Operand 1  | Operand 2  | Operand 3  | Operand 4
------- | ---------- | ---------- | ---------- | ---------
-  |   |   |   | 
+ Op/En| Operand 1    | Operand 2    | Operand 3| Operand 4
+ ---  | --- | --- | --- | ---
+ RMI  | ModRM:reg (w)| ModRM:r/m (r)| imm8     | NA       
+ MRI  | ModRM:r/m (w)| ModRM:reg (r)| imm8     | NA       
 
-###Flags Affected
+### Description
+Copies the word in the source operand (second operand) specified by the count
+operand (third operand) to the destination operand (first operand). The source
+operand can be an MMX technology register or an XMM register. The destination
+operand can be the low word of a general-purpose register or a 16-bit memory
+address. The count operand is an 8-bit immediate. When specifying a word location
+in an MMX technology register, the 2 least-significant bits of the count operand
+specify the location; for an XMM register, the 3 least-significant bits specify
+the location. The content of the destination register above bit 16 is cleared
+(set to all 0s).
 
-### Protected Mode Exceptions
+In 64-bit mode, using a REX prefix in the form of REX.R permits this instruction
+to access additional registers (XMM8-XMM15, R8-15). If the destination operand
+is a general-purpose register, the default operand size is 64-bits in 64-bit
+mode. Note: In VEX.128 encoded versions, VEX.vvvv is reserved and must be 1111b,
+VEX.L must be 0, otherwise the instruction will #UD. If the destination operand
+is a register, the default operand size in 64-bit mode for VPEXTRW is 64 bits,
+the bits above the least significant byte/word/dword data are filled with zeros.
 
 
-### Real-Address Mode Exceptions
 
-### Virtual-8086 Mode Exceptions
+### Intel C/C++ Compiler Intrinsic Equivalent
+   | |  
+---- | -----
+ PEXTRW:| int _mm_extract_pi16 (__m64 a, int n) 
+ PEXTRW:| int _mm_extract_epi16 ( __m128i a, int
+        | imm)                                  
 
-### Compatibility Mode Exceptions
+### Flags Affected
+None.
 
-### 64-Bit Mode Exceptions
 
+### Numeric Exceptions
+None.
+
+
+### Other Exceptions
+See Exceptions Type 5; additionally
+
+   | |  
+---- | -----
+ #UD| If VEX.L = 1. If VEX.vvvv != 1111B.

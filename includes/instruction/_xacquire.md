@@ -1,29 +1,163 @@
-## OPNAME
-> Operation
+## XACQUIRE/XRELEASE  -  Hardware Lock Elision Prefix Hints
 
+> Operation
 ``` slim
 
+XACQUIRE
+IF XACQUIRE-enabled instruction
+  THEN
+     IF (HLE_NEST_COUNT < MAX_HLE_NEST_COUNT) THEN
+       HLE_NEST_COUNT++
+       IF (HLE_NEST_COUNT = 1) THEN
+          HLE_ACTIVE <- 1
+          IF 64-bit mode
+             THEN
+               restartRIP <- instruction pointer of the XACQUIRE-enabled instruction
+             ELSE
+               restartEIP <- instruction pointer of the XACQUIRE-enabled instruction
+          FI;
+          Enter HLE Execution (\* record register state, start tracking memory state \*)
+       FI; (\* HLE_NEST_COUNT = 1\*)
+       IF ElisionBufferAvailable
+          THEN
+             Allocate elision buffer
+             Record address and data for forwarding and commit checking
+             Perform elision
+          ELSE
+             Perform lock acquire operation transactionally but without elision
+       FI;
+     ELSE (\* HLE_NEST_COUNT = MAX_HLE_NEST_COUNT \*)
+          GOTO HLE_ABORT_PROCESSING
+     FI;
+  ELSE
+     Treat instruction as non-XACQUIRE F2H prefixed legacy instruction
+FI;
+XRELEASE
+IF XRELEASE-enabled instruction
+  THEN
+     IF (HLE_NEST_COUNT > 0)
+       THEN
+          HLE_NEST_COUNT--
+          IF lock address matches in elision buffer THEN
+             IF lock satisfies address and value requirements THEN
+               Deallocate elision buffer
+             ELSE
+               GOTO HLE_ABORT_PROCESSING
+             FI;
+          FI;
+          IF (HLE_NEST_COUNT = 0)
+             THEN
+               IF NoAllocatedElisionBuffer
+                  THEN
+                     Try to commit transactional execution
+                     IF fail to commit transactional execution
+                       THEN
+                          GOTO HLE_ABORT_PROCESSING;
+                       ELSE (\* commit success \*)
+                          HLE_ACTIVE <- 0
+                     FI;
+                  ELSE
+                     GOTO HLE_ABORT_PROCESSING
+               FI;
+          FI;
+     FI; (\* HLE_NEST_COUNT > 0 \*)
+  ELSE
+     Treat instruction as non-XRELEASE F3H prefixed legacy instruction
+FI;
+(\* For any HLE abort condition encountered during HLE execution \*)
 ```
 
-Opcode | Instruction | Op/En | 64-bit Mode | Compat/Leg Mode | Description
--------| ----------- | ----- | ----------- | --------------- | -----------
-     |  |  |  |  | 
+ Opcode/Instruction| 64/32bit Mode Support| CPUID Feature Flag| Description                            
+ ---  | --- | --- | ---
+ F2 XACQUIRE       | V/V                  | HLE1              | A hint used with an “XACQUIRE-enabled“ 
+                   |                      |                   | instruction to start lock elision on   
+                   |                      |                   | the instruction memory operand address.
+ F3 XRELEASE       | V/V                  | HLE               | A hint used with an “XRELEASE-enabled“ 
+                   |                      |                   | instruction to end lock elision on the 
+                   |                      |                   | instruction memory operand address.    
+<aside class="notification">
+1. Software is not required to check the HLE feature flag to use XACQUIRE
+or XRELEASE, as they are treated as regular prefix if HLE feature flag reports
+0.
+</aside>
 
-### Instruction Operand Encoding
-Op/En  | Operand 1  | Operand 2  | Operand 3  | Operand 4
------- | ---------- | ---------- | ---------- | ---------
-  |   |   |   | 
 
-###Flags Affected
+### Description
+The XACQUIRE prefix is a hint to start lock elision on the memory address specified
+by the instruction and the XRELEASE prefix is a hint to end lock elision on
+the memory address specified by the instruction. The XACQUIRE prefix hint can
+only be used with the following instructions (these instructions are also referred
+### to as XACQUIRE-enabled when used with the XACQUIRE prefix)
 
-### Protected Mode Exceptions
+ - Instructions with an explicit LOCK prefix (F0H) prepended to forms of the instruction
+where the destination operand is a memory operand: ADD, ADC, AND, BTC, BTR,
+BTS, CMPXCHG, CMPXCHG8B, DEC, INC, NEG, NOT, OR, SBB, SUB, XOR, XADD, and XCHG.
+ - The XCHG instruction either with or without the presence of the LOCK prefix.
+
+The XRELEASE prefix hint can only be used with the following instructions (also
+### referred to as XRELEASE-enabled when used with the XRELEASE prefix)
+
+ - Instructions with an explicit LOCK prefix (F0H) prepended to forms of the instruction
+where the destination operand is a memory operand: ADD, ADC, AND, BTC, BTR,
+BTS, CMPXCHG, CMPXCHG8B, DEC, INC, NEG, NOT, OR, SBB, SUB, XOR, XADD, and XCHG.
+ - The XCHG instruction either with or without the presence of the LOCK prefix.
+ - The \"MOV mem, reg\" (Opcode 88H/89H) and \"MOV mem, imm\" (Opcode C6H/C7H) instructions.
+In these cases, the XRELEASE is recognized without the presence of the LOCK
+prefix.
+
+The lock variables must satisfy the guidelines described in Intel® 64 and IA-32
+Architectures Software Developer's Manual, Volume 1, Section 15.3.3, for elision
+to be successful, otherwise an HLE abort may be signaled. If an encoded byte
+sequence that meets XACQUIRE/XRELEASE requirements includes both prefixes, then
+the HLE semantic is determined by the prefix byte that is placed closest to
+the instruction opcode. For example, an F3F2C6 will not be treated as a XRELEASE-enabled
+instruction since the F2H (XACQUIRE) is closest to the instruction opcode C6.
+Similarly, an F2F3F0 prefixed instruction will be treated as a XRELEASE-enabled
+instruction since F3H (XRELEASE) is closest to the instruction opcode. Intel
+64 and IA-32 Compatibility The effect of the XACQUIRE/XRELEASE prefix hint is
+the same in non-64-bit modes and in 64-bit mode.
+
+   | |  
+---- | -----
+ For instructions that do not support  | prefix behaves the same way as REPNE/REPNZ
+ the XACQUIRE hint, the presence of the| semantics for string instructions,        
+ F2H prior hardware, according to •    |                                           
+ •                                     | Serve as SIMD prefix for legacy SIMD      
+                                       | instructions operating on XMM register    
+ •                                     | Cause #UD if prepending the VEX prefix.   
+ •                                     | Undefined for non-string instructions     
+                                       | or other situations.                      
+For instructions that do not support the XRELEASE hint, the presence of the
+F3H prefix behaves the same way as in prior hardware, according to
+
+ - REP/REPE/REPZ semantics for string instructions,
+ - Serve as SIMD prefix for legacy SIMD instructions operating on XMM register
+ - Cause #UD if prepending the VEX prefix.
+ - Undefined for non-string instructions or other situations.
 
 
-### Real-Address Mode Exceptions
 
-### Virtual-8086 Mode Exceptions
+### HLE_ABORT_PROCESSING
+  HLE_ACTIVE <- 0
+  HLE_NEST_COUNT <- 0
+  Restore architectural register state
+  Discard memory updates performed in transaction
+  Free any allocated lock elision buffers
+  IF 64-bit mode
+     THEN
+       RIP <- restartRIP
+     ELSE
+       EIP <- restartEIP
+  FI;
+  Execute and retire instruction at RIP (or EIP) and ignore any HLE hint
+END
 
-### Compatibility Mode Exceptions
+### SIMD Floating-Point Exceptions
+None
 
-### 64-Bit Mode Exceptions
 
+### Other Exceptions
+   | |  
+---- | -----
+ #GP(0)| If the use of prefix causes instruction
+       | length to exceed 15 bytes.             

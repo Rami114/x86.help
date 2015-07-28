@@ -1,29 +1,69 @@
-## OPNAME
-> Operation
+## BSWAP - Byte Swap
 
+> Operation
 ``` slim
+
+TEMP <- DEST
+IF 64-bit mode AND OperandSize = 64
+  THEN
+     DEST[7:0] <- TEMP[63:56];
+     DEST[15:8] <- TEMP[55:48];
+     DEST[23:16] <- TEMP[47:40];
+     DEST[31:24] <- TEMP[39:32];
+     DEST[39:32] <- TEMP[31:24];
+     DEST[47:40] <- TEMP[23:16];
+     DEST[55:48] <- TEMP[15:8];
+     DEST[63:56] <- TEMP[7:0];
+  ELSE
+     DEST[7:0] <- TEMP[31:24];
+     DEST[15:8] <- TEMP[23:16];
+     DEST[23:16] <- TEMP[15:8];
+     DEST[31:24] <- TEMP[7:0];
+FI;
 
 ```
 
-Opcode | Instruction | Op/En | 64-bit Mode | Compat/Leg Mode | Description
--------| ----------- | ----- | ----------- | --------------- | -----------
-     |  |  |  |  | 
+ Opcode          | Instruction| Op/En| 64-bit Mode| Compat/Leg Mode| Description                        
+ ---  | --- | --- | --- | --- | ---
+ 0F C8+rd        | BSWAP r32  | O    | Valid\*     | Valid          | Reverses the byte order of a 32-bit
+                 |            |      |            |                | register.                          
+ REX.W + 0F C8+rd| BSWAP r64  | O    | Valid      | N.E.           | Reverses the byte order of a 64-bit
+                 |            |      |            |                | register.                          
+<aside class="notification">
+\* See IA-32 Architecture Compatibility section below.
+</aside>
+
 
 ### Instruction Operand Encoding
-Op/En  | Operand 1  | Operand 2  | Operand 3  | Operand 4
------- | ---------- | ---------- | ---------- | ---------
-  |   |   |   | 
+ Op/En| Operand 1         | Operand 2| Operand 3| Operand 4
+ ---  | --- | --- | --- | ---
+ O    | opcode + rd (r, w)| NA       | NA       | NA       
 
-###Flags Affected
+### Description
+Reverses the byte order of a 32-bit or 64-bit (destination) register. This instruction
+is provided for converting littleendian values to big-endian format and vice
+versa. To swap bytes in a word value (16-bit register), use the XCHG instruction.
+When the BSWAP instruction references a 16-bit register, the result is undefined.
 
-### Protected Mode Exceptions
+In 64-bit mode, the instruction's default operation size is 32 bits. Using a
+REX prefix in the form of REX.R permits access to additional registers (R8-R15).
+Using a REX prefix in the form of REX.W promotes operation to 64 bits. See the
+summary chart at the beginning of this section for encoding data and limits.
 
 
-### Real-Address Mode Exceptions
+### IA-32 Architecture Legacy Compatibility
+The BSWAP instruction is not supported on IA-32 processors earlier than the
+Intel486™ processor family. For compatibility with this instruction, software
+should include functionally equivalent code for execution on Intel processors
+earlier than the Intel486 processor family.
 
-### Virtual-8086 Mode Exceptions
 
-### Compatibility Mode Exceptions
 
-### 64-Bit Mode Exceptions
+### Flags Affected
+None.
 
+
+### Exceptions (All Operating Modes)
+   | |  
+---- | -----
+ #UD| If the LOCK prefix is used.

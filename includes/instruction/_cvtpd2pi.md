@@ -1,29 +1,60 @@
-## OPNAME
-> Operation
+## CVTPD2PI - Convert Packed Double-Precision FP Values to Packed Dword Integers
 
+> Operation
 ``` slim
+
+DEST[31:0] <- Convert_Double_Precision_Floating_Point_To_Integer32(SRC[63:0]);
+DEST[63:32] <- Convert_Double_Precision_Floating_Point_To_Integer32(SRC[127:64]);
 
 ```
 
-Opcode | Instruction | Op/En | 64-bit Mode | Compat/Leg Mode | Description
--------| ----------- | ----- | ----------- | --------------- | -----------
-     |  |  |  |  | 
+ Opcode/Instruction               | Op/En| 64-Bit Mode| Compat/Leg Mode| Description                          
+ ---  | --- | --- | --- | ---
+ 66 0F 2D /r CVTPD2PI mm, xmm/m128| RM   | Valid      | Valid          | Convert two packed double-precision  
+                                  |      |            |                | floatingpoint values from xmm/m128 to
+                                  |      |            |                | two packed signed doubleword integers
+                                  |      |            |                | in mm.                               
 
 ### Instruction Operand Encoding
-Op/En  | Operand 1  | Operand 2  | Operand 3  | Operand 4
------- | ---------- | ---------- | ---------- | ---------
-  |   |   |   | 
+ Op/En| Operand 1    | Operand 2    | Operand 3| Operand 4
+ ---  | --- | --- | --- | ---
+ RM   | ModRM:reg (w)| ModRM:r/m (r)| NA       | NA       
 
-###Flags Affected
+### Description
+Converts two packed double-precision floating-point values in the source operand
+(second operand) to two packed signed doubleword integers in the destination
+operand (first operand).
 
-### Protected Mode Exceptions
+The source operand can be an XMM register or a 128-bit memory location. The
+destination operand is an MMX technology register.
+
+When a conversion is inexact, the value returned is rounded according to the
+rounding control bits in the MXCSR register. If a converted result is larger
+than the maximum signed doubleword integer, the floating-point invalid exception
+is raised, and if this exception is masked, the indefinite integer value (80000000H)
+is returned.
+
+This instruction causes a transition from x87 FPU to MMX technology operation
+(that is, the x87 FPU top-of-stack pointer is set to 0 and the x87 FPU tag word
+is set to all 0s [valid]). If this instruction is executed while an x87 FPU
+floating-point exception is pending, the exception is handled before the CVTPD2PI
+instruction is executed.
+
+In 64-bit mode, use of the REX.R prefix permits this instruction to access additional
+registers (XMM8-XMM15).
 
 
-### Real-Address Mode Exceptions
 
-### Virtual-8086 Mode Exceptions
+### Intel C/C++ Compiler Intrinsic Equivalent
+   | |  
+---- | -----
+ CVTPD1PI:| __m64 _mm_cvtpd_pi32(__m128d a)
 
-### Compatibility Mode Exceptions
+### SIMD Floating-Point Exceptions
+Invalid, Precision.
 
-### 64-Bit Mode Exceptions
 
+### Other Exceptions
+See Table 22-4, “Exception Conditions for Legacy SIMD/MMX Instructions with
+FP Exception and 16-Byte Alignment,” in the Intel® 64 and IA-32 Architectures
+Software Developer's Manual, Volume 3B.

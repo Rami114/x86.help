@@ -1,29 +1,123 @@
-## OPNAME
-> Operation
+## SMSW - Store Machine Status Word
 
+> Operation
 ``` slim
+
+DEST <- CR0[15:0];
+(\* Machine status word \*)
 
 ```
 
-Opcode | Instruction | Op/En | 64-bit Mode | Compat/Leg Mode | Description
--------| ----------- | ----- | ----------- | --------------- | -----------
-     |  |  |  |  | 
+ Opcode\*         | Instruction | Op/En| 64-Bit Mode| Compat/Leg Mode| Description                           
+ ---  | --- | --- | --- | --- | ---
+ 0F 01 /4        | SMSW r/m16  | M    | Valid      | Valid          | Store machine status word to r/m16.   
+ 0F 01 /4        | SMSW r32/m16| M    | Valid      | Valid          | Store machine status word in low-order
+                 |             |      |            |                | 16 bits of r32/m16; high-order 16 bits
+                 |             |      |            |                | of r32 are undefined.                 
+ REX.W + 0F 01 /4| SMSW r64/m16| M    | Valid      | Valid          | Store machine status word in low-order
+                 |             |      |            |                | 16 bits of r64/m16; high-order 16 bits
+                 |             |      |            |                | of r32 are undefined.                 
 
 ### Instruction Operand Encoding
-Op/En  | Operand 1  | Operand 2  | Operand 3  | Operand 4
------- | ---------- | ---------- | ---------- | ---------
-  |   |   |   | 
+ Op/En| Operand 1    | Operand 2| Operand 3| Operand 4
+ ---  | --- | --- | --- | ---
+ M    | ModRM:r/m (w)| NA       | NA       | NA       
 
-###Flags Affected
+### Description
+Stores the machine status word (bits 0 through 15 of control register CR0) into
+the destination operand. The destination operand can be a general-purpose register
+or a memory location.
+
+In non-64-bit modes, when the destination operand is a 32-bit register, the
+low-order 16 bits of register CR0 are copied into the low-order 16 bits of the
+register and the high-order 16 bits are undefined. When the destination operand
+is a memory location, the low-order 16 bits of register CR0 are written to memory
+as a 16-bit quantity, regardless of the operand size.
+
+In 64-bit mode, the behavior of the SMSW instruction is defined by the following
+### examples
+
+ - SMSW r16 operand size 16, store CR0[15:0] in r16
+ - SMSW r32 operand size 32, zero-extend CR0[31:0], and store in r32
+ - SMSW r64 operand size 64, zero-extend CR0[63:0], and store in r64
+ - SMSW m16 operand size 16, store CR0[15:0] in m16
+ - SMSW m16 operand size 32, store CR0[15:0] in m16 (not m32)
+ - SMSW m16 operands size 64, store CR0[15:0] in m16 (not m64)
+
+SMSW is only useful in operating-system software. However, it is not a privileged
+instruction and can be used in application programs. The is provided for compatibility
+with the Intel 286 processor. Programs and procedures intended to run on the
+Pentium 4, Intel Xeon, P6 family, Pentium, Intel486, and Intel386 processors
+should use the MOV (control registers) instruction to load the machine status
+word.
+
+See “Changes to Instruction Behavior in VMX Non-Root Operation” in Chapter 25
+of the Intel® 64 and IA-32 Architectures Software Developer's Manual, Volume
+3C, for more information about the behavior of this instruction in VMX non-root
+operation.
+
+
+
+### Flags Affected
+None.
+
 
 ### Protected Mode Exceptions
-
+   | |  
+---- | -----
+ #GP(0)         | If the destination is located in a non-writable
+                | segment. If a memory operand effective         
+                | address is outside the CS, DS, ES, FS,         
+                | or GS segment limit. If the DS, ES,            
+                | FS, or GS register is used to access           
+                | memory and it contains a NULL segment          
+                | selector.                                      
+ #SS(0)         | If a memory operand effective address          
+                | is outside the SS segment limit.               
+ #PF(fault-code)| If a page fault occurs.                        
+ #AC(0)         | If alignment checking is enabled and           
+                | an unaligned memory reference is made          
+                | while the current privilege level is           
+                | 3.                                             
+ #UD            | If the LOCK prefix is used.                    
 
 ### Real-Address Mode Exceptions
+   | |  
+---- | -----
+ #GP   | If a memory operand effective address
+       | is outside the CS, DS, ES, FS, or GS 
+       | segment limit.                       
+ #SS(0)| If a memory operand effective address
+       | is outside the SS segment limit.     
+ #UD   | If the LOCK prefix is used.          
 
 ### Virtual-8086 Mode Exceptions
+   | |  
+---- | -----
+ #GP(0)         | If a memory operand effective address 
+                | is outside the CS, DS, ES, FS, or GS  
+                | segment limit.                        
+ #SS(0)         | If a memory operand effective address 
+                | is outside the SS segment limit.      
+ #PF(fault-code)| If a page fault occurs.               
+ #AC(0)         | If alignment checking is enabled and  
+                | an unaligned memory reference is made.
+ #UD            | If the LOCK prefix is used.           
 
 ### Compatibility Mode Exceptions
+Same exceptions as in protected mode.
+
 
 ### 64-Bit Mode Exceptions
-
+   | |  
+---- | -----
+ #SS(0)         | If a memory address referencing the        
+                | SS segment is in a non-canonical form.     
+ #GP(0)         | If the memory address is in a non-canonical
+                | form.                                      
+ #PF(fault-code)| If a page fault occurs.                    
+ #AC(0)         | If alignment checking is enabled and       
+                | an unaligned memory reference is made      
+                | while the current privilege level is       
+                | 3.                                         
+ #UD            | If the LOCK prefix is used.                

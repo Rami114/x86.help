@@ -2,7 +2,7 @@
 title: Intel x86 Reference
 
 toc_footers:
-  - Suggestions? <a href="#">Contribute on github!</a>
+  - Suggestions? <a href="https://github.com/Rami114/x86.help">Contribute on Github!</a>
   - <a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a>
 
 includes:
@@ -25,8 +25,6 @@ includes:
   - instruction/aesdeclast
   - instruction/aesenc
   - instruction/aesenclast
-
-todo:
   - instruction/aesimc
   - instruction/aeskeygenassist
   - instruction/and

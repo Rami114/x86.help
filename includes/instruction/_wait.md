@@ -1,29 +1,66 @@
-## OPNAME
-> Operation
+## WAIT/FWAIT - Wait
 
+> Operation
 ``` slim
+
+CheckForPendingUnmaskedFloatingPointExceptions;
 
 ```
 
-Opcode | Instruction | Op/En | 64-bit Mode | Compat/Leg Mode | Description
--------| ----------- | ----- | ----------- | --------------- | -----------
-     |  |  |  |  | 
+ Opcode| Instruction| Op/En| 64-Bit Mode| Compat/Leg Mode| Description                          
+ ---  | --- | --- | --- | --- | ---
+ 9B    | WAIT       | NP   | Valid      | Valid          | Check pending unmasked floating-point
+       |            |      |            |                | exceptions.                          
+ 9B    | FWAIT      | NP   | Valid      | Valid          | Check pending unmasked floating-point
+       |            |      |            |                | exceptions.                          
 
 ### Instruction Operand Encoding
-Op/En  | Operand 1  | Operand 2  | Operand 3  | Operand 4
------- | ---------- | ---------- | ---------- | ---------
-  |   |   |   | 
+ Op/En| Operand 1| Operand 2| Operand 3| Operand 4
+ ---  | --- | --- | --- | ---
+ NP   | NA       | NA       | NA       | NA       
 
-###Flags Affected
+### Description
+Causes the processor to check for and handle pending, unmasked, floating-point
+exceptions before proceeding. (FWAIT is an alternate mnemonic for WAIT.)
+
+This instruction is useful for synchronizing exceptions in critical sections
+of code. Coding a WAIT instruction after a floating-point instruction ensures
+that any unmasked floating-point exceptions the instruction may raise are handled
+before the processor can modify the instruction's results. See the section titled
+“Floating-Point Exception Synchronization” in Chapter 8 of the Intel® 64 and
+IA-32 Architectures Software Developer's Manual, Volume 1, for more information
+on using the WAIT/FWAIT instruction.
+
+This instruction's operation is the same in non-64-bit modes and 64-bit mode.
+
+
+
+### FPU Flags Affected
+The C0, C1, C2, and C3 flags are undefined.
+
+
+### Floating-Point Exceptions
+None.
+
 
 ### Protected Mode Exceptions
-
+   | |  
+---- | -----
+ #NM| If CR0.MP[bit 1] = 1 and CR0.TS[bit
+    | 3] = 1.                            
+ #UD| If the LOCK prefix is used.        
 
 ### Real-Address Mode Exceptions
+Same exceptions as in protected mode.
+
 
 ### Virtual-8086 Mode Exceptions
+Same exceptions as in protected mode.
+
 
 ### Compatibility Mode Exceptions
+Same exceptions as in protected mode.
+
 
 ### 64-Bit Mode Exceptions
-
+Same exceptions as in protected mode.
