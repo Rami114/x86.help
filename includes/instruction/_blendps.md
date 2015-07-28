@@ -1,8 +1,8 @@
 ## BLENDPS  -  Blend Packed Single Precision Floating-Point Values
 
 > Operation
-``` slim
 
+``` slim
 BLENDPS (128-bit Legacy SSE version)
 IF (IMM8[0] = 0) THEN DEST[31:0] <-DEST[31:0]
      ELSE DEST [31:0] <- SRC[31:0] FI

@@ -1,8 +1,8 @@
 ## FRNDINT - Round to Integer
 
 > Operation
-``` slim
 
+``` slim
 ST(0) <- RoundToIntegralValue(ST(0));
 
 ```
@@ -34,18 +34,18 @@ This instruction's operation is the same in non-64-bit modes and 64-bit mode.
 ### Floating-Point Exceptions
    | |  
 ---- | -----
- #IS| Stack underflow occurred.                     
- #IA| Source operand is an SNaN value or unsupported
+ **``#IS``**| Stack underflow occurred.                     
+ **``#IA``**| Source operand is an SNaN value or unsupported
     | format.                                       
- #D | Source operand is a denormal value.           
- #P | Source operand is not an integral value.      
+ **``#D``** | Source operand is a denormal value.           
+ **``#P``** | Source operand is not an integral value.      
 
 ### Protected Mode Exceptions
    | |  
 ---- | -----
- #NM| CR0.EM[bit 2] or CR0.TS[bit 3] = 1.     
- #MF| If there is a pending x87 FPU exception.
- #UD| If the LOCK prefix is used.             
+ **``#NM``**| CR0.EM[bit 2] or CR0.TS[bit 3] = 1.     
+ **``#MF``**| If there is a pending x87 FPU exception.
+ **``#UD``**| If the LOCK prefix is used.             
 
 ### Real-Address Mode Exceptions
 Same exceptions as in protected mode.

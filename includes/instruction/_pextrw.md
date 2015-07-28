@@ -1,8 +1,8 @@
 ## PEXTRW - Extract Word
 
 > Operation
-``` slim
 
+``` slim
 IF (DEST = Mem16)
 THEN
   SEL <- COUNT[2:0];
@@ -127,4 +127,4 @@ See Exceptions Type 5; additionally
 
    | |  
 ---- | -----
- #UD| If VEX.L = 1. If VEX.vvvv != 1111B.
+ **``#UD``**| If VEX.L = 1. If VEX.vvvv != 1111B.

@@ -1,8 +1,8 @@
 ## FSUBR/FSUBRP/FISUBR - Reverse Subtract
 
 > Operation
-``` slim
 
+``` slim
 IF Instruction = FISUBR
   THEN
      DEST <- ConvertToDoubleExtendedPrecisionFP(SRC) − DEST;
@@ -91,7 +91,7 @@ F Means finite floating-point value.
    | |  
 ---- | -----
  I \* Indicates floating-point invalid-arithmetic-operand| Means integer.
- (#IA) exception.                                       |               
+ (**``#IA)``** exception.                                       |               
 This instruction's operation is the same in non-64-bit modes and 64-bit mode.
 
 
@@ -107,60 +107,60 @@ This instruction's operation is the same in non-64-bit modes and 64-bit mode.
 ### Floating-Point Exceptions
    | |  
 ---- | -----
- #IS| Stack underflow occurred.              
- #IA| Operand is an SNaN value or unsupported
+ **``#IS``**| Stack underflow occurred.              
+ **``#IA``**| Operand is an SNaN value or unsupported
     | format. Operands are infinities of like
     | sign.                                  
- #D | Source operand is a denormal value.    
- #U | Result is too small for destination    
+ **``#D``** | Source operand is a denormal value.    
+ **``#U``** | Result is too small for destination    
     | format.                                
- #O | Result is too large for destination    
+ **``#O``** | Result is too large for destination    
     | format.                                
- #P | Value cannot be represented exactly    
+ **``#P``** | Value cannot be represented exactly    
     | in destination format.                 
 
 ### Protected Mode Exceptions
    | |  
 ---- | -----
- #GP(0)         | If a memory operand effective address   
+ **``#GP(0)``**         | If a memory operand effective address   
                 | is outside the CS, DS, ES, FS, or GS    
                 | segment limit. If the DS, ES, FS, or    
                 | GS register is used to access memory    
                 | and it contains a NULL segment selector.
- #SS(0)         | If a memory operand effective address   
+ **``#SS(0)``**         | If a memory operand effective address   
                 | is outside the SS segment limit.        
- #NM            | CR0.EM[bit 2] or CR0.TS[bit 3] = 1.     
- #PF(fault-code)| If a page fault occurs.                 
- #AC(0)         | If alignment checking is enabled and    
+ **``#NM``**            | CR0.EM[bit 2] or CR0.TS[bit 3] = 1.     
+ **``#PF(fault-code)``**| If a page fault occurs.                 
+ **``#AC(0)``**         | If alignment checking is enabled and    
                 | an unaligned memory reference is made   
                 | while the current privilege level is    
                 | 3.                                      
- #UD            | If the LOCK prefix is used.             
+ **``#UD``**            | If the LOCK prefix is used.             
 
 ### Real-Address Mode Exceptions
    | |  
 ---- | -----
- #GP| If a memory operand effective address
+ **``#GP``**| If a memory operand effective address
     | is outside the CS, DS, ES, FS, or GS 
     | segment limit.                       
- #SS| If a memory operand effective address
+ **``#SS``**| If a memory operand effective address
     | is outside the SS segment limit.     
- #NM| CR0.EM[bit 2] or CR0.TS[bit 3] = 1.  
- #UD| If the LOCK prefix is used.          
+ **``#NM``**| CR0.EM[bit 2] or CR0.TS[bit 3] = 1.  
+ **``#UD``**| If the LOCK prefix is used.          
 
 ### Virtual-8086 Mode Exceptions
    | |  
 ---- | -----
- #GP(0)         | If a memory operand effective address 
+ **``#GP(0)``**         | If a memory operand effective address 
                 | is outside the CS, DS, ES, FS, or GS  
                 | segment limit.                        
- #SS(0)         | If a memory operand effective address 
+ **``#SS(0)``**         | If a memory operand effective address 
                 | is outside the SS segment limit.      
- #NM            | CR0.EM[bit 2] or CR0.TS[bit 3] = 1.   
- #PF(fault-code)| If a page fault occurs.               
- #AC(0)         | If alignment checking is enabled and  
+ **``#NM``**            | CR0.EM[bit 2] or CR0.TS[bit 3] = 1.   
+ **``#PF(fault-code)``**| If a page fault occurs.               
+ **``#AC(0)``**         | If alignment checking is enabled and  
                 | an unaligned memory reference is made.
- #UD            | If the LOCK prefix is used.           
+ **``#UD``**            | If the LOCK prefix is used.           
 
 ### Compatibility Mode Exceptions
 Same exceptions as in protected mode.
@@ -169,15 +169,15 @@ Same exceptions as in protected mode.
 ### 64-Bit Mode Exceptions
    | |  
 ---- | -----
- #SS(0)         | If a memory address referencing the        
+ **``#SS(0)``**         | If a memory address referencing the        
                 | SS segment is in a non-canonical form.     
- #GP(0)         | If the memory address is in a non-canonical
+ **``#GP(0)``**         | If the memory address is in a non-canonical
                 | form.                                      
- #NM            | CR0.EM[bit 2] or CR0.TS[bit 3] = 1.        
- #MF            | If there is a pending x87 FPU exception.   
- #PF(fault-code)| If a page fault occurs.                    
- #AC(0)         | If alignment checking is enabled and       
+ **``#NM``**            | CR0.EM[bit 2] or CR0.TS[bit 3] = 1.        
+ **``#MF``**            | If there is a pending x87 FPU exception.   
+ **``#PF(fault-code)``**| If a page fault occurs.                    
+ **``#AC(0)``**         | If alignment checking is enabled and       
                 | an unaligned memory reference is made      
                 | while the current privilege level is       
                 | 3.                                         
- #UD            | If the LOCK prefix is used.                
+ **``#UD``**            | If the LOCK prefix is used.                

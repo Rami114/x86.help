@@ -1,8 +1,8 @@
 ## CLI  -  Clear Interrupt Flag
 
 > Operation
-``` slim
 
+``` slim
 IF PE = 0
   THEN
      IF <- 0; (\* Reset Interrupt Flag \*)
@@ -91,23 +91,23 @@ than 3; CLI clears the VIF flag in the EFLAGS register, leaving IF unaffected.
 ### Protected Mode Exceptions
    | |  
 ---- | -----
- #GP(0)| If the CPL is greater (has less privilege)
+ **``#GP(0)``**| If the CPL is greater (has less privilege)
        | than the IOPL of the current program      
        | or procedure.                             
- #UD   | If the LOCK prefix is used.               
+ **``#UD``**   | If the LOCK prefix is used.               
 
 ### Real-Address Mode Exceptions
    | |  
 ---- | -----
- #UD| If the LOCK prefix is used.
+ **``#UD``**| If the LOCK prefix is used.
 
 ### Virtual-8086 Mode Exceptions
    | |  
 ---- | -----
- #GP(0)| If the CPL is greater (has less privilege)
+ **``#GP(0)``**| If the CPL is greater (has less privilege)
        | than the IOPL of the current program      
        | or procedure.                             
- #UD   | If the LOCK prefix is used.               
+ **``#UD``**   | If the LOCK prefix is used.               
 
 ### Compatibility Mode Exceptions
 Same exceptions as in protected mode.
@@ -116,7 +116,7 @@ Same exceptions as in protected mode.
 ### 64-Bit Mode Exceptions
    | |  
 ---- | -----
- #GP(0)| If the CPL is greater (has less privilege)
+ **``#GP(0)``**| If the CPL is greater (has less privilege)
        | than the IOPL of the current program      
        | or procedure.                             
- #UD   | If the LOCK prefix is used.               
+ **``#UD``**   | If the LOCK prefix is used.               

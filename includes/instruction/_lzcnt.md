@@ -1,8 +1,8 @@
 ## LZCNT -  Count the Number of Leading Zero Bits
 
 > Operation
-``` slim
 
+``` slim
 temp <- OperandSize - 1
 DEST <- 0
 WHILE (temp >= 0) AND (Bit(SRC, temp) = 0)
@@ -64,14 +64,14 @@ otherwise. OF, SF, PF and AF flags are undefined.
 ### Protected Mode Exceptions
    | |  
 ---- | -----
- #GP(0)          | For an illegal memory operand effective    
+ **``#GP(0)``**          | For an illegal memory operand effective    
                  | address in the CS, DS, ES, FS or GS        
                  | segments. If the DS, ES, FS, or GS register
                  | is used to access memory and it contains   
                  | a null segment selector.                   
- #SS(0)          | For an illegal address in the SS segment.  
- #PF (fault-code)| For a page fault.                          
- #AC(0)          | If alignment checking is enabled and       
+ **``#SS(0)``**          | For an illegal address in the SS segment.  
+ **``#PF``** (fault-code)| For a page fault.                          
+ **``#AC(0)``**          | If alignment checking is enabled and       
                  | an unaligned memory reference is made      
                  | while the current privilege level is       
                  | 3.                                         
@@ -79,20 +79,20 @@ otherwise. OF, SF, PF and AF flags are undefined.
 ### Real-Address Mode Exceptions
    | |  
 ---- | -----
- #GP(0)| If any part of the operand lies outside  
+ **``#GP(0)``**| If any part of the operand lies outside  
        | of the effective address space from      
        | 0 to 0FFFFH.                             
- #SS(0)| For an illegal address in the SS segment.
+ **``#SS(0)``**| For an illegal address in the SS segment.
 
 ### Virtual 8086 Mode Exceptions
    | |  
 ---- | -----
- #GP(0)          | If any part of the operand lies outside  
+ **``#GP(0)``**          | If any part of the operand lies outside  
                  | of the effective address space from      
                  | 0 to 0FFFFH.                             
- #SS(0)          | For an illegal address in the SS segment.
- #PF (fault-code)| For a page fault.                        
- #AC(0)          | If alignment checking is enabled and     
+ **``#SS(0)``**          | For an illegal address in the SS segment.
+ **``#PF``** (fault-code)| For a page fault.                        
+ **``#AC(0)``**          | If alignment checking is enabled and     
                  | an unaligned memory reference is made    
                  | while the current privilege level is     
                  | 3.                                       
@@ -104,12 +104,12 @@ Same exceptions as in Protected Mode.
 ### 64-Bit Mode Exceptions
    | |  
 ---- | -----
- #GP(0)          | If the memory address is in a non-canonical
+ **``#GP(0)``**          | If the memory address is in a non-canonical
                  | form.                                      
- #SS(0)          | If a memory address referencing the        
+ **``#SS(0)``**          | If a memory address referencing the        
                  | SS segment is in a non-canonical form.     
- #PF (fault-code)| For a page fault.                          
- #AC(0)          | If alignment checking is enabled and       
+ **``#PF``** (fault-code)| For a page fault.                          
+ **``#AC(0)``**          | If alignment checking is enabled and       
                  | an unaligned memory reference is made      
                  | while the current privilege level is       
                  | 3.                                         

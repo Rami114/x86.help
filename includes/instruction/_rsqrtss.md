@@ -1,8 +1,8 @@
 ## RSQRTSS - Compute Reciprocal of Square Root of Scalar Single-Precision Floating-Point Value
 
 > Operation
-``` slim
 
+``` slim
 RSQRTSS (128-bit Legacy SSE version)
 DEST[31:0] <- APPROXIMATE(1/SQRT(SRC2[31:0]))
 DEST[VLMAX-1:32] (Unmodified)

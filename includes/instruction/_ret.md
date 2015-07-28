@@ -1,8 +1,8 @@
 ## RET - Return from Procedure
 
 > Operation
-``` slim
 
+``` slim
 (\* Near return \*)
 IF instruction = near return
   THEN;
@@ -471,11 +471,11 @@ None.
 ### Protected Mode Exceptions
    | |  
 ---- | -----
- #GP(0)         | If the return code or stack segment          
+ **``#GP(0)``**         | If the return code or stack segment          
                 | selector NULL. If the return instruction     
                 | pointer is not within the return code        
                 | segment limit                                
- #GP(selector)  | If the RPL of the return code segment        
+ **``#GP(selector)``**  | If the RPL of the return code segment        
                 | selector is less then the CPL. If the        
                 | return code or stack segment selector        
                 | index is not within its descriptor table     
@@ -495,32 +495,32 @@ None.
                 | segment descriptor DPL is not equal          
                 | to the RPL of the return code segment        
                 | selector.                                    
- #SS(0)         | If the top bytes of stack are not within     
+ **``#SS(0)``**         | If the top bytes of stack are not within     
                 | stack limits. If the return stack segment    
                 | is not present.                              
- #NP(selector)  | If the return code segment is not present.   
- #PF(fault-code)| If a page fault occurs.                      
- #AC(0)         | If an unaligned memory access occurs         
+ **``#NP(selector)``**  | If the return code segment is not present.   
+ **``#PF(fault-code)``**| If a page fault occurs.                      
+ **``#AC(0)``**         | If an unaligned memory access occurs         
                 | when the CPL is 3 and alignment checking     
                 | is enabled.                                  
 
 ### Real-Address Mode Exceptions
    | |  
 ---- | -----
- #GP| If the return instruction pointer is    
+ **``#GP``**| If the return instruction pointer is    
     | not within the return code segment limit
- #SS| If the top bytes of stack are not within
+ **``#SS``**| If the top bytes of stack are not within
     | stack limits.                           
 
 ### Virtual-8086 Mode Exceptions
    | |  
 ---- | -----
- #GP(0)         | If the return instruction pointer is    
+ **``#GP(0)``**         | If the return instruction pointer is    
                 | not within the return code segment limit
- #SS(0)         | If the top bytes of stack are not within
+ **``#SS(0)``**         | If the top bytes of stack are not within
                 | stack limits.                           
- #PF(fault-code)| If a page fault occurs.                 
- #AC(0)         | If an unaligned memory access occurs    
+ **``#PF(fault-code)``**| If a page fault occurs.                 
+ **``#AC(0)``**         | If an unaligned memory access occurs    
                 | when alignment checking is enabled.     
 
 ### Compatibility Mode Exceptions
@@ -530,7 +530,7 @@ Same as 64-bit mode exceptions.
 ### 64-Bit Mode Exceptions
    | |  
 ---- | -----
- #GP(0)         | If the return instruction pointer is        
+ **``#GP(0)``**         | If the return instruction pointer is        
                 | non-canonical. If the return instruction    
                 | pointer is not within the return code       
                 | segment limit. If the stack segment         
@@ -541,7 +541,7 @@ Same as 64-bit mode exceptions.
                 | is not equal to CPL going back to non-CPL3  
                 | 64-bit mode. If the return code segment     
                 | selector is NULL.                           
- #GP(selector)  | If the proposed segment descriptor for      
+ **``#GP(selector)``**  | If the proposed segment descriptor for      
                 | a code segment does not indicate it         
                 | is a code segment. If the proposed new      
                 | code segment descriptor has both the        
@@ -562,14 +562,14 @@ Same as 64-bit mode exceptions.
                 | code segment selector. If the stack         
                 | segment selector RPL is not equal to        
                 | the RPL of the return code segment selector.
- #SS(0)         | If an attempt to pop a value off the        
+ **``#SS(0)``**         | If an attempt to pop a value off the        
                 | stack violates the SS limit. If an attempt  
                 | to pop a value off the stack causes         
                 | a non-canonical address to be referenced.   
- #NP(selector)  | If the return code or stack segment         
+ **``#NP(selector)``**  | If the return code or stack segment         
                 | is not present.                             
- #PF(fault-code)| If a page fault occurs.                     
- #AC(0)         | If alignment checking is enabled and        
+ **``#PF(fault-code)``**| If a page fault occurs.                     
+ **``#AC(0)``**         | If alignment checking is enabled and        
                 | an unaligned memory reference is made       
                 | while the current privilege level is        
                 | 3.                                          

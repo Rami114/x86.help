@@ -1,8 +1,8 @@
 ## MULX  -  Unsigned Multiply Without Affecting Flags
 
 > Operation
-``` slim
 
+``` slim
 // DEST1: ModRM:reg
 // DEST2: VEX.vvvv
 IF (OperandSize = 32)
@@ -67,4 +67,4 @@ Table 2-29; additionally
 
    | |  
 ---- | -----
- #UD| If VEX.W = 1.
+ **``#UD``**| If VEX.W = 1.

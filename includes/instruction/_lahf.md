@@ -1,8 +1,8 @@
 ## LAHF - Load Status Flags into AH Register
 
 > Operation
-``` slim
 
+``` slim
 IF 64-Bit Mode
   THEN
      IF CPUID.80000001H:ECX.LAHF-SAHF[bit 0] = 1;
@@ -42,7 +42,7 @@ None. The state of the flags in the EFLAGS register is not affected.
 ### Protected Mode Exceptions
    | |  
 ---- | -----
- #UD| If the LOCK prefix is used.
+ **``#UD``**| If the LOCK prefix is used.
 
 ### Real-Address Mode Exceptions
 Same exceptions as in protected mode.
@@ -59,5 +59,5 @@ Same exceptions as in protected mode.
 ### 64-Bit Mode Exceptions
    | |  
 ---- | -----
- #UD| If CPUID.80000001H:ECX.LAHF-SAHF[bit
+ **``#UD``**| If CPUID.80000001H:ECX.LAHF-SAHF[bit
     | 0] = 0. If the LOCK prefix is used. 

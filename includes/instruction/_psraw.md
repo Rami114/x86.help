@@ -1,8 +1,8 @@
 ## PSRAW/PSRAD - Shift Packed Data Right Arithmetic
 
 > Operation
-``` slim
 
+``` slim
 PSRAW (with 64-bit operand)
   IF (COUNT > 15)
      THEN COUNT <- 16;
@@ -208,4 +208,4 @@ See Exceptions Type 4 and 7 for non-VEX-encoded instructions; additionally
 
    | |  
 ---- | -----
- #UD| If VEX.L = 1.
+ **``#UD``**| If VEX.L = 1.

@@ -1,8 +1,8 @@
 ## IRET/IRETD - Interrupt Return
 
 > Operation
-``` slim
 
+``` slim
 IF PE = 0
   THEN
      GOTO REAL-ADDRESS-MODE;
@@ -364,11 +364,11 @@ EFLAGS image stored in the previous task's TSS.
 ### Protected Mode Exceptions
    | |  
 ---- | -----
- #GP(0)         | If the return code or stack segment               
+ **``#GP(0)``**         | If the return code or stack segment               
                 | selector is NULL. If the return instruction       
                 | pointer is not within the return code             
                 | segment limit.                                    
- #GP(selector)  | If a segment selector index is outside            
+ **``#GP(selector)``**  | If a segment selector index is outside            
                 | its descriptor table limits. If the               
                 | return code segment selector RPL is               
                 | less than the CPL. If the DPL of a conforming-code
@@ -390,50 +390,50 @@ EFLAGS image stored in the previous task's TSS.
                 | descriptor specifies that the TSS is              
                 | not busy. If a TSS segment descriptor             
                 | specifies that the TSS is not available.          
- #SS(0)         | If the top bytes of stack are not within          
+ **``#SS(0)``**         | If the top bytes of stack are not within          
                 | stack limits.                                     
- #NP(selector)  | If the return code or stack segment               
+ **``#NP(selector)``**  | If the return code or stack segment               
                 | is not present.                                   
- #PF(fault-code)| If a page fault occurs.                           
- #AC(0)         | If an unaligned memory reference occurs           
+ **``#PF(fault-code)``**| If a page fault occurs.                           
+ **``#AC(0)``**         | If an unaligned memory reference occurs           
                 | when the CPL is 3 and alignment checking          
                 | is enabled.                                       
- #UD            | If the LOCK prefix is used.                       
+ **``#UD``**            | If the LOCK prefix is used.                       
 
 ### Real-Address Mode Exceptions
    | |  
 ---- | -----
- #GP| If the return instruction pointer is     
+ **``#GP``**| If the return instruction pointer is     
     | not within the return code segment limit.
- #SS| If the top bytes of stack are not within 
+ **``#SS``**| If the top bytes of stack are not within 
     | stack limits.                            
 
 ### Virtual-8086 Mode Exceptions
    | |  
 ---- | -----
- #GP(0)| If the return instruction pointer is     
+ **``#GP(0)``**| If the return instruction pointer is     
        | not within the return code segment limit.
 IF IOPL not equal to 3.
 
    | |  
 ---- | -----
- #PF(fault-code)| If a page fault occurs.                 
- #SS(0)         | If the top bytes of stack are not within
+ **``#PF(fault-code)``**| If a page fault occurs.                 
+ **``#SS(0)``**         | If the top bytes of stack are not within
                 | stack limits.                           
- #AC(0)         | If an unaligned memory reference occurs 
+ **``#AC(0)``**         | If an unaligned memory reference occurs 
                 | and alignment checking is enabled.      
- #UD            | If the LOCK prefix is used.             
+ **``#UD``**            | If the LOCK prefix is used.             
 
 ### Compatibility Mode Exceptions
    | |  
 ---- | -----
- #GP(0) Other exceptions same as in Protected| If EFLAGS.NT[bit 14] = 1.
+ **``#GP(0)``** Other exceptions same as in Protected| If EFLAGS.NT[bit 14] = 1.
  Mode.                                       |                          
 
 ### 64-Bit Mode Exceptions
    | |  
 ---- | -----
- #GP(0)         | If EFLAGS.NT[bit 14] = 1. If the return    
+ **``#GP(0)``**         | If EFLAGS.NT[bit 14] = 1. If the return    
                 | code segment selector is NULL. If the      
                 | stack segment selector is NULL going       
                 | back to compatibility mode. If the stack   
@@ -445,7 +445,7 @@ IF IOPL not equal to 3.
                 | not within the return code segment limit.  
                 | If the return instruction pointer is       
                 | non-canonical.                             
- #GP(Selector)  | If a segment selector index is outside     
+ **``#GP(Selector)``**  | If a segment selector index is outside     
                 | its descriptor table limits. If a segment  
                 | descriptor memory address is non-canonical.
                 | If the segment descriptor for a code       
@@ -465,14 +465,14 @@ IF IOPL not equal to 3.
                 | segment selector. If the stack segment     
                 | selector RPL is not equal to the RPL       
                 | of the return code segment selector.       
- #SS(0)         | If an attempt to pop a value off the       
+ **``#SS(0)``**         | If an attempt to pop a value off the       
                 | stack violates the SS limit. If an attempt 
                 | to pop a value off the stack causes        
                 | a non-canonical address to be referenced.  
- #NP(selector)  | If the return code or stack segment        
+ **``#NP(selector)``**  | If the return code or stack segment        
                 | is not present.                            
- #PF(fault-code)| If a page fault occurs.                    
- #AC(0)         | If an unaligned memory reference occurs    
+ **``#PF(fault-code)``**| If a page fault occurs.                    
+ **``#AC(0)``**         | If an unaligned memory reference occurs    
                 | when the CPL is 3 and alignment checking   
                 | is enabled.                                
- #UD            | If the LOCK prefix is used.                
+ **``#UD``**            | If the LOCK prefix is used.                

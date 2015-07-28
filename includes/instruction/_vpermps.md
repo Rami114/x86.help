@@ -1,8 +1,8 @@
 ## VPERMPS  -  Permute Single-Precision Floating-Point Elements
 
 > Operation
-``` slim
 
+``` slim
 VPERMPS (VEX.256 encoded version)
 DEST[31:0] <- (SRC2[255:0] >> (SRC1[2:0] \* 32))[31:0];
 DEST[63:32] <- (SRC2[255:0] >> (SRC1[34:32] \* 32))[31:0];
@@ -51,4 +51,4 @@ See Exceptions Type 4; additionally
 
    | |  
 ---- | -----
- #UD| If VEX.L = 0, If VEX.W = 1.
+ **``#UD``**| If VEX.L = 0, If VEX.W = 1.

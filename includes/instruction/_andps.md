@@ -1,8 +1,8 @@
 ## ANDPS - Bitwise Logical AND of Packed Single-Precision Floating-Point Values
 
 > Operation
-``` slim
 
+``` slim
 ANDPS (128-bit Legacy SSE version)
 DEST[31:0] <- DEST[31:0] BITWISE AND SRC[31:0]
 DEST[63:32] <- DEST[63:32] BITWISE AND SRC[63:32]

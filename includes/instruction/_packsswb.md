@@ -1,8 +1,8 @@
 ## PACKSSWB/PACKSSDW - Pack with Signed Saturation
 
 > Operation
-``` slim
 
+``` slim
 PACKSSWB (with 64-bit operands)
   DEST[7:0] <- SaturateSignedWordToSignedByte DEST[15:0];
   DEST[15:8] <- SaturateSignedWordToSignedByte DEST[31:16];
@@ -256,4 +256,4 @@ See Exceptions Type 4; additionally
 
    | |  
 ---- | -----
- #UD| If VEX.L = 1.
+ **``#UD``**| If VEX.L = 1.

@@ -1,8 +1,8 @@
 ## XTEST  -  Test If In Transactional Execution
 
 > Operation
-``` slim
 
+``` slim
 XTEST
 IF (RTM_ACTIVE = 1 OR HLE_ACTIVE = 1)
   THEN
@@ -47,7 +47,7 @@ None
 ### Other Exceptions
    | |  
 ---- | -----
- #UD| CPUID.(EAX=7, ECX=0):HLE[bit 4] = 0     
+ **``#UD``**| CPUID.(EAX=7, ECX=0):HLE[bit 4] = 0     
     | and CPUID.(EAX=7, ECX=0):RTM[bit 11]    
     | = 0. If LOCK or 66H or F2H or F3H prefix
     | is used.                                

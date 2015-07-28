@@ -1,8 +1,8 @@
 ## UNPCKHPS - Unpack and Interleave High Packed Single-Precision Floating-Point Values
 
 > Operation
-``` slim
 
+``` slim
 UNPCKHPS (128-bit Legacy SSE version)
 DEST[31:0] <- SRC1[95:64]
 DEST[63:32] <- SRC2[95:64]

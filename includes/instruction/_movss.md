@@ -1,8 +1,8 @@
 ## MOVSS - Move Scalar Single-Precision Floating-Point Values
 
 > Operation
-``` slim
 
+``` slim
 MOVSS (Legacy SSE version when the source and destination operands are both XMM registers)
 DEST[31:0] <- SRC[31:0]
 DEST[VLMAX-1:32] (Unmodified)
@@ -95,4 +95,4 @@ See Exceptions Type 5; additionally
 
    | |  
 ---- | -----
- #UD| If VEX.vvvv != 1111B.
+ **``#UD``**| If VEX.vvvv != 1111B.

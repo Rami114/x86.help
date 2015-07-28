@@ -1,8 +1,8 @@
 ## SUBPS - Subtract Packed Single-Precision Floating-Point Values
 
 > Operation
-``` slim
 
+``` slim
 SUBPS (128-bit Legacy SSE version)
 DEST[31:0] <- SRC1[31:0] - SRC2[31:0]
 DEST[63:32] <- SRC1[63:32] - SRC2[63:32]

@@ -1,8 +1,8 @@
 ## PUSHA/PUSHAD - Push All General-Purpose Registers
 
 > Operation
-``` slim
 
+``` slim
 IF 64-bit Mode
   THEN #UD
 FI;
@@ -78,30 +78,30 @@ None.
 ### Protected Mode Exceptions
    | |  
 ---- | -----
- #SS(0)         | If the starting or ending stack address
+ **``#SS(0)``**         | If the starting or ending stack address
                 | is outside the stack segment limit.    
- #PF(fault-code)| If a page fault occurs.                
- #AC(0)         | If an unaligned memory reference is    
+ **``#PF(fault-code)``**| If a page fault occurs.                
+ **``#AC(0)``**         | If an unaligned memory reference is    
                 | made while the current privilege level 
                 | is 3 and alignment checking is enabled.
- #UD            | If the LOCK prefix is used.            
+ **``#UD``**            | If the LOCK prefix is used.            
 
 ### Real-Address Mode Exceptions
    | |  
 ---- | -----
- #GP| If the ESP or SP register contains 7,
+ **``#GP``**| If the ESP or SP register contains 7,
     | 9, 11, 13, or 15.                    
- #UD| If the LOCK prefix is used.          
+ **``#UD``**| If the LOCK prefix is used.          
 
 ### Virtual-8086 Mode Exceptions
    | |  
 ---- | -----
- #GP(0)         | If the ESP or SP register contains 7,    
+ **``#GP(0)``**         | If the ESP or SP register contains 7,    
                 | 9, 11, 13, or 15.                        
- #PF(fault-code)| If a page fault occurs.                  
- #AC(0)         | If an unaligned memory reference is      
+ **``#PF(fault-code)``**| If a page fault occurs.                  
+ **``#AC(0)``**         | If an unaligned memory reference is      
                 | made while alignment checking is enabled.
- #UD            | If the LOCK prefix is used.              
+ **``#UD``**            | If the LOCK prefix is used.              
 
 ### Compatibility Mode Exceptions
 Same exceptions as in protected mode.
@@ -110,4 +110,4 @@ Same exceptions as in protected mode.
 ### 64-Bit Mode Exceptions
    | |  
 ---- | -----
- #UD| If in 64-bit mode.
+ **``#UD``**| If in 64-bit mode.

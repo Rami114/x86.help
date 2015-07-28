@@ -1,8 +1,8 @@
 ## MINSS - Return Minimum Scalar Single-Precision Floating-Point Value
 
 > Operation
-``` slim
 
+``` slim
 MIN(SRC1, SRC2)
 {
   IF ((SRC1 = 0.0) and (SRC2 = 0.0)) THEN DEST <- SRC2;

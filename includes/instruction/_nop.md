@@ -1,8 +1,8 @@
 ## NOP - No Operation
 
 > Operation
-``` slim
 
+``` slim
 The one-byte NOP instruction is an alias mnemonic for the XCHG (E)AX, (E)AX instruction.
 The multi-byte NOP instruction performs no operation on supported processors and generates undefined opcode
 exception on processors that do not support the multi-byte NOP instruction.
@@ -59,4 +59,4 @@ None.
 ### Exceptions (All Operating Modes)
    | |  
 ---- | -----
- #UD| If the LOCK prefix is used.
+ **``#UD``**| If the LOCK prefix is used.

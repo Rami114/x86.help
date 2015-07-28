@@ -1,8 +1,8 @@
 ## CVTTSD2SI - Convert with Truncation Scalar Double-Precision FP Value to Signed Integer
 
 > Operation
-``` slim
 
+``` slim
 IF 64-Bit Mode and OperandSize = 64
   THEN
      DEST[63:0] <- Convert_Double_Precision_Floating_Point_To_
@@ -69,4 +69,4 @@ See Exceptions Type 3; additionally
 
    | |  
 ---- | -----
- #UD| If VEX.vvvv != 1111B.
+ **``#UD``**| If VEX.vvvv != 1111B.

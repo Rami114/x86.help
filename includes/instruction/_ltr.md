@@ -1,8 +1,8 @@
 ## LTR - Load Task Register
 
 > Operation
-``` slim
 
+``` slim
 IF SRC is a NULL selector
   THEN #GP(0);
 IF SRC(Offset) > descriptor table limit OR IF SRC(type) != global
@@ -57,7 +57,7 @@ None.
 ### Protected Mode Exceptions
    | |  
 ---- | -----
- #GP(0)         | If the current privilege level is not     
+ **``#GP(0)``**         | If the current privilege level is not     
                 | 0. If a memory operand effective address  
                 | is outside the CS, DS, ES, FS, or GS      
                 | segment limit. If the source operand      
@@ -65,26 +65,26 @@ None.
                 | the DS, ES, FS, or GS register is used    
                 | to access memory and it contains a NULL   
                 | segment selector.                         
- #GP(selector)  | If the source selector points to a segment
+ **``#GP(selector)``**  | If the source selector points to a segment
                 | that is not a TSS or to one for a task    
                 | that is already busy. If the selector     
                 | points to LDT or is beyond the GDT limit. 
- #NP(selector)  | If the TSS is marked not present.         
- #SS(0)         | If a memory operand effective address     
+ **``#NP(selector)``**  | If the TSS is marked not present.         
+ **``#SS(0)``**         | If a memory operand effective address     
                 | is outside the SS segment limit.          
- #PF(fault-code)| If a page fault occurs.                   
- #UD            | If the LOCK prefix is used.               
+ **``#PF(fault-code)``**| If a page fault occurs.                   
+ **``#UD``**            | If the LOCK prefix is used.               
 
 ### Real-Address Mode Exceptions
    | |  
 ---- | -----
- #UD| The LTR instruction is not recognized
+ **``#UD``**| The LTR instruction is not recognized
     | in real-address mode.                
 
 ### Virtual-8086 Mode Exceptions
    | |  
 ---- | -----
- #UD| The LTR instruction is not recognized
+ **``#UD``**| The LTR instruction is not recognized
     | in virtual-8086 mode.                
 
 ### Compatibility Mode Exceptions
@@ -94,19 +94,19 @@ Same exceptions as in protected mode.
 ### 64-Bit Mode Exceptions
    | |  
 ---- | -----
- #SS(0)         | If a memory address referencing the           
+ **``#SS(0)``**         | If a memory address referencing the           
                 | SS segment is in a non-canonical form.        
- #GP(0)         | If the current privilege level is not         
+ **``#GP(0)``**         | If the current privilege level is not         
                 | 0. If the memory address is in a non-canonical
                 | form. If the source operand contains          
                 | a NULL segment selector.                      
- #GP(selector)  | If the source selector points to a segment    
+ **``#GP(selector)``**  | If the source selector points to a segment    
                 | that is not a TSS or to one for a task        
                 | that is already busy. If the selector         
                 | points to LDT or is beyond the GDT limit.     
                 | If the descriptor type of the upper           
                 | 8-byte of the 16-byte descriptor is           
                 | non-zero.                                     
- #NP(selector)  | If the TSS is marked not present.             
- #PF(fault-code)| If a page fault occurs.                       
- #UD            | If the LOCK prefix is used.                   
+ **``#NP(selector)``**  | If the TSS is marked not present.             
+ **``#PF(fault-code)``**| If a page fault occurs.                       
+ **``#UD``**            | If the LOCK prefix is used.                   

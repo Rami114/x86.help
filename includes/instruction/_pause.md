@@ -1,8 +1,8 @@
 ## PAUSE - Spin Loop Hint
 
 > Operation
-``` slim
 
+``` slim
 Execute_Next_Instruction(DELAY);
 
 ```
@@ -50,4 +50,4 @@ None.
 ### Exceptions (All Operating Modes)
    | |  
 ---- | -----
- #UD| If the LOCK prefix is used.
+ **``#UD``**| If the LOCK prefix is used.

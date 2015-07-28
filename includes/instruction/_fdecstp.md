@@ -1,8 +1,8 @@
 ## FDECSTP - Decrement Stack-Top Pointer
 
 > Operation
-``` slim
 
+``` slim
 IF TOP = 0
   THEN TOP <- 7;
   ELSE TOP <- TOP - 1;
@@ -35,9 +35,9 @@ None.
 ### Protected Mode Exceptions
    | |  
 ---- | -----
- #NM| CR0.EM[bit 2] or CR0.TS[bit 3] = 1.     
- #MF| If there is a pending x87 FPU exception.
- #UD| If the LOCK prefix is used.             
+ **``#NM``**| CR0.EM[bit 2] or CR0.TS[bit 3] = 1.     
+ **``#MF``**| If there is a pending x87 FPU exception.
+ **``#UD``**| If the LOCK prefix is used.             
 
 ### Real-Address Mode Exceptions
 Same exceptions as in protected mode.

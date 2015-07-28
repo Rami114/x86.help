@@ -1,8 +1,8 @@
 ## PAND - Logical AND
 
 > Operation
-``` slim
 
+``` slim
 PAND (128-bit Legacy SSE version)
 DEST <- DEST AND SRC
 DEST[VLMAX-1:128] (Unmodified)
@@ -90,4 +90,4 @@ See Exceptions Type 4; additionally
 
    | |  
 ---- | -----
- #UD| If VEX.L = 1.
+ **``#UD``**| If VEX.L = 1.

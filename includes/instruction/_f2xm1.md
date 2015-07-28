@@ -1,8 +1,8 @@
 ## F2XM1 - Compute 2x-1
 
 > Operation
-``` slim
 
+``` slim
 ST(0) <- (2ST(0) − 1);
 
 ```
@@ -49,20 +49,20 @@ This instruction's operation is the same in non-64-bit modes and 64-bit mode.
 ### Floating-Point Exceptions
    | |  
 ---- | -----
- #IS| Stack underflow occurred.                     
- #IA| Source operand is an SNaN value or unsupported
+ **``#IS``**| Stack underflow occurred.                     
+ **``#IA``**| Source operand is an SNaN value or unsupported
     | format.                                       
- #D | Source is a denormal value.                   
- #U | Result is too small for destination           
+ **``#D``** | Source is a denormal value.                   
+ **``#U``** | Result is too small for destination           
     | format.                                       
- #P | Value cannot be represented exactly           
+ **``#P``** | Value cannot be represented exactly           
     | in destination format.                        
 
 ### Protected Mode Exceptions
    | |  
 ---- | -----
- #NM| CR0.EM[bit 2] or CR0.TS[bit 3] = 1.
- #UD| If the LOCK prefix is used.        
+ **``#NM``**| CR0.EM[bit 2] or CR0.TS[bit 3] = 1.
+ **``#UD``**| If the LOCK prefix is used.        
 
 ### Real-Address Mode Exceptions
 Same exceptions as in protected mode.

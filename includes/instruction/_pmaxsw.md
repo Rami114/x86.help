@@ -1,8 +1,8 @@
 ## PMAXSW - Maximum of Packed Signed Word Integers
 
 > Operation
-``` slim
 
+``` slim
 PMAXSW (64-bit operands)
   IF DEST[15:0] > SRC[15:0]) THEN
      DEST[15:0] <- DEST[15:0];
@@ -122,4 +122,4 @@ See Exceptions Type 4; additionally
 
    | |  
 ---- | -----
- #UD| If VEX.L = 1.
+ **``#UD``**| If VEX.L = 1.

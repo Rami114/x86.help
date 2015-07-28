@@ -1,8 +1,8 @@
 ## PXOR - Logical Exclusive OR
 
 > Operation
-``` slim
 
+``` slim
 PXOR (128-bit Legacy SSE version)
 DEST <- DEST XOR SRC
 DEST[VLMAX-1:128] (Unmodified)
@@ -88,4 +88,4 @@ See Exceptions Type 4; additionally
 
    | |  
 ---- | -----
- #UD| If VEX.L = 1.
+ **``#UD``**| If VEX.L = 1.

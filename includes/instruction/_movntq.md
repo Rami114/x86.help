@@ -1,8 +1,8 @@
 ## MOVNTQ - Store of Quadword Using Non-Temporal Hint
 
 > Operation
-``` slim
 
+``` slim
 DEST <- SRC;
 
 ```

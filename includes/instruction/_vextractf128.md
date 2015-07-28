@@ -1,8 +1,8 @@
 ## VEXTRACTF128  -  Extract Packed Floating-Point Values
 
 > Operation
-``` slim
 
+``` slim
 VEXTRACTF128 (memory destination form)
 CASE (imm8[0]) OF
   0: DEST[127:0] <- SRC1[127:0]
@@ -58,4 +58,4 @@ See Exceptions Type 6; additionally
 
    | |  
 ---- | -----
- #UD| If VEX.L= 0 If VEX.W=1.
+ **``#UD``**| If VEX.L= 0 If VEX.W=1.

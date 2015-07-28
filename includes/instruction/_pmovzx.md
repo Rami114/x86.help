@@ -1,8 +1,8 @@
 ## PMOVZX  -  Packed Move with Zero Extend
 
 > Operation
-``` slim
 
+``` slim
 PMOVZXBW
   DEST[15:0] <- ZeroExtend(SRC[7:0]);
   DEST[31:16] <- ZeroExtend(SRC[15:8]);
@@ -195,4 +195,4 @@ See Exceptions Type 5; additionally
 
    | |  
 ---- | -----
- #UD| If VEX.L = 1. If VEX.vvvv != 1111B.
+ **``#UD``**| If VEX.L = 1. If VEX.vvvv != 1111B.

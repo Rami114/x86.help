@@ -1,8 +1,8 @@
 ## STOS/STOSB/STOSW/STOSD/STOSQ - Store String
 
 > Operation
-``` slim
 
+``` slim
 ```
 
  Opcode    | Instruction| Op/En| 64-Bit Mode| Compat/Leg Mode| Description                          
@@ -160,34 +160,34 @@ None.
 ### Protected Mode Exceptions
    | |  
 ---- | -----
- #GP(0)         | If the destination is located in a non-writable
+ **``#GP(0)``**         | If the destination is located in a non-writable
                 | segment. If a memory operand effective         
                 | address is outside the limit of the            
                 | ES segment. If the ES register contains        
                 | a NULL segment selector.                       
- #PF(fault-code)| If a page fault occurs.                        
- #AC(0)         | If alignment checking is enabled and           
+ **``#PF(fault-code)``**| If a page fault occurs.                        
+ **``#AC(0)``**         | If alignment checking is enabled and           
                 | an unaligned memory reference is made          
                 | while the current privilege level is           
                 | 3.                                             
- #UD            | If the LOCK prefix is used.                    
+ **``#UD``**            | If the LOCK prefix is used.                    
 
 ### Real-Address Mode Exceptions
    | |  
 ---- | -----
- #GP| If a memory operand effective address
+ **``#GP``**| If a memory operand effective address
     | is outside the ES segment limit.     
- #UD| If the LOCK prefix is used.          
+ **``#UD``**| If the LOCK prefix is used.          
 
 ### Virtual-8086 Mode Exceptions
    | |  
 ---- | -----
- #GP(0)         | If a memory operand effective address 
+ **``#GP(0)``**         | If a memory operand effective address 
                 | is outside the ES segment limit.      
- #PF(fault-code)| If a page fault occurs.               
- #AC(0)         | If alignment checking is enabled and  
+ **``#PF(fault-code)``**| If a page fault occurs.               
+ **``#AC(0)``**         | If alignment checking is enabled and  
                 | an unaligned memory reference is made.
- #UD            | If the LOCK prefix is used.           
+ **``#UD``**            | If the LOCK prefix is used.           
 
 ### Compatibility Mode Exceptions
 Same exceptions as in protected mode.
@@ -196,11 +196,11 @@ Same exceptions as in protected mode.
 ### 64-Bit Mode Exceptions
    | |  
 ---- | -----
- #GP(0)         | If the memory address is in a non-canonical
+ **``#GP(0)``**         | If the memory address is in a non-canonical
                 | form.                                      
- #PF(fault-code)| If a page fault occurs.                    
- #AC(0)         | If alignment checking is enabled and       
+ **``#PF(fault-code)``**| If a page fault occurs.                    
+ **``#AC(0)``**         | If alignment checking is enabled and       
                 | an unaligned memory reference is made      
                 | while the current privilege level is       
                 | 3.                                         
- #UD            | If the LOCK prefix is used.                
+ **``#UD``**            | If the LOCK prefix is used.                

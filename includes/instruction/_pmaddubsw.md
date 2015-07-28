@@ -1,8 +1,8 @@
 ## PMADDUBSW  -  Multiply and Add Packed Signed and Unsigned Bytes
 
 > Operation
-``` slim
 
+``` slim
 PMADDUBSW (with 64 bit operands)
   DEST[15-0] = SaturateToSignedWord(SRC[15-8]\*DEST[15-8]+SRC[7-0]\*DEST[7-0]);
   DEST[31-16] = SaturateToSignedWord(SRC[31-24]\*DEST[31-24]+SRC[23-16]\*DEST[23-16]);
@@ -99,4 +99,4 @@ See Exceptions Type 4; additionally
 
    | |  
 ---- | -----
- #UD| If VEX.L = 1.
+ **``#UD``**| If VEX.L = 1.

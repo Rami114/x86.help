@@ -1,8 +1,8 @@
 ## VBROADCAST - Broadcast Floating-Point Data
 
 > Operation
-``` slim
 
+``` slim
 VBROADCASTSS (128 bit version)
 temp <- SRC[31:0]
 DEST[31:0] <- temp
@@ -120,5 +120,5 @@ See Exceptions Type 6; additionally
 
    | |  
 ---- | -----
- #UD| If VEX.L = 0 for VBROADCASTSD, If VEX.L
+ **``#UD``**| If VEX.L = 0 for VBROADCASTSD, If VEX.L
     | = 0 for VBROADCASTF128, If VEX.W = 1.  

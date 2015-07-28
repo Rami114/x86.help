@@ -1,8 +1,8 @@
 ## VPBROADCAST - Broadcast Integer Data
 
 > Operation
-``` slim
 
+``` slim
 VPBROADCASTB (VEX.128 encoded version)
 temp <- SRC[7:0]
 FOR j <- 0 TO 15
@@ -140,4 +140,4 @@ See Exceptions Type 6; additionally
 
    | |  
 ---- | -----
- #UD| If VEX.W = 1, If VEX.L = 0 for VBROADCASTI128.
+ **``#UD``**| If VEX.W = 1, If VEX.L = 0 for VBROADCASTI128.

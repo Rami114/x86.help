@@ -1,8 +1,8 @@
 ## MULSD - Multiply Scalar Double-Precision Floating-Point Values
 
 > Operation
-``` slim
 
+``` slim
 MULSD (128-bit Legacy SSE version)
 DEST[63:0] <- DEST[63:0] \* SRC[63:0]
 DEST[VLMAX-1:64] (Unmodified)

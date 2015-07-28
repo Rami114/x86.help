@@ -1,8 +1,8 @@
 ## XGETBV - Get Value of Extended Control Register
 
 > Operation
-``` slim
 
+``` slim
 EDX:EAX <- XCR[ECX];
 
 ```
@@ -50,10 +50,10 @@ None.
 ### Protected Mode Exceptions
    | |  
 ---- | -----
- #GP(0)| If an invalid XCR is specified in ECX                 
+ **``#GP(0)``**| If an invalid XCR is specified in ECX                 
        | (includes ECX = 1 if CPUID.(EAX=0DH,ECX=1):EAX.XG1[bit
        | 2] = 0).                                              
- #UD   | If CPUID.01H:ECX.XSAVE[bit 26] = 0.                   
+ **``#UD``**   | If CPUID.01H:ECX.XSAVE[bit 26] = 0.                   
        | If CR4.OSXSAVE[bit 18] = 0. If the LOCK               
        | prefix is used. If 66H, F3H or F2H prefix             
        | is used.                                              
@@ -61,10 +61,10 @@ None.
 ### Real-Address Mode Exceptions
    | |  
 ---- | -----
- #GP(0)| If an invalid XCR is specified in ECX                 
+ **``#GP(0)``**| If an invalid XCR is specified in ECX                 
        | (includes ECX = 1 if CPUID.(EAX=0DH,ECX=1):EAX.XG1[bit
        | 2] = 0).                                              
- #UD   | If CPUID.01H:ECX.XSAVE[bit 26] = 0.                   
+ **``#UD``**   | If CPUID.01H:ECX.XSAVE[bit 26] = 0.                   
        | If CR4.OSXSAVE[bit 18] = 0. If the LOCK               
        | prefix is used. If 66H, F3H or F2H prefix             
        | is used.                                              

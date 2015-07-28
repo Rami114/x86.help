@@ -1,8 +1,8 @@
 ## VPERMILPS  -  Permute Single-Precision Floating-Point Values
 
 > Operation
-``` slim
 
+``` slim
 Select4(SRC, control) {
 CASE (control[1:0]) OF
 ```
@@ -122,4 +122,4 @@ See Exceptions Type 6; additionally
 
    | |  
 ---- | -----
- #UD| If VEX.W = 1.
+ **``#UD``**| If VEX.W = 1.

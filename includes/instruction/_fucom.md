@@ -1,8 +1,8 @@
 ## FUCOM/FUCOMP/FUCOMPP - Unordered Compare Floating Point Values
 
 > Operation
-``` slim
 
+``` slim
 CASE (relation of operands) OF
 ```
 
@@ -93,19 +93,19 @@ FI;
 ### Floating-Point Exceptions
    | |  
 ---- | -----
- #IS| Stack underflow occurred.                
- #IA| One or both operands are SNaN values     
+ **``#IS``**| Stack underflow occurred.                
+ **``#IA``**| One or both operands are SNaN values     
     | or have unsupported formats. Detection   
     | of a QNaN value in and of itself does    
     | not raise an invalid-operand exception.  
- #D | One or both operands are denormal values.
+ **``#D``** | One or both operands are denormal values.
 
 ### Protected Mode Exceptions
    | |  
 ---- | -----
- #NM| CR0.EM[bit 2] or CR0.TS[bit 3] = 1.     
- #MF| If there is a pending x87 FPU exception.
- #UD| If the LOCK prefix is used.             
+ **``#NM``**| CR0.EM[bit 2] or CR0.TS[bit 3] = 1.     
+ **``#MF``**| If there is a pending x87 FPU exception.
+ **``#UD``**| If the LOCK prefix is used.             
 
 ### Real-Address Mode Exceptions
 Same exceptions as in protected mode.

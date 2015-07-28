@@ -1,8 +1,8 @@
 ## UD2 - Undefined Instruction
 
 > Operation
-``` slim
 
+``` slim
 #UD (\* Generates invalid opcode exception \*);
 
 ```
@@ -39,5 +39,5 @@ None.
 ### Exceptions (All Operating Modes)
    | |  
 ---- | -----
- #UD| Raises an invalid opcode exception in
+ **``#UD``**| Raises an invalid opcode exception in
     | all operating modes.                 

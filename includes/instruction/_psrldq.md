@@ -1,8 +1,8 @@
 ## PSRLDQ - Shift Double Quadword Right Logical
 
 > Operation
-``` slim
 
+``` slim
 PSRLDQ(128-bit Legacy SSE version)
 TEMP <- COUNT
 IF (TEMP > 15) THEN TEMP <- 16; FI
@@ -80,4 +80,4 @@ See Exceptions Type 7; additionally
 
    | |  
 ---- | -----
- #UD| If VEX.L = 1.
+ **``#UD``**| If VEX.L = 1.

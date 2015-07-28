@@ -1,8 +1,8 @@
 ## PREFETCHh - Prefetch Data Into Caches
 
 > Operation
-``` slim
 
+``` slim
 FETCH (m8);
 
 ```
@@ -89,4 +89,4 @@ None.
 ### Exceptions (All Operating Modes)
    | |  
 ---- | -----
- #UD| If the LOCK prefix is used.
+ **``#UD``**| If the LOCK prefix is used.

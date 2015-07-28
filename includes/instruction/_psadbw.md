@@ -1,8 +1,8 @@
 ## PSADBW - Compute Sum of Absolute Differences
 
 > Operation
-``` slim
 
+``` slim
 PSADBW (when using 64-bit operands)
   TEMP0 <- ABS(DEST[7:0] − SRC[7:0]);
   (\* Repeat operation for bytes 2 through 6 \*)
@@ -148,4 +148,4 @@ See Exceptions Type 4; additionally
 
    | |  
 ---- | -----
- #UD| If VEX.L = 1.
+ **``#UD``**| If VEX.L = 1.

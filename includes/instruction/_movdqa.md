@@ -1,8 +1,8 @@
 ## MOVDQA - Move Aligned Double Quadword
 
 > Operation
-``` slim
 
+``` slim
 MOVDQA (128-bit load- and register- form Legacy SSE version)
 DEST[127:0] <- SRC[127:0]
 DEST[VLMAX-1:128] (Unmodified)
@@ -84,4 +84,4 @@ See Exceptions Type 1.SSE2; additionally
 
    | |  
 ---- | -----
- #UD| If VEX.vvvv != 1111B.
+ **``#UD``**| If VEX.vvvv != 1111B.

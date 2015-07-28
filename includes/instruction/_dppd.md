@@ -1,8 +1,8 @@
 ## DPPD  -  Dot Product of Packed Double Precision Floating-Point Values
 
 > Operation
-``` slim
 
+``` slim
 DP_primitive (SRC1, SRC2)
 IF (imm8[4] = 1)
   THEN Temp1[63:0] <- DEST[63:0] \* SRC[63:0]; // update SIMD exception flags
@@ -100,4 +100,4 @@ See Exceptions Type 2; additionally
 
    | |  
 ---- | -----
- #UD| If VEX.L= 1.
+ **``#UD``**| If VEX.L= 1.

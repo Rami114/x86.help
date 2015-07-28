@@ -1,8 +1,8 @@
 ## POP - Pop a Value from the Stack
 
 > Operation
-``` slim
 
+``` slim
 IF StackAddrSize = 32
   THEN
      IF OperandSize = 32
@@ -216,7 +216,7 @@ None.
 ### Protected Mode Exceptions
    | |  
 ---- | -----
- #GP(0)       | If attempt is made to load SS register        
+ **``#GP(0)``**       | If attempt is made to load SS register        
               | with NULL segment selector. If the destination
               | operand is in a non-writable segment.         
               | If a memory operand effective address         
@@ -224,7 +224,7 @@ None.
               | segment limit. If the DS, ES, FS, or          
               | GS register is used to access memory          
               | and it contains a NULL segment selector.      
- #GP(selector)| If segment selector index is outside          
+ **``#GP(selector)``**| If segment selector index is outside          
               | descriptor table limits. If the SS register   
               | is being loaded and the segment selector's    
               | RPL and the segment descriptor's DPL          
@@ -237,40 +237,40 @@ code segment, but both the RPL and the CPL are greater than the DPL.
 
    | |  
 ---- | -----
- #SS(0)         | If the current top of stack is not within
+ **``#SS(0)``**         | If the current top of stack is not within
                 | the stack segment. If a memory operand   
                 | effective address is outside the SS      
                 | segment limit.                           
- #SS(selector)  | If the SS register is being loaded and   
+ **``#SS(selector)``**  | If the SS register is being loaded and   
                 | the segment pointed to is marked not     
                 | present.                                 
- #NP            | If the DS, ES, FS, or GS register is     
+ **``#NP``**            | If the DS, ES, FS, or GS register is     
                 | being loaded and the segment pointed     
                 | to is marked not present.                
- #PF(fault-code)| If a page fault occurs.                  
- #AC(0)         | If an unaligned memory reference is      
+ **``#PF(fault-code)``**| If a page fault occurs.                  
+ **``#AC(0)``**         | If an unaligned memory reference is      
                 | made while the current privilege level   
                 | is 3 and alignment checking is enabled.  
- #UD            | If the LOCK prefix is used.              
+ **``#UD``**            | If the LOCK prefix is used.              
 
 ### Real-Address Mode Exceptions
    | |  
 ---- | -----
- #GP| If a memory operand effective address
+ **``#GP``**| If a memory operand effective address
     | is outside the CS, DS, ES, FS, or GS 
     | segment limit.                       
- #UD| If the LOCK prefix is used.          
+ **``#UD``**| If the LOCK prefix is used.          
 
 ### Virtual-8086 Mode Exceptions
    | |  
 ---- | -----
- #GP(0)         | If a memory operand effective address    
+ **``#GP(0)``**         | If a memory operand effective address    
                 | is outside the CS, DS, ES, FS, or GS     
                 | segment limit.                           
- #PF(fault-code)| If a page fault occurs.                  
- #AC(0)         | If an unaligned memory reference is      
+ **``#PF(fault-code)``**| If a page fault occurs.                  
+ **``#AC(0)``**         | If an unaligned memory reference is      
                 | made while alignment checking is enabled.
- #UD            | If the LOCK prefix is used.              
+ **``#UD``**            | If the LOCK prefix is used.              
 
 ### Compatibility Mode Exceptions
 Same as for protected mode exceptions.
@@ -279,11 +279,11 @@ Same as for protected mode exceptions.
 ### 64-Bit Mode Exceptions
    | |  
 ---- | -----
- #GP(0)         | If the memory address is in a non-canonical
+ **``#GP(0)``**         | If the memory address is in a non-canonical
                 | form.                                      
- #SS(U)         | If the stack address is in a non-canonical 
+ **``#SS(U)``**         | If the stack address is in a non-canonical 
                 | form.                                      
- #GP(selector)  | If the descriptor is outside the descriptor
+ **``#GP(selector)``**  | If the descriptor is outside the descriptor
                 | table limit. If the FS or GS register      
                 | is being loaded and the segment pointed    
                 | to is not a data or readable code segment. 
@@ -292,10 +292,10 @@ Same as for protected mode exceptions.
                 | or nonconforming code segment, but both    
                 | the RPL and the CPL are greater than       
                 | the DPL.                                   
- #AC(0)         | If an unaligned memory reference is        
+ **``#AC(0)``**         | If an unaligned memory reference is        
                 | made while alignment checking is enabled.  
- #PF(fault-code)| If a page fault occurs.                    
- #NP            | If the FS or GS register is being loaded   
+ **``#PF(fault-code)``**| If a page fault occurs.                    
+ **``#NP``**            | If the FS or GS register is being loaded   
                 | and the segment pointed to is marked       
                 | not present.                               
- #UD            | If the LOCK prefix is used.                
+ **``#UD``**            | If the LOCK prefix is used.                

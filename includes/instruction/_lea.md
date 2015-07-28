@@ -1,8 +1,8 @@
 ## LEA - Load Effective Address
 
 > Operation
-``` slim
 
+``` slim
 IF OperandSize = 16 and AddressSize = 16
   THEN
      DEST <- EffectiveAddress(SRC); (\* 16-bit address \*)
@@ -121,7 +121,7 @@ None.
 ### Protected Mode Exceptions
    | |  
 ---- | -----
- #UD| If source operand is not a memory location.
+ **``#UD``**| If source operand is not a memory location.
     | If the LOCK prefix is used.                
 
 ### Real-Address Mode Exceptions

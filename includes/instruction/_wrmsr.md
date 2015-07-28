@@ -1,8 +1,8 @@
 ## WRMSR - Write to Model Specific Register
 
 > Operation
-``` slim
 
+``` slim
 MSR[ECX] <- EDX:EAX;
 
 ```
@@ -70,7 +70,7 @@ None.
 ### Protected Mode Exceptions
    | |  
 ---- | -----
- #GP(0)| If the current privilege level is not          
+ **``#GP(0)``**| If the current privilege level is not          
        | 0. If the value in ECX specifies a reserved    
        | or unimplemented MSR address. If the           
        | value in EDX:EAX sets bits that are            
@@ -80,12 +80,12 @@ None.
        | following MSRs: IA32_DS_AREA, IA32_FS_BASE,    
        | IA32_GS_BASE, IA32_KERNEL_GS_BASE, IA32_LSTAR, 
        | IA32_SYSENTER_EIP, IA32_SYSENTER_ESP.          
- #UD   | If the LOCK prefix is used.                    
+ **``#UD``**   | If the LOCK prefix is used.                    
 
 ### Real-Address Mode Exceptions
    | |  
 ---- | -----
- #GP| If the value in ECX specifies a reserved       
+ **``#GP``**| If the value in ECX specifies a reserved       
     | or unimplemented MSR address. If the           
     | value in EDX:EAX sets bits that are            
     | reserved in the MSR specified by ECX.          
@@ -94,12 +94,12 @@ None.
     | following MSRs: IA32_DS_AREA, IA32_FS_BASE,    
     | IA32_GS_BASE, IA32_KERNEL_GS_BASE, IA32_LSTAR, 
     | IA32_SYSENTER_EIP, IA32_SYSENTER_ESP.          
- #UD| If the LOCK prefix is used.                    
+ **``#UD``**| If the LOCK prefix is used.                    
 
 ### Virtual-8086 Mode Exceptions
    | |  
 ---- | -----
- #GP(0)| The WRMSR instruction is not recognized
+ **``#GP(0)``**| The WRMSR instruction is not recognized
        | in virtual-8086 mode.                  
 
 ### Compatibility Mode Exceptions

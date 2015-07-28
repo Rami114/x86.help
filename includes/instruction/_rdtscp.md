@@ -1,8 +1,8 @@
 ## RDTSCP - Read Time-Stamp Counter and Processor ID
 
 > Operation
-``` slim
 
+``` slim
 IF (CR4.TSD = 0) or (CPL = 0) or (CR0.PE = 0)
   THEN
      EDX:EAX <- TimeStampCounter;
@@ -69,22 +69,22 @@ None.
 ### Protected Mode Exceptions
    | |  
 ---- | -----
- #GP(0)| If the TSD flag in register CR4 is set                       
+ **``#GP(0)``**| If the TSD flag in register CR4 is set                       
        | and the CPL is greater than 0.                               
- #UD   | If the LOCK prefix is used. If CPUID.80000001H:EDX.RDTSCP[bit
+ **``#UD``**   | If the LOCK prefix is used. If CPUID.80000001H:EDX.RDTSCP[bit
        | 27] = 0.                                                     
 
 ### Real-Address Mode Exceptions
    | |  
 ---- | -----
- #UD| If the LOCK prefix is used. If CPUID.80000001H:EDX.RDTSCP[bit
+ **``#UD``**| If the LOCK prefix is used. If CPUID.80000001H:EDX.RDTSCP[bit
     | 27] = 0.                                                     
 
 ### Virtual-8086 Mode Exceptions
    | |  
 ---- | -----
- #GP(0)| If the TSD flag in register CR4 is set.                      
- #UD   | If the LOCK prefix is used. If CPUID.80000001H:EDX.RDTSCP[bit
+ **``#GP(0)``**| If the TSD flag in register CR4 is set.                      
+ **``#UD``**   | If the LOCK prefix is used. If CPUID.80000001H:EDX.RDTSCP[bit
        | 27] = 0.                                                     
 
 ### Compatibility Mode Exceptions

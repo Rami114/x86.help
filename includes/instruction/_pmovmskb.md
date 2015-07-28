@@ -1,8 +1,8 @@
 ## PMOVMSKB - Move Byte Mask
 
 > Operation
-``` slim
 
+``` slim
 PMOVMSKB (with 64-bit source operand and r32)
   r32[0] <- SRC[7];
   r32[1] <- SRC[15];
@@ -104,4 +104,4 @@ See Exceptions Type 7; additionally
 
    | |  
 ---- | -----
- #UD| If VEX.L = 1. If VEX.vvvv != 1111B.
+ **``#UD``**| If VEX.L = 1. If VEX.vvvv != 1111B.

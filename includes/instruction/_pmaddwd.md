@@ -1,8 +1,8 @@
 ## PMADDWD - Multiply and Add Packed Integers
 
 > Operation
-``` slim
 
+``` slim
 PMADDWD (with 64-bit operands)
   DEST[31:0] <- (DEST[15:0] \* SRC[15:0]) + (DEST[31:16] \* SRC[31:16]);
   DEST[63:32] <- (DEST[47:32] \* SRC[47:32]) + (DEST[63:48] \* SRC[63:48]);
@@ -133,4 +133,4 @@ See Exceptions Type 4; additionally
 
    | |  
 ---- | -----
- #UD| If VEX.L = 1.
+ **``#UD``**| If VEX.L = 1.

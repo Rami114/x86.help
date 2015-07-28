@@ -1,8 +1,8 @@
 ## CLFLUSH - Flush Cache Line
 
 > Operation
-``` slim
 
+``` slim
 Flush_Cache_Line(SRC);
 
 ```
@@ -69,12 +69,12 @@ CLFLUSH operation is the same in non-64-bit modes and 64-bit mode.
 ### Protected Mode Exceptions
    | |  
 ---- | -----
- #GP(0)         | For an illegal memory operand effective  
+ **``#GP(0)``**         | For an illegal memory operand effective  
                 | address in the CS, DS, ES, FS or GS      
                 | segments.                                
- #SS(0)         | For an illegal address in the SS segment.
- #PF(fault-code)| For a page fault.                        
- #UD            | If CPUID.01H:EDX.CLFSH[bit 19] = 0.      
+ **``#SS(0)``**         | For an illegal address in the SS segment.
+ **``#PF(fault-code)``**| For a page fault.                        
+ **``#UD``**            | If CPUID.01H:EDX.CLFSH[bit 19] = 0.      
                 | If the LOCK prefix is used.              
 If instruction prefix is 66H, F2H or F3H.
 
@@ -82,10 +82,10 @@ If instruction prefix is 66H, F2H or F3H.
 ### Real-Address Mode Exceptions
    | |  
 ---- | -----
- #GP| If any part of the operand lies outside   
+ **``#GP``**| If any part of the operand lies outside   
     | the effective address space from 0 to     
     | FFFFH.                                    
- #UD| If CPUID.01H:EDX.CLFSH[bit 19] = 0.       
+ **``#UD``**| If CPUID.01H:EDX.CLFSH[bit 19] = 0.       
     | If the LOCK prefix is used. If instruction
     | prefix is 66H, F2H or F3H.                
 
@@ -94,7 +94,7 @@ Same exceptions as in real address mode.
 
    | |  
 ---- | -----
- #PF(fault-code)| For a page fault.
+ **``#PF(fault-code)``**| For a page fault.
 
 ### Compatibility Mode Exceptions
 Same exceptions as in protected mode.
@@ -103,11 +103,11 @@ Same exceptions as in protected mode.
 ### 64-Bit Mode Exceptions
    | |  
 ---- | -----
- #SS(0)         | If a memory address referencing the        
+ **``#SS(0)``**         | If a memory address referencing the        
                 | SS segment is in a non-canonical form.     
- #GP(0)         | If the memory address is in a non-canonical
+ **``#GP(0)``**         | If the memory address is in a non-canonical
                 | form.                                      
- #PF(fault-code)| For a page fault.                          
- #UD            | If CPUID.01H:EDX.CLFSH[bit 19] = 0.        
+ **``#PF(fault-code)``**| For a page fault.                          
+ **``#UD``**            | If CPUID.01H:EDX.CLFSH[bit 19] = 0.        
                 | If the LOCK prefix is used. If instruction 
                 | prefix is 66H, F2H or F3H.                 

@@ -1,8 +1,8 @@
 ## FABS - Absolute Value
 
 > Operation
-``` slim
 
+``` slim
 ST(0) <- |ST(0)|;
 
 ```
@@ -45,13 +45,13 @@ This instruction's operation is the same in non-64-bit modes and 64-bit mode.
 ### Floating-Point Exceptions
    | |  
 ---- | -----
- #IS| Stack underflow occurred.
+ **``#IS``**| Stack underflow occurred.
 
 ### Protected Mode Exceptions
    | |  
 ---- | -----
- #NM| CR0.EM[bit 2] or CR0.TS[bit 3] = 1.
- #UD| If the LOCK prefix is used.        
+ **``#NM``**| CR0.EM[bit 2] or CR0.TS[bit 3] = 1.
+ **``#UD``**| If the LOCK prefix is used.        
 
 ### Real-Address Mode Exceptions
 Same exceptions as in protected mode.

@@ -1,8 +1,8 @@
 ## HADDPS - Packed Single-FP Horizontal Add
 
 > Operation
-``` slim
 
+``` slim
 HADDPS (128-bit Legacy SSE version)
 DEST[31:0] <- SRC1[63:32] + SRC1[31:0]
 DEST[63:32] <- SRC1[127:96] + SRC1[95:64]

@@ -1,8 +1,8 @@
 ## DAS - Decimal Adjust AL after Subtraction
 
 > Operation
-``` slim
 
+``` slim
 IF 64-Bit Mode
   THEN
      #UD;
@@ -69,24 +69,24 @@ SF, ZF, and PF flags are set according to the result. The OF flag is undefined.
 ### Protected Mode Exceptions
    | |  
 ---- | -----
- #UD| If the LOCK prefix is used.
+ **``#UD``**| If the LOCK prefix is used.
 
 ### Real-Address Mode Exceptions
    | |  
 ---- | -----
- #UD| If the LOCK prefix is used.
+ **``#UD``**| If the LOCK prefix is used.
 
 ### Virtual-8086 Mode Exceptions
    | |  
 ---- | -----
- #UD| If the LOCK prefix is used.
+ **``#UD``**| If the LOCK prefix is used.
 
 ### Compatibility Mode Exceptions
    | |  
 ---- | -----
- #UD| If the LOCK prefix is used.
+ **``#UD``**| If the LOCK prefix is used.
 
 ### 64-Bit Mode Exceptions
    | |  
 ---- | -----
- #UD| If in 64-bit mode.
+ **``#UD``**| If in 64-bit mode.

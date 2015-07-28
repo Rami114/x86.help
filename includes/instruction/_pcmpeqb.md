@@ -1,8 +1,8 @@
 ## PCMPEQB/PCMPEQW/PCMPEQD -  Compare Packed Data for Equal
 
 > Operation
-``` slim
 
+``` slim
 PCMPEQB (with 64-bit operands)
   IF DEST[7:0] = SRC[7:0]
      THEN DEST[7:0) <- FFH;
@@ -176,4 +176,4 @@ See Exceptions Type 4; additionally
 
    | |  
 ---- | -----
- #UD| If VEX.L = 1.
+ **``#UD``**| If VEX.L = 1.

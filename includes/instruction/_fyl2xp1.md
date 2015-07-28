@@ -1,8 +1,8 @@
 ## FYL2XP1 - Compute y \* log2(x +1)
 
 > Operation
-``` slim
 
+``` slim
 ST(1) <- ST(1) \* log<sub>2</sub>(ST(0) + 1.0);
 PopRegisterStack;
 
@@ -67,23 +67,23 @@ This instruction's operation is the same in non-64-bit modes and 64-bit mode.
 ### Floating-Point Exceptions
    | |  
 ---- | -----
- #IS| Stack underflow occurred.                     
- #IA| Either operand is an SNaN value or unsupported
+ **``#IS``**| Stack underflow occurred.                     
+ **``#IA``**| Either operand is an SNaN value or unsupported
     | format.                                       
- #D | Source operand is a denormal value.           
- #U | Result is too small for destination           
+ **``#D``** | Source operand is a denormal value.           
+ **``#U``** | Result is too small for destination           
     | format.                                       
- #O | Result is too large for destination           
+ **``#O``** | Result is too large for destination           
     | format.                                       
- #P | Value cannot be represented exactly           
+ **``#P``** | Value cannot be represented exactly           
     | in destination format.                        
 
 ### Protected Mode Exceptions
    | |  
 ---- | -----
- #NM| CR0.EM[bit 2] or CR0.TS[bit 3] = 1.     
- #MF| If there is a pending x87 FPU exception.
- #UD| If the LOCK prefix is used.             
+ **``#NM``**| CR0.EM[bit 2] or CR0.TS[bit 3] = 1.     
+ **``#MF``**| If there is a pending x87 FPU exception.
+ **``#UD``**| If the LOCK prefix is used.             
 
 ### Real-Address Mode Exceptions
 Same exceptions as in protected mode.

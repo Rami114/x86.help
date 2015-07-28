@@ -1,8 +1,8 @@
 ## CVTPI2PS - Convert Packed Dword Integers to Packed Single-Precision FP Values
 
 > Operation
-``` slim
 
+``` slim
 DEST[31:0] <- Convert_Integer_To_Single_Precision_Floating_Point(SRC[31:0]);
 DEST[63:32] <- Convert_Integer_To_Single_Precision_Floating_Point(SRC[63:32]);
 (\* High quadword of destination unchanged \*)

@@ -1,8 +1,8 @@
 ## PMULDQ  -  Multiply Packed Signed Dword Integers
 
 > Operation
-``` slim
 
+``` slim
 PMULDQ (128-bit Legacy SSE version)
 DEST[63:0] <- DEST[31:0] \* SRC[31:0]
 DEST[127:64] <- DEST[95:64] \* SRC[95:64]
@@ -92,4 +92,4 @@ See Exceptions Type 5; additionally
 
    | |  
 ---- | -----
- #UD| If VEX.L = 1. If VEX.vvvv != 1111B.
+ **``#UD``**| If VEX.L = 1. If VEX.vvvv != 1111B.

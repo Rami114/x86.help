@@ -1,8 +1,8 @@
 ## MOVSLDUP - Move Packed Single-FP Low and Duplicate
 
 > Operation
-``` slim
 
+``` slim
 MOVSLDUP (128-bit Legacy SSE version)
 DEST[31:0] <- SRC[31:0]
 DEST[63:32] <- SRC[31:0]
@@ -103,4 +103,4 @@ See Exceptions Type 4; additionally
 
    | |  
 ---- | -----
- #UD| If VEX.vvvv != 1111B.
+ **``#UD``**| If VEX.vvvv != 1111B.

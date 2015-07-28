@@ -1,8 +1,8 @@
 ## PMULUDQ - Multiply Packed Unsigned Doubleword Integers
 
 > Operation
-``` slim
 
+``` slim
 PMULUDQ (with 64-Bit operands)
   DEST[63:0] <- DEST[31:0] \* SRC[31:0];
 PMULUDQ (with 128-Bit operands)
@@ -126,4 +126,4 @@ See Exceptions Type 4; additionally
 
    | |  
 ---- | -----
- #UD| If VEX.L = 1.
+ **``#UD``**| If VEX.L = 1.

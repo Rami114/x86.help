@@ -1,8 +1,8 @@
 ## POPF/POPFD/POPFQ - Pop Stack into EFLAGS Register
 
 > Operation
-``` slim
 
+``` slim
 IF VM = 0 (\* Not in Virtual-8086 Mode \*)
   THEN IF CPL = 0
      THEN
@@ -136,34 +136,34 @@ All flags may be affected; see the Operation section for details.
 ### Protected Mode Exceptions
    | |  
 ---- | -----
- #SS(0)         | If the top of stack is not within the  
+ **``#SS(0)``**         | If the top of stack is not within the  
                 | stack segment.                         
- #PF(fault-code)| If a page fault occurs.                
- #AC(0)         | If an unaligned memory reference is    
+ **``#PF(fault-code)``**| If a page fault occurs.                
+ **``#AC(0)``**         | If an unaligned memory reference is    
                 | made while the current privilege level 
                 | is 3 and alignment checking is enabled.
- #UD            | If the LOCK prefix is used.            
+ **``#UD``**            | If the LOCK prefix is used.            
 
 ### Real-Address Mode Exceptions
    | |  
 ---- | -----
- #SS| If the top of stack is not within the
+ **``#SS``**| If the top of stack is not within the
     | stack segment.                       
- #UD| If the LOCK prefix is used.          
+ **``#UD``**| If the LOCK prefix is used.          
 
 ### Virtual-8086 Mode Exceptions
    | |  
 ---- | -----
- #GP(0)         | If the I/O privilege level is less than        
+ **``#GP(0)``**         | If the I/O privilege level is less than        
                 | 3. If an attempt is made to execute            
                 | the POPF/POPFD instruction with an operand-size
                 | override prefix.                               
- #SS(0)         | If the top of stack is not within the          
+ **``#SS(0)``**         | If the top of stack is not within the          
                 | stack segment.                                 
- #PF(fault-code)| If a page fault occurs.                        
- #AC(0)         | If an unaligned memory reference is            
+ **``#PF(fault-code)``**| If a page fault occurs.                        
+ **``#AC(0)``**         | If an unaligned memory reference is            
                 | made while alignment checking is enabled.      
- #UD            | If the LOCK prefix is used.                    
+ **``#UD``**            | If the LOCK prefix is used.                    
 
 ### Compatibility Mode Exceptions
 Same as for protected mode exceptions.
@@ -172,13 +172,13 @@ Same as for protected mode exceptions.
 ### 64-Bit Mode Exceptions
    | |  
 ---- | -----
- #GP(0)         | If the memory address is in a non-canonical
+ **``#GP(0)``**         | If the memory address is in a non-canonical
                 | form.                                      
- #SS(0)         | If the stack address is in a non-canonical 
+ **``#SS(0)``**         | If the stack address is in a non-canonical 
                 | form.                                      
- #PF(fault-code)| If a page fault occurs.                    
- #AC(0)         | If alignment checking is enabled and       
+ **``#PF(fault-code)``**| If a page fault occurs.                    
+ **``#AC(0)``**         | If alignment checking is enabled and       
                 | an unaligned memory reference is made      
                 | while the current privilege level is       
                 | 3.                                         
- #UD            | If the LOCK prefix is used.                
+ **``#UD``**            | If the LOCK prefix is used.                

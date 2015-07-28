@@ -1,8 +1,8 @@
 ## PSHUFW - Shuffle Packed Words
 
 > Operation
-``` slim
 
+``` slim
 DEST[15:0] <- (SRC >> (ORDER[1:0] \* 16))[15:0];
 DEST[31:16] <- (SRC >> (ORDER[3:2] \* 16))[15:0];
 DEST[47:32] <- (SRC >> (ORDER[5:4] \* 16))[15:0];

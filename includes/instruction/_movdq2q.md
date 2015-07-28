@@ -1,8 +1,8 @@
 ## MOVDQ2Q - Move Quadword from XMM to MMX Technology Register
 
 > Operation
-``` slim
 
+``` slim
 DEST <- SRC[63:0];
 
 ```
@@ -44,11 +44,11 @@ None.
 ### Protected Mode Exceptions
    | |  
 ---- | -----
- #NM| If CR0.TS[bit 3] = 1.                   
- #UD| If CR0.EM[bit 2] = 1. If CR4.OSFXSR[bit 
+ **``#NM``**| If CR0.TS[bit 3] = 1.                   
+ **``#UD``**| If CR0.EM[bit 2] = 1. If CR4.OSFXSR[bit 
     | 9] = 0. If CPUID.01H:EDX.SSE2[bit 26]   
     | = 0. If the LOCK prefix is used.        
- #MF| If there is a pending x87 FPU exception.
+ **``#MF``**| If there is a pending x87 FPU exception.
 
 ### Real-Address Mode Exceptions
 Same exceptions as in protected mode.

@@ -1,8 +1,8 @@
 ## LOCK - Assert LOCK# Signal Prefix
 
 > Operation
-``` slim
 
+``` slim
 AssertLOCK#(DurationOfAccompaningInstruction);
 
 ```
@@ -71,7 +71,7 @@ None.
 ### Protected Mode Exceptions
    | |  
 ---- | -----
- #UD| If the LOCK prefix is used with an instruction
+ **``#UD``**| If the LOCK prefix is used with an instruction
     | not listed: ADD, ADC, AND, BTC, BTR,          
     | BTS, CMPXCHG, CMPXCH8B, CMPXCHG16B,           
     | DEC, INC, NEG, NOT, OR, SBB, SUB, XOR,        

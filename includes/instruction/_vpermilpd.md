@@ -1,8 +1,8 @@
 ## VPERMILPD  -  Permute Double-Precision Floating-Point Values
 
 > Operation
-``` slim
 
+``` slim
 VPERMILPD (256-bit immediate version)
 IF (imm8[0] = 0) THEN DEST[63:0]<-SRC1[63:0]
 IF (imm8[0] = 1) THEN DEST[63:0]<-SRC1[127:64]
@@ -111,4 +111,4 @@ See Exceptions Type 6; additionally
 
    | |  
 ---- | -----
- #UD| If VEX.W = 1
+ **``#UD``**| If VEX.W = 1

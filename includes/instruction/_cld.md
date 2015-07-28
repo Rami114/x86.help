@@ -1,8 +1,8 @@
 ## CLD - Clear Direction Flag
 
 > Operation
-``` slim
 
+``` slim
 DF <- 0;
 
 ```
@@ -30,4 +30,4 @@ The DF flag is set to 0. The CF, OF, ZF, SF, AF, and PF flags are unaffected.
 ### Exceptions (All Operating Modes)
    | |  
 ---- | -----
- #UD| If the LOCK prefix is used.
+ **``#UD``**| If the LOCK prefix is used.

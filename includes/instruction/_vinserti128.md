@@ -1,8 +1,8 @@
 ## VINSERTI128  -  Insert Packed Integer Values
 
 > Operation
-``` slim
 
+``` slim
 VINSERTI128
 TEMP[255:0] <- SRC1[255:0]
 CASE (imm8[0]) OF
@@ -48,4 +48,4 @@ See Exceptions Type 6; additionally
 
    | |  
 ---- | -----
- #UD| If VEX.L = 0, If VEX.W = 1.
+ **``#UD``**| If VEX.L = 0, If VEX.W = 1.

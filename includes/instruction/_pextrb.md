@@ -1,8 +1,8 @@
 ## PEXTRB/PEXTRD/PEXTRQ  -  Extract Byte/Dword/Qword
 
 > Operation
-``` slim
 
+``` slim
 CASE of
   PEXTRB: SEL <- COUNT[3:0];
        TEMP <- (Src >> SEL\*8) AND FFH;
@@ -122,5 +122,5 @@ See Exceptions Type 5; additionally
 
    | |  
 ---- | -----
- #UD| If VEX.L = 1. If VEX.vvvv != 1111B.    
+ **``#UD``**| If VEX.L = 1. If VEX.vvvv != 1111B.    
     | If VPEXTRQ in non-64-bit mode, VEX.W=1.

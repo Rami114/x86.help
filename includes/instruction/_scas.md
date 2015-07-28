@@ -1,8 +1,8 @@
 ## SCAS/SCASB/SCASW/SCASD - Scan String
 
 > Operation
-``` slim
 
+``` slim
 ```
 
  Opcode    | Instruction| Op/En| 64-Bit Mode| Compat/Leg Mode| Description                            
@@ -154,41 +154,41 @@ of the comparison.
 ### Protected Mode Exceptions
    | |  
 ---- | -----
- #GP(0)         | If a memory operand effective address     
+ **``#GP(0)``**         | If a memory operand effective address     
                 | is outside the limit of the ES segment.   
                 | If the ES register contains a NULL segment
                 | selector. If an illegal memory operand    
                 | effective address in the ES segment       
                 | is given.                                 
- #PF(fault-code)| If a page fault occurs.                   
- #AC(0)         | If alignment checking is enabled and      
+ **``#PF(fault-code)``**| If a page fault occurs.                   
+ **``#AC(0)``**         | If alignment checking is enabled and      
                 | an unaligned memory reference is made     
                 | while the current privilege level is      
                 | 3.                                        
- #UD            | If the LOCK prefix is used.               
+ **``#UD``**            | If the LOCK prefix is used.               
 
 ### Real-Address Mode Exceptions
    | |  
 ---- | -----
- #GP| If a memory operand effective address
+ **``#GP``**| If a memory operand effective address
     | is outside the CS, DS, ES, FS, or GS 
     | segment limit.                       
- #SS| If a memory operand effective address
+ **``#SS``**| If a memory operand effective address
     | is outside the SS segment limit.     
- #UD| If the LOCK prefix is used.          
+ **``#UD``**| If the LOCK prefix is used.          
 
 ### Virtual-8086 Mode Exceptions
    | |  
 ---- | -----
- #GP(0)         | If a memory operand effective address 
+ **``#GP(0)``**         | If a memory operand effective address 
                 | is outside the CS, DS, ES, FS, or GS  
                 | segment limit.                        
- #SS(0)         | If a memory operand effective address 
+ **``#SS(0)``**         | If a memory operand effective address 
                 | is outside the SS segment limit.      
- #PF(fault-code)| If a page fault occurs.               
- #AC(0)         | If alignment checking is enabled and  
+ **``#PF(fault-code)``**| If a page fault occurs.               
+ **``#AC(0)``**         | If alignment checking is enabled and  
                 | an unaligned memory reference is made.
- #UD            | If the LOCK prefix is used.           
+ **``#UD``**            | If the LOCK prefix is used.           
 
 ### Compatibility Mode Exceptions
 Same exceptions as in protected mode.
@@ -197,11 +197,11 @@ Same exceptions as in protected mode.
 ### 64-Bit Mode Exceptions
    | |  
 ---- | -----
- #GP(0)         | If the memory address is in a non-canonical
+ **``#GP(0)``**         | If the memory address is in a non-canonical
                 | form.                                      
- #PF(fault-code)| If a page fault occurs.                    
- #AC(0)         | If alignment checking is enabled and       
+ **``#PF(fault-code)``**| If a page fault occurs.                    
+ **``#AC(0)``**         | If alignment checking is enabled and       
                 | an unaligned memory reference is made      
                 | while the current privilege level is       
                 | 3.                                         
- #UD            | If the LOCK prefix is used.                
+ **``#UD``**            | If the LOCK prefix is used.                

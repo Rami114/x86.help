@@ -1,8 +1,8 @@
 ## PREFETCHW - Prefetch Data into Caches in Anticipation of a Write
 
 > Operation
-``` slim
 
+``` slim
 FETCH_WITH_EXCLUSIVE_OWNERSHIP (m8);
 
 ```
@@ -54,24 +54,24 @@ void _m_prefetchw( void \* );
 ### Protected Mode Exceptions
    | |  
 ---- | -----
- #UD| If the LOCK prefix is used.
+ **``#UD``**| If the LOCK prefix is used.
 
 ### Real-Address Mode Exceptions
    | |  
 ---- | -----
- #UD| If the LOCK prefix is used.
+ **``#UD``**| If the LOCK prefix is used.
 
 ### Virtual-8086 Mode Exceptions
    | |  
 ---- | -----
- #UD| If the LOCK prefix is used.
+ **``#UD``**| If the LOCK prefix is used.
 
 ### Compatibility Mode Exceptions
    | |  
 ---- | -----
- #UD| If the LOCK prefix is used.
+ **``#UD``**| If the LOCK prefix is used.
 
 ### 64-Bit Mode Exceptions
    | |  
 ---- | -----
- #UD| If the LOCK prefix is used.
+ **``#UD``**| If the LOCK prefix is used.

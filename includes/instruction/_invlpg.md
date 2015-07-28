@@ -1,8 +1,8 @@
 ## INVLPG - Invalidate TLB Entry
 
 > Operation
-``` slim
 
+``` slim
 Flush(RelevantTLBEntries);
 Continue; (\* Continue execution \*)
 
@@ -63,27 +63,27 @@ None.
 ### Protected Mode Exceptions
    | |  
 ---- | -----
- #GP(0)| If the current privilege level is not    
+ **``#GP(0)``**| If the current privilege level is not    
        | 0.                                       
- #UD   | Operand is a register. If the LOCK prefix
+ **``#UD``**   | Operand is a register. If the LOCK prefix
        | is used.                                 
 
 ### Real-Address Mode Exceptions
    | |  
 ---- | -----
- #UD| Operand is a register. If the LOCK prefix
+ **``#UD``**| Operand is a register. If the LOCK prefix
     | is used.                                 
 
 ### Virtual-8086 Mode Exceptions
    | |  
 ---- | -----
- #GP(0)| The INVLPG instruction cannot be executed
+ **``#GP(0)``**| The INVLPG instruction cannot be executed
        | at the virtual-8086 mode.                
 
 ### 64-Bit Mode Exceptions
    | |  
 ---- | -----
- #GP(0)| If the current privilege level is not    
+ **``#GP(0)``**| If the current privilege level is not    
        | 0.                                       
- #UD   | Operand is a register. If the LOCK prefix
+ **``#UD``**   | Operand is a register. If the LOCK prefix
        | is used.                                 

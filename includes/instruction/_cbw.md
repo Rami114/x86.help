@@ -1,8 +1,8 @@
 ## CBW/CWDE/CDQE - Convert Byte to Word/Convert Word to Doubleword/Convert Doubleword to Quadword
 
 > Operation
-``` slim
 
+``` slim
 IF OperandSize = 16 (\* Instruction = CBW \*)
   THEN
      AX <- SignExtend(AL);
@@ -52,4 +52,4 @@ None.
 ### Exceptions (All Operating Modes)
    | |  
 ---- | -----
- #UD| If the LOCK prefix is used.
+ **``#UD``**| If the LOCK prefix is used.

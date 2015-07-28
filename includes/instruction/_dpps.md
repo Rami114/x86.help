@@ -1,8 +1,8 @@
 ## DPPS  -  Dot Product of Packed Single Precision Floating-Point Values
 
 > Operation
-``` slim
 
+``` slim
 DP_primitive (SRC1, SRC2)
 IF (imm8[4] = 1)
   THEN Temp1[31:0] <- DEST[31:0] \* SRC[31:0]; // update SIMD exception flags

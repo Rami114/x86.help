@@ -1,8 +1,8 @@
 ## MOVNTI - Store Doubleword Using Non-Temporal Hint
 
 > Operation
-``` slim
 
+``` slim
 DEST <- SRC;
 
 ```
@@ -61,23 +61,23 @@ None.
 ### Protected Mode Exceptions
    | |  
 ---- | -----
- #GP(0)         | For an illegal memory operand effective  
+ **``#GP(0)``**         | For an illegal memory operand effective  
                 | address in the CS, DS, ES, FS or GS      
                 | segments.                                
- #SS(0)         | For an illegal address in the SS segment.
- #PF(fault-code)| For a page fault.                        
- #UD            | If CPUID.01H:EDX.SSE2[bit 26] = 0. If    
+ **``#SS(0)``**         | For an illegal address in the SS segment.
+ **``#PF(fault-code)``**| For a page fault.                        
+ **``#UD``**            | If CPUID.01H:EDX.SSE2[bit 26] = 0. If    
                 | the LOCK prefix is used.                 
 
 ### Real-Address Mode Exceptions
    | |  
 ---- | -----
- #GP| If a memory operand is not aligned on     
+ **``#GP``**| If a memory operand is not aligned on     
     | a 16-byte boundary, regardless of segment.
     | If any part of the operand lies outside   
     | the effective address space from 0 to     
     | FFFFH.                                    
- #UD| If CPUID.01H:EDX.SSE2[bit 26] = 0. If     
+ **``#UD``**| If CPUID.01H:EDX.SSE2[bit 26] = 0. If     
     | the LOCK prefix is used.                  
 
 ### Virtual-8086 Mode Exceptions
@@ -85,7 +85,7 @@ Same exceptions as in real address mode.
 
    | |  
 ---- | -----
- #PF(fault-code)| For a page fault.
+ **``#PF(fault-code)``**| For a page fault.
 
 ### Compatibility Mode Exceptions
 Same exceptions as in protected mode.
@@ -94,14 +94,14 @@ Same exceptions as in protected mode.
 ### 64-Bit Mode Exceptions
    | |  
 ---- | -----
- #SS(0)         | If a memory address referencing the        
+ **``#SS(0)``**         | If a memory address referencing the        
                 | SS segment is in a non-canonical form.     
- #GP(0)         | If the memory address is in a non-canonical
+ **``#GP(0)``**         | If the memory address is in a non-canonical
                 | form.                                      
- #PF(fault-code)| For a page fault.                          
- #UD            | If CPUID.01H:EDX.SSE2[bit 26] = 0. If      
+ **``#PF(fault-code)``**| For a page fault.                          
+ **``#UD``**            | If CPUID.01H:EDX.SSE2[bit 26] = 0. If      
                 | the LOCK prefix is used.                   
- #AC(0)         | If alignment checking is enabled and       
+ **``#AC(0)``**         | If alignment checking is enabled and       
                 | an unaligned memory reference is made      
                 | while the current privilege level is       
                 | 3.                                         

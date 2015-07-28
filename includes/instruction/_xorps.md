@@ -1,8 +1,8 @@
 ## XORPS - Bitwise Logical XOR for Single-Precision Floating-Point Values
 
 > Operation
-``` slim
 
+``` slim
 XORPS (128-bit Legacy SSE version)
 DEST[31:0] <- SRC1[31:0] BITWISE XOR SRC2[31:0]
 DEST[63:32] <- SRC1[63:32] BITWISE XOR SRC2[63:32]

@@ -1,8 +1,8 @@
 ## CMPXCHG8B/CMPXCHG16B - Compare and Exchange Bytes
 
 > Operation
-``` slim
 
+``` slim
 IF (64-Bit Mode and OperandSize = 64)
   THEN
      TEMP128 <- DEST
@@ -90,17 +90,17 @@ it is cleared. The CF, PF, AF, SF, and OF flags are unaffected.
 ### Protected Mode Exceptions
    | |  
 ---- | -----
- #UD            | If the destination is not a memory operand.    
- #GP(0)         | If the destination is located in a non-writable
+ **``#UD``**            | If the destination is not a memory operand.    
+ **``#GP(0)``**         | If the destination is located in a non-writable
                 | segment. If a memory operand effective         
                 | address is outside the CS, DS, ES, FS,         
                 | or GS segment limit. If the DS, ES,            
                 | FS, or GS register contains a NULL segment     
                 | selector.                                      
- #SS(0)         | If a memory operand effective address          
+ **``#SS(0)``**         | If a memory operand effective address          
                 | is outside the SS segment limit.               
- #PF(fault-code)| If a page fault occurs.                        
- #AC(0)         | If alignment checking is enabled and           
+ **``#PF(fault-code)``**| If a page fault occurs.                        
+ **``#AC(0)``**         | If alignment checking is enabled and           
                 | an unaligned memory reference is made          
                 | while the current privilege level is           
                 | 3.                                             
@@ -108,26 +108,26 @@ it is cleared. The CF, PF, AF, SF, and OF flags are unaffected.
 ### Real-Address Mode Exceptions
    | |  
 ---- | -----
- #UD| If the destination operand is not a  
+ **``#UD``**| If the destination operand is not a  
     | memory location.                     
- #GP| If a memory operand effective address
+ **``#GP``**| If a memory operand effective address
     | is outside the CS, DS, ES, FS, or GS 
     | segment limit.                       
- #SS| If a memory operand effective address
+ **``#SS``**| If a memory operand effective address
     | is outside the SS segment limit.     
 
 ### Virtual-8086 Mode Exceptions
    | |  
 ---- | -----
- #UD            | If the destination operand is not a   
+ **``#UD``**            | If the destination operand is not a   
                 | memory location.                      
- #GP(0)         | If a memory operand effective address 
+ **``#GP(0)``**         | If a memory operand effective address 
                 | is outside the CS, DS, ES, FS, or GS  
                 | segment limit.                        
- #SS(0)         | If a memory operand effective address 
+ **``#SS(0)``**         | If a memory operand effective address 
                 | is outside the SS segment limit.      
- #PF(fault-code)| If a page fault occurs.               
- #AC(0)         | If alignment checking is enabled and  
+ **``#PF(fault-code)``**| If a page fault occurs.               
+ **``#AC(0)``**         | If alignment checking is enabled and  
                 | an unaligned memory reference is made.
 
 ### Compatibility Mode Exceptions
@@ -137,17 +137,17 @@ Same exceptions as in protected mode.
 ### 64-Bit Mode Exceptions
    | |  
 ---- | -----
- #SS(0)         | If a memory address referencing the        
+ **``#SS(0)``**         | If a memory address referencing the        
                 | SS segment is in a non-canonical form.     
- #GP(0)         | If the memory address is in a non-canonical
+ **``#GP(0)``**         | If the memory address is in a non-canonical
                 | form. If memory operand for CMPXCHG16B     
                 | is not aligned on a 16-byte boundary.      
                 | If CPUID.01H:ECX.CMPXCHG16B[bit 13]        
                 | = 0.                                       
- #UD            | If the destination operand is not a        
+ **``#UD``**            | If the destination operand is not a        
                 | memory location.                           
- #PF(fault-code)| If a page fault occurs.                    
- #AC(0)         | If alignment checking is enabled and       
+ **``#PF(fault-code)``**| If a page fault occurs.                    
+ **``#AC(0)``**         | If alignment checking is enabled and       
                 | an unaligned memory reference is made      
                 | while the current privilege level is       
                 | 3.                                         

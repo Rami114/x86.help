@@ -1,8 +1,8 @@
 ## VGATHERDPS/VGATHERQPS  -  Gather Packed SP FP values Using Signed Dword/Qword Indices
 
 > Operation
-``` slim
 
+``` slim
 DEST <- SRC1;
 BASE_ADDR: base register encoded in VSIB addressing;
 VINDEX: the vector index register encoded by VSIB addressing;
@@ -193,9 +193,9 @@ bits of the destination.
  values and architectural state, the               |                                            
  same set of elements to the left of               |                                            
  the faulting one will be gathered. •              |                                            
- •                                                 | This instruction will cause a #UD if       
+ •                                                 | This instruction will cause a **``#UD``** if       
                                                    | the address size attribute is 16-bit.      
- •                                                 | This instruction will cause a #UD if       
+ •                                                 | This instruction will cause a **``#UD``** if       
                                                    | the memory operand is encoded without      
                                                    | the SIB byte.                              
  •is implementation specific, and some             | This instruction should not be used        

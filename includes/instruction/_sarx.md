@@ -1,8 +1,8 @@
 ## SARX/SHLX/SHRX  -  Shift Without Affecting Flags
 
 > Operation
-``` slim
 
+``` slim
 TEMP <- SRC1;
 IF VEX.W1 and CS.L = 1
 THEN
@@ -88,4 +88,4 @@ Table 2-29; additionally
 
    | |  
 ---- | -----
- #UD| If VEX.W = 1.
+ **``#UD``**| If VEX.W = 1.

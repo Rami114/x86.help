@@ -1,8 +1,8 @@
 ## SFENCE - Store Fence
 
 > Operation
-``` slim
 
+``` slim
 Wait_On_Following_Stores_Until(preceding_stores_globally_visible);
 
 ```
@@ -45,5 +45,5 @@ void _mm_sfence(void)
 ### Exceptions (All Operating Modes)
    | |  
 ---- | -----
- #UD| If CPUID.01H:EDX.SSE[bit 25] = 0. If
+ **``#UD``**| If CPUID.01H:EDX.SSE[bit 25] = 0. If
     | the LOCK prefix is used.            

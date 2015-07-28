@@ -1,8 +1,8 @@
 ## SYSCALL - Fast System Call
 
 > Operation
-``` slim
 
+``` slim
 IF (CS.L != 1 ) or (IA32_EFER.LMA != 1) or (IA32_EFER.SCE != 1)
 (\* Not in 64-Bit Mode or SYSCALL/SYSRET not enabled in IA32_EFER \*)
   THEN #UD;
@@ -82,29 +82,29 @@ All.
 ### Protected Mode Exceptions
    | |  
 ---- | -----
- #UD| The SYSCALL instruction is not recognized
+ **``#UD``**| The SYSCALL instruction is not recognized
     | in protected mode.                       
 
 ### Real-Address Mode Exceptions
    | |  
 ---- | -----
- #UD| The SYSCALL instruction is not recognized
+ **``#UD``**| The SYSCALL instruction is not recognized
     | in real-address mode.                    
 
 ### Virtual-8086 Mode Exceptions
    | |  
 ---- | -----
- #UD| The SYSCALL instruction is not recognized
+ **``#UD``**| The SYSCALL instruction is not recognized
     | in virtual-8086 mode.                    
 
 ### Compatibility Mode Exceptions
    | |  
 ---- | -----
- #UD| The SYSCALL instruction is not recognized
+ **``#UD``**| The SYSCALL instruction is not recognized
     | in compatibility mode.                   
 
 ### 64-Bit Mode Exceptions
    | |  
 ---- | -----
- #UD| If IA32_EFER.SCE = 0. If the LOCK prefix
+ **``#UD``**| If IA32_EFER.SCE = 0. If the LOCK prefix
     | is used.                                

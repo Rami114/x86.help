@@ -1,8 +1,8 @@
 ## CWD/CDQ/CQO - Convert Word to Doubleword/Convert Doubleword to Quadword
 
 > Operation
-``` slim
 
+``` slim
 IF OperandSize = 16 (\* CWD instruction \*)
   THEN
      DX <- SignExtend(AX);
@@ -62,4 +62,4 @@ None.
 ### Exceptions (All Operating Modes)
    | |  
 ---- | -----
- #UD| If the LOCK prefix is used.
+ **``#UD``**| If the LOCK prefix is used.

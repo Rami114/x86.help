@@ -1,8 +1,8 @@
 ## PMINSW - Minimum of Packed Signed Word Integers
 
 > Operation
-``` slim
 
+``` slim
 PMINSW (64-bit operands)
   IF DEST[15:0] < SRC[15:0] THEN
      DEST[15:0] <- DEST[15:0];
@@ -122,6 +122,6 @@ See Exceptions Type 4; additionally
 
    | |  
 ---- | -----
- #UD| If VEX.L = 1.                       
- #MF| (64-bit operations only) If there is
+ **``#UD``**| If VEX.L = 1.                       
+ **``#MF``**| (64-bit operations only) If there is
     | a pending x87 FPU exception.        

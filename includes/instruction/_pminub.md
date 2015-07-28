@@ -1,8 +1,8 @@
 ## PMINUB - Minimum of Packed Unsigned Byte Integers
 
 > Operation
-``` slim
 
+``` slim
 PMINUB (for 64-bit operands)
   IF DEST[7:0] < SRC[17:0] THEN
      DEST[7:0] <- DEST[7:0];
@@ -124,4 +124,4 @@ See Exceptions Type 4; additionally
 
    | |  
 ---- | -----
- #UD| If VEX.L = 1.
+ **``#UD``**| If VEX.L = 1.

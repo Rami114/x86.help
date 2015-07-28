@@ -1,8 +1,8 @@
 ## XORPD - Bitwise Logical XOR for Double-Precision Floating-Point Values
 
 > Operation
-``` slim
 
+``` slim
 XORPD (128-bit Legacy SSE version)
 DEST[63:0] <- DEST[63:0] BITWISE XOR SRC[63:0]
 DEST[127:64] <- DEST[127:64] BITWISE XOR SRC[127:64]

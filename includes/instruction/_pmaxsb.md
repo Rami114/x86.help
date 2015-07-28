@@ -1,8 +1,8 @@
 ## PMAXSB  -  Maximum of Packed Signed Byte Integers
 
 > Operation
-``` slim
 
+``` slim
 IF (DEST[7:0] > SRC[7:0])
   THEN DEST[7:0] <- DEST[7:0];
   ELSE DEST[7:0] <- SRC[7:0]; FI;
@@ -133,4 +133,4 @@ See Exceptions Type 4; additionally
 
    | |  
 ---- | -----
- #UD| If VEX.L = 1.
+ **``#UD``**| If VEX.L = 1.

@@ -1,8 +1,8 @@
 ## RCPSS - Compute Reciprocal of Scalar Single-Precision Floating-Point Values
 
 > Operation
-``` slim
 
+``` slim
 RCPSS (128-bit Legacy SSE version)
 DEST[31:0] <- APPROXIMATE(1/SRC[31:0])
 DEST[VLMAX-1:32] (Unmodified)

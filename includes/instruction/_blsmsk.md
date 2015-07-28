@@ -1,8 +1,8 @@
 ## BLSMSK  -  Get Mask Up to Lowest Set Bit
 
 > Operation
-``` slim
 
+``` slim
 temp <- (SRC-1) XOR (SRC) ;
 SF <- temp[OperandSize -1];
 ZF <- 0;
@@ -61,4 +61,4 @@ Table 2-29; additionally
 
    | |  
 ---- | -----
- #UD| If VEX.W = 1.
+ **``#UD``**| If VEX.W = 1.

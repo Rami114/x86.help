@@ -1,8 +1,8 @@
 ## ANDPD - Bitwise Logical AND of Packed Double-Precision Floating-Point Values
 
 > Operation
-``` slim
 
+``` slim
 ANDPD (128-bit Legacy SSE version)
 DEST[63:0] <- DEST[63:0] BITWISE AND SRC[63:0]
 DEST[127:64] <- DEST[127:64] BITWISE AND SRC[127:64]

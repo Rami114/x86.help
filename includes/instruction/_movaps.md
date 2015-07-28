@@ -1,8 +1,8 @@
 ## MOVAPS - Move Aligned Packed Single-Precision Floating-Point Values
 
 > Operation
-``` slim
 
+``` slim
 MOVAPS (128-bit load- and register-copy- form Legacy SSE version)
 DEST[127:0] <- SRC[127:0]
 DEST[VLMAX-1:128] (Unmodified)
@@ -92,4 +92,4 @@ See Exceptions Type 1.SSE; additionally
 
    | |  
 ---- | -----
- #UD| If VEX.vvvv != 1111B.
+ **``#UD``**| If VEX.vvvv != 1111B.

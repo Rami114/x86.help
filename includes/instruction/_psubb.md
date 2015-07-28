@@ -1,8 +1,8 @@
 ## PSUBB/PSUBW/PSUBD - Subtract Packed Integers
 
 > Operation
-``` slim
 
+``` slim
 PSUBB (with 64-bit operands)
   DEST[7:0] <- DEST[7:0] − SRC[7:0];
   (\* Repeat subtract operation for 2nd through 7th byte \*)
@@ -246,4 +246,4 @@ See Exceptions Type 4; additionally
 
    | |  
 ---- | -----
- #UD| If VEX.L = 1.
+ **``#UD``**| If VEX.L = 1.

@@ -1,8 +1,8 @@
 ## ROUNDSS  -  Round Scalar Single Precision Floating-Point Values
 
 > Operation
-``` slim
 
+``` slim
 IF (imm[2] = ‘1)
   THEN
      DEST[31:0] <- ConvertSPFPToInteger_M(SRC[31:0]);

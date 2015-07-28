@@ -1,8 +1,8 @@
 ## CMPSS - Compare Scalar Single-Precision Floating-Point Values
 
 > Operation
-``` slim
 
+``` slim
 CASE (COMPARISON PREDICATE) OF
   0: OP3 <- EQ_OQ; OP5 <- EQ_OQ;
   1: OP3 <- LT_OS; OP5 <- LT_OS;

@@ -1,8 +1,8 @@
 ## SQRTSD - Compute Square Root of Scalar Double-Precision Floating-Point Value
 
 > Operation
-``` slim
 
+``` slim
 SQRTSD (128-bit Legacy SSE version)
 DEST[63:0] <- SQRT(SRC[63:0])
 DEST[VLMAX-1:64] (Unmodified)

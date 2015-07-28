@@ -1,8 +1,8 @@
 ## LLDT - Load Local Descriptor Table Register
 
 > Operation
-``` slim
 
+``` slim
 IF SRC(Offset) > descriptor table limit
   THEN #GP(segment selector); FI;
 IF segment selector is valid
@@ -60,33 +60,33 @@ None.
 ### Protected Mode Exceptions
    | |  
 ---- | -----
- #GP(0)         | If the current privilege level is not   
+ **``#GP(0)``**         | If the current privilege level is not   
                 | 0. If a memory operand effective address
                 | is outside the CS, DS, ES, FS, or GS    
                 | segment limit. If the DS, ES, FS, or    
                 | GS register contains a NULL segment     
                 | selector.                               
- #GP(selector)  | If the selector operand does not point  
+ **``#GP(selector)``**  | If the selector operand does not point  
                 | into the Global Descriptor Table or     
                 | if the entry in the GDT is not a Local  
                 | Descriptor Table. Segment selector is   
                 | beyond GDT limit.                       
- #SS(0)         | If a memory operand effective address   
+ **``#SS(0)``**         | If a memory operand effective address   
                 | is outside the SS segment limit.        
- #NP(selector)  | If the LDT descriptor is not present.   
- #PF(fault-code)| If a page fault occurs.                 
- #UD            | If the LOCK prefix is used.             
+ **``#NP(selector)``**  | If the LDT descriptor is not present.   
+ **``#PF(fault-code)``**| If a page fault occurs.                 
+ **``#UD``**            | If the LOCK prefix is used.             
 
 ### Real-Address Mode Exceptions
    | |  
 ---- | -----
- #UD| The LLDT instruction is not recognized
+ **``#UD``**| The LLDT instruction is not recognized
     | in real-address mode.                 
 
 ### Virtual-8086 Mode Exceptions
    | |  
 ---- | -----
- #UD| The LLDT instruction is not recognized
+ **``#UD``**| The LLDT instruction is not recognized
     | in virtual-8086 mode.                 
 
 ### Compatibility Mode Exceptions
@@ -96,16 +96,16 @@ Same exceptions as in protected mode.
 ### 64-Bit Mode Exceptions
    | |  
 ---- | -----
- #SS(0)         | If a memory address referencing the           
+ **``#SS(0)``**         | If a memory address referencing the           
                 | SS segment is in a non-canonical form.        
- #GP(0)         | If the current privilege level is not         
+ **``#GP(0)``**         | If the current privilege level is not         
                 | 0. If the memory address is in a non-canonical
                 | form.                                         
- #GP(selector)  | If the selector operand does not point        
+ **``#GP(selector)``**  | If the selector operand does not point        
                 | into the Global Descriptor Table or           
                 | if the entry in the GDT is not a Local        
                 | Descriptor Table. Segment selector is         
                 | beyond GDT limit.                             
- #NP(selector)  | If the LDT descriptor is not present.         
- #PF(fault-code)| If a page fault occurs.                       
- #UD            | If the LOCK prefix is used.                   
+ **``#NP(selector)``**  | If the LDT descriptor is not present.         
+ **``#PF(fault-code)``**| If a page fault occurs.                       
+ **``#UD``**            | If the LOCK prefix is used.                   

@@ -1,8 +1,8 @@
 ## LGDT/LIDT - Load Global/Interrupt Descriptor Table Register
 
 > Operation
-``` slim
 
+``` slim
 IF Instruction is LIDT
   THEN
      IF OperandSize = 16
@@ -88,37 +88,37 @@ None.
 ### Protected Mode Exceptions
    | |  
 ---- | -----
- #UD            | If source operand is not a memory location.
+ **``#UD``**            | If source operand is not a memory location.
                 | If the LOCK prefix is used.                
- #GP(0)         | If the current privilege level is not      
+ **``#GP(0)``**         | If the current privilege level is not      
                 | 0. If a memory operand effective address   
                 | is outside the CS, DS, ES, FS, or GS       
                 | segment limit. If the DS, ES, FS, or       
                 | GS register is used to access memory       
                 | and it contains a NULL segment selector.   
- #SS(0)         | If a memory operand effective address      
+ **``#SS(0)``**         | If a memory operand effective address      
                 | is outside the SS segment limit.           
- #PF(fault-code)| If a page fault occurs.                    
+ **``#PF(fault-code)``**| If a page fault occurs.                    
 
 ### Real-Address Mode Exceptions
    | |  
 ---- | -----
- #UD| If source operand is not a memory location.
+ **``#UD``**| If source operand is not a memory location.
     | If the LOCK prefix is used.                
- #GP| If a memory operand effective address      
+ **``#GP``**| If a memory operand effective address      
     | is outside the CS, DS, ES, FS, or GS       
     | segment limit.                             
- #SS| If a memory operand effective address      
+ **``#SS``**| If a memory operand effective address      
     | is outside the SS segment limit.           
 
 ### Virtual-8086 Mode Exceptions
    | |  
 ---- | -----
- #UD   | If source operand is not a memory location.
+ **``#UD``**   | If source operand is not a memory location.
        | If the LOCK prefix is used.                
- #GP(0)| The LGDT and LIDT instructions are not     
+ **``#GP(0)``**| The LGDT and LIDT instructions are not     
        | recognized in virtual-8086 mode.           
- #GP   | If the current privilege level is not      
+ **``#GP``**   | If the current privilege level is not      
        | 0.                                         
 
 ### Compatibility Mode Exceptions
@@ -128,11 +128,11 @@ Same exceptions as in protected mode.
 ### 64-Bit Mode Exceptions
    | |  
 ---- | -----
- #SS(0)         | If a memory address referencing the           
+ **``#SS(0)``**         | If a memory address referencing the           
                 | SS segment is in a non-canonical form.        
- #GP(0)         | If the current privilege level is not         
+ **``#GP(0)``**         | If the current privilege level is not         
                 | 0. If the memory address is in a non-canonical
                 | form.                                         
- #UD            | If source operand is not a memory location.   
+ **``#UD``**            | If source operand is not a memory location.   
                 | If the LOCK prefix is used.                   
- #PF(fault-code)| If a page fault occurs.                       
+ **``#PF(fault-code)``**| If a page fault occurs.                       

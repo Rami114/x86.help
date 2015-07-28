@@ -1,8 +1,8 @@
 ## HSUBPS - Packed Single-FP Horizontal Subtract
 
 > Operation
-``` slim
 
+``` slim
 HSUBPS (128-bit Legacy SSE version)
 DEST[31:0] <- SRC1[31:0] - SRC1[63:32]
 DEST[63:32] <- SRC1[95:64] - SRC1[127:96]

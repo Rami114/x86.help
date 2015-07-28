@@ -1,8 +1,8 @@
 ## CLTS - Clear Task-Switched Flag in CR0
 
 > Operation
-``` slim
 
+``` slim
 CR0.TS[bit 3] <- 0;
 
 ```
@@ -43,21 +43,21 @@ The TS flag in CR0 register is cleared.
 ### Protected Mode Exceptions
    | |  
 ---- | -----
- #GP(0)| If the current privilege level is not
+ **``#GP(0)``**| If the current privilege level is not
        | 0.                                   
- #UD   | If the LOCK prefix is used.          
+ **``#UD``**   | If the LOCK prefix is used.          
 
 ### Real-Address Mode Exceptions
    | |  
 ---- | -----
- #UD| If the LOCK prefix is used.
+ **``#UD``**| If the LOCK prefix is used.
 
 ### Virtual-8086 Mode Exceptions
    | |  
 ---- | -----
- #GP(0)| CLTS is not recognized in virtual-8086
+ **``#GP(0)``**| CLTS is not recognized in virtual-8086
        | mode.                                 
- #UD   | If the LOCK prefix is used.           
+ **``#UD``**   | If the LOCK prefix is used.           
 
 ### Compatibility Mode Exceptions
 Same exceptions as in protected mode.
@@ -66,5 +66,5 @@ Same exceptions as in protected mode.
 ### 64-Bit Mode Exceptions
    | |  
 ---- | -----
- #GP(0)| If the CPL is greater than 0.
- #UD   | If the LOCK prefix is used.  
+ **``#GP(0)``**| If the CPL is greater than 0.
+ **``#UD``**   | If the LOCK prefix is used.  

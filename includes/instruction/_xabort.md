@@ -1,8 +1,8 @@
 ## XABORT  -  Transactional Abort
 
 > Operation
-``` slim
 
+``` slim
 XABORT
 IF RTM_ACTIVE = 0
   THEN
@@ -60,5 +60,5 @@ None
 ### Other Exceptions
    | |  
 ---- | -----
- #UD| CPUID.(EAX=7, ECX=0):RTM[bit 11] = 0.
+ **``#UD``**| CPUID.(EAX=7, ECX=0):RTM[bit 11] = 0.
     | If LOCK prefix is used.              

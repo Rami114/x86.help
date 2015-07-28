@@ -1,8 +1,8 @@
 ## CVTSS2SD - Convert Scalar Single-Precision FP Value to Scalar Double-Precision FP Value
 
 > Operation
-``` slim
 
+``` slim
 CVTSS2SD (128-bit Legacy SSE version)
 DEST[63:0] <- Convert_Single_Precision_To_Double_Precision_Floating_Point(SRC[31:0]);
 DEST[VLMAX-1:64] (Unmodified)

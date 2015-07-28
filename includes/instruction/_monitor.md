@@ -1,8 +1,8 @@
 ## MONITOR - Set Up Monitor Address
 
 > Operation
-``` slim
 
+``` slim
 MONITOR sets up an address range for the monitor hardware using the content of EAX (RAX in 64-bit mode) as an
 effective address and puts the monitor hardware in armed state. Always use memory of the write-back caching
 type. A store to the specified address range will trigger the monitor hardware. The content of ECX and EDX are
@@ -77,34 +77,34 @@ None
 ### Protected Mode Exceptions
    | |  
 ---- | -----
- #GP(0)         | If the value in EAX is outside the CS, 
+ **``#GP(0)``**         | If the value in EAX is outside the CS, 
                 | DS, ES, FS, or GS segment limit. If    
                 | the DS, ES, FS, or GS register is used 
                 | to access memory and it contains a NULL
                 | segment selector. If ECX != 0.          
- #SS(0)         | If the value in EAX is outside the SS  
+ **``#SS(0)``**         | If the value in EAX is outside the SS  
                 | segment limit.                         
- #PF(fault-code)| For a page fault.                      
- #UD            | If CPUID.01H:ECX.MONITOR[bit 3] = 0.   
+ **``#PF(fault-code)``**| For a page fault.                      
+ **``#UD``**            | If CPUID.01H:ECX.MONITOR[bit 3] = 0.   
                 | If current privilege level is not 0.   
 
 ### Real Address Mode Exceptions
    | |  
 ---- | -----
- #GP| If the CS, DS, ES, FS, or GS register     
+ **``#GP``**| If the CS, DS, ES, FS, or GS register     
     | is used to access memory and the value    
     | in EAX is outside of the effective address
     | space from 0 to FFFFH. If ECX != 0.        
- #SS| If the SS register is used to access      
+ **``#SS``**| If the SS register is used to access      
     | memory and the value in EAX is outside    
     | of the effective address space from       
     | 0 to FFFFH.                               
- #UD| If CPUID.01H:ECX.MONITOR[bit 3] = 0.      
+ **``#UD``**| If CPUID.01H:ECX.MONITOR[bit 3] = 0.      
 
 ### Virtual 8086 Mode Exceptions
    | |  
 ---- | -----
- #UD| The MONITOR instruction is not recognized              
+ **``#UD``**| The MONITOR instruction is not recognized              
     | in virtual-8086 mode (even if CPUID.01H:ECX.MONITOR[bit
     | 3] = 1).                                               
 
@@ -115,14 +115,14 @@ Same exceptions as in protected mode.
 ### 64-Bit Mode Exceptions
    | |  
 ---- | -----
- #GP(0)         | If the linear address of the operand 
+ **``#GP(0)``**         | If the linear address of the operand 
                 | in the CS, DS, ES, FS, or GS segment 
                 | is in a non-canonical form. If RCX != 
                 | 0.                                   
- #SS(0)         | If the SS register is used to access 
+ **``#SS(0)``**         | If the SS register is used to access 
                 | memory and the value in EAX is in a  
                 | non-canonical form.                  
- #PF(fault-code)| For a page fault.                    
- #UD            | If the current privilege level is not
+ **``#PF(fault-code)``**| For a page fault.                    
+ **``#UD``**            | If the current privilege level is not
                 | 0. If CPUID.01H:ECX.MONITOR[bit 3] = 
                 | 0.                                   

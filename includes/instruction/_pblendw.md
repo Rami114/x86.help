@@ -1,8 +1,8 @@
 ## PBLENDW  -  Blend Packed Words
 
 > Operation
-``` slim
 
+``` slim
 PBLENDW (128-bit Legacy SSE version)
 IF (imm8[0] = 1) THEN DEST[15:0] <- SRC[15:0]
 ELSE DEST[15:0] <- DEST[15:0]
@@ -132,4 +132,4 @@ See Exceptions Type 4; additionally
 
    | |  
 ---- | -----
- #UD| If VEX.L = 1.
+ **``#UD``**| If VEX.L = 1.

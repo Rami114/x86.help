@@ -1,8 +1,8 @@
 ## LFENCE - Load Fence
 
 > Operation
-``` slim
 
+``` slim
 Wait_On_Following_Instructions_Until(preceding_instructions_complete);
 
 ```
@@ -53,5 +53,5 @@ void _mm_lfence(void)
 ### Exceptions (All Modes of Operation)
    | |  
 ---- | -----
- #UD| If CPUID.01H:EDX.SSE2[bit 26] = 0. If
+ **``#UD``**| If CPUID.01H:EDX.SSE2[bit 26] = 0. If
     | the LOCK prefix is used.             

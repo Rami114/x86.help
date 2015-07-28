@@ -1,8 +1,8 @@
 ## PSUBQ - Subtract Packed Quadword Integers
 
 > Operation
-``` slim
 
+``` slim
 PSUBQ (with 64-Bit operands)
   DEST[63:0] <- DEST[63:0] − SRC[63:0];
 PSUBQ (with 128-Bit operands)
@@ -102,4 +102,4 @@ See Exceptions Type 4; additionally
 
    | |  
 ---- | -----
- #UD| If VEX.L = 1.
+ **``#UD``**| If VEX.L = 1.

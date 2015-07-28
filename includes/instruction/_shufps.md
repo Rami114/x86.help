@@ -1,8 +1,8 @@
 ## SHUFPS - Shuffle Packed Single-Precision Floating-Point Values
 
 > Operation
-``` slim
 
+``` slim
 CASE (SELECT[1:0]) OF
 ```
 

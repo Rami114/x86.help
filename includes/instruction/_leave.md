@@ -1,8 +1,8 @@
 ## LEAVE - High Level Procedure Exit
 
 > Operation
-``` slim
 
+``` slim
 IF StackAddressSize = 32
   THEN
      ESP <- EBP;
@@ -60,34 +60,34 @@ None.
 ### Protected Mode Exceptions
    | |  
 ---- | -----
- #SS(0)         | If the EBP register points to a location
+ **``#SS(0)``**         | If the EBP register points to a location
                 | that is not within the limits of the    
                 | current stack segment.                  
- #PF(fault-code)| If a page fault occurs.                 
- #AC(0)         | If alignment checking is enabled and    
+ **``#PF(fault-code)``**| If a page fault occurs.                 
+ **``#AC(0)``**         | If alignment checking is enabled and    
                 | an unaligned memory reference is made   
                 | while the current privilege level is    
                 | 3.                                      
- #UD            | If the LOCK prefix is used.             
+ **``#UD``**            | If the LOCK prefix is used.             
 
 ### Real-Address Mode Exceptions
    | |  
 ---- | -----
- #GP| If the EBP register points to a location
+ **``#GP``**| If the EBP register points to a location
     | outside of the effective address space  
     | from 0 to FFFFH.                        
- #UD| If the LOCK prefix is used.             
+ **``#UD``**| If the LOCK prefix is used.             
 
 ### Virtual-8086 Mode Exceptions
    | |  
 ---- | -----
- #GP(0)         | If the EBP register points to a location
+ **``#GP(0)``**         | If the EBP register points to a location
                 | outside of the effective address space  
                 | from 0 to FFFFH.                        
- #PF(fault-code)| If a page fault occurs.                 
- #AC(0)         | If alignment checking is enabled and    
+ **``#PF(fault-code)``**| If a page fault occurs.                 
+ **``#AC(0)``**         | If alignment checking is enabled and    
                 | an unaligned memory reference is made.  
- #UD            | If the LOCK prefix is used.             
+ **``#UD``**            | If the LOCK prefix is used.             
 
 ### Compatibility Mode Exceptions
 Same exceptions as in protected mode.
@@ -96,10 +96,10 @@ Same exceptions as in protected mode.
 ### 64-Bit Mode Exceptions
    | |  
 ---- | -----
- #SS(0)| If the stack address is in a non-canonical
+ **``#SS(0)``**| If the stack address is in a non-canonical
        | form.                                     
- #AC(0)| If alignment checking is enabled and      
+ **``#AC(0)``**| If alignment checking is enabled and      
        | an unaligned memory reference is made     
        | while the current privilege level is      
        | 3.                                        
- #UD   | If the LOCK prefix is used.               
+ **``#UD``**   | If the LOCK prefix is used.               

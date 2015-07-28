@@ -1,8 +1,8 @@
 ## FINIT/FNINIT - Initialize Floating-Point Unit
 
 > Operation
-``` slim
 
+``` slim
 FPUControlWord <- 037FH;
 FPUStatusWord <- 0;
 FPUTagWord <- FFFFH;
@@ -71,9 +71,9 @@ None.
 ### Protected Mode Exceptions
    | |  
 ---- | -----
- #NM| CR0.EM[bit 2] or CR0.TS[bit 3] = 1.     
- #MF| If there is a pending x87 FPU exception.
- #UD| If the LOCK prefix is used.             
+ **``#NM``**| CR0.EM[bit 2] or CR0.TS[bit 3] = 1.     
+ **``#MF``**| If there is a pending x87 FPU exception.
+ **``#UD``**| If the LOCK prefix is used.             
 
 ### Real-Address Mode Exceptions
 Same exceptions as in protected mode.

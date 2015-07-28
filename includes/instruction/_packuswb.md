@@ -1,8 +1,8 @@
 ## PACKUSWB - Pack with Unsigned Saturation
 
 > Operation
-``` slim
 
+``` slim
 PACKUSWB (with 64-bit operands)
   DEST[7:0] <- SaturateSignedWordToUnsignedByte DEST[15:0];
   DEST[15:8] <- SaturateSignedWordToUnsignedByte DEST[31:16];
@@ -166,4 +166,4 @@ See Exceptions Type 4; additionally
 
    | |  
 ---- | -----
- #UD| If VEX.L = 1.
+ **``#UD``**| If VEX.L = 1.

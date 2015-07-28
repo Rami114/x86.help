@@ -1,8 +1,8 @@
 ## MASKMOVDQU - Store Selected Bytes of Double Quadword
 
 > Operation
-``` slim
 
+``` slim
 IF (MASK[7] = 1)
   THEN DEST[DI/EDI] <- SRC[7:0] ELSE (\* Memory location unchanged \*); FI;
 IF (MASK[15] = 1)
@@ -88,4 +88,4 @@ See Exceptions Type 4; additionally
 
    | |  
 ---- | -----
- #UD| If VEX.L= 1 If VEX.vvvv != 1111B.
+ **``#UD``**| If VEX.L= 1 If VEX.vvvv != 1111B.

@@ -1,8 +1,8 @@
 ## POR - Bitwise Logical OR
 
 > Operation
-``` slim
 
+``` slim
 POR (128-bit Legacy SSE version)
 DEST <- DEST OR SRC
 DEST[VLMAX-1:128] (Unmodified)
@@ -86,4 +86,4 @@ See Exceptions Type 4; additionally
 
    | |  
 ---- | -----
- #UD| If VEX.L = 1.
+ **``#UD``**| If VEX.L = 1.

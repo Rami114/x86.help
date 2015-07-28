@@ -1,8 +1,8 @@
 ## EMMS - Empty MMX Technology State
 
 > Operation
-``` slim
 
+``` slim
 x87FPUTagWord <- FFFFH;
 
 ```
@@ -48,10 +48,10 @@ None.
 ### Protected Mode Exceptions
    | |  
 ---- | -----
- #UD| If CR0.EM[bit 2] = 1.               
- #NM| If CR0.TS[bit 3] = 1.               
- #MF| If there is a pending FPU exception.
- #UD| If the LOCK prefix is used.         
+ **``#UD``**| If CR0.EM[bit 2] = 1.               
+ **``#NM``**| If CR0.TS[bit 3] = 1.               
+ **``#MF``**| If there is a pending FPU exception.
+ **``#UD``**| If the LOCK prefix is used.         
 
 ### Real-Address Mode Exceptions
 Same exceptions as in protected mode.

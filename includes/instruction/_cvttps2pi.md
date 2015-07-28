@@ -1,8 +1,8 @@
 ## CVTTPS2PI - Convert with Truncation Packed Single-Precision FP Values to Packed Dword Integers
 
 > Operation
-``` slim
 
+``` slim
 DEST[31:0] <- Convert_Single_Precision_Floating_Point_To_Integer_Truncate(SRC[31:0]);
 DEST[63:32] <- Convert_Single_Precision_Floating_Point_To_Integer_Truncate(SRC[63:32]);
 

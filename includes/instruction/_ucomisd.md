@@ -1,8 +1,8 @@
 ## UCOMISD - Unordered Compare Scalar Double-Precision Floating-Point Values and Set EFLAGS
 
 > Operation
-``` slim
 
+``` slim
 RESULT <- UnorderedCompare(SRC1[63:0] < > SRC2[63:0]) {
 (\* Set EFLAGS \*)
 CASE (RESULT) OF
@@ -71,4 +71,4 @@ See Exceptions Type 3; additionally
 
    | |  
 ---- | -----
- #UD| If VEX.vvvv != 1111B.
+ **``#UD``**| If VEX.vvvv != 1111B.

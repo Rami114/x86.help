@@ -1,8 +1,8 @@
 ## LDDQU - Load Unaligned Integer 128 Bits
 
 > Operation
-``` slim
 
+``` slim
 LDDQU (128-bit Legacy SSE version)
 DEST[127:0] <- SRC[127:0]
 DEST[VLMAX-1:128] (Unmodified)

@@ -1,8 +1,8 @@
 ## PACKUSDW  -  Pack with Unsigned Saturation
 
 > Operation
-``` slim
 
+``` slim
 PACKUSDW (Legacy SSE instruction)
 TMP[15:0] <- (DEST[31:0] < 0) ? 0 : DEST[15:0];
 DEST[15:0] <- (DEST[31:0] > FFFFH) ? FFFFH : TMP[15:0] ;
@@ -130,7 +130,7 @@ using unsigned saturation to
  operand is a YMM register. Note: VEX.L       |                                         
  ---  | ---
  must be 0, otherwise the instruction         |                                         
- will #UD.                                    |                                         
+ will **``#UD.``**                                    |                                         
 
 
 ### Intel C/C++ Compiler Intrinsic Equivalent
@@ -154,4 +154,4 @@ See Exceptions Type 4; additionally
 
    | |  
 ---- | -----
- #UD| If VEX.L = 1.
+ **``#UD``**| If VEX.L = 1.

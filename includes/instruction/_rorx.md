@@ -1,8 +1,8 @@
 ## RORX  -  Rotate Right Logical Without Affecting Flags
 
 > Operation
-``` slim
 
+``` slim
 IF (OperandSize = 32)
   y <- imm8 AND 1FH;
   DEST <- (SRC >> y) | (SRC << (32-y));
@@ -53,4 +53,4 @@ Table 2-29; additionally
 
    | |  
 ---- | -----
- #UD| If VEX.W = 1.
+ **``#UD``**| If VEX.W = 1.

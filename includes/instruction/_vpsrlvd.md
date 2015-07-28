@@ -1,8 +1,8 @@
 ## VPSRLVD/VPSRLVQ  -  Variable Bit Shift Right Logical
 
 > Operation
-``` slim
 
+``` slim
 VPSRLVD (VEX.128 version)
 COUNT_0 <- SRC2[31 : 0]
   (\* Repeat Each COUNT_i for the 2nd through 4th dwords of SRC2\*)

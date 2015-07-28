@@ -1,8 +1,8 @@
 ## WBINVD - Write Back and Invalidate Cache
 
 > Operation
-``` slim
 
+``` slim
 WriteBack(InternalCaches);
 Flush(InternalCaches);
 SignalWriteBack(ExternalCaches);
@@ -66,19 +66,19 @@ None.
 ### Protected Mode Exceptions
    | |  
 ---- | -----
- #GP(0)| If the current privilege level is not
+ **``#GP(0)``**| If the current privilege level is not
        | 0.                                   
- #UD   | If the LOCK prefix is used.          
+ **``#UD``**   | If the LOCK prefix is used.          
 
 ### Real-Address Mode Exceptions
    | |  
 ---- | -----
- #UD| If the LOCK prefix is used.
+ **``#UD``**| If the LOCK prefix is used.
 
 ### Virtual-8086 Mode Exceptions
    | |  
 ---- | -----
- #GP(0)| WBINVD cannot be executed at the virtual-8086
+ **``#GP(0)``**| WBINVD cannot be executed at the virtual-8086
        | mode.                                        
 
 ### Compatibility Mode Exceptions

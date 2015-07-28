@@ -1,8 +1,8 @@
 ## CMPPD - Compare Packed Double-Precision Floating-Point Values
 
 > Operation
-``` slim
 
+``` slim
 CASE (COMPARISON PREDICATE) OF
   0: OP3 <- EQ_OQ; OP5 <- EQ_OQ;
   1: OP3 <- LT_OS; OP5 <- LT_OS;
@@ -184,7 +184,7 @@ Table 3-9. Comparison Predicate for VCMPPD and VCMPPS Instructions
 
    | |  
 ---- | -----
- Predicate      | imm8 Value    | Description                                     | Result: A Is 1st Operand, B Is 2nd Operand| Signals #IA on QNAN Unordered1
+ Predicate      | imm8 Value    | Description                                     | Result: A Is 1st Operand, B Is 2nd Operand| Signals **``#IA``** on QNAN Unordered1
                 |               |                                                 | A = B                                     |                               
  EQ_OQ (EQ)     | 0H            | Equal (ordered, non-signaling)                  | True                                      | No                            
  LT_OS (LT)     | 1H            | Less-than (ordered, signaling)                  | False                                     | Yes                           
@@ -213,7 +213,7 @@ Table 3-9. Comparison Predicate for VCMPPD and VCMPPS Instructions
  ORD_S          | 17H           | Ordered (signaling)                             | True                                      | Yes                           
  EQ_US          | 18H Table 3-9.| Equal (unordered, signaling) Comparison         | True                                      | Yes (Contd.)                  
                 |               | Predicate for VCMPPD and VCMPPS Instructions    |                                           |                               
- Predicate      | imm8 Value    | Description                                     | Result: A Is 1st Operand, B Is 2nd Operand| Signals #IA on QNAN Unordered1
+ Predicate      | imm8 Value    | Description                                     | Result: A Is 1st Operand, B Is 2nd Operand| Signals **``#IA``** on QNAN Unordered1
                 |               |                                                 | A = B                                     |                               
  NGE_UQ         | 19H           | Not-greater-than-or-equal (unordered,           | False                                     | No                            
                 |               | nonsignaling)                                   |                                           |                               

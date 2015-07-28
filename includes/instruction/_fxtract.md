@@ -1,8 +1,8 @@
 ## FXTRACT - Extract Exponent and Significand
 
 > Operation
-``` slim
 
+``` slim
 TEMP <- Significand(ST(0));
 ST(0) <- Exponent(ST(0));
 TOP<- TOP − 1;
@@ -51,18 +51,18 @@ This instruction's operation is the same in non-64-bit modes and 64-bit mode.
 ### Floating-Point Exceptions
    | |  
 ---- | -----
- #IS| Stack underflow or overflow occurred.         
- #IA| Source operand is an SNaN value or unsupported
+ **``#IS``**| Stack underflow or overflow occurred.         
+ **``#IA``**| Source operand is an SNaN value or unsupported
     | format.                                       
- #Z | ST(0) operand is ±0.                          
- #D | Source operand is a denormal value.           
+ **``#Z``** | ST(0) operand is ±0.                          
+ **``#D``** | Source operand is a denormal value.           
 
 ### Protected Mode Exceptions
    | |  
 ---- | -----
- #NM| CR0.EM[bit 2] or CR0.TS[bit 3] = 1.     
- #MF| If there is a pending x87 FPU exception.
- #UD| If the LOCK prefix is used.             
+ **``#NM``**| CR0.EM[bit 2] or CR0.TS[bit 3] = 1.     
+ **``#MF``**| If there is a pending x87 FPU exception.
+ **``#UD``**| If the LOCK prefix is used.             
 
 ### Real-Address Mode Exceptions
 Same exceptions as in protected mode.

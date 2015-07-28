@@ -1,8 +1,8 @@
 ## CVTSI2SS - Convert Dword Integer to Scalar Single-Precision FP Value
 
 > Operation
-``` slim
 
+``` slim
 CVTSI2SS (128-bit Legacy SSE version)
 IF 64-Bit Mode And OperandSize = 64
 THEN

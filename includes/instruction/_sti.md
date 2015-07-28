@@ -1,8 +1,8 @@
 ## STI - Set Interrupt Flag
 
 > Operation
-``` slim
 
+``` slim
 IF PE = 0
   THEN
      IF <- 1; (\* Set Interrupt Flag \*)
@@ -109,15 +109,15 @@ The IF flag is set to 1; or the VIF flag is set to 1.
 ### Protected Mode Exceptions
    | |  
 ---- | -----
- #GP(0)| If the CPL is greater (has less privilege)
+ **``#GP(0)``**| If the CPL is greater (has less privilege)
        | than the IOPL of the current program      
        | or procedure.                             
- #UD   | If the LOCK prefix is used.               
+ **``#UD``**   | If the LOCK prefix is used.               
 
 ### Real-Address Mode Exceptions
    | |  
 ---- | -----
- #UD| If the LOCK prefix is used.
+ **``#UD``**| If the LOCK prefix is used.
 
 ### Virtual-8086 Mode Exceptions
 Same exceptions as in protected mode.

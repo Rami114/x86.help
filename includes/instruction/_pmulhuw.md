@@ -1,8 +1,8 @@
 ## PMULHUW - Multiply Packed Unsigned Integers and Store High Result
 
 > Operation
-``` slim
 
+``` slim
 PMULHUW (with 64-bit operands)
   TEMP0[31:0] <-
   TEMP1[31:0] <-
@@ -169,4 +169,4 @@ See Exceptions Type 4; additionally
 
    | |  
 ---- | -----
- #UD| If VEX.L = 1.
+ **``#UD``**| If VEX.L = 1.

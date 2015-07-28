@@ -1,8 +1,8 @@
 ## RSM - Resume from System Management Mode
 
 > Operation
-``` slim
 
+``` slim
 ReturnFromSMM;
 IF (IA-32e mode supported) or (CPUID DisplayFamily_DisplayModel = 06H_0CH )
   THEN
@@ -55,7 +55,7 @@ All.
 ### Protected Mode Exceptions
    | |  
 ---- | -----
- #UD| If an attempt is made to execute this
+ **``#UD``**| If an attempt is made to execute this
     | instruction when the processor is not
     | in SMM. If the LOCK prefix is used.  
 

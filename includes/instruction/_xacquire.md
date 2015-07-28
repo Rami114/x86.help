@@ -1,8 +1,8 @@
 ## XACQUIRE/XRELEASE  -  Hardware Lock Elision Prefix Hints
 
 > Operation
-``` slim
 
+``` slim
 XACQUIRE
 IF XACQUIRE-enabled instruction
   THEN
@@ -124,7 +124,7 @@ the same in non-64-bit modes and in 64-bit mode.
  F2H prior hardware, according to •    |                                           
  •                                     | Serve as SIMD prefix for legacy SIMD      
                                        | instructions operating on XMM register    
- •                                     | Cause #UD if prepending the VEX prefix.   
+ •                                     | Cause **``#UD``** if prepending the VEX prefix.   
  •                                     | Undefined for non-string instructions     
                                        | or other situations.                      
 For instructions that do not support the XRELEASE hint, the presence of the
@@ -159,5 +159,5 @@ None
 ### Other Exceptions
    | |  
 ---- | -----
- #GP(0)| If the use of prefix causes instruction
+ **``#GP(0)``**| If the use of prefix causes instruction
        | length to exceed 15 bytes.             

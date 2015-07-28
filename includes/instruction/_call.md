@@ -1,8 +1,8 @@
 ## CALL - Call Procedure
 
 > Operation
-``` slim
 
+``` slim
 IF near call
   THEN IF near relative call
      THEN
@@ -692,7 +692,7 @@ switch does not occur.
 ### Protected Mode Exceptions
    | |  
 ---- | -----
- #GP(0)| If the target offset in destination   
+ **``#GP(0)``**| If the target offset in destination   
        | operand is beyond the new code segment
        | limit. If the segment selector in the 
        | destination operand is NULL. If the   
@@ -704,7 +704,7 @@ a NULL segment selector.
 
    | |  
 ---- | -----
- #GP(selector)  | If a code segment or gate or TSS selector   
+ **``#GP(selector)``**  | If a code segment or gate or TSS selector   
                 | index is outside descriptor table limits.   
                 | If the segment descriptor pointed to        
                 | by the segment selector in the destination  
@@ -732,13 +732,13 @@ a NULL segment selector.
                 | for local. If a TSS segment descriptor      
                 | specifies that the TSS is busy or not       
                 | available.                                  
- #SS(0)         | If pushing the return address, parameters,  
+ **``#SS(0)``**         | If pushing the return address, parameters,  
                 | or stack segment pointer onto the stack     
                 | exceeds the bounds of the stack segment,    
                 | when no stack switch occurs. If a memory    
                 | operand effective address is outside        
                 | the SS segment limit.                       
- #SS(selector)  | If pushing the return address, parameters,  
+ **``#SS(selector)``**  | If pushing the return address, parameters,  
                 | or stack segment pointer onto the stack     
                 | exceeds the bounds of the stack segment,    
                 | when a stack switch occurs. If the SS       
@@ -748,10 +748,10 @@ a NULL segment selector.
                 | does not have room for the return address,  
                 | parameters, or stack segment pointer,       
                 | when stack switch occurs.                   
- #NP(selector)  | If a code segment, data segment, stack      
+ **``#NP(selector)``**  | If a code segment, data segment, stack      
                 | segment, call gate, task gate, or TSS       
                 | is not present.                             
- #TS(selector)  | If the new stack segment selector and       
+ **``#TS(selector)``**  | If the new stack segment selector and       
                 | ESP are beyond the end of the TSS. If       
                 | the new stack segment selector is NULL.     
                 | If the RPL of the new stack segment         
@@ -764,54 +764,54 @@ a NULL segment selector.
                 | data segment. If segment-selector index     
                 | for stack segment is outside descriptor     
                 | table limits.                               
- #PF(fault-code)| If a page fault occurs.                     
- #AC(0)         | If alignment checking is enabled and        
+ **``#PF(fault-code)``**| If a page fault occurs.                     
+ **``#AC(0)``**         | If alignment checking is enabled and        
                 | an unaligned memory reference is made       
                 | while the current privilege level is        
                 | 3.                                          
- #UD            | If the LOCK prefix is used.                 
+ **``#UD``**            | If the LOCK prefix is used.                 
 
 ### Real-Address Mode Exceptions
    | |  
 ---- | -----
- #GP| If a memory operand effective address
+ **``#GP``**| If a memory operand effective address
     | is outside the CS, DS, ES, FS, or GS 
     | segment limit. If the target offset  
     | is beyond the code segment limit.    
- #UD| If the LOCK prefix is used.          
+ **``#UD``**| If the LOCK prefix is used.          
 
 ### Virtual-8086 Mode Exceptions
    | |  
 ---- | -----
- #GP(0)         | If a memory operand effective address 
+ **``#GP(0)``**         | If a memory operand effective address 
                 | is outside the CS, DS, ES, FS, or GS  
                 | segment limit. If the target offset   
                 | is beyond the code segment limit.     
- #PF(fault-code)| If a page fault occurs.               
- #AC(0)         | If alignment checking is enabled and  
+ **``#PF(fault-code)``**| If a page fault occurs.               
+ **``#AC(0)``**         | If alignment checking is enabled and  
                 | an unaligned memory reference is made.
- #UD            | If the LOCK prefix is used.           
+ **``#UD``**            | If the LOCK prefix is used.           
 
 ### Compatibility Mode Exceptions
 Same exceptions as in protected mode.
 
    | |  
 ---- | -----
- #GP(selector)| If a memory address accessed by the    
+ **``#GP(selector)``**| If a memory address accessed by the    
               | selector is in non-canonical space.    
- #GP(0)       | If the target offset in the destination
+ **``#GP(0)``**       | If the target offset in the destination
               | operand is non-canonical.              
 
 ### 64-Bit Mode Exceptions
    | |  
 ---- | -----
- #GP(0)         | If a memory address is non-canonical.      
+ **``#GP(0)``**         | If a memory address is non-canonical.      
                 | If target offset in destination operand    
                 | is non-canonical. If the segment selector  
                 | in the destination operand is NULL.        
                 | If the code segment selector in the        
                 | 64-bit gate is NULL.                       
- #GP(selector)  | If code segment or 64-bit call gate        
+ **``#GP(selector)``**  | If code segment or 64-bit call gate        
                 | is outside descriptor table limits.        
                 | If code segment or 64-bit call gate        
                 | overlaps non-canonical space. If the       
@@ -844,27 +844,27 @@ Same exceptions as in protected mode.
                 | segment descriptor for a segment selector  
                 | from the 64-bit call gate does not indicate
                 | it is a code segment.                      
- #SS(0)         | If pushing the return offset or CS selector
+ **``#SS(0)``**         | If pushing the return offset or CS selector
                 | onto the stack exceeds the bounds of       
                 | the stack segment when no stack switch     
                 | occurs. If a memory operand effective      
                 | address is outside the SS segment limit.   
                 | If the stack address is in a non-canonical 
                 | form.                                      
- #SS(selector)  | If pushing the old values of SS selector,  
+ **``#SS(selector)``**  | If pushing the old values of SS selector,  
                 | stack pointer, EFLAGS, CS selector,        
                 | offset, or error code onto the stack       
                 | violates the canonical boundary when       
                 | a stack switch occurs.                     
- #NP(selector)  | If a code segment or 64-bit call gate      
+ **``#NP(selector)``**  | If a code segment or 64-bit call gate      
                 | is not present.                            
- #TS(selector)  | If the load of the new RSP exceeds the     
+ **``#TS(selector)``**  | If the load of the new RSP exceeds the     
                 | limit of the TSS.                          
- #UD            | (64-bit mode only) If a far call is        
+ **``#UD``**            | (64-bit mode only) If a far call is        
                 | direct to an absolute address in memory.   
                 | If the LOCK prefix is used.                
- #PF(fault-code)| If a page fault occurs.                    
- #AC(0)         | If alignment checking is enabled and       
+ **``#PF(fault-code)``**| If a page fault occurs.                    
+ **``#AC(0)``**         | If alignment checking is enabled and       
                 | an unaligned memory reference is made      
                 | while the current privilege level is       
                 | 3.                                         

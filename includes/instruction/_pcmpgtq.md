@@ -1,8 +1,8 @@
 ## PCMPGTQ  -  Compare Packed Data for Greater Than
 
 > Operation
-``` slim
 
+``` slim
 IF (DEST[63-0] > SRC[63-0])
   THEN DEST[63-0] <- FFFFFFFFFFFFFFFFH;
   ELSE DEST[63-0] <- 0; FI
@@ -77,4 +77,4 @@ See Exceptions Type 4; additionally
 
    | |  
 ---- | -----
- #UD| If VEX.L = 1.
+ **``#UD``**| If VEX.L = 1.

@@ -1,8 +1,8 @@
 ## XSETBV - Set Extended Control Register
 
 > Operation
-``` slim
 
+``` slim
 XCR[ECX] <- EDX:EAX;
 
 ```
@@ -57,14 +57,14 @@ None.
 ### Protected Mode Exceptions
    | |  
 ---- | -----
- #GP(0)| If the current privilege level is not    
+ **``#GP(0)``**| If the current privilege level is not    
        | 0. If an invalid XCR is specified in     
        | ECX. If the value in EDX:EAX sets bits   
        | that are reserved in the XCR specified   
        | by ECX. If an attempt is made to clear   
        | bit 0 of XCR0. If an attempt is made     
        | to set XCR0[2:1] to 10b.                 
- #UD   | If CPUID.01H:ECX.XSAVE[bit 26] = 0.      
+ **``#UD``**   | If CPUID.01H:ECX.XSAVE[bit 26] = 0.      
        | If CR4.OSXSAVE[bit 18] = 0. If the LOCK  
        | prefix is used. If 66H, F3H or F2H prefix
        | is used.                                 
@@ -72,13 +72,13 @@ None.
 ### Real-Address Mode Exceptions
    | |  
 ---- | -----
- #GP| If an invalid XCR is specified in ECX.   
+ **``#GP``**| If an invalid XCR is specified in ECX.   
     | If the value in EDX:EAX sets bits that   
     | are reserved in the XCR specified by     
     | ECX. If an attempt is made to clear      
     | bit 0 of XCR0. If an attempt is made     
     | to set XCR0[2:1] to 10b.                 
- #UD| If CPUID.01H:ECX.XSAVE[bit 26] = 0.      
+ **``#UD``**| If CPUID.01H:ECX.XSAVE[bit 26] = 0.      
     | If CR4.OSXSAVE[bit 18] = 0. If the LOCK  
     | prefix is used. If 66H, F3H or F2H prefix
     | is used.                                 
@@ -86,7 +86,7 @@ None.
 ### Virtual-8086 Mode Exceptions
    | |  
 ---- | -----
- #GP(0)| The XSETBV instruction is not recognized
+ **``#GP(0)``**| The XSETBV instruction is not recognized
        | in virtual-8086 mode.                   
 
 ### Compatibility Mode Exceptions

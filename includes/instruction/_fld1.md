@@ -1,8 +1,8 @@
 ## FLD1/FLDL2T/FLDL2E/FLDPI/FLDLG2/FLDLN2/FLDZ - Load Constant
 
 > Operation
-``` slim
 
+``` slim
 TOP <- TOP − 1;
 ST(0) <- CONSTANT;
 
@@ -58,14 +58,14 @@ that is produced by the Intel 8087 and Intel 287 math coprocessors.
 ### Floating-Point Exceptions
    | |  
 ---- | -----
- #IS| Stack overflow occurred.
+ **``#IS``**| Stack overflow occurred.
 
 ### Protected Mode Exceptions
    | |  
 ---- | -----
- #NM| CR0.EM[bit 2] or CR0.TS[bit 3] = 1.     
- #MF| If there is a pending x87 FPU exception.
- #UD| If the LOCK prefix is used.             
+ **``#NM``**| CR0.EM[bit 2] or CR0.TS[bit 3] = 1.     
+ **``#MF``**| If there is a pending x87 FPU exception.
+ **``#UD``**| If the LOCK prefix is used.             
 
 ### Real-Address Mode Exceptions
 Same exceptions as in protected mode.

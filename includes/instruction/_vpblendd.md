@@ -1,8 +1,8 @@
 ## VPBLENDD  -  Blend Packed Dwords
 
 > Operation
-``` slim
 
+``` slim
 VPBLENDD (VEX.256 encoded version)
 IF (imm8[0] == 1) THEN DEST[31:0] <- SRC2[31:0]
 ELSE DEST[31:0] <- SRC1[31:0]
@@ -79,4 +79,4 @@ See Exceptions Type 4; additionally
 
    | |  
 ---- | -----
- #UD| If VEX.W = 1.
+ **``#UD``**| If VEX.W = 1.

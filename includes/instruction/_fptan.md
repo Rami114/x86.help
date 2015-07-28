@@ -1,8 +1,8 @@
 ## FPTAN - Partial Tangent
 
 > Operation
-``` slim
 
+``` slim
 IF ST(0) < 263
   THEN
      C2 <- 0;
@@ -76,21 +76,21 @@ This instruction's operation is the same in non-64-bit modes and 64-bit mode.
 ### Floating-Point Exceptions
    | |  
 ---- | -----
- #IS| Stack underflow or overflow occurred.
- #IA| Source operand is an SNaN value, ∞,  
+ **``#IS``**| Stack underflow or overflow occurred.
+ **``#IA``**| Source operand is an SNaN value, ∞,  
     | or unsupported format.               
- #D | Source operand is a denormal value.  
- #U | Result is too small for destination  
+ **``#D``** | Source operand is a denormal value.  
+ **``#U``** | Result is too small for destination  
     | format.                              
- #P | Value cannot be represented exactly  
+ **``#P``** | Value cannot be represented exactly  
     | in destination format.               
 
 ### Protected Mode Exceptions
    | |  
 ---- | -----
- #NM| CR0.EM[bit 2] or CR0.TS[bit 3] = 1.     
- #MF| If there is a pending x87 FPU exception.
- #UD| If the LOCK prefix is used.             
+ **``#NM``**| CR0.EM[bit 2] or CR0.TS[bit 3] = 1.     
+ **``#MF``**| If there is a pending x87 FPU exception.
+ **``#UD``**| If the LOCK prefix is used.             
 
 ### Real-Address Mode Exceptions
 Same exceptions as in protected mode.

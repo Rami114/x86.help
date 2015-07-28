@@ -1,8 +1,8 @@
 ## CVTTPD2PI - Convert with Truncation Packed Double-Precision FP Values to Packed Dword Integers
 
 > Operation
-``` slim
 
+``` slim
 DEST[31:0] <- Convert_Double_Precision_Floating_Point_To_Integer32_Truncate(SRC[63:0]);
 DEST[63:32] <- Convert_Double_Precision_Floating_Point_To_Integer32_
           Truncate(SRC[127:64]);

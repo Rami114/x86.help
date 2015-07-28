@@ -1,8 +1,8 @@
 ## INSERTPS  -  Insert Packed Single Precision Floating-Point Value
 
 > Operation
-``` slim
 
+``` slim
 INSERTPS (128-bit Legacy SSE version)
 IF (SRC = REG) THEN COUNT_S <- imm8[7:6]
   ELSE COUNT_S <- 0

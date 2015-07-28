@@ -1,8 +1,8 @@
 ## STC - Set Carry Flag
 
 > Operation
-``` slim
 
+``` slim
 CF <- 1;
 
 ```
@@ -30,4 +30,4 @@ The CF flag is set. The OF, ZF, SF, AF, and PF flags are unaffected.
 ### Exceptions (All Operating Modes)
    | |  
 ---- | -----
- #UD| If the LOCK prefix is used.
+ **``#UD``**| If the LOCK prefix is used.

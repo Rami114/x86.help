@@ -1,8 +1,8 @@
 ## BLENDVPD  -  Variable Blend Packed Double Precision Floating-Point Values
 
 > Operation
-``` slim
 
+``` slim
 BLENDVPD (128-bit Legacy SSE version)
 MASK <- XMM0
 IF (MASK[63] = 0) THEN DEST[63:0] <- DEST[63:0]
@@ -104,4 +104,4 @@ See Exceptions Type 4; additionally
 
    | |  
 ---- | -----
- #UD| If VEX.W = 1.
+ **``#UD``**| If VEX.W = 1.

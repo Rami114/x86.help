@@ -1,8 +1,8 @@
 ## MAXSS - Return Maximum Scalar Single-Precision Floating-Point Value
 
 > Operation
-``` slim
 
+``` slim
 MAX(SRC1, SRC2)
 {
   IF ((SRC1 = 0.0) and (SRC2 = 0.0)) THEN DEST <- SRC2;

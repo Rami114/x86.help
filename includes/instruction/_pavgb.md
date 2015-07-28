@@ -1,8 +1,8 @@
 ## PAVGB/PAVGW - Average Packed Integers
 
 > Operation
-``` slim
 
+``` slim
 PAVGB (with 64-bit operands)
   DEST[7:0] <- (SRC[7:0] + DEST[7:0] + 1) >> 1; (\* Temp sum before shifting is 9 bits \*)
   (\* Repeat operation performed for bytes 2 through 6 \*)
@@ -131,4 +131,4 @@ See Exceptions Type 4; additionally
 
    | |  
 ---- | -----
- #UD| If VEX.L = 1.
+ **``#UD``**| If VEX.L = 1.

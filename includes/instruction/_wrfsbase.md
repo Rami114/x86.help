@@ -1,8 +1,8 @@
 ## WRFSBASE/WRGSBASE - Write FS/GS Segment Base
 
 > Operation
-``` slim
 
+``` slim
 FS/GS segment base address <- SRC;
 
 ```
@@ -52,33 +52,33 @@ None
 ### Protected Mode Exceptions
    | |  
 ---- | -----
- #UD| The WRFSBASE and WRGSBASE instructions
+ **``#UD``**| The WRFSBASE and WRGSBASE instructions
     | are not recognized in protected mode. 
 
 ### Real-Address Mode Exceptions
    | |  
 ---- | -----
- #UD| The WRFSBASE and WRGSBASE instructions  
+ **``#UD``**| The WRFSBASE and WRGSBASE instructions  
     | are not recognized in real-address mode.
 
 ### Virtual-8086 Mode Exceptions
    | |  
 ---- | -----
- #UD| The WRFSBASE and WRGSBASE instructions  
+ **``#UD``**| The WRFSBASE and WRGSBASE instructions  
     | are not recognized in virtual-8086 mode.
 
 ### Compatibility Mode Exceptions
    | |  
 ---- | -----
- #UD| The WRFSBASE and WRGSBASE instructions
+ **``#UD``**| The WRFSBASE and WRGSBASE instructions
     | are not recognized in compatibility   
     | mode.                                 
 
 ### 64-Bit Mode Exceptions
    | |  
 ---- | -----
- #UD   | If the LOCK prefix is used. If CR4.FSGSBASE[bit
+ **``#UD``**   | If the LOCK prefix is used. If CR4.FSGSBASE[bit
        | 16] = 0. If CPUID.07H.0H:EBX.FSGSBASE[bit      
        | 0] = 0                                         
- #GP(0)| If the source register contains a non-canonical
+ **``#GP(0)``**| If the source register contains a non-canonical
        | address.                                       

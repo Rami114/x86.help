@@ -1,8 +1,8 @@
 ## Jcc - Jump if Condition Is Met
 
 > Operation
-``` slim
 
+``` slim
 IF condition
   THEN
      tempEIP <- EIP + SignExtend(DEST);
@@ -227,20 +227,20 @@ extended to 64-bits.
 ### Protected Mode Exceptions
    | |  
 ---- | -----
- #GP(0)| If the offset being jumped to is beyond
+ **``#GP(0)``**| If the offset being jumped to is beyond
        | the limits of the CS segment.          
- #UD   | If the LOCK prefix is used.            
+ **``#UD``**   | If the LOCK prefix is used.            
 
 ### Real-Address Mode Exceptions
    | |  
 ---- | -----
- #GP| If the offset being jumped to is beyond   
+ **``#GP``**| If the offset being jumped to is beyond   
     | the limits of the CS segment or is outside
     | of the effective address space from       
     | 0 to FFFFH. This condition can occur      
     | if a 32-bit address size override prefix  
     | is used.                                  
- #UD| If the LOCK prefix is used.               
+ **``#UD``**| If the LOCK prefix is used.               
 
 ### Virtual-8086 Mode Exceptions
 Same exceptions as in real address mode.
@@ -253,6 +253,6 @@ Same exceptions as in protected mode.
 ### 64-Bit Mode Exceptions
    | |  
 ---- | -----
- #GP(0)| If the memory address is in a non-canonical
+ **``#GP(0)``**| If the memory address is in a non-canonical
        | form.                                      
- #UD   | If the LOCK prefix is used.                
+ **``#UD``**   | If the LOCK prefix is used.                

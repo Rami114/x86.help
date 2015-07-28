@@ -1,8 +1,8 @@
 ## VCVTPS2PH - Convert Single-Precision FP value to 16-bit FP value
 
 > Operation
-``` slim
 
+``` slim
 vCvt_s2h(SRC1[31:0])
 {
 IF Imm[2] = 0
@@ -107,4 +107,4 @@ Exceptions Type 11 (do not report #AC); additionally
 
    | |  
 ---- | -----
- #UD| If VEX.W=1.
+ **``#UD``**| If VEX.W=1.

@@ -1,8 +1,8 @@
 ## PINSRW - Insert Word
 
 > Operation
-``` slim
 
+``` slim
 PINSRW (with 64-bit source operand)
   SEL <- COUNT AND 3H;
      CASE (Determine word position) OF
@@ -98,5 +98,5 @@ See Exceptions Type 5; additionally
 
    | |  
 ---- | -----
- #UD| If VEX.L = 1. If VPINSRW in non-64-bit
+ **``#UD``**| If VEX.L = 1. If VPINSRW in non-64-bit
     | mode with VEX.W=1.                    

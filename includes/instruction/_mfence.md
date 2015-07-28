@@ -1,8 +1,8 @@
 ## MFENCE - Memory Fence
 
 > Operation
-``` slim
 
+``` slim
 Wait_On_Following_Loads_And_Stores_Until(preceding_loads_and_stores_globally_visible);
 
 ```
@@ -52,7 +52,7 @@ void _mm_mfence(void)
 ### Exceptions (All Modes of Operation)
    | |  
 ---- | -----
- #UD| If CPUID.01H:EDX.SSE2[bit 26] = 0. If     
+ **``#UD``**| If CPUID.01H:EDX.SSE2[bit 26] = 0. If     
     | the LOCK prefix is used.                  
  1. | A load instruction is considered to       
     | become globally visible when the value    

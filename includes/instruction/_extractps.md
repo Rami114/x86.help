@@ -1,8 +1,8 @@
 ## EXTRACTPS  -  Extract Packed Single Precision Floating-Point Value
 
 > Operation
-``` slim
 
+``` slim
 EXTRACTPS (128-bit Legacy SSE version)
 SRC_OFFSET <- IMM8[1:0]
 IF ( 64-Bit Mode and DEST is register)
@@ -77,4 +77,4 @@ See Exceptions Type 5; additionally
 
    | |  
 ---- | -----
- #UD| If VEX.L= 1.
+ **``#UD``**| If VEX.L= 1.

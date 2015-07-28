@@ -1,8 +1,8 @@
 ## XRSTOR - Restore Processor Extended States
 
 > Operation
-``` slim
 
+``` slim
 RFBM <- XCR0 AND EDX:EAX;
 COMPMASK <- XCOMP_BV field from XSAVE header;
 RSTORMASK <- XSTATE_BV field from XSAVE header;
@@ -136,7 +136,7 @@ None.
 ### Protected Mode Exceptions
    | |  
 ---- | -----
- #GP(0)         | If a memory operand effective address                                  
+ **``#GP(0)``**         | If a memory operand effective address                                  
                 | is outside the CS, DS, ES, FS, or GS                                   
                 | segment limit. If a memory operand is                                  
                 | not aligned on a 64-byte boundary, regardless                          
@@ -159,23 +159,23 @@ None.
                 | the XSAVE header are not all zero. If                                  
                 | attempting to write any reserved bits                                  
                 | of the MXCSR register with 1.                                          
- #SS(0)         | If a memory operand effective address                                  
+ **``#SS(0)``**         | If a memory operand effective address                                  
                 | is outside the SS segment limit.                                       
- #PF(fault-code)| If a page fault occurs.                                                
- #NM            | If CR0.TS[bit 3] = 1.                                                  
- #UD            | If CPUID.01H:ECX.XSAVE[bit 26] = 0.                                    
+ **``#PF(fault-code)``**| If a page fault occurs.                                                
+ **``#NM``**            | If CR0.TS[bit 3] = 1.                                                  
+ **``#UD``**            | If CPUID.01H:ECX.XSAVE[bit 26] = 0.                                    
                 | If CR4.OSXSAVE[bit 18] = 0. If any of                                  
                 | the LOCK, 66H, F3H or F2H prefixes is                                  
                 | used.                                                                  
- #AC            | If this exception is disabled a general                                
-                | protection exception (#GP) is signaled                                 
+ **``#AC``**            | If this exception is disabled a general                                
+                | protection exception (**``#GP)``** is signaled                                 
                 | if the memory operand is not aligned                                   
                 | on a 16-byte boundary, as described                                    
                 | above. If the alignment check exception                                
-                | (#AC) is enabled (and the CPL is 3),                                   
-                | signaling of #AC is not guaranteed and                                 
+                | (**``#AC)``** is enabled (and the CPL is 3),                                   
+                | signaling of **``#AC``** is not guaranteed and                                 
                 | may vary with implementation, as follows.                              
-                | In all implementations where #AC is                                    
+                | In all implementations where **``#AC``** is                                    
                 | not signaled, a general protection exception                           
                 | is signaled in its place. In addition,                                 
                 | the width of the alignment check may                                   
@@ -190,7 +190,7 @@ None.
 ### Real-Address Mode Exceptions
    | |  
 ---- | -----
- #GP| If a memory operand is not aligned on                            
+ **``#GP``**| If a memory operand is not aligned on                            
     | a 64-byte boundary, regardless of segment.                       
     | If any part of the operand lies outside                          
     | the effective address space from 0 to                            
@@ -209,8 +209,8 @@ of the MXCSR register with 1.
 
    | |  
 ---- | -----
- #NM| If CR0.TS[bit 3] = 1.                
- #UD| If CPUID.01H:ECX.XSAVE[bit 26] = 0.  
+ **``#NM``**| If CR0.TS[bit 3] = 1.                
+ **``#UD``**| If CPUID.01H:ECX.XSAVE[bit 26] = 0.  
     | If CR4.OSXSAVE[bit 18] = 0. If any of
     | the LOCK, 66H, F3H or F2H prefixes is
     | used.                                
@@ -226,7 +226,7 @@ Same exceptions as in protected mode.
 ### 64-Bit Mode Exceptions
    | |  
 ---- | -----
- #GP(0)         | If a memory address is in a non-canonical                        
+ **``#GP(0)``**         | If a memory address is in a non-canonical                        
                 | form. If a memory operand is not aligned                         
                 | on a 64-byte boundary, regardless of                             
                 | segment. If bit 63 of the XCOMP_BV field                         
@@ -248,23 +248,23 @@ Same exceptions as in protected mode.
                 | the XSAVE header are not all zero. If                            
                 | attempting to write any reserved bits                            
                 | of the MXCSR register with 1.                                    
- #SS(0)         | If a memory address referencing the                              
+ **``#SS(0)``**         | If a memory address referencing the                              
                 | SS segment is in a non-canonical form.                           
- #PF(fault-code)| If a page fault occurs.                                          
- #NM            | If CR0.TS[bit 3] = 1.                                            
- #UD            | If CPUID.01H:ECX.XSAVE[bit 26] = 0.                              
+ **``#PF(fault-code)``**| If a page fault occurs.                                          
+ **``#NM``**            | If CR0.TS[bit 3] = 1.                                            
+ **``#UD``**            | If CPUID.01H:ECX.XSAVE[bit 26] = 0.                              
                 | If CR4.OSXSAVE[bit 18] = 0. If any of                            
                 | the LOCK, 66H, F3H or F2H prefixes is                            
                 | used.                                                            
- #AC            | If this exception is disabled a general                          
-                | protection exception (#GP) is signaled                           
+ **``#AC``**            | If this exception is disabled a general                          
+                | protection exception (**``#GP)``** is signaled                           
                 | if the memory operand is not aligned                             
                 | on a 16-byte boundary, as described                              
                 | above. If the alignment check exception                          
-                | (#AC) is enabled (and the CPL is 3),                             
-                | signaling of #AC is not guaranteed and                           
+                | (**``#AC)``** is enabled (and the CPL is 3),                             
+                | signaling of **``#AC``** is not guaranteed and                           
                 | may vary with implementation, as follows.                        
-                | In all implementations where #AC is                              
+                | In all implementations where **``#AC``** is                              
                 | not signaled, a general protection exception                     
                 | is signaled in its place. In addition,                           
                 | the width of the alignment check may                             

@@ -1,8 +1,8 @@
 ## PSHUFHW - Shuffle Packed High Words
 
 > Operation
-``` slim
 
+``` slim
 PSHUFHW (128-bit Legacy SSE version)
 DEST[63:0] <- SRC[63:0]
 DEST[79:64] <- (SRC >> (imm[1:0] \*16))[79:64]
@@ -99,4 +99,4 @@ See Exceptions Type 4; additionally
 
    | |  
 ---- | -----
- #UD| If VEX.L = 1. If VEX.vvvv != 1111B.
+ **``#UD``**| If VEX.L = 1. If VEX.vvvv != 1111B.

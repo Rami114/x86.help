@@ -1,8 +1,8 @@
 ## CMC - Complement Carry Flag
 
 > Operation
-``` slim
 
+``` slim
 EFLAGS.CF[bit 0]<- NOT EFLAGS.CF[bit 0];
 
 ```
@@ -30,4 +30,4 @@ and PF flags are unaffected.
 ### Exceptions (All Operating Modes)
    | |  
 ---- | -----
- #UD| If the LOCK prefix is used.
+ **``#UD``**| If the LOCK prefix is used.

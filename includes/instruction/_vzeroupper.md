@@ -1,8 +1,8 @@
 ## VZEROUPPER - Zero Upper Bits of YMM Registers
 
 > Operation
-``` slim
 
+``` slim
 VZEROUPPER
 IF (64-bit mode)
   YMM0[VLMAX-1:128] <- 0

@@ -1,8 +1,8 @@
 ## PCMPEQQ  -  Compare Packed Qword Data for Equal
 
 > Operation
-``` slim
 
+``` slim
 IF (DEST[63:0] = SRC[63:0])
   THEN DEST[63:0] <- FFFFFFFFFFFFFFFFH;
   ELSE DEST[63:0] <- 0; FI;
@@ -61,7 +61,7 @@ operand (first operand) and the
  operand is a YMM register. Note: VEX.L        |                                      
  ---  | ---
  must be 0, otherwise the instruction          |                                      
- will #UD.                                     |                                      
+ will **``#UD.``**                                     |                                      
 
 
 ### Intel C/C++ Compiler Intrinsic Equivalent
@@ -85,4 +85,4 @@ See Exceptions Type 4; additionally
 
    | |  
 ---- | -----
- #UD| If VEX.L = 1.
+ **``#UD``**| If VEX.L = 1.

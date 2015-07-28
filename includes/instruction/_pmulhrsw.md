@@ -1,8 +1,8 @@
 ## PMULHRSW  -  Packed Multiply High with Round and Scale
 
 > Operation
-``` slim
 
+``` slim
 PMULHRSW (with 64-bit operands)
   temp0[31:0] = INT32 ((DEST[15:0] \* SRC[15:0]) >>14) + 1;
   temp1[31:0] = INT32 ((DEST[31:16] \* SRC[31:16]) >>14) + 1;
@@ -144,4 +144,4 @@ See Exceptions Type 4; additionally
 
    | |  
 ---- | -----
- #UD| If VEX.L = 1.
+ **``#UD``**| If VEX.L = 1.

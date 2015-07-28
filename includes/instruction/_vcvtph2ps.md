@@ -1,8 +1,8 @@
 ## VCVTPH2PS - Convert 16-bit FP Values to Single-Precision FP Values
 
 > Operation
-``` slim
 
+``` slim
 vCvt_h2s(SRC1[15:0])
 {
 RETURN Cvt_Half_Precision_To_Single_Precision(SRC1[15:0]);
@@ -82,4 +82,4 @@ Exceptions Type 11 (do not report #AC); additionally
 
    | |  
 ---- | -----
- #UD| If VEX.W=1.
+ **``#UD``**| If VEX.W=1.

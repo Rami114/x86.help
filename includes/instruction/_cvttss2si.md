@@ -1,8 +1,8 @@
 ## CVTTSS2SI - Convert with Truncation Scalar Single-Precision FP Value to Dword Integer
 
 > Operation
-``` slim
 
+``` slim
 IF 64-Bit Mode and OperandSize = 64
   THEN
      DEST[63:0] <- Convert_Single_Precision_Floating_Point_To_
@@ -74,4 +74,4 @@ See Exceptions Type 3; additionally
 
    | |  
 ---- | -----
- #UD| If VEX.vvvv != 1111B.
+ **``#UD``**| If VEX.vvvv != 1111B.

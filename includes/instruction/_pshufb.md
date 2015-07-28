@@ -1,8 +1,8 @@
 ## PSHUFB  -  Packed Shuffle Bytes
 
 > Operation
-``` slim
 
+``` slim
 PSHUFB (with 64 bit operands)
   for i = 0 to 7 {
      if (SRC[(i \* 8)+7] = 1 ) then
@@ -137,4 +137,4 @@ See Exceptions Type 4; additionally
 
    | |  
 ---- | -----
- #UD| If VEX.L = 1.
+ **``#UD``**| If VEX.L = 1.

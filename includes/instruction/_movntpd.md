@@ -1,8 +1,8 @@
 ## MOVNTPD - Store Packed Double-Precision Floating-Point Values Using Non-Temporal Hint
 
 > Operation
-``` slim
 
+``` slim
 DEST <- SRC;
 
 ```
@@ -73,4 +73,4 @@ See Exceptions Type 1.SSE2; additionally
 
    | |  
 ---- | -----
- #UD| If VEX.vvvv != 1111B.
+ **``#UD``**| If VEX.vvvv != 1111B.

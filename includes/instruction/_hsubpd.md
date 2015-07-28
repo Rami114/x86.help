@@ -1,8 +1,8 @@
 ## HSUBPD - Packed Double-FP Horizontal Subtract
 
 > Operation
-``` slim
 
+``` slim
 HSUBPD (128-bit Legacy SSE version)
 DEST[63:0] <- SRC1[63:0] - SRC1[127:64]
 DEST[127:64] <- SRC2[63:0] - SRC2[127:64]

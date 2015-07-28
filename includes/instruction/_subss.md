@@ -1,8 +1,8 @@
 ## SUBSS - Subtract Scalar Single-Precision Floating-Point Values
 
 > Operation
-``` slim
 
+``` slim
 SUBSS (128-bit Legacy SSE version)
 DEST[31:0] <- DEST[31:0] - SRC[31:0]
 DEST[VLMAX-1:32] (Unmodified)

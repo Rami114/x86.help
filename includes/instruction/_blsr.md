@@ -1,8 +1,8 @@
 ## BLSR  -  Reset Lowest Set Bit
 
 > Operation
-``` slim
 
+``` slim
 temp <- (SRC-1) bitwiseAND ( SRC );
 SF <- temp[OperandSize -1];
 ZF <- (temp = 0);
@@ -63,4 +63,4 @@ Table 2-29; additionally
 
    | |  
 ---- | -----
- #UD| If VEX.W = 1.
+ **``#UD``**| If VEX.W = 1.

@@ -1,8 +1,8 @@
 ## PSHUFLW - Shuffle Packed Low Words
 
 > Operation
-``` slim
 
+``` slim
 PSHUFLW (128-bit Legacy SSE version)
 DEST[15:0] <- (SRC >> (imm[1:0] \*16))[15:0]
 DEST[31:16] <- (SRC >> (imm[3:2] \* 16))[15:0]
@@ -101,4 +101,4 @@ See Exceptions Type 4; additionally
 
    | |  
 ---- | -----
- #UD| If VEX.L = 1. If VEX.vvvv != 1111B.
+ **``#UD``**| If VEX.L = 1. If VEX.vvvv != 1111B.

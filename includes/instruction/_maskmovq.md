@@ -1,8 +1,8 @@
 ## MASKMOVQ - Store Selected Bytes of Quadword
 
 > Operation
-``` slim
 
+``` slim
 IF (MASK[7] = 1)
   THEN DEST[DI/EDI] <- SRC[7:0] ELSE (\* Memory location unchanged \*); FI;
 IF (MASK[15] = 1)

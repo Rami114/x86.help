@@ -1,8 +1,8 @@
 ## PHSUBSW  -  Packed Horizontal Subtract and Saturate
 
 > Operation
-``` slim
 
+``` slim
 PHSUBSW (with 64-bit operands)
   mm1[15-0] = SaturateToSignedWord(mm1[15-0] - mm1[31-16]);
   mm1[31-16] = SaturateToSignedWord(mm1[47-32] - mm1[63-48]);
@@ -119,4 +119,4 @@ See Exceptions Type 4; additionally
 
    | |  
 ---- | -----
- #UD| If VEX.L = 1.
+ **``#UD``**| If VEX.L = 1.

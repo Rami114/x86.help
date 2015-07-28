@@ -1,8 +1,8 @@
 ## PADDB/PADDW/PADDD - Add Packed Integers
 
 > Operation
-``` slim
 
+``` slim
 PADDB (with 64-bit operands)
   DEST[7:0] <- DEST[7:0] + SRC[7:0];
   (\* Repeat add operation for 2nd through 7th byte \*)
@@ -192,4 +192,4 @@ See Exceptions Type 4; additionally
 
    | |  
 ---- | -----
- #UD| If VEX.L = 1.
+ **``#UD``**| If VEX.L = 1.

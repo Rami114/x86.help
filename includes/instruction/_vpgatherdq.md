@@ -1,8 +1,8 @@
 ## VPGATHERDQ/VPGATHERQQ  -  Gather Packed Qword Values Using Signed Dword/Qword Indices
 
 > Operation
-``` slim
 
+``` slim
 DEST <- SRC1;
 BASE_ADDR: base register encoded in VSIB addressing;
 VINDEX: the vector index register encoded by VSIB addressing;

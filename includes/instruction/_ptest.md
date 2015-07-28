@@ -1,8 +1,8 @@
 ## PTEST- Logical Compare
 
 > Operation
-``` slim
 
+``` slim
 (V)PTEST (128-bit version)
 IF (SRC[127:0] BITWISE AND DEST[127:0] = 0)
   THEN ZF <- 1;
@@ -91,4 +91,4 @@ See Exceptions Type 4; additionally
 
    | |  
 ---- | -----
- #UD| If VEX.vvvv != 1111B.
+ **``#UD``**| If VEX.vvvv != 1111B.

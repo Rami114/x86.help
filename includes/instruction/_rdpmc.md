@@ -1,8 +1,8 @@
 ## RDPMC - Read Performance-Monitoring Counters
 
 > Operation
-``` slim
 
+``` slim
 (\* Intel Core i7 processor family and Intel Xeon processor 3400, 5500 series\*)
 Most significant counter bit (MSCB) = 47
 IF ((CR4.PCE = 1) or (CPL = 0) or (CR0.PE = 0))
@@ -209,35 +209,35 @@ None.
 ### Protected Mode Exceptions
    | |  
 ---- | -----
- #GP(0)| If the current privilege level is not       
+ **``#GP(0)``**| If the current privilege level is not       
        | 0 and the PCE flag in the CR4 register      
        | is clear. If an invalid performance         
        | counter index is specified (see Table       
        | 4-12). (Pentium 4 and Intel Xeon processors)
        | If the value in ECX[30:0] is not within     
        | the valid range.                            
- #UD   | If the LOCK prefix is used.                 
+ **``#UD``**   | If the LOCK prefix is used.                 
 
 ### Real-Address Mode Exceptions
    | |  
 ---- | -----
- #GP| If an invalid performance counter index
+ **``#GP``**| If an invalid performance counter index
     | is specified (see Table 4-12). (Pentium
     | 4 and Intel Xeon processors) If the    
     | value in ECX[30:0] is not within the   
     | valid range.                           
- #UD| If the LOCK prefix is used.            
+ **``#UD``**| If the LOCK prefix is used.            
 
 ### Virtual-8086 Mode Exceptions
    | |  
 ---- | -----
- #GP(0)| If the PCE flag in the CR4 register         
+ **``#GP(0)``**| If the PCE flag in the CR4 register         
        | is clear. If an invalid performance         
        | counter index is specified (see Table       
        | 4-12). (Pentium 4 and Intel Xeon processors)
        | If the value in ECX[30:0] is not within     
        | the valid range.                            
- #UD   | If the LOCK prefix is used.                 
+ **``#UD``**   | If the LOCK prefix is used.                 
 
 ### Compatibility Mode Exceptions
 Same exceptions as in protected mode.
@@ -246,9 +246,9 @@ Same exceptions as in protected mode.
 ### 64-Bit Mode Exceptions
    | |  
 ---- | -----
- #GP(0)| If the current privilege level is not  
+ **``#GP(0)``**| If the current privilege level is not  
        | 0 and the PCE flag in the CR4 register 
        | is clear. If an invalid performance    
        | counter index is specified in ECX[30:0]
        | (see Table 4-12).                      
- #UD   | If the LOCK prefix is used.            
+ **``#UD``**   | If the LOCK prefix is used.            

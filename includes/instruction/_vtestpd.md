@@ -1,8 +1,8 @@
 ## VTESTPD/VTESTPS - Packed Bit Test
 
 > Operation
-``` slim
 
+``` slim
 VTESTPS (128-bit version)
 TEMP[127:0] <- SRC[127:0] AND DEST[127:0]
 IF (TEMP[31] = TEMP[63] = TEMP[95] = TEMP[127] = 0)
@@ -137,5 +137,5 @@ See Exceptions Type 4; additionally
 
    | |  
 ---- | -----
- #UD| If VEX.vvvv != 1111B. If VEX.W = 1 for
+ **``#UD``**| If VEX.vvvv != 1111B. If VEX.W = 1 for
     | VTESTPS or VTESTPD.                   

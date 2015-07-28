@@ -1,8 +1,8 @@
 ## PMAXUW  -  Maximum of Packed Word Integers
 
 > Operation
-``` slim
 
+``` slim
 IF (DEST[15:0] > SRC[15:0])
   THEN DEST[15:0] <- DEST[15:0];
   ELSE DEST[15:0] <- SRC[15:0]; FI;
@@ -111,4 +111,4 @@ See Exceptions Type 4; additionally
 
    | |  
 ---- | -----
- #UD| If VEX.L = 1.
+ **``#UD``**| If VEX.L = 1.

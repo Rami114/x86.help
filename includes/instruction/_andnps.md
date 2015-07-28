@@ -1,8 +1,8 @@
 ## ANDNPS - Bitwise Logical AND NOT of Packed Single-Precision Floating-Point Values
 
 > Operation
-``` slim
 
+``` slim
 ANDNPS (128-bit Legacy SSE version)
 DEST[31:0] <- (NOT(DEST[31:0])) BITWISE AND SRC[31:0]
 DEST[63:32] <- (NOT(DEST[63:32])) BITWISE AND SRC[63:32]

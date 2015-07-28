@@ -1,8 +1,8 @@
 ## WAIT/FWAIT - Wait
 
 > Operation
-``` slim
 
+``` slim
 CheckForPendingUnmaskedFloatingPointExceptions;
 
 ```
@@ -46,9 +46,9 @@ None.
 ### Protected Mode Exceptions
    | |  
 ---- | -----
- #NM| If CR0.MP[bit 1] = 1 and CR0.TS[bit
+ **``#NM``**| If CR0.MP[bit 1] = 1 and CR0.TS[bit
     | 3] = 1.                            
- #UD| If the LOCK prefix is used.        
+ **``#UD``**| If the LOCK prefix is used.        
 
 ### Real-Address Mode Exceptions
 Same exceptions as in protected mode.

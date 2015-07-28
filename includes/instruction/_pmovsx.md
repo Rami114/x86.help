@@ -1,8 +1,8 @@
 ## PMOVSX  -  Packed Move with Sign Extend
 
 > Operation
-``` slim
 
+``` slim
 PMOVSXBW
   DEST[15:0] <- SignExtend(SRC[7:0]);
   DEST[31:16] <- SignExtend(SRC[15:8]);
@@ -187,4 +187,4 @@ See Exceptions Type 5; additionally
 
    | |  
 ---- | -----
- #UD| If VEX.L = 1. If VEX.vvvv != 1111B.
+ **``#UD``**| If VEX.L = 1. If VEX.vvvv != 1111B.

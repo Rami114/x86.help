@@ -1,8 +1,8 @@
 ## FXSAVE - Save x87 FPU, MMX Technology, and SSE State
 
 > Operation
-``` slim
 
+``` slim
 IF 64-Bit Mode
   THEN
      IF REX.W = 1
@@ -287,28 +287,28 @@ and FPU DP pointers are 64-bit wide. In the FXSAVE map for 64-bit mode (Table
 ### Protected Mode Exceptions
    | |  
 ---- | -----
- #GP(0)         | For an illegal memory operand effective     
+ **``#GP(0)``**         | For an illegal memory operand effective     
                 | address in the CS, DS, ES, FS or GS         
                 | segments. If a memory operand is not        
                 | aligned on a 16-byte boundary, regardless   
                 | of segment. (See the description of         
-                | the alignment check exception [#AC]         
+                | the alignment check exception [**``#AC]``**         
                 | below.)                                     
- #SS(0)         | For an illegal address in the SS segment.   
- #PF(fault-code)| For a page fault.                           
- #NM            | If CR0.TS[bit 3] = 1. If CR0.EM[bit         
+ **``#SS(0)``**         | For an illegal address in the SS segment.   
+ **``#PF(fault-code)``**| For a page fault.                           
+ **``#NM``**            | If CR0.TS[bit 3] = 1. If CR0.EM[bit         
                 | 2] = 1.                                     
- #UD            | If CPUID.01H:EDX.FXSR[bit 24] = 0.          
- #UD            | If the LOCK prefix is used.                 
- #AC            | If this exception is disabled a general     
-                | protection exception (#GP) is signaled      
+ **``#UD``**            | If CPUID.01H:EDX.FXSR[bit 24] = 0.          
+ **``#UD``**            | If the LOCK prefix is used.                 
+ **``#AC``**            | If this exception is disabled a general     
+                | protection exception (**``#GP)``** is signaled      
                 | if the memory operand is not aligned        
                 | on a 16-byte boundary, as described         
                 | above. If the alignment check exception     
-                | (#AC) is enabled (and the CPL is 3),        
-                | signaling of #AC is not guaranteed and      
+                | (**``#AC)``** is enabled (and the CPL is 3),        
+                | signaling of **``#AC``** is not guaranteed and      
                 | may vary with implementation, as follows.   
-                | In all implementations where #AC is         
+                | In all implementations where **``#AC``** is         
                 | not signaled, a general protection exception
                 | is signaled in its place. In addition,      
                 | the width of the alignment check may        
@@ -323,14 +323,14 @@ and FPU DP pointers are 64-bit wide. In the FXSAVE map for 64-bit mode (Table
 ### Real-Address Mode Exceptions
    | |  
 ---- | -----
- #GP| If a memory operand is not aligned on     
+ **``#GP``**| If a memory operand is not aligned on     
     | a 16-byte boundary, regardless of segment.
     | If any part of the operand lies outside   
     | the effective address space from 0 to     
     | FFFFH.                                    
- #NM| If CR0.TS[bit 3] = 1. If CR0.EM[bit       
+ **``#NM``**| If CR0.TS[bit 3] = 1. If CR0.EM[bit       
     | 2] = 1.                                   
- #UD| If CPUID.01H:EDX.FXSR[bit 24] = 0. If     
+ **``#UD``**| If CPUID.01H:EDX.FXSR[bit 24] = 0. If     
     | the LOCK prefix is used.                  
 
 ### Virtual-8086 Mode Exceptions
@@ -338,9 +338,9 @@ Same exceptions as in real address mode.
 
    | |  
 ---- | -----
- #PF(fault-code)| For a page fault.              
- #AC            | For unaligned memory reference.
- #UD            | If the LOCK prefix is used.    
+ **``#PF(fault-code)``**| For a page fault.              
+ **``#AC``**            | For unaligned memory reference.
+ **``#UD``**            | If the LOCK prefix is used.    
 
 ### Compatibility Mode Exceptions
 Same exceptions as in protected mode.
@@ -349,26 +349,26 @@ Same exceptions as in protected mode.
 ### 64-Bit Mode Exceptions
    | |  
 ---- | -----
- #SS(0)         | If a memory address referencing the         
+ **``#SS(0)``**         | If a memory address referencing the         
                 | SS segment is in a non-canonical form.      
- #GP(0)         | If the memory address is in a non-canonical 
+ **``#GP(0)``**         | If the memory address is in a non-canonical 
                 | form. If memory operand is not aligned      
                 | on a 16-byte boundary, regardless of        
                 | segment.                                    
- #PF(fault-code)| For a page fault.                           
- #NM            | If CR0.TS[bit 3] = 1. If CR0.EM[bit         
+ **``#PF(fault-code)``**| For a page fault.                           
+ **``#NM``**            | If CR0.TS[bit 3] = 1. If CR0.EM[bit         
                 | 2] = 1.                                     
- #UD            | If CPUID.01H:EDX.FXSR[bit 24] = 0. If       
+ **``#UD``**            | If CPUID.01H:EDX.FXSR[bit 24] = 0. If       
                 | the LOCK prefix is used.                    
- #AC            | If this exception is disabled a general     
-                | protection exception (#GP) is signaled      
+ **``#AC``**            | If this exception is disabled a general     
+                | protection exception (**``#GP)``** is signaled      
                 | if the memory operand is not aligned        
                 | on a 16-byte boundary, as described         
                 | above. If the alignment check exception     
-                | (#AC) is enabled (and the CPL is 3),        
-                | signaling of #AC is not guaranteed and      
+                | (**``#AC)``** is enabled (and the CPL is 3),        
+                | signaling of **``#AC``** is not guaranteed and      
                 | may vary with implementation, as follows.   
-                | In all implementations where #AC is         
+                | In all implementations where **``#AC``** is         
                 | not signaled, a general protection exception
                 | is signaled in its place. In addition,      
                 | the width of the alignment check may        

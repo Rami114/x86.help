@@ -1,8 +1,8 @@
 ## MOVNTDQA  -  Load Double Quadword Non-Temporal Aligned Hint
 
 > Operation
-``` slim
 
+``` slim
 MOVNTDQA (128bit- Legacy SSE form)
 DEST <- SRC
 DEST[VLMAX-1:128] (Unmodified)
@@ -104,4 +104,4 @@ See Exceptions Type 1.SSE4.1; additionally
 
    | |  
 ---- | -----
- #UD| If VEX.L= 1. If VEX.vvvv != 1111B.
+ **``#UD``**| If VEX.L= 1. If VEX.vvvv != 1111B.

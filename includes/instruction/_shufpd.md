@@ -1,8 +1,8 @@
 ## SHUFPD - Shuffle Packed Double-Precision Floating-Point Values
 
 > Operation
-``` slim
 
+``` slim
 IF SELECT[0] = 0
   THEN DEST[63:0]
   ELSE DEST[63:0]

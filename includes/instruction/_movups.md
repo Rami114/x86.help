@@ -1,8 +1,8 @@
 ## MOVUPS - Move Unaligned Packed Single-Precision Floating-Point Values
 
 > Operation
-``` slim
 
+``` slim
 MOVUPS (128-bit load and register-copy form Legacy SSE version)
 DEST[127:0] <- SRC[127:0]
 DEST[VLMAX-1:128] (Unmodified)
@@ -74,7 +74,7 @@ VEX.vvvv is reserved and must be 1111b otherwise instructions will #UD.
 ---- | -----
  1.| If alignment checking is enabled (CR0.AM  
    | = 1, RFLAGS.AC = 1, and CPL = 3), an      
-   | alignment-check exception (#AC) may       
+   | alignment-check exception (**``#AC)``** may       
    | or may not be generated (depending on     
    | processor implementation) when the operand
    | is not aligned on an 8-byte boundary.     
@@ -98,4 +98,4 @@ See Exceptions Type 4 Note treatment of #AC varies; additionally
 
    | |  
 ---- | -----
- #UD| If VEX.vvvv != 1111B.
+ **``#UD``**| If VEX.vvvv != 1111B.

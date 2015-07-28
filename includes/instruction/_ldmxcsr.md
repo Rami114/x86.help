@@ -1,8 +1,8 @@
 ## LDMXCSR - Load MXCSR Register
 
 > Operation
-``` slim
 
+``` slim
 MXCSR <- m32;
 
 ```
@@ -60,6 +60,6 @@ See Exceptions Type 5; additionally
 
    | |  
 ---- | -----
- #GP| For an attempt to set reserved bits
+ **``#GP``**| For an attempt to set reserved bits
     | in MXCSR.                          
- #UD| If VEX.vvvv != 1111B.              
+ **``#UD``**| If VEX.vvvv != 1111B.              

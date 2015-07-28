@@ -1,8 +1,8 @@
 ## MWAIT - Monitor Wait
 
 > Operation
-``` slim
 
+``` slim
 (\* MWAIT takes the argument in EAX as a hint extension and is architected to take the argument in ECX as an instruction extension
 MWAIT EAX, ECX \*)
 {
@@ -168,22 +168,22 @@ None
 ### Protected Mode Exceptions
    | |  
 ---- | -----
- #GP(0)| If ECX[31:1] != 0. If ECX[0] = 1 and 
+ **``#GP(0)``**| If ECX[31:1] != 0. If ECX[0] = 1 and 
        | CPUID.05H:ECX[bit 1] = 0.           
- #UD   | If CPUID.01H:ECX.MONITOR[bit 3] = 0.
+ **``#UD``**   | If CPUID.01H:ECX.MONITOR[bit 3] = 0.
        | If current privilege level is not 0.
 
 ### Real Address Mode Exceptions
    | |  
 ---- | -----
- #GP| If ECX[31:1] != 0. If ECX[0] = 1 and 
+ **``#GP``**| If ECX[31:1] != 0. If ECX[0] = 1 and 
     | CPUID.05H:ECX[bit 1] = 0.           
- #UD| If CPUID.01H:ECX.MONITOR[bit 3] = 0.
+ **``#UD``**| If CPUID.01H:ECX.MONITOR[bit 3] = 0.
 
 ### Virtual 8086 Mode Exceptions
    | |  
 ---- | -----
- #UD| The MWAIT instruction is not recognized                
+ **``#UD``**| The MWAIT instruction is not recognized                
     | in virtual-8086 mode (even if CPUID.01H:ECX.MONITOR[bit
     | 3] = 1).                                               
 
@@ -194,8 +194,8 @@ Same exceptions as in protected mode.
 ### 64-Bit Mode Exceptions
    | |  
 ---- | -----
- #GP(0)| If RCX[63:1] != 0. If RCX[0] = 1 and  
+ **``#GP(0)``**| If RCX[63:1] != 0. If RCX[0] = 1 and  
        | CPUID.05H:ECX[bit 1] = 0.            
- #UD   | If the current privilege level is not
+ **``#UD``**   | If the current privilege level is not
        | 0. If CPUID.01H:ECX.MONITOR[bit 3] = 
        | 0.                                   

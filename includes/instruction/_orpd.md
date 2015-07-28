@@ -1,8 +1,8 @@
 ## ORPD - Bitwise Logical OR of Double-Precision Floating-Point Values
 
 > Operation
-``` slim
 
+``` slim
 ORPD (128-bit Legacy SSE version)
 DEST[63:0] <- DEST[63:0] BITWISE OR SRC[63:0]
 DEST[127:64] <- DEST[127:64] BITWISE OR SRC[127:64]
@@ -72,4 +72,4 @@ See Exceptions Type 4; additionally
 
    | |  
 ---- | -----
- #UD| If VEX.L = 1.
+ **``#UD``**| If VEX.L = 1.

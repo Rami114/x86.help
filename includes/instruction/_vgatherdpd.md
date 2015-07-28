@@ -1,8 +1,8 @@
 ## VGATHERDPD/VGATHERQPD  -  Gather Packed DP FP Values Using Signed Dword/Qword Indices
 
 > Operation
-``` slim
 
+``` slim
 DEST <- SRC1;
 BASE_ADDR: base register encoded in VSIB addressing;
 VINDEX: the vector index register encoded by VSIB addressing;
@@ -170,7 +170,7 @@ lower two indices in the vector index register are used.
  VEX.256 version: The instruction will        | For dword indices, only If any pair         
  gather four double-precision floating-point  | of the index, mask, or destination registers
  values. the lower four indices in the        | are the same, this instruction results      
- vector index register are used. Note         | a #UD fault.                                
+ vector index register are used. Note         | a **``#UD``** fault.                                
  that: •                                      |                                             
  •64 memory-ordering model. •                 | Memory ordering with other instructions     
                                               | follows the IntelThat is, if a fault        
@@ -188,9 +188,9 @@ lower two indices in the vector index register are used.
  values and architectural state, the          |                                             
  same set of elements to the left of          |                                             
  the faulting one will be gathered. •         |                                             
- •                                            | This instruction will cause a #UD if        
+ •                                            | This instruction will cause a **``#UD``** if        
                                               | the address size attribute is 16-bit.       
- •                                            | This instruction will cause a #UD if        
+ •                                            | This instruction will cause a **``#UD``** if        
                                               | the memory operand is encoded without       
                                               | the SIB byte.                               
  •is implementation specific, and some        | This instruction should not be used         

@@ -1,8 +1,8 @@
 ## RSQRTPS - Compute Reciprocals of Square Roots of Packed Single-Precision Floating-Point Values
 
 > Operation
-``` slim
 
+``` slim
 RSQRTPS (128-bit Legacy SSE version)
 DEST[31:0] <- APPROXIMATE(1/SQRT(SRC[31:0]))
 DEST[63:32] <- APPROXIMATE(1/SQRT(SRC1[63:32]))
@@ -99,4 +99,4 @@ See Exceptions Type 4; additionally
 
    | |  
 ---- | -----
- #UD| If VEX.vvvv != 1111B.
+ **``#UD``**| If VEX.vvvv != 1111B.

@@ -1,8 +1,8 @@
 ## ENTER - Make Stack Frame for Procedure Parameters
 
 > Operation
-``` slim
 
+``` slim
 NestingLevel <- NestingLevel MOD 32
 IF 64-Bit Mode (StackSize = 64)
   THEN
@@ -131,31 +131,31 @@ None.
 ### Protected Mode Exceptions
    | |  
 ---- | -----
- #SS(0)         | If the new value of the SP or ESP register
+ **``#SS(0)``**         | If the new value of the SP or ESP register
                 | is outside the stack segment limit.       
- #PF(fault-code)| If a page fault occurs or if a write      
+ **``#PF(fault-code)``**| If a page fault occurs or if a write      
                 | using the final value of the stack pointer
                 | (within the current stack segment) would  
                 | cause a page fault.                       
- #UD            | If the LOCK prefix is used.               
+ **``#UD``**            | If the LOCK prefix is used.               
 
 ### Real-Address Mode Exceptions
    | |  
 ---- | -----
- #SS| If the new value of the SP or ESP register
+ **``#SS``**| If the new value of the SP or ESP register
     | is outside the stack segment limit.       
- #UD| If the LOCK prefix is used.               
+ **``#UD``**| If the LOCK prefix is used.               
 
 ### Virtual-8086 Mode Exceptions
    | |  
 ---- | -----
- #SS(0)         | If the new value of the SP or ESP register
+ **``#SS(0)``**         | If the new value of the SP or ESP register
                 | is outside the stack segment limit.       
- #PF(fault-code)| If a page fault occurs or if a write      
+ **``#PF(fault-code)``**| If a page fault occurs or if a write      
                 | using the final value of the stack pointer
                 | (within the current stack segment) would  
                 | cause a page fault.                       
- #UD            | If the LOCK prefix is used.               
+ **``#UD``**            | If the LOCK prefix is used.               
 
 ### Compatibility Mode Exceptions
 Same exceptions as in protected mode.
@@ -164,10 +164,10 @@ Same exceptions as in protected mode.
 ### 64-Bit Mode Exceptions
    | |  
 ---- | -----
- #SS(0)         | If the stack address is in a non-canonical
+ **``#SS(0)``**         | If the stack address is in a non-canonical
                 | form.                                     
- #PF(fault-code)| If a page fault occurs or if a write      
+ **``#PF(fault-code)``**| If a page fault occurs or if a write      
                 | using the final value of the stack pointer
                 | (within the current stack segment) would  
                 | cause a page fault.                       
- #UD            | If the LOCK prefix is used.               
+ **``#UD``**            | If the LOCK prefix is used.               

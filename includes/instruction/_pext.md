@@ -1,8 +1,8 @@
 ## PEXT  -  Parallel Bits Extract
 
 > Operation
-``` slim
 
+``` slim
 TEMP <- SRC1;
 MASK <- SRC2;
 DEST <- 0 ;
@@ -79,4 +79,4 @@ Table 2-29; additionally
 
    | |  
 ---- | -----
- #UD| If VEX.W = 1.
+ **``#UD``**| If VEX.W = 1.

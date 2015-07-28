@@ -1,8 +1,8 @@
 ## VPERMPD  -  Permute Double-Precision Floating-Point Elements
 
 > Operation
-``` slim
 
+``` slim
 VPERMPD (VEX.256 encoded version)
 DEST[63:0] <- (SRC[255:0] >> (IMM8[1:0] \* 64))[63:0];
 DEST[127:64] <- (SRC[255:0] >> (IMM8[3:2] \* 64))[63:0];
@@ -45,4 +45,4 @@ See Exceptions Type 4; additionally
 
    | |  
 ---- | -----
- #UD| If VEX.L = 0.
+ **``#UD``**| If VEX.L = 0.

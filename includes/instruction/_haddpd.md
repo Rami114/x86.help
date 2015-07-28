@@ -1,8 +1,8 @@
 ## HADDPD - Packed Double-FP Horizontal Add
 
 > Operation
-``` slim
 
+``` slim
 HADDPD (128-bit Legacy SSE version)
 DEST[63:0] <- SRC1[127:64] + SRC1[63:0]
 DEST[127:64] <- SRC2[127:64] + SRC2[63:0]

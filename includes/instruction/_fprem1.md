@@ -1,8 +1,8 @@
 ## FPREM1 - Partial Remainder
 
 > Operation
-``` slim
 
+``` slim
 D <- exponent(ST(0)) - exponent(ST(1));
 IF D < 64
   THEN
@@ -100,20 +100,20 @@ This instruction's operation is the same in non-64-bit modes and 64-bit mode.
 ### Floating-Point Exceptions
    | |  
 ---- | -----
- #IS| Stack underflow occurred.                    
- #IA| Source operand is an SNaN value, modulus     
+ **``#IS``**| Stack underflow occurred.                    
+ **``#IA``**| Source operand is an SNaN value, modulus     
     | (divisor) is 0, dividend is ∞, or unsupported
     | format.                                      
- #D | Source operand is a denormal value.          
- #U | Result is too small for destination          
+ **``#D``** | Source operand is a denormal value.          
+ **``#U``** | Result is too small for destination          
     | format.                                      
 
 ### Protected Mode Exceptions
    | |  
 ---- | -----
- #NM| CR0.EM[bit 2] or CR0.TS[bit 3] = 1.     
- #MF| If there is a pending x87 FPU exception.
- #UD| If the LOCK prefix is used.             
+ **``#NM``**| CR0.EM[bit 2] or CR0.TS[bit 3] = 1.     
+ **``#MF``**| If there is a pending x87 FPU exception.
+ **``#UD``**| If the LOCK prefix is used.             
 
 ### Real-Address Mode Exceptions
 Same exceptions as in protected mode.

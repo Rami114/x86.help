@@ -1,8 +1,8 @@
 ## VFNMSUB132SD/VFNMSUB213SD/VFNMSUB231SD  -  Fused Negative Multiply-Subtract of Scalar Double-Precision Floating-Point Values
 
 > Operation
-``` slim
 
+``` slim
 In the operations below, \"+\", \"-\", and \"\*\" symbols represent addition, subtraction, and multiplication operations
 with infinite precision inputs and outputs (no rounding).
 VFNMSUB132SD DEST, SRC2, SRC3

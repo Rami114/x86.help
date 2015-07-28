@@ -1,8 +1,8 @@
 ## LDS/LES/LFS/LGS/LSS - Load Far Pointer
 
 > Operation
-``` slim
 
+``` slim
 64-BIT_MODE
   IF SS is loaded
      THEN
@@ -140,16 +140,16 @@ None.
 ### Protected Mode Exceptions
    | |  
 ---- | -----
- #UD            | If source operand is not a memory location.   
+ **``#UD``**            | If source operand is not a memory location.   
                 | If the LOCK prefix is used.                   
- #GP(0)         | If a NULL selector is loaded into the         
+ **``#GP(0)``**         | If a NULL selector is loaded into the         
                 | SS register. If a memory operand effective    
                 | address is outside the CS, DS, ES, FS,        
                 | or GS segment limit. If the DS, ES,           
                 | FS, or GS register is used to access          
                 | memory and it contains a NULL segment         
                 | selector.                                     
- #GP(selector)  | If the SS register is being loaded and        
+ **``#GP(selector)``**  | If the SS register is being loaded and        
                 | any of the following is true: the segment     
                 | selector index is not within the descriptor   
                 | table limits, the segment selector RPL        
@@ -165,15 +165,15 @@ None.
                 | or the segment is a data or nonconforming-code
                 | segment and both RPL and CPL are greater      
                 | than DPL.                                     
- #SS(0)         | If a memory operand effective address         
+ **``#SS(0)``**         | If a memory operand effective address         
                 | is outside the SS segment limit.              
- #SS(selector)  | If the SS register is being loaded and        
+ **``#SS(selector)``**  | If the SS register is being loaded and        
                 | the segment is marked not present.            
- #NP(selector)  | If DS, ES, FS, or GS register is being        
+ **``#NP(selector)``**  | If DS, ES, FS, or GS register is being        
                 | loaded with a non-NULL segment selector       
                 | and the segment is marked not present.        
- #PF(fault-code)| If a page fault occurs.                       
- #AC(0)         | If alignment checking is enabled and          
+ **``#PF(fault-code)``**| If a page fault occurs.                       
+ **``#AC(0)``**         | If alignment checking is enabled and          
                 | an unaligned memory reference is made         
                 | while the current privilege level is          
                 | 3.                                            
@@ -181,26 +181,26 @@ None.
 ### Real-Address Mode Exceptions
    | |  
 ---- | -----
- #GP| If a memory operand effective address      
+ **``#GP``**| If a memory operand effective address      
     | is outside the CS, DS, ES, FS, or GS       
     | segment limit.                             
- #SS| If a memory operand effective address      
+ **``#SS``**| If a memory operand effective address      
     | is outside the SS segment limit.           
- #UD| If source operand is not a memory location.
+ **``#UD``**| If source operand is not a memory location.
     | If the LOCK prefix is used.                
 
 ### Virtual-8086 Mode Exceptions
    | |  
 ---- | -----
- #UD            | If source operand is not a memory location.
+ **``#UD``**            | If source operand is not a memory location.
                 | If the LOCK prefix is used.                
- #GP(0)         | If a memory operand effective address      
+ **``#GP(0)``**         | If a memory operand effective address      
                 | is outside the CS, DS, ES, FS, or GS       
                 | segment limit.                             
- #SS(0)         | If a memory operand effective address      
+ **``#SS(0)``**         | If a memory operand effective address      
                 | is outside the SS segment limit.           
- #PF(fault-code)| If a page fault occurs.                    
- #AC(0)         | If alignment checking is enabled and       
+ **``#PF(fault-code)``**| If a page fault occurs.                    
+ **``#AC(0)``**         | If alignment checking is enabled and       
                 | an unaligned memory reference is made.     
 
 ### Compatibility Mode Exceptions
@@ -210,7 +210,7 @@ Same exceptions as in protected mode.
 ### 64-Bit Mode Exceptions
    | |  
 ---- | -----
- #GP(0)         | If the memory address is in a non-canonical
+ **``#GP(0)``**         | If the memory address is in a non-canonical
                 | form. If a NULL selector is attempted      
                 | to be loaded into the SS register in       
                 | compatibility mode. If a NULL selector     
@@ -220,7 +220,7 @@ Same exceptions as in protected mode.
                 | into the SS register in non-CPL3 and       
                 | 64-bit mode where its RPL is not equal     
                 | to CPL.                                    
- #GP(Selector)  | If the FS, or GS register is being loaded  
+ **``#GP(Selector)``**  | If the FS, or GS register is being loaded  
                 | with a non-NULL segment selector and       
                 | any of the following is true: the segment  
                 | selector index is not within descriptor    
@@ -238,17 +238,17 @@ Same exceptions as in protected mode.
                 | segment selector RPL is not equal to       
                 | CPL, the segment is a nonwritable data     
                 | segment, or DPL is not equal to CPL.       
- #SS(0)         | If a memory operand effective address      
+ **``#SS(0)``**         | If a memory operand effective address      
                 | is non-canonical                           
- #SS(Selector)  | If the SS register is being loaded and     
+ **``#SS(Selector)``**  | If the SS register is being loaded and     
                 | the segment is marked not present.         
- #NP(selector)  | If FS, or GS register is being loaded      
+ **``#NP(selector)``**  | If FS, or GS register is being loaded      
                 | with a non-NULL segment selector and       
                 | the segment is marked not present.         
- #PF(fault-code)| If a page fault occurs.                    
- #AC(0)         | If alignment checking is enabled and       
+ **``#PF(fault-code)``**| If a page fault occurs.                    
+ **``#AC(0)``**         | If alignment checking is enabled and       
                 | an unaligned memory reference is made      
                 | while the current privilege level is       
                 | 3.                                         
- #UD            | If source operand is not a memory location.
+ **``#UD``**            | If source operand is not a memory location.
                 | If the LOCK prefix is used.                

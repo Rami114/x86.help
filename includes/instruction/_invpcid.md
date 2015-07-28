@@ -1,8 +1,8 @@
 ## INVPCID - Invalidate Process-Context Identifier
 
 > Operation
-``` slim
 
+``` slim
 INVPCID_TYPE <- value of register operand;
 INVPCID_DESC <- value of memory operand;
 CASE INVPCID_TYPE OF
@@ -102,7 +102,7 @@ None
 ### Protected Mode Exceptions
    | |  
 ---- | -----
- #GP(0)         | If the current privilege level is not     
+ **``#GP(0)``**         | If the current privilege level is not     
                 | 0. If the memory operand effective address
                 | is outside the CS, DS, ES, FS, or GS      
                 | segment limit. If the DS, ES, FS, or      
@@ -117,20 +117,20 @@ None
                 | If INVPCID_TYPE is 0 and the linear       
                 | address in INVPCID_DESC[127:64] is not    
                 | canonical.                                
- #PF(fault-code)| If a page fault occurs in accessing       
+ **``#PF(fault-code)``**| If a page fault occurs in accessing       
                 | the memory operand.                       
- #SS(0)         | If the memory operand effective address   
+ **``#SS(0)``**         | If the memory operand effective address   
                 | is outside the SS segment limit. If       
                 | the SS register contains an unusable      
                 | segment.                                  
- #UD            | If if CPUID.(EAX=07H, ECX=0H):EBX.INVPCID 
+ **``#UD``**            | If if CPUID.(EAX=07H, ECX=0H):EBX.INVPCID 
                 | (bit 10) = 0. If the LOCK prefix is       
                 | used.                                     
 
 ### Real-Address Mode Exceptions
    | |  
 ---- | -----
- #GP| If an invalid type is specified in the
+ **``#GP``**| If an invalid type is specified in the
     | register operand, i.e., INVPCID_TYPE  
     | > 3. If bits 63:12 of INVPCID_DESC are
     | not all zero.                         
@@ -139,14 +139,14 @@ is 0 and the linear address in INVPCID_DESC[127:64] is not canonical.
 
    | |  
 ---- | -----
- #UD| If CPUID.(EAX=07H, ECX=0H):EBX.INVPCID
+ **``#UD``**| If CPUID.(EAX=07H, ECX=0H):EBX.INVPCID
     | (bit 10) = 0. If the LOCK prefix is   
     | used.                                 
 
 ### Virtual-8086 Mode Exceptions
    | |  
 ---- | -----
- #GP(0)| The INVPCID instruction is not recognized
+ **``#GP(0)``**| The INVPCID instruction is not recognized
        | in virtual-8086 mode.                    
 
 ### Compatibility Mode Exceptions
@@ -156,7 +156,7 @@ Same exceptions as in protected mode.
 ### 64-Bit Mode Exceptions
    | |  
 ---- | -----
- #GP(0)         | If the current privilege level is not         
+ **``#GP(0)``**         | If the current privilege level is not         
                 | 0. If the memory operand is in the CS,        
                 | DS, ES, FS, or GS segments and the memory     
                 | address is in a non-canonical form.           
@@ -168,10 +168,10 @@ Same exceptions as in protected mode.
                 | is not zero. If INVPCID_TYPE is 0 and         
                 | the linear address in INVPCID_DESC[127:64]    
                 | is not canonical.                             
- #PF(fault-code)| If a page fault occurs in accessing           
+ **``#PF(fault-code)``**| If a page fault occurs in accessing           
                 | the memory operand.                           
- #SS(0)         | If the memory destination operand is          
+ **``#SS(0)``**         | If the memory destination operand is          
                 | in the SS segment and the memory address      
                 | is in a noncanonical form.                    
- #UD            | If the LOCK prefix is used. If CPUID.(EAX=07H,
+ **``#UD``**            | If the LOCK prefix is used. If CPUID.(EAX=07H,
                 | ECX=0H):EBX.INVPCID (bit 10) = 0.             

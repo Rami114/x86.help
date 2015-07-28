@@ -1,8 +1,8 @@
 ## XEND  -  Transactional End
 
 > Operation
-``` slim
 
+``` slim
 XEND
 IF (RTM_ACTIVE = 0) THEN
   SIGNAL #GP
@@ -74,7 +74,7 @@ None
 ### Other Exceptions
    | |  
 ---- | -----
- #UD   | CPUID.(EAX=7, ECX=0):RTM[bit 11] = 0.
+ **``#UD``**   | CPUID.(EAX=7, ECX=0):RTM[bit 11] = 0.
        | If LOCK or 66H or F2H or F3H prefix  
        | is used.                             
- #GP(0)| If RTM_ACTIVE = 0.                   
+ **``#GP(0)``**| If RTM_ACTIVE = 0.                   

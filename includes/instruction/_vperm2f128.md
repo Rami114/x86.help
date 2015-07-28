@@ -1,8 +1,8 @@
 ## VPERM2F128  -  Permute Floating-Point Values
 
 > Operation
-``` slim
 
+``` slim
 VPERM2F128
 CASE IMM8[1:0] of
 0: DEST[127:0] <- SRC1[127:0]
@@ -75,4 +75,4 @@ See Exceptions Type 6; additionally
 
    | |  
 ---- | -----
- #UD| If VEX.L = 0 If VEX.W = 1.
+ **``#UD``**| If VEX.L = 0 If VEX.W = 1.

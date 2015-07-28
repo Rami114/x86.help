@@ -1,8 +1,8 @@
 ## VZEROALL - Zero All YMM Registers
 
 > Operation
-``` slim
 
+``` slim
 VZEROALL (VEX.256 encoded version)
 IF (64-bit mode)
   YMM0[VLMAX-1:0] <- 0

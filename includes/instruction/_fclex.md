@@ -1,8 +1,8 @@
 ## FCLEX/FNCLEX - Clear Exceptions
 
 > Operation
-``` slim
 
+``` slim
 FPUStatusWord[0:7] <- 0;
 FPUStatusWord[15] <- 0;
 
@@ -62,8 +62,8 @@ None.
 ### Protected Mode Exceptions
    | |  
 ---- | -----
- #NM| CR0.EM[bit 2] or CR0.TS[bit 3] = 1.
- #UD| If the LOCK prefix is used.        
+ **``#NM``**| CR0.EM[bit 2] or CR0.TS[bit 3] = 1.
+ **``#UD``**| If the LOCK prefix is used.        
 
 ### Real-Address Mode Exceptions
 Same exceptions as in protected mode.

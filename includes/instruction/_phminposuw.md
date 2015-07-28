@@ -1,8 +1,8 @@
 ## PHMINPOSUW  -  Packed Horizontal Word Minimum
 
 > Operation
-``` slim
 
+``` slim
 PHMINPOSUW (128-bit Legacy SSE version)
 INDEX <- 0;
 MIN <- SRC[15:0]
@@ -63,7 +63,7 @@ and place the unsigned
  of the destination YMM register are        |                                            
  zeroed. VEX.vvvv is reserved and must      |                                            
  be 1111b, VEX.L must be 0, otherwise       |                                            
- the instruction will #UD.                  |                                            
+ the instruction will **``#UD.``**                  |                                            
 
 
 ### Intel C/C++ Compiler Intrinsic Equivalent
@@ -84,4 +84,4 @@ See Exceptions Type 4; additionally
 
    | |  
 ---- | -----
- #UD| If VEX.L = 1. If VEX.vvvv != 1111B.
+ **``#UD``**| If VEX.L = 1. If VEX.vvvv != 1111B.

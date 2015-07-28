@@ -1,8 +1,8 @@
 ## SAHF - Store AH into Flags
 
 > Operation
-``` slim
 
+``` slim
 IF IA-64 Mode
   THEN
      IF CPUID.80000001H.ECX[0] = 1;
@@ -69,5 +69,5 @@ None.
 ### 64-Bit Mode Exceptions
    | |  
 ---- | -----
- #UD| If CPUID.80000001H.ECX[0] = 0. If the
+ **``#UD``**| If CPUID.80000001H.ECX[0] = 0. If the
     | LOCK prefix is used.                 

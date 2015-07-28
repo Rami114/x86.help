@@ -1,8 +1,8 @@
 ## SYSENTER - Fast System Call
 
 > Operation
-``` slim
 
+``` slim
 IF CR0.PE = 0 OR IA32_SYSENTER_CS[15:2] = 0 THEN #GP(0); FI;
 RFLAGS.VM <- 0;
 RFLAGS.IF <- 0;
@@ -141,15 +141,15 @@ VM, IF (see Operation above)
 ### Protected Mode Exceptions
    | |  
 ---- | -----
- #GP(0)| If IA32_SYSENTER_CS[15:2] = 0.
- #UD   | If the LOCK prefix is used.   
+ **``#GP(0)``**| If IA32_SYSENTER_CS[15:2] = 0.
+ **``#UD``**   | If the LOCK prefix is used.   
 
 ### Real-Address Mode Exceptions
    | |  
 ---- | -----
- #GP| The SYSENTER instruction is not recognized
+ **``#GP``**| The SYSENTER instruction is not recognized
     | in real-address mode.                     
- #UD| If the LOCK prefix is used.               
+ **``#UD``**| If the LOCK prefix is used.               
 
 ### Virtual-8086 Mode Exceptions
 Same exceptions as in protected mode.

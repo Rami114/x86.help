@@ -1,8 +1,8 @@
 ## FCOMI/FCOMIP/FUCOMI/FUCOMIP - Compare Floating Point Values and Set EFLAGS
 
 > Operation
-``` slim
 
+``` slim
 CASE (relation of operands) OF
 ```
 
@@ -112,8 +112,8 @@ FI;
 ### Floating-Point Exceptions
    | |  
 ---- | -----
- #IS| Stack underflow occurred.              
- #IA| (FCOMI or FCOMIP instruction) One or   
+ **``#IS``**| Stack underflow occurred.              
+ **``#IA``**| (FCOMI or FCOMIP instruction) One or   
     | both operands are NaN values or have   
     | unsupported formats. (FUCOMI or FUCOMIP
     | instruction) One or both operands are  
@@ -125,9 +125,9 @@ FI;
 ### Protected Mode Exceptions
    | |  
 ---- | -----
- #NM| CR0.EM[bit 2] or CR0.TS[bit 3] = 1.     
- #MF| If there is a pending x87 FPU exception.
- #UD| If the LOCK prefix is used.             
+ **``#NM``**| CR0.EM[bit 2] or CR0.TS[bit 3] = 1.     
+ **``#MF``**| If there is a pending x87 FPU exception.
+ **``#UD``**| If the LOCK prefix is used.             
 
 ### Real-Address Mode Exceptions
 Same exceptions as in protected mode.

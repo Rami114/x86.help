@@ -1,8 +1,8 @@
 ## FXAM - Examine ModR/M
 
 > Operation
-``` slim
 
+``` slim
 C1 <- sign bit of ST; (\* 0 for positive, 1 for negative \*)
 CASE (class of value or number in ST(0)) OF
   Unsupported:C3, C2, C0 <- 000;
@@ -50,9 +50,9 @@ None.
 ### Protected Mode Exceptions
    | |  
 ---- | -----
- #NM| CR0.EM[bit 2] or CR0.TS[bit 3] = 1.     
- #MF| If there is a pending x87 FPU exception.
- #UD| If the LOCK prefix is used.             
+ **``#NM``**| CR0.EM[bit 2] or CR0.TS[bit 3] = 1.     
+ **``#MF``**| If there is a pending x87 FPU exception.
+ **``#UD``**| If the LOCK prefix is used.             
 
 ### Real-Address Mode Exceptions
 Same exceptions as in protected mode.

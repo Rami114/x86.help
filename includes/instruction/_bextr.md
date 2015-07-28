@@ -1,8 +1,8 @@
 ## BEXTR  -  Bit Field Extract
 
 > Operation
-``` slim
 
+``` slim
 START <- SRC2[7:0];
 LEN <- SRC2[15:8];
 TEMP <- ZERO_EXTEND_TO_512 (SRC1 );
@@ -74,4 +74,4 @@ Table 2-29; additionally
 
    | |  
 ---- | -----
- #UD| If VEX.W = 1.
+ **``#UD``**| If VEX.W = 1.

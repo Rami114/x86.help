@@ -1,8 +1,8 @@
 ## INT n/INTO/INT 3 - Call to Interrupt Procedure
 
 > Operation
-``` slim
 
+``` slim
 The following operational description applies not only to the INT n and INTO instructions, but also to external inter-
 rupts, nonmaskable interrupts (NMIs), and exceptions. Some of these events push onto the stack an error code.
 The operational description specifies numerous checks whose failure may result in delivery of a nested exception.
@@ -117,7 +117,7 @@ the “Operation” section for this instruction (except #GP).
  GATE TYPE REAL-ADDRESS-MODE PROTECTED-MODE                    | Y| Y Y    | Task Y Y| Trap or Interrupt Y Y Y| Trap or Interrupt Y Y Y| Trap or Interrupt Y Y Y| Trap or Interrupt Y Y Y| Trap or Interrupt Y Y Y
  TRAP-OR-INTERRUPTGATE INTER-PRIVILEGE-LEVELINTERRUPT          |  |        |         |                        |                        |                        |                        |                        
  INTRA-PRIVILEGE-LEVELINTERRUPT INTERRUPT-FROMVIRTUAL-8086-MODE|  |        |         |                        |                        |                        |                        |                        
- TASK-GATE #GP                                                 |  |        |         |                        |                        |                        |                        |                        
+ TASK-GATE **``#GP``**                                                 |  |        |         |                        |                        |                        |                        |                        
 <aside class="notification">
 
 </aside>
@@ -542,7 +542,7 @@ image in the new task's TSS.
 ### Protected Mode Exceptions
    | |  
 ---- | -----
- #GP(error_code)| If the instruction pointer in the IDT          
+ **``#GP(error_code)``**| If the instruction pointer in the IDT          
                 | or in the interrupt-, trap-, or task           
                 | gate is beyond the code segment limits.        
                 | If the segment selector in the interrupt-,     
@@ -564,7 +564,7 @@ image in the new task's TSS.
                 | bit set for local. If a TSS segment            
                 | descriptor specifies that the TSS is           
                 | busy or not available.                         
- #SS(error_code)| If pushing the return address, flags,          
+ **``#SS(error_code)``**| If pushing the return address, flags,          
                 | or error code onto the stack exceeds           
                 | the bounds of the stack segment and            
                 | no stack switch occurs. If the SS register     
@@ -575,9 +575,9 @@ the bounds of the new stack segment when a stack switch occurs.
 
    | |  
 ---- | -----
- #NP(error_code)| If code segment, interrupt-, trap-,          
+ **``#NP(error_code)``**| If code segment, interrupt-, trap-,          
                 | or task gate, or TSS is not present.         
- #TS(error_code)| If the RPL of the stack segment selector     
+ **``#TS(error_code)``**| If the RPL of the stack segment selector     
                 | in the TSS is not equal to the DPL of        
                 | the code segment being accessed by the       
                 | interrupt or trap gate. If DPL of the        
@@ -591,28 +591,28 @@ the bounds of the new stack segment when a stack switch occurs.
                 | If segment-selector index for stack          
                 | segment is outside descriptor table          
                 | limits.                                      
- #PF(fault-code)| If a page fault occurs.                      
- #UD            | If the LOCK prefix is used.                  
- #AC(EXT)       | If alignment checking is enabled, the        
+ **``#PF(fault-code)``**| If a page fault occurs.                      
+ **``#UD``**            | If the LOCK prefix is used.                  
+ **``#AC(EXT)``**       | If alignment checking is enabled, the        
                 | gate DPL is 3, and a stack push is unaligned.
 
 ### Real-Address Mode Exceptions
    | |  
 ---- | -----
- #GP| If a memory operand effective address 
+ **``#GP``**| If a memory operand effective address 
     | is outside the CS, DS, ES, FS, or GS  
     | segment limit. If the interrupt vector
     | number is outside the IDT limits.     
- #SS| If stack limit violation on push. If  
+ **``#SS``**| If stack limit violation on push. If  
     | pushing the return address, flags, or 
     | error code onto the stack exceeds the 
     | bounds of the stack segment.          
- #UD| If the LOCK prefix is used.           
+ **``#UD``**| If the LOCK prefix is used.           
 
 ### Virtual-8086 Mode Exceptions
    | |  
 ---- | -----
- #GP(error_code)| (For INT n, INTO, or BOUND instruction)         
+ **``#GP(error_code)``**| (For INT n, INTO, or BOUND instruction)         
                 | If the IOPL is less than 3 or the DPL           
                 | of the interrupt, trap-, or task-gate           
                 | descriptor is not equal to 3. If the            
@@ -636,15 +636,15 @@ the bounds of the new stack segment when a stack switch occurs.
                 | for a code segment. If the segment selector     
                 | for a TSS has its local/global bit set          
                 | for local.                                      
- #SS(error_code)| If the SS register is being loaded and          
+ **``#SS(error_code)``**| If the SS register is being loaded and          
                 | the segment pointed to is marked not            
                 | present. If pushing the return address,         
                 | flags, error code, stack segment pointer,       
                 | or data segments exceeds the bounds             
                 | of the stack segment.                           
- #NP(error_code)| If code segment, interrupt-, trap-,             
+ **``#NP(error_code)``**| If code segment, interrupt-, trap-,             
                 | or task gate, or TSS is not present.            
- #TS(error_code)| If the RPL of the stack segment selector        
+ **``#TS(error_code)``**| If the RPL of the stack segment selector        
                 | in the TSS is not equal to the DPL of           
                 | the code segment being accessed by the          
                 | interrupt or trap gate. If DPL of the           
@@ -657,12 +657,12 @@ the bounds of the new stack segment when a stack switch occurs.
                 | not a writable data segment. If segment-selector
                 | index for stack segment is outside descriptor   
                 | table limits.                                   
- #PF(fault-code)| If a page fault occurs.                         
- #BP            | If the INT 3 instruction is executed.           
- #OF            | If the INTO instruction is executed             
+ **``#PF(fault-code)``**| If a page fault occurs.                         
+ **``#BP``**            | If the INT 3 instruction is executed.           
+ **``#OF``**            | If the INTO instruction is executed             
                 | and the OF flag is set.                         
- #UD            | If the LOCK prefix is used.                     
- #AC(EXT)       | If alignment checking is enabled, the           
+ **``#UD``**            | If the LOCK prefix is used.                     
+ **``#AC(EXT)``**       | If alignment checking is enabled, the           
                 | gate DPL is 3, and a stack push is unaligned.   
 
 ### Compatibility Mode Exceptions
@@ -672,7 +672,7 @@ Same exceptions as in protected mode.
 ### 64-Bit Mode Exceptions
    | |  
 ---- | -----
- #GP(error_code)| If the instruction pointer in the 64-bit     
+ **``#GP(error_code)``**| If the instruction pointer in the 64-bit     
                 | interrupt gate or 64-bit trap gate is        
                 | non-canonical. If the segment selector       
                 | in the 64-bit interrupt or trap gate         
@@ -693,20 +693,20 @@ Same exceptions as in protected mode.
                 | the L-bit set, or has both the Lbit          
                 | and D-bit set. If the descriptor pointed     
                 | to by the gate selector has DPL > CPL.       
- #SS(error_code)| If a push of the old EFLAGS, CS selector,    
+ **``#SS(error_code)``**| If a push of the old EFLAGS, CS selector,    
                 | EIP, or error code is in non-canonical       
                 | space with no stack switch. If a push        
                 | of the old SS selector, ESP, EFLAGS,         
                 | CS selector, EIP, or error code is in        
                 | non-canonical space on a stack switch        
                 | (either CPL change or no-CPL with IST).      
- #NP(error_code)| If the 64-bit interrupt-gate, 64-bit         
+ **``#NP(error_code)``**| If the 64-bit interrupt-gate, 64-bit         
                 | trap-gate, or code segment is not present.   
- #TS(error_code)| If an attempt to load RSP from the TSS       
+ **``#TS(error_code)``**| If an attempt to load RSP from the TSS       
                 | causes an access to non-canonical space.     
                 | If the RSP from the TSS is outside descriptor
                 | table limits.                                
- #PF(fault-code)| If a page fault occurs.                      
- #UD            | If the LOCK prefix is used.                  
- #AC(EXT)       | If alignment checking is enabled, the        
+ **``#PF(fault-code)``**| If a page fault occurs.                      
+ **``#UD``**            | If the LOCK prefix is used.                  
+ **``#AC(EXT)``**       | If alignment checking is enabled, the        
                 | gate DPL is 3, and a stack push is unaligned.

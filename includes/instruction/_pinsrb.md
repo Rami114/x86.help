@@ -1,8 +1,8 @@
 ## PINSRB/PINSRD/PINSRQ  -  Insert Byte/Dword/Qword
 
 > Operation
-``` slim
 
+``` slim
 CASE OF
   PINSRB: SEL <- COUNT[3:0];
        MASK <- (0FFH << (SEL \* 8));
@@ -104,5 +104,5 @@ See Exceptions Type 5; additionally
 
    | |  
 ---- | -----
- #UD| If VEX.L = 1. If VPINSRQ in non-64-bit
+ **``#UD``**| If VEX.L = 1. If VPINSRQ in non-64-bit
     | mode with VEX.W=1.                    

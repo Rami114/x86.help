@@ -1,8 +1,8 @@
 ## PBLENDVB  -  Variable Blend Packed Bytes
 
 > Operation
-``` slim
 
+``` slim
 PBLENDVB (128-bit Legacy SSE version)
 MASK <- XMM0
 IF (MASK[7] = 1) THEN DEST[7:0] <- SRC[7:0];
@@ -214,4 +214,4 @@ See Exceptions Type 4; additionally
 
    | |  
 ---- | -----
- #UD| If VEX.L = 1. If VEX.W = 1.
+ **``#UD``**| If VEX.L = 1. If VEX.W = 1.

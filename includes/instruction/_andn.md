@@ -1,8 +1,8 @@
 ## ANDN  -  Logical AND NOT
 
 > Operation
-``` slim
 
+``` slim
 DEST <- (NOT SRC1) bitwiseAND SRC2;
 SF <- DEST[OperandSize -1];
 ZF <- (DEST = 0);
@@ -51,4 +51,4 @@ Table 2-29; additionally
 
    | |  
 ---- | -----
- #UD| If VEX.W = 1.
+ **``#UD``**| If VEX.W = 1.

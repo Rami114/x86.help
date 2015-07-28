@@ -1,8 +1,8 @@
 ## SWAPGS - Swap GS Base Register
 
 > Operation
-``` slim
 
+``` slim
 IF CS.L != 1 (\* Not in 64-Bit Mode \*)
   THEN
      #UD; FI;
@@ -56,24 +56,24 @@ None
 ### Protected Mode Exceptions
    | |  
 ---- | -----
- #UD| If Mode != 64-Bit.
+ **``#UD``**| If Mode != 64-Bit.
 
 ### Real-Address Mode Exceptions
    | |  
 ---- | -----
- #UD| If Mode != 64-Bit.
+ **``#UD``**| If Mode != 64-Bit.
 
 ### Virtual-8086 Mode Exceptions
    | |  
 ---- | -----
- #UD| If Mode != 64-Bit.
+ **``#UD``**| If Mode != 64-Bit.
 
 ### Compatibility Mode Exceptions
    | |  
 ---- | -----
- #UD| If Mode != 64-Bit.
+ **``#UD``**| If Mode != 64-Bit.
 
 ### 64-Bit Mode Exceptions
    | |  
 ---- | -----
- #GP(0)| If CPL != 0. If the LOCK prefix is used.
+ **``#GP(0)``**| If CPL != 0. If the LOCK prefix is used.

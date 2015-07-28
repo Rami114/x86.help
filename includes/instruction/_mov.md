@@ -1,8 +1,8 @@
 ## MOV - Move
 
 > Operation
-``` slim
 
+``` slim
 DEST <- SRC;
 Loading a segment register while in protected mode results in special checks and actions, as described in the
 following listing. These checks are performed on the segment selector and the segment descriptor to which it
@@ -177,7 +177,7 @@ None.
 ### Protected Mode Exceptions
    | |  
 ---- | -----
- #GP(0)         | If attempt is made to load SS register        
+ **``#GP(0)``**         | If attempt is made to load SS register        
                 | with NULL segment selector. If the destination
                 | operand is in a non-writable segment.         
                 | If a memory operand effective address         
@@ -185,7 +185,7 @@ None.
                 | segment limit. If the DS, ES, FS, or          
                 | GS register contains a NULL segment           
                 | selector.                                     
- #GP(selector)  | If segment selector index is outside          
+ **``#GP(selector)``**  | If segment selector index is outside          
                 | descriptor table limits. If the SS register   
                 | is being loaded and the segment selector's    
                 | RPL and the segment descriptor's DPL          
@@ -200,45 +200,45 @@ None.
                 | to is a data or nonconforming code segment,   
                 | but both the RPL and the CPL are greater      
                 | than the DPL.                                 
- #SS(0)         | If a memory operand effective address         
+ **``#SS(0)``**         | If a memory operand effective address         
                 | is outside the SS segment limit.              
- #SS(selector)  | If the SS register is being loaded and        
+ **``#SS(selector)``**  | If the SS register is being loaded and        
                 | the segment pointed to is marked not          
                 | present.                                      
- #NP            | If the DS, ES, FS, or GS register is          
+ **``#NP``**            | If the DS, ES, FS, or GS register is          
                 | being loaded and the segment pointed          
                 | to is marked not present.                     
- #PF(fault-code)| If a page fault occurs.                       
- #AC(0)         | If alignment checking is enabled and          
+ **``#PF(fault-code)``**| If a page fault occurs.                       
+ **``#AC(0)``**         | If alignment checking is enabled and          
                 | an unaligned memory reference is made         
                 | while the current privilege level is          
                 | 3.                                            
- #UD            | If attempt is made to load the CS register.   
+ **``#UD``**            | If attempt is made to load the CS register.   
                 | If the LOCK prefix is used.                   
 
 ### Real-Address Mode Exceptions
    | |  
 ---- | -----
- #GP| If a memory operand effective address      
+ **``#GP``**| If a memory operand effective address      
     | is outside the CS, DS, ES, FS, or GS       
     | segment limit.                             
- #SS| If a memory operand effective address      
+ **``#SS``**| If a memory operand effective address      
     | is outside the SS segment limit.           
- #UD| If attempt is made to load the CS register.
+ **``#UD``**| If attempt is made to load the CS register.
     | If the LOCK prefix is used.                
 
 ### Virtual-8086 Mode Exceptions
    | |  
 ---- | -----
- #GP(0)         | If a memory operand effective address      
+ **``#GP(0)``**         | If a memory operand effective address      
                 | is outside the CS, DS, ES, FS, or GS       
                 | segment limit.                             
- #SS(0)         | If a memory operand effective address      
+ **``#SS(0)``**         | If a memory operand effective address      
                 | is outside the SS segment limit.           
- #PF(fault-code)| If a page fault occurs.                    
- #AC(0)         | If alignment checking is enabled and       
+ **``#PF(fault-code)``**| If a page fault occurs.                    
+ **``#AC(0)``**         | If alignment checking is enabled and       
                 | an unaligned memory reference is made.     
- #UD            | If attempt is made to load the CS register.
+ **``#UD``**            | If attempt is made to load the CS register.
                 | If the LOCK prefix is used.                
 
 ### Compatibility Mode Exceptions
@@ -248,13 +248,13 @@ Same exceptions as in protected mode.
 ### 64-Bit Mode Exceptions
    | |  
 ---- | -----
- #GP(0)         | If the memory address is in a non-canonical     
+ **``#GP(0)``**         | If the memory address is in a non-canonical     
                 | form. If an attempt is made to load             
                 | SS register with NULL segment selector          
                 | when CPL = 3. If an attempt is made             
                 | to load SS register with NULL segment           
                 | selector when CPL < 3 and CPL != RPL.            
- #GP(selector)  | If segment selector index is outside            
+ **``#GP(selector)``**  | If segment selector index is outside            
                 | descriptor table limits. If the memory          
                 | access to the descriptor table is non-canonical.
                 | If the SS register is being loaded and          
@@ -271,15 +271,15 @@ Same exceptions as in protected mode.
                 | nonconforming code segment, but both            
                 | the RPL and the CPL are greater than            
                 | the DPL.                                        
- #SS(0)         | If the stack address is in a non-canonical      
+ **``#SS(0)``**         | If the stack address is in a non-canonical      
                 | form.                                           
- #SS(selector)  | If the SS register is being loaded and          
+ **``#SS(selector)``**  | If the SS register is being loaded and          
                 | the segment pointed to is marked not            
                 | present.                                        
- #PF(fault-code)| If a page fault occurs.                         
- #AC(0)         | If alignment checking is enabled and            
+ **``#PF(fault-code)``**| If a page fault occurs.                         
+ **``#AC(0)``**         | If alignment checking is enabled and            
                 | an unaligned memory reference is made           
                 | while the current privilege level is            
                 | 3.                                              
- #UD            | If attempt is made to load the CS register.     
+ **``#UD``**            | If attempt is made to load the CS register.     
                 | If the LOCK prefix is used.                     

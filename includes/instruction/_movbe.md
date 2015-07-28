@@ -1,8 +1,8 @@
 ## MOVBE - Move Data After Swapping Bytes
 
 > Operation
-``` slim
 
+``` slim
 TEMP <- SRC
 IF ( OperandSize = 16)
   THEN
@@ -73,49 +73,49 @@ None.
 ### Protected Mode Exceptions
    | |  
 ---- | -----
- #GP(0)         | If the destination operand is in a non-writable
+ **``#GP(0)``**         | If the destination operand is in a non-writable
                 | segment. If a memory operand effective         
                 | address is outside the CS, DS, ES, FS,         
                 | or GS segment limit. If the DS, ES,            
                 | FS, or GS register contains a NULL segment     
                 | selector.                                      
- #SS(0)         | If a memory operand effective address          
+ **``#SS(0)``**         | If a memory operand effective address          
                 | is outside the SS segment limit.               
- #PF(fault-code)| If a page fault occurs.                        
- #AC(0)         | If alignment checking is enabled and           
+ **``#PF(fault-code)``**| If a page fault occurs.                        
+ **``#AC(0)``**         | If alignment checking is enabled and           
                 | an unaligned memory reference is made          
                 | while the current privilege level is           
                 | 3.                                             
- #UD            | If CPUID.01H:ECX.MOVBE[bit 22] = 0.            
+ **``#UD``**            | If CPUID.01H:ECX.MOVBE[bit 22] = 0.            
                 | If the LOCK prefix is used. If REP (F3H)       
                 | prefix is used.                                
 
 ### Real-Address Mode Exceptions
    | |  
 ---- | -----
- #GP| If a memory operand effective address   
+ **``#GP``**| If a memory operand effective address   
     | is outside the CS, DS, ES, FS, or GS    
     | segment limit.                          
- #SS| If a memory operand effective address   
+ **``#SS``**| If a memory operand effective address   
     | is outside the SS segment limit.        
- #UD| If CPUID.01H:ECX.MOVBE[bit 22] = 0.     
+ **``#UD``**| If CPUID.01H:ECX.MOVBE[bit 22] = 0.     
     | If the LOCK prefix is used. If REP (F3H)
     | prefix is used.                         
 
 ### Virtual-8086 Mode Exceptions
    | |  
 ---- | -----
- #GP(0)         | If a memory operand effective address   
+ **``#GP(0)``**         | If a memory operand effective address   
                 | is outside the CS, DS, ES, FS, or GS    
                 | segment limit.                          
- #SS(0)         | If a memory operand effective address   
+ **``#SS(0)``**         | If a memory operand effective address   
                 | is outside the SS segment limit.        
- #PF(fault-code)| If a page fault occurs.                 
- #AC(0)         | If alignment checking is enabled and    
+ **``#PF(fault-code)``**| If a page fault occurs.                 
+ **``#AC(0)``**         | If alignment checking is enabled and    
                 | an unaligned memory reference is made   
                 | while the current privilege level is    
                 | 3.                                      
- #UD            | If CPUID.01H:ECX.MOVBE[bit 22] = 0.     
+ **``#UD``**            | If CPUID.01H:ECX.MOVBE[bit 22] = 0.     
                 | If the LOCK prefix is used. If REP (F3H)
                 | prefix is used. If REPNE (F2H) prefix   
                 | is used and CPUID.01H:ECX.SSE4_2[bit    
@@ -128,15 +128,15 @@ Same exceptions as in protected mode.
 ### 64-Bit Mode Exceptions
    | |  
 ---- | -----
- #GP(0)         | If the memory address is in a non-canonical
+ **``#GP(0)``**         | If the memory address is in a non-canonical
                 | form.                                      
- #SS(0)         | If the stack address is in a non-canonical 
+ **``#SS(0)``**         | If the stack address is in a non-canonical 
                 | form.                                      
- #PF(fault-code)| If a page fault occurs.                    
- #AC(0)         | If alignment checking is enabled and       
+ **``#PF(fault-code)``**| If a page fault occurs.                    
+ **``#AC(0)``**         | If alignment checking is enabled and       
                 | an unaligned memory reference is made      
                 | while the current privilege level is       
                 | 3.                                         
- #UD            | If CPUID.01H:ECX.MOVBE[bit 22] = 0.        
+ **``#UD``**            | If CPUID.01H:ECX.MOVBE[bit 22] = 0.        
                 | If the LOCK prefix is used. If REP (F3H)   
                 | prefix is used.                            

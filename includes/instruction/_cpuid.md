@@ -1,8 +1,8 @@
 ## CPUID - CPU Identification
 
 > Operation
-``` slim
 
+``` slim
 IA32_BIOS_SIGN_ID MSR <- Update with installed microcode revision number;
 CASE (EAX) OF
 ```
@@ -558,7 +558,7 @@ Processor Extended State Enumeration Main Leaf (EAX = 0DH, ECX = 0)
           |                | TSC available if 1 Bits 31-09: Reserved     
           |                | = 0                                         
  80000008H| EAX EBX ECX EDX| Linear/Physical Address size Bits 07-00:    
-          |                | #Physical Address Bits\*Bits 15-8: #Linear   
+          |                | **``#Physical``** Address Bits\*Bits 15-8: **``#Linear``**   
           |                | Address Bits Bits 31-16: Reserved =         
           |                | 0 Reserved = 0 Reserved = 0 Reserved        
           |                | = 0                                         
@@ -971,7 +971,7 @@ OM16523
                                      | automatic thermal control circuitry               
                                      | (TCC). Reserved Pending Break Enable.             
                                      | The processor supports the use of the             
-                                     | FERR#/PBE# pin when the processor is              
+                                     | FERR**``#/PBE#``** pin when the processor is              
                                      | in the stop-clock state (STPCLK# is               
                                      | asserted) to signal the processor that            
                                      | an interrupt is pending and that the              
@@ -1650,8 +1650,8 @@ None.
 ### Exceptions (All Operating Modes)
    | |  
 ---- | -----
- #UD| If the LOCK prefix is used. In earlier 
+ **``#UD``**| If the LOCK prefix is used. In earlier 
     | IA-32 processors that do not support   
     | the CPUID instruction, execution of    
     | the instruction results in an invalid  
-    | opcode (#UD) exception being generated.
+    | opcode (**``#UD)``** exception being generated.

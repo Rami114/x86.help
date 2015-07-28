@@ -1,8 +1,8 @@
 ## RDMSR - Read from Model Specific Register
 
 > Operation
-``` slim
 
+``` slim
 EDX:EAX <- MSR[ECX];
 
 ```
@@ -67,22 +67,22 @@ None.
 ### Protected Mode Exceptions
    | |  
 ---- | -----
- #GP(0)| If the current privilege level is not      
+ **``#GP(0)``**| If the current privilege level is not      
        | 0. If the value in ECX specifies a reserved
        | or unimplemented MSR address.              
- #UD   | If the LOCK prefix is used.                
+ **``#UD``**   | If the LOCK prefix is used.                
 
 ### Real-Address Mode Exceptions
    | |  
 ---- | -----
- #GP| If the value in ECX specifies a reserved
+ **``#GP``**| If the value in ECX specifies a reserved
     | or unimplemented MSR address.           
- #UD| If the LOCK prefix is used.             
+ **``#UD``**| If the LOCK prefix is used.             
 
 ### Virtual-8086 Mode Exceptions
    | |  
 ---- | -----
- #GP(0)| The RDMSR instruction is not recognized
+ **``#GP(0)``**| The RDMSR instruction is not recognized
        | in virtual-8086 mode.                  
 
 ### Compatibility Mode Exceptions

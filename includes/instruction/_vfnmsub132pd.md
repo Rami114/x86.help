@@ -1,8 +1,8 @@
 ## VFNMSUB132PD/VFNMSUB213PD/VFNMSUB231PD  -  Fused Negative Multiply-Subtract of Packed Double-Precision Floating-Point Values
 
 > Operation
-``` slim
 
+``` slim
 In the operations below, \"+\", \"-\", and \"\*\" symbols represent addition, subtraction, and multiplication operations
 with infinite precision inputs and outputs (no rounding).
 VFNMSUB132PD DEST, SRC2, SRC3

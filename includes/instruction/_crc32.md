@@ -1,8 +1,8 @@
 ## CRC32  -  Accumulate CRC32 Value
 
 > Operation
-``` slim
 
+``` slim
 <aside class="notification">
 
 </aside>
@@ -110,42 +110,42 @@ None
 ### Protected Mode Exceptions
    | |  
 ---- | -----
- #GP(0)          | If a memory operand effective address
+ **``#GP(0)``**          | If a memory operand effective address
                  | is outside the CS, DS, ES, FS or GS  
                  | segments.                            
- #SS(0)          | If a memory operand effective address
+ **``#SS(0)``**          | If a memory operand effective address
                  | is outside the SS segment limit.     
- #PF (fault-code)| For a page fault.                    
- #AC(0)          | If alignment checking is enabled and 
+ **``#PF``** (fault-code)| For a page fault.                    
+ **``#AC(0)``**          | If alignment checking is enabled and 
                  | an unaligned memory reference is made
                  | while the current privilege level is 
                  | 3.                                   
- #UD             | If CPUID.01H:ECX.SSE4_2 [Bit 20] = 0.
+ **``#UD``**             | If CPUID.01H:ECX.SSE4_2 [Bit 20] = 0.
                  | If LOCK prefix is used.              
 
 ### Real-Address Mode Exceptions
    | |  
 ---- | -----
- #GP(0)| If any part of the operand lies outside
+ **``#GP(0)``**| If any part of the operand lies outside
        | of the effective address space from    
        | 0 to 0FFFFH.                           
- #SS(0)| If a memory operand effective address  
+ **``#SS(0)``**| If a memory operand effective address  
        | is outside the SS segment limit.       
- #UD   | If CPUID.01H:ECX.SSE4_2 [Bit 20] = 0.  
+ **``#UD``**   | If CPUID.01H:ECX.SSE4_2 [Bit 20] = 0.  
        | If LOCK prefix is used.                
 
 ### Virtual 8086 Mode Exceptions
    | |  
 ---- | -----
- #GP(0)          | If any part of the operand lies outside
+ **``#GP(0)``**          | If any part of the operand lies outside
                  | of the effective address space from    
                  | 0 to 0FFFFH.                           
- #SS(0)          | If a memory operand effective address  
+ **``#SS(0)``**          | If a memory operand effective address  
                  | is outside the SS segment limit.       
- #PF (fault-code)| For a page fault.                      
- #AC(0)          | If alignment checking is enabled and   
+ **``#PF``** (fault-code)| For a page fault.                      
+ **``#AC(0)``**          | If alignment checking is enabled and   
                  | an unaligned memory reference is made. 
- #UD             | If CPUID.01H:ECX.SSE4_2 [Bit 20] = 0.  
+ **``#UD``**             | If CPUID.01H:ECX.SSE4_2 [Bit 20] = 0.  
                  | If LOCK prefix is used.                
 
 ### Compatibility Mode Exceptions
@@ -155,14 +155,14 @@ Same exceptions as in Protected Mode.
 ### 64-Bit Mode Exceptions
    | |  
 ---- | -----
- #GP(0)          | If the memory address is in a non-canonical
+ **``#GP(0)``**          | If the memory address is in a non-canonical
                  | form.                                      
- #SS(0)          | If a memory address referencing the        
+ **``#SS(0)``**          | If a memory address referencing the        
                  | SS segment is in a non-canonical form.     
- #PF (fault-code)| For a page fault.                          
- #AC(0)          | If alignment checking is enabled and       
+ **``#PF``** (fault-code)| For a page fault.                          
+ **``#AC(0)``**          | If alignment checking is enabled and       
                  | an unaligned memory reference is made      
                  | while the current privilege level is       
                  | 3.                                         
- #UD             | If CPUID.01H:ECX.SSE4_2 [Bit 20] = 0.      
+ **``#UD``**             | If CPUID.01H:ECX.SSE4_2 [Bit 20] = 0.      
                  | If LOCK prefix is used.                    

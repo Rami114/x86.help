@@ -1,8 +1,8 @@
 ## SQRTPS - Compute Square Roots of Packed Single-Precision Floating-Point Values
 
 > Operation
-``` slim
 
+``` slim
 SQRTPS (128-bit Legacy SSE version)
 DEST[31:0] <- SQRT(SRC[31:0])
 DEST[63:32] <- SQRT(SRC[63:32])
@@ -85,4 +85,4 @@ See Exceptions Type 2; additionally
 
    | |  
 ---- | -----
- #UD| If VEX.vvvv != 1111B.
+ **``#UD``**| If VEX.vvvv != 1111B.

@@ -1,8 +1,8 @@
 ## CVTTPD2DQ - Convert with Truncation Packed Double-Precision FP Values to Packed Dword Integers
 
 > Operation
-``` slim
 
+``` slim
 CVTTPD2DQ (128-bit Legacy SSE version)
 DEST[31:0] <- Convert_Double_Precision_Floating_Point_To_Integer_Truncate(SRC[63:0])
 DEST[63:32] <- Convert_Double_Precision_Floating_Point_To_Integer_Truncate(SRC[127:64])
@@ -84,4 +84,4 @@ See Exceptions Type 2; additionally
 
    | |  
 ---- | -----
- #UD| If VEX.vvvv != 1111B.
+ **``#UD``**| If VEX.vvvv != 1111B.

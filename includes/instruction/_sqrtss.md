@@ -1,8 +1,8 @@
 ## SQRTSS - Compute Square Root of Scalar Single-Precision Floating-Point Value
 
 > Operation
-``` slim
 
+``` slim
 SQRTSS (128-bit Legacy SSE version)
 DEST[31:0] <- SQRT(SRC2[31:0])
 DEST[VLMAX-1:32] (Unmodified)

@@ -1,8 +1,8 @@
 ## ARPL - Adjust RPL Field of Segment Selector
 
 > Operation
-``` slim
 
+``` slim
 IF 64-BIT MODE
   THEN
      See MOVSXD;
@@ -69,33 +69,33 @@ than that of the source operand; otherwise, it is set to 0.
 ### Protected Mode Exceptions
    | |  
 ---- | -----
- #GP(0)         | If the destination is located in a non-writable
+ **``#GP(0)``**         | If the destination is located in a non-writable
                 | segment. If a memory operand effective         
                 | address is outside the CS, DS, ES, FS,         
                 | or GS segment limit. If the DS, ES,            
                 | FS, or GS register is used to access           
                 | memory and it contains a NULL segment          
                 | selector.                                      
- #SS(0)         | If a memory operand effective address          
+ **``#SS(0)``**         | If a memory operand effective address          
                 | is outside the SS segment limit.               
- #PF(fault-code)| If a page fault occurs.                        
- #AC(0)         | If alignment checking is enabled and           
+ **``#PF(fault-code)``**| If a page fault occurs.                        
+ **``#AC(0)``**         | If alignment checking is enabled and           
                 | an unaligned memory reference is made          
                 | while the current privilege level is           
                 | 3.                                             
- #UD            | If the LOCK prefix is used.                    
+ **``#UD``**            | If the LOCK prefix is used.                    
 
 ### Real-Address Mode Exceptions
    | |  
 ---- | -----
- #UD| The ARPL instruction is not recognized  
+ **``#UD``**| The ARPL instruction is not recognized  
     | in real-address mode. If the LOCK prefix
     | is used.                                
 
 ### Virtual-8086 Mode Exceptions
    | |  
 ---- | -----
- #UD| The ARPL instruction is not recognized  
+ **``#UD``**| The ARPL instruction is not recognized  
     | in virtual-8086 mode. If the LOCK prefix
     | is used.                                
 

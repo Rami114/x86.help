@@ -1,8 +1,8 @@
 ## MPSADBW  -  Compute Multiple Packed Sums of Absolute Difference
 
 > Operation
-``` slim
 
+``` slim
 VMPSADBW (VEX.256 encoded version)
 SRC2_OFFSET <- imm8[1:0]\*32
 SRC1_OFFSET <- imm8[2]\*32
@@ -358,4 +358,4 @@ See Exceptions Type 4; additionally
 
    | |  
 ---- | -----
- #UD| If VEX.L = 1.
+ **``#UD``**| If VEX.L = 1.

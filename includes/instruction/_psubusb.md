@@ -1,8 +1,8 @@
 ## PSUBUSB/PSUBUSW - Subtract Packed Unsigned Integers with Unsigned Saturation
 
 > Operation
-``` slim
 
+``` slim
 PSUBUSB (with 64-bit operands)
   DEST[7:0] <- SaturateToUnsignedByte (DEST[7:0] − SRC (7:0] );
   (\* Repeat add operation for 2nd through 7th bytes \*)
@@ -146,4 +146,4 @@ See Exceptions Type 4; additionally
 
    | |  
 ---- | -----
- #UD| If VEX.L = 1.
+ **``#UD``**| If VEX.L = 1.

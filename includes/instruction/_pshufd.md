@@ -1,8 +1,8 @@
 ## PSHUFD - Shuffle Packed Doublewords
 
 > Operation
-``` slim
 
+``` slim
 PSHUFD (128-bit Legacy SSE version)
 DEST[31:0] <- (SRC >> (ORDER[1:0] \* 32))[31:0];
 DEST[63:32] <- (SRC >> (ORDER[3:2] \* 32))[31:0];
@@ -109,4 +109,4 @@ See Exceptions Type 4; additionally
 
    | |  
 ---- | -----
- #UD| If VEX.L = 1. If VEX.vvvv != 1111B.
+ **``#UD``**| If VEX.L = 1. If VEX.vvvv != 1111B.

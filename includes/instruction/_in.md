@@ -1,8 +1,8 @@
 ## IN - Input from Port
 
 > Operation
-``` slim
 
+``` slim
 IF ((PE = 1) and ((CPL > IOPL) or (VM = 1)))
   THEN (\* Protected mode with CPL > IOPL or virtual-8086 mode \*)
      IF (Any I/O Permission Bit for I/O port being accessed = 1)
@@ -68,26 +68,26 @@ None.
 ### Protected Mode Exceptions
    | |  
 ---- | -----
- #GP(0)| If the CPL is greater than (has less       
+ **``#GP(0)``**| If the CPL is greater than (has less       
        | privilege) the I/O privilege level (IOPL)  
        | and any of the corresponding I/O permission
        | bits in TSS for the I/O port being accessed
        | is 1.                                      
- #UD   | If the LOCK prefix is used.                
+ **``#UD``**   | If the LOCK prefix is used.                
 
 ### Real-Address Mode Exceptions
    | |  
 ---- | -----
- #UD| If the LOCK prefix is used.
+ **``#UD``**| If the LOCK prefix is used.
 
 ### Virtual-8086 Mode Exceptions
    | |  
 ---- | -----
- #GP(0)         | If any of the I/O permission bits in   
+ **``#GP(0)``**         | If any of the I/O permission bits in   
                 | the TSS for the I/O port being accessed
                 | is 1.                                  
- #PF(fault-code)| If a page fault occurs.                
- #UD            | If the LOCK prefix is used.            
+ **``#PF(fault-code)``**| If a page fault occurs.                
+ **``#UD``**            | If the LOCK prefix is used.            
 
 ### Compatibility Mode Exceptions
 Same exceptions as in protected mode.
@@ -96,9 +96,9 @@ Same exceptions as in protected mode.
 ### 64-Bit Mode Exceptions
    | |  
 ---- | -----
- #GP(0)| If the CPL is greater than (has less       
+ **``#GP(0)``**| If the CPL is greater than (has less       
        | privilege) the I/O privilege level (IOPL)  
        | and any of the corresponding I/O permission
        | bits in TSS for the I/O port being accessed
        | is 1.                                      
- #UD   | If the LOCK prefix is used.                
+ **``#UD``**   | If the LOCK prefix is used.                

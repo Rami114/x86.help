@@ -1,8 +1,8 @@
 ## RDRAND - Read Random Number
 
 > Operation
-``` slim
 
+``` slim
 IF HW_RND_GEN.ready = 1
   THEN
      CASE of
@@ -73,7 +73,7 @@ The OF, SF, ZF, AF, and PF flags are set to 0.
 ### Protected Mode Exceptions
    | |  
 ---- | -----
- #UD| If the LOCK prefix is used. If the F2H            
+ **``#UD``**| If the LOCK prefix is used. If the F2H            
     | or F3H prefix is used. If CPUID.01H:ECX.RDRAND[bit
     | 30] = 0.                                          
 

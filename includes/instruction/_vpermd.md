@@ -1,8 +1,8 @@
 ## VPERMD  -  Full Doublewords Element Permutation
 
 > Operation
-``` slim
 
+``` slim
 VPERMD (VEX.256 encoded version)
 DEST[31:0] <- (SRC2[255:0] >> (SRC1[2:0] \* 32))[31:0];
 DEST[63:32] <- (SRC2[255:0] >> (SRC1[34:32] \* 32))[31:0];
@@ -51,5 +51,5 @@ See Exceptions Type 4; additionally
 
    | |  
 ---- | -----
- #UD| If VEX.L = 0 for VPERMD, If VEX.W =
+ **``#UD``**| If VEX.L = 0 for VPERMD, If VEX.W =
     | 1.                                 

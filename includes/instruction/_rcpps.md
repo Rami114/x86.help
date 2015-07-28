@@ -1,8 +1,8 @@
 ## RCPPS - Compute Reciprocals of Packed Single-Precision Floating-Point Values
 
 > Operation
-``` slim
 
+``` slim
 RCPPS (128-bit Legacy SSE version)
 DEST[31:0] <- APPROXIMATE(1/SRC[31:0])
 DEST[63:32] <- APPROXIMATE(1/SRC[63:32])
@@ -101,4 +101,4 @@ See Exceptions Type 4; additionally
 
    | |  
 ---- | -----
- #UD| If VEX.vvvv != 1111B.
+ **``#UD``**| If VEX.vvvv != 1111B.

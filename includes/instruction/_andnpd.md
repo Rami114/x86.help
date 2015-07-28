@@ -1,8 +1,8 @@
 ## ANDNPD - Bitwise Logical AND NOT of Packed Double-Precision Floating-Point Values
 
 > Operation
-``` slim
 
+``` slim
 ANDNPD (128-bit Legacy SSE version)
 DEST[63:0] <- (NOT(DEST[63:0])) BITWISE AND SRC[63:0]
 DEST[127:64] <- (NOT(DEST[127:64])) BITWISE AND SRC[127:64]

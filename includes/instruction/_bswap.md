@@ -1,8 +1,8 @@
 ## BSWAP - Byte Swap
 
 > Operation
-``` slim
 
+``` slim
 TEMP <- DEST
 IF 64-bit mode AND OperandSize = 64
   THEN
@@ -66,4 +66,4 @@ None.
 ### Exceptions (All Operating Modes)
    | |  
 ---- | -----
- #UD| If the LOCK prefix is used.
+ **``#UD``**| If the LOCK prefix is used.

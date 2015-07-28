@@ -1,8 +1,8 @@
 ## PMAXUD  -  Maximum of Packed Unsigned Dword Integers
 
 > Operation
-``` slim
 
+``` slim
 IF (DEST[31:0] > SRC[31:0])
   THEN DEST[31:0] <- DEST[31:0];
   ELSE DEST[31:0] <- SRC[31:0]; FI;
@@ -97,4 +97,4 @@ See Exceptions Type 4; additionally
 
    | |  
 ---- | -----
- #UD| If VEX.L = 1.
+ **``#UD``**| If VEX.L = 1.

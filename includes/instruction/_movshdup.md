@@ -1,8 +1,8 @@
 ## MOVSHDUP - Move Packed Single-FP High and Duplicate
 
 > Operation
-``` slim
 
+``` slim
 MOVSHDUP (128-bit Legacy SSE version)
 DEST[31:0] <- SRC[63:32]
 DEST[63:32] <- SRC[63:32]

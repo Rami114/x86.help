@@ -1,8 +1,8 @@
 ## VEXTRACTI128  -  Extract packed Integer Values
 
 > Operation
-``` slim
 
+``` slim
 VEXTRACTI128 (memory destination form)
 CASE (imm8[0]) OF
   0: DEST[127:0] <- SRC1[127:0]
@@ -52,4 +52,4 @@ See Exceptions Type 6; additionally
 
    | |  
 ---- | -----
- #UD| IF VEX.L = 0, If VEX.W = 1.
+ **``#UD``**| IF VEX.L = 0, If VEX.W = 1.

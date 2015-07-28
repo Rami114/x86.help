@@ -1,8 +1,8 @@
 ## LAR - Load Access Rights Byte
 
 > Operation
-``` slim
 
+``` slim
 IF Offset(SRC) > descriptor table limit
   THEN
      ZF <- 0;
@@ -111,30 +111,30 @@ it is cleared to 0.
 ### Protected Mode Exceptions
    | |  
 ---- | -----
- #GP(0)         | If a memory operand effective address   
+ **``#GP(0)``**         | If a memory operand effective address   
                 | is outside the CS, DS, ES, FS, or GS    
                 | segment limit. If the DS, ES, FS, or    
                 | GS register is used to access memory    
                 | and it contains a NULL segment selector.
- #SS(0)         | If a memory operand effective address   
+ **``#SS(0)``**         | If a memory operand effective address   
                 | is outside the SS segment limit.        
- #PF(fault-code)| If a page fault occurs.                 
- #AC(0)         | If alignment checking is enabled and    
+ **``#PF(fault-code)``**| If a page fault occurs.                 
+ **``#AC(0)``**         | If alignment checking is enabled and    
                 | the memory operand effective address    
                 | is unaligned while the current privilege
                 | level is 3.                             
- #UD            | If the LOCK prefix is used.             
+ **``#UD``**            | If the LOCK prefix is used.             
 
 ### Real-Address Mode Exceptions
    | |  
 ---- | -----
- #UD| The LAR instruction is not recognized
+ **``#UD``**| The LAR instruction is not recognized
     | in real-address mode.                
 
 ### Virtual-8086 Mode Exceptions
    | |  
 ---- | -----
- #UD| The LAR instruction cannot be executed
+ **``#UD``**| The LAR instruction cannot be executed
     | in virtual-8086 mode.                 
 
 ### Compatibility Mode Exceptions
@@ -144,14 +144,14 @@ Same exceptions as in protected mode.
 ### 64-Bit Mode Exceptions
    | |  
 ---- | -----
- #SS(0)         | If the memory operand effective address         
+ **``#SS(0)``**         | If the memory operand effective address         
                 | referencing the SS segment is in a non-canonical
                 | form.                                           
- #GP(0)         | If the memory operand effective address         
+ **``#GP(0)``**         | If the memory operand effective address         
                 | is in a non-canonical form.                     
- #PF(fault-code)| If a page fault occurs.                         
- #AC(0)         | If alignment checking is enabled and            
+ **``#PF(fault-code)``**| If a page fault occurs.                         
+ **``#AC(0)``**         | If alignment checking is enabled and            
                 | the memory operand effective address            
                 | is unaligned while the current privilege        
                 | level is 3.                                     
- #UD            | If the LOCK prefix is used.                     
+ **``#UD``**            | If the LOCK prefix is used.                     

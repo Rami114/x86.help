@@ -1,8 +1,8 @@
 ## BZHI  -  Zero High Bits Starting with Specified Bit Position
 
 > Operation
-``` slim
 
+``` slim
 N <- SRC2[7:0]
 DEST <- SRC1
 IF (N < OperandSize)
@@ -70,4 +70,4 @@ Table 2-29; additionally
 
    | |  
 ---- | -----
- #UD| If VEX.W = 1.
+ **``#UD``**| If VEX.W = 1.

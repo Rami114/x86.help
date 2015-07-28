@@ -1,8 +1,8 @@
 ## PABSB/PABSW/PABSD  -  Packed Absolute Value
 
 > Operation
-``` slim
 
+``` slim
 PABSB (with 64 bit operands)
   Unsigned DEST[7:0] <- ABS(SRC[7:0])
   Repeat operation for 2nd through 7th bytes
@@ -162,4 +162,4 @@ See Exceptions Type 4; additionally
 
    | |  
 ---- | -----
- #UD| If VEX.L = 1. If VEX.vvvv != 1111B.
+ **``#UD``**| If VEX.L = 1. If VEX.vvvv != 1111B.

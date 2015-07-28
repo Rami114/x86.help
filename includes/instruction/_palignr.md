@@ -1,8 +1,8 @@
 ## PALIGNR  -  Packed Align Right
 
 > Operation
-``` slim
 
+``` slim
 PALIGNR (with 64-bit operands)
   temp1[127:0] = CONCATENATE(DEST,SRC)>>(imm8\*8)
   DEST[63:0] = temp1[63:0]
@@ -126,4 +126,4 @@ See Exceptions Type 4; additionally
 
    | |  
 ---- | -----
- #UD| If VEX.L = 1.
+ **``#UD``**| If VEX.L = 1.

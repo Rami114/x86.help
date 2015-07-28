@@ -1,8 +1,8 @@
 ## OUTS/OUTSB/OUTSW/OUTSD - Output String to Port
 
 > Operation
-``` slim
 
+``` slim
 IF ((PE = 1) and ((CPL > IOPL) or (VM = 1)))
   THEN (\* Protected mode with CPL > IOPL or virtual-8086 mode \*)
      IF (Any I/O Permission Bit for I/O port being accessed = 1)
@@ -184,7 +184,7 @@ None.
 ### Protected Mode Exceptions
    | |  
 ---- | -----
- #GP(0)         | If the CPL is greater than (has less       
+ **``#GP(0)``**         | If the CPL is greater than (has less       
                 | privilege) the I/O privilege level (IOPL)  
                 | and any of the corresponding I/O permission
                 | bits in TSS for the I/O port being accessed
@@ -193,33 +193,33 @@ None.
                 | CS, DS, ES, FS, or GS segment. If the      
                 | segment register contains a NULL segment   
                 | selector.                                  
- #PF(fault-code)| If a page fault occurs.                    
- #AC(0)         | If alignment checking is enabled and       
+ **``#PF(fault-code)``**| If a page fault occurs.                    
+ **``#AC(0)``**         | If alignment checking is enabled and       
                 | an unaligned memory reference is made      
                 | while the current privilege level is       
                 | 3.                                         
- #UD            | If the LOCK prefix is used.                
+ **``#UD``**            | If the LOCK prefix is used.                
 
 ### Real-Address Mode Exceptions
    | |  
 ---- | -----
- #GP| If a memory operand effective address
+ **``#GP``**| If a memory operand effective address
     | is outside the CS, DS, ES, FS, or GS 
     | segment limit.                       
- #SS| If a memory operand effective address
+ **``#SS``**| If a memory operand effective address
     | is outside the SS segment limit.     
- #UD| If the LOCK prefix is used.          
+ **``#UD``**| If the LOCK prefix is used.          
 
 ### Virtual-8086 Mode Exceptions
    | |  
 ---- | -----
- #GP(0)         | If any of the I/O permission bits in   
+ **``#GP(0)``**         | If any of the I/O permission bits in   
                 | the TSS for the I/O port being accessed
                 | is 1.                                  
- #PF(fault-code)| If a page fault occurs.                
- #AC(0)         | If alignment checking is enabled and   
+ **``#PF(fault-code)``**| If a page fault occurs.                
+ **``#AC(0)``**         | If alignment checking is enabled and   
                 | an unaligned memory reference is made. 
- #UD            | If the LOCK prefix is used.            
+ **``#UD``**            | If the LOCK prefix is used.            
 
 ### Compatibility Mode Exceptions
 Same as for protected mode exceptions.
@@ -228,17 +228,17 @@ Same as for protected mode exceptions.
 ### 64-Bit Mode Exceptions
    | |  
 ---- | -----
- #SS(0)         | If a memory address referencing the        
+ **``#SS(0)``**         | If a memory address referencing the        
                 | SS segment is in a non-canonical form.     
- #GP(0)         | If the CPL is greater than (has less       
+ **``#GP(0)``**         | If the CPL is greater than (has less       
                 | privilege) the I/O privilege level (IOPL)  
                 | and any of the corresponding I/O permission
                 | bits in TSS for the I/O port being accessed
                 | is 1. If the memory address is in a        
                 | non-canonical form.                        
- #PF(fault-code)| If a page fault occurs.                    
- #AC(0)         | If alignment checking is enabled and       
+ **``#PF(fault-code)``**| If a page fault occurs.                    
+ **``#AC(0)``**         | If alignment checking is enabled and       
                 | an unaligned memory reference is made      
                 | while the current privilege level is       
                 | 3.                                         
- #UD            | If the LOCK prefix is used.                
+ **``#UD``**            | If the LOCK prefix is used.                

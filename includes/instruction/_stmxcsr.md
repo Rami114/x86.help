@@ -1,8 +1,8 @@
 ## STMXCSR - Store MXCSR Register State
 
 > Operation
-``` slim
 
+``` slim
 m32 <- MXCSR;
 
 ```
@@ -47,4 +47,4 @@ See Exceptions Type 5; additionally
 
    | |  
 ---- | -----
- #UD| If VEX.L= 1, If VEX.vvvv != 1111B.
+ **``#UD``**| If VEX.L= 1, If VEX.vvvv != 1111B.

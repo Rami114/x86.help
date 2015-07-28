@@ -1,8 +1,8 @@
 ## VFMSUB132PS/VFMSUB213PS/VFMSUB231PS  -  Fused Multiply-Subtract of Packed SinglePrecision Floating-Point Values
 
 > Operation
-``` slim
 
+``` slim
 In the operations below, \"+\", \"-\", and \"\*\" symbols represent addition, subtraction, and multiplication operations
 with infinite precision inputs and outputs (no rounding).
 VFMSUB132PS DEST, SRC2, SRC3

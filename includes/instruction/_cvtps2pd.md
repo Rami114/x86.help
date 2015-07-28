@@ -1,8 +1,8 @@
 ## CVTPS2PD - Convert Packed Single-Precision FP Values to Packed Double-Precision FP Values
 
 > Operation
-``` slim
 
+``` slim
 CVTPS2PD (128-bit Legacy SSE version)
 DEST[63:0] <- Convert_Single_Precision_To_Double_Precision_Floating_Point(SRC[31:0])
 DEST[127:64] <- Convert_Single_Precision_To_Double_Precision_Floating_Point(SRC[63:32])

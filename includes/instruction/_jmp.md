@@ -1,8 +1,8 @@
 ## JMP - Jump
 
 > Operation
-``` slim
 
+``` slim
 IF near jump
   IF 64-bit Mode
      THEN
@@ -354,7 +354,7 @@ switch does not occur.
 ### Protected Mode Exceptions
    | |  
 ---- | -----
- #GP(0)         | If offset in target operand, call gate,     
+ **``#GP(0)``**         | If offset in target operand, call gate,     
                 | or TSS is beyond the code segment limits.   
                 | If the segment selector in the destination  
                 | operand, call gate, task gate, or TSS       
@@ -364,7 +364,7 @@ switch does not occur.
                 | FS, or GS register is used to access        
                 | memory and it contains a NULL segment       
                 | selector.                                   
- #GP(selector)  | If the segment selector index is outside    
+ **``#GP(selector)``**  | If the segment selector index is outside    
                 | descriptor table limits. If the segment     
                 | descriptor pointed to by the segment        
                 | selector in the destination operand         
@@ -390,46 +390,46 @@ switch does not occur.
                 | its local/global bit set for local.         
                 | If a TSS segment descriptor specifies       
                 | that the TSS is busy or not available.      
- #SS(0)         | If a memory operand effective address       
+ **``#SS(0)``**         | If a memory operand effective address       
                 | is outside the SS segment limit.            
- #NP (selector) | If the code segment being accessed is       
+ **``#NP``** (selector) | If the code segment being accessed is       
                 | not present. If call gate, task gate,       
                 | or TSS not present.                         
- #PF(fault-code)| If a page fault occurs.                     
- #AC(0)         | If alignment checking is enabled and        
+ **``#PF(fault-code)``**| If a page fault occurs.                     
+ **``#AC(0)``**         | If alignment checking is enabled and        
                 | an unaligned memory reference is made       
                 | while the current privilege level is        
                 | 3. (Only occurs when fetching target        
                 | from memory.)                               
- #UD            | If the LOCK prefix is used.                 
+ **``#UD``**            | If the LOCK prefix is used.                 
 
 ### Real-Address Mode Exceptions
    | |  
 ---- | -----
- #GP| If a memory operand effective address       
+ **``#GP``**| If a memory operand effective address       
     | is outside the CS, DS, ES, FS, or GS        
     | segment limit. If a memory operand effective
     | address is outside the CS, DS, ES, FS,      
     | or GS segment limit.                        
- #SS| If a memory operand effective address       
+ **``#SS``**| If a memory operand effective address       
     | is outside the SS segment limit.            
- #UD| If the LOCK prefix is used.                 
+ **``#UD``**| If the LOCK prefix is used.                 
 
 ### Virtual-8086 Mode Exceptions
    | |  
 ---- | -----
- #GP(0)         | If the target operand is beyond the     
+ **``#GP(0)``**         | If the target operand is beyond the     
                 | code segment limits. If a memory operand
                 | effective address is outside the CS,    
                 | DS, ES, FS, or GS segment limit.        
- #SS(0)         | If a memory operand effective address   
+ **``#SS(0)``**         | If a memory operand effective address   
                 | is outside the SS segment limit.        
- #PF(fault-code)| If a page fault occurs.                 
- #AC(0)         | If alignment checking is enabled and    
+ **``#PF(fault-code)``**| If a page fault occurs.                 
+ **``#AC(0)``**         | If alignment checking is enabled and    
                 | an unaligned memory reference is made.  
                 | (Only occurs when fetching target from  
                 | memory.)                                
- #UD            | If the LOCK prefix is used.             
+ **``#UD``**            | If the LOCK prefix is used.             
 
 ### Compatibility Mode Exceptions
 Same as 64-bit mode exceptions.
@@ -438,7 +438,7 @@ Same as 64-bit mode exceptions.
 ### 64-Bit Mode Exceptions
    | |  
 ---- | -----
- #GP(0)       | If a memory address is non-canonical.      
+ **``#GP(0)``**       | If a memory address is non-canonical.      
               | If target offset in destination operand    
               | is non-canonical. If target offset in      
               | destination operand is beyond the new      
@@ -446,7 +446,7 @@ Same as 64-bit mode exceptions.
               | in the destination operand is NULL.        
               | If the code segment selector in the        
               | 64-bit gate is NULL.                       
- #GP(selector)| If the code segment or 64-bit call gate    
+ **``#GP(selector)``**| If the code segment or 64-bit call gate    
               | is outside descriptor table limits.        
               | If the code segment or 64-bit call gate    
               | overlaps non-canonical space. If the       
@@ -483,13 +483,13 @@ confirming and CPL < DPL.
 
    | |  
 ---- | -----
- #NP(selector)  | If a code segment or 64-bit call gate   
+ **``#NP(selector)``**  | If a code segment or 64-bit call gate   
                 | is not present.                         
- #UD            | (64-bit mode only) If a far jump is     
+ **``#UD``**            | (64-bit mode only) If a far jump is     
                 | direct to an absolute address in memory.
                 | If the LOCK prefix is used.             
- #PF(fault-code)| If a page fault occurs.                 
- #AC(0)         | If alignment checking is enabled and    
+ **``#PF(fault-code)``**| If a page fault occurs.                 
+ **``#AC(0)``**         | If alignment checking is enabled and    
                 | an unaligned memory reference is made   
                 | while the current privilege level is    
                 | 3.                                      

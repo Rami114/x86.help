@@ -1,8 +1,8 @@
 ## XBEGIN  -  Transactional Begin
 
 > Operation
-``` slim
 
+``` slim
 XBEGIN
 IF RTM_NEST_COUNT < MAX_RTM_NEST_COUNT
   THEN
@@ -96,25 +96,25 @@ None
 ### Protected Mode Exceptions
    | |  
 ---- | -----
- #UD   | CPUID.(EAX=7, ECX=0):RTM[bit 11]=0.   
+ **``#UD``**   | CPUID.(EAX=7, ECX=0):RTM[bit 11]=0.   
        | If LOCK prefix is used.               
- #GP(0)| If the fallback address is outside the
+ **``#GP(0)``**| If the fallback address is outside the
        | CS segment.                           
 
 ### Real-Address Mode Exceptions
    | |  
 ---- | -----
- #GP(0)| If the fallback address is outside the
+ **``#GP(0)``**| If the fallback address is outside the
        | address space 0000H and FFFFH.        
- #UD   | CPUID.(EAX=7, ECX=0):RTM[bit 11]=0.   
+ **``#UD``**   | CPUID.(EAX=7, ECX=0):RTM[bit 11]=0.   
        | If LOCK prefix is used.               
 
 ### Virtual-8086 Mode Exceptions
    | |  
 ---- | -----
- #GP(0)| If the fallback address is outside the
+ **``#GP(0)``**| If the fallback address is outside the
        | address space 0000H and FFFFH.        
- #UD   | CPUID.(EAX=7, ECX=0):RTM[bit 11]=0.   
+ **``#UD``**   | CPUID.(EAX=7, ECX=0):RTM[bit 11]=0.   
        | If LOCK prefix is used.               
 
 ### Compatibility Mode Exceptions
@@ -124,6 +124,6 @@ Same exceptions as in protected mode.
 ### 64-bit Mode Exceptions
    | |  
 ---- | -----
- #UD   | CPUID.(EAX=7, ECX=0):RTM[bit 11] = 0.    
+ **``#UD``**   | CPUID.(EAX=7, ECX=0):RTM[bit 11] = 0.    
        | If LOCK prefix is used.                  
- #GP(0)| If the fallback address is non-canonical.
+ **``#GP(0)``**| If the fallback address is non-canonical.

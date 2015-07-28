@@ -1,8 +1,8 @@
 ## STD - Set Direction Flag
 
 > Operation
-``` slim
 
+``` slim
 DF <- 1;
 
 ```
@@ -31,4 +31,4 @@ The DF flag is set. The CF, OF, ZF, SF, AF, and PF flags are unaffected.
 ### Exceptions (All Operating Modes)
    | |  
 ---- | -----
- #UD| If the LOCK prefix is used.
+ **``#UD``**| If the LOCK prefix is used.

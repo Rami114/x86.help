@@ -1,8 +1,8 @@
 ## VPSRAVD  -  Variable Bit Shift Right Arithmetic
 
 > Operation
-``` slim
 
+``` slim
 VPSRAVD (VEX.128 version)
 COUNT_0 <- SRC2[31: 0]
   (\* Repeat Each COUNT_i for the 2nd through 4th dwords of SRC2\*)
@@ -85,4 +85,4 @@ See Exceptions Type 4; additionally
 
    | |  
 ---- | -----
- #UD| If VEX.W = 1.
+ **``#UD``**| If VEX.W = 1.
