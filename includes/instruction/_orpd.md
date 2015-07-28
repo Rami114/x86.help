@@ -17,16 +17,6 @@ DEST[127:64] <- SRC1[127:64] BITWISE OR SRC2[127:64]
 DEST[191:128] <- SRC1[191:128] BITWISE OR SRC2[191:128]
 DEST[255:192] <- SRC1[255:192] BITWISE OR SRC2[255:192]
 
-> Intel® C/C++ Compiler Intrinsic Equivalent
-
-``` slim
-   | |  
----- | -----
- ORPD: | __m128d _mm_or_pd(__m128d a, __m128d    
-       | b);                                     
- VORPD:| __m256d _mm256_or_pd (__m256d a, __m256d
-       | b);                                     
-
 ```
 
  Opcode/Instruction                          | Op/En| 64/32 bit Mode Support| CPUID Feature Flag| Description                            
@@ -64,6 +54,14 @@ register. Note: If VORPD is encoded with VEX.L= 1, an attempt to execute the
 instruction encoded with VEX.L= 1 will cause an **``#UD``** exception.
 
 
+
+### Intel® C/C++ Compiler Intrinsic Equivalent
+   | |  
+---- | -----
+ ORPD: | __m128d _mm_or_pd(__m128d a, __m128d    
+       | b);                                     
+ VORPD:| __m256d _mm256_or_pd (__m256d a, __m256d
+       | b);                                     
 
 ### SIMD Floating-Point Exceptions
 None.

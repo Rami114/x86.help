@@ -1,482 +1,8 @@
 ## CPUID - CPU Identification
 
-> Intel Xeon processor 7400 series will return a 1.
-
-``` slim
-- The most significant bit (bit 31) of each register indicates whether the register
-contains valid information (set to 0) or is reserved (set to 1).
- - If a register contains valid information, the information is contained in 1
-byte descriptors. There are four types of encoding values for the byte descriptor,
-the encoding type is noted in the second column of Table 3-22. Table 3-22 lists
-the encoding of these descriptors. Note that the order of descriptors in the
-EAX, EBX, ECX, and EDX registers is not defined; that is, specific bytes are
-not designated to contain descriptors for specific cache, prefetch, or TLB types.
-The descriptors may appear in any order. Note also a processor may report a
-general descriptor type (FFH) and not report any byte descriptor of “cache type”
-via CPUID leaf 2. Table 3-22. Encoding of CPUID Leaf 2 Descriptors
-
-   | |  
----- | -----
- Value 00H 01H 02H 03H 04H 05H 06H 08H     | Type Null descriptor, this byte contains       | Description (Contd.)                     
- 09H 0AH 0BH 0CH 0DH 0EH 1DH 21H 22H       | no information Instruction TLB: 4 KByte        |                                          
- 23H 24H 25H 29H 2CH 30H 40H 41H 42H       | pages, 4-way set associative, 32 entries       |                                          
- 43H 44H 45H 46H 47H 48H 49H 4AH 4BH       | Instruction TLB: 4 MByte pages, fully          |                                          
- 4CH 4DH 4EH 4FH                           | associative, 2 entries Data TLB: 4 KByte       |                                          
-                                           | pages, 4-way set associative, 64 entries       |                                          
-                                           | Data TLB: 4 MByte pages, 4-way set associative,|                                          
-                                           | 8 entries Data TLB1: 4 MByte pages,            |                                          
-                                           | 4-way set associative, 32 entries 1st-level    |                                          
-                                           | instruction cache: 8 KBytes, 4-way set         |                                          
-                                           | associative, 32 byte line size 1st-level       |                                          
-                                           | instruction cache: 16 KBytes, 4-way            |                                          
-                                           | set associative, 32 byte line size 1st-level   |                                          
-                                           | instruction cache: 32KBytes, 4-way set         |                                          
-                                           | associative, 64 byte line size 1st-level       |                                          
-                                           | data cache: 8 KBytes, 2-way set associative,   |                                          
-                                           | 32 byte line size Instruction TLB: 4           |                                          
-                                           | MByte pages, 4-way set associative,            |                                          
-                                           | 4 entries 1st-level data cache: 16 KBytes,     |                                          
-                                           | 4-way set associative, 32 byte line            |                                          
-                                           | size 1st-level data cache: 16 KBytes,          |                                          
-                                           | 4-way set associative, 64 byte line            |                                          
-                                           | size 1st-level data cache: 24 KBytes,          |                                          
-                                           | 6-way set associative, 64 byte line            |                                          
-                                           | size 2nd-level cache: 128 KBytes, 2-way        |                                          
-                                           | set associative, 64 byte line size 2nd-level   |                                          
-                                           | cache: 256 KBytes, 8-way set associative,      |                                          
-                                           | 64 byte line size 3rd-level cache: 512         |                                          
-                                           | KBytes, 4-way set associative, 64 byte         |                                          
-                                           | line size, 2 lines per sector 3rd-level        |                                          
-                                           | cache: 1 MBytes, 8-way set associative,        |                                          
-                                           | 64 byte line size, 2 lines per sector          |                                          
-                                           | 2nd-level cache: 1 MBytes, 16-way set          |                                          
-                                           | associative, 64 byte line size 3rd-level       |                                          
-                                           | cache: 2 MBytes, 8-way set associative,        |                                          
-                                           | 64 byte line size, 2 lines per sector          |                                          
-                                           | 3rd-level cache: 4 MBytes, 8-way set           |                                          
-                                           | associative, 64 byte line size, 2 lines        |                                          
-                                           | per sector 1st-level data cache: 32            |                                          
-                                           | KBytes, 8-way set associative, 64 byte         |                                          
-                                           | line size 1st-level instruction cache:         |                                          
-                                           | 32 KBytes, 8-way set associative, 64           |                                          
-                                           | byte line size No 2nd-level cache or,          |                                          
-                                           | if processor contains a valid 2nd-level        |                                          
-                                           | cache, no 3rd-level cache 2nd-level            |                                          
-                                           | cache: 128 KBytes, 4-way set associative,      |                                          
-                                           | 32 byte line size 2nd-level cache: 256         |                                          
-                                           | KBytes, 4-way set associative, 32 byte         |                                          
-                                           | line size 2nd-level cache: 512 KBytes,         |                                          
-                                           | 4-way set associative, 32 byte line            |                                          
-                                           | size 2nd-level cache: 1 MByte, 4-way           |                                          
-                                           | set associative, 32 byte line size 2nd-level   |                                          
-                                           | cache: 2 MByte, 4-way set associative,         |                                          
-                                           | 32 byte line size 3rd-level cache: 4           |                                          
-                                           | MByte, 4-way set associative, 64 byte          |                                          
-                                           | line size 3rd-level cache: 8 MByte,            |                                          
-                                           | 8-way set associative, 64 byte line            |                                          
-                                           | size 2nd-level cache: 3MByte, 12-way           |                                          
-                                           | set associative, 64 byte line size 3rd-level   |                                          
-                                           | cache: 4MB, 16-way set associative,            |                                          
-                                           | 64-byte line size (Intel Xeon processor        |                                          
-                                           | MP, Family 0FH, Model 06H); 2nd-level          |                                          
-                                           | cache: 4 MByte, 16-way set associative,        |                                          
-                                           | 64 byte line size 3rd-level cache: 6MByte,     |                                          
-                                           | 12-way set associative, 64 byte line           |                                          
-                                           | size 3rd-level cache: 8MByte, 16-way           |                                          
-                                           | set associative, 64 byte line size 3rd-level   |                                          
-                                           | cache: 12MByte, 12-way set associative,        |                                          
-                                           | 64 byte line size 3rd-level cache: 16MByte,    |                                          
-                                           | 16-way set associative, 64 byte line           |                                          
-                                           | size 2nd-level cache: 6MByte, 24-way           |                                          
-                                           | set associative, 64 byte line size Instruction |                                          
-                                           | TLB: 4 KByte pages, 32 entries Table           |                                          
-                                           | 3-22.                                          |                                          
- Value 50H 51H 52H 55H 56H 57H 59H 5AH     | Type Instruction TLB: 4 KByte and 2-MByte      | Description (Contd.)                     
- 5BH 5CH 5DH 60H 61H 63H 66H 67H 68H       | or 4-MByte pages, 64 entries Instruction       |                                          
- 70H 71H 72H 76H 78H 79H 7AH 7BH 7CH       | TLB: 4 KByte and 2-MByte or 4-MByte            |                                          
- 7DH 7FH 80H 82H 83H 84H 85H 86H 87H       | pages, 128 entries Instruction TLB:            |                                          
- A0H B0H B1H B2H B3H B4H                   | 4 KByte and 2-MByte or 4-MByte pages,          |                                          
-                                           | 256 entries Instruction TLB: 2-MByte           |                                          
-                                           | or 4-MByte pages, fully associative,           |                                          
-                                           | 7 entries Data TLB0: 4 MByte pages,            |                                          
-                                           | 4-way set associative, 16 entries Data         |                                          
-                                           | TLB0: 4 KByte pages, 4-way associative,        |                                          
-                                           | 16 entries Data TLB0: 4 KByte pages,           |                                          
-                                           | fully associative, 16 entries Data TLB0:       |                                          
-                                           | 2-MByte or 4 MByte pages, 4-way set            |                                          
-                                           | associative, 32 entries Data TLB: 4            |                                          
-                                           | KByte and 4 MByte pages, 64 entries            |                                          
-                                           | Data TLB: 4 KByte and 4 MByte pages,128        |                                          
-                                           | entries Data TLB: 4 KByte and 4 MByte          |                                          
-                                           | pages,256 entries 1st-level data cache:        |                                          
-                                           | 16 KByte, 8-way set associative, 64            |                                          
-                                           | byte line size Instruction TLB: 4 KByte        |                                          
-                                           | pages, fully associative, 48 entries           |                                          
-                                           | Data TLB: 1 GByte pages, 4-way set associative,|                                          
-                                           | 4 entries 1st-level data cache: 8 KByte,       |                                          
-                                           | 4-way set associative, 64 byte line            |                                          
-                                           | size 1st-level data cache: 16 KByte,           |                                          
-                                           | 4-way set associative, 64 byte line            |                                          
-                                           | size 1st-level data cache: 32 KByte,           |                                          
-                                           | 4-way set associative, 64 byte line            |                                          
-                                           | size Trace cache: 12 K-μop, 8-way set          |                                          
-                                           | associative Trace cache: 16 K-μop, 8-way       |                                          
-                                           | set associative Trace cache: 32 K-μop,         |                                          
-                                           | 8-way set associative Instruction TLB:         |                                          
-                                           | 2M/4M pages, fully associative, 8 entries      |                                          
-                                           | 2nd-level cache: 1 MByte, 4-way set            |                                          
-                                           | associative, 64byte line size 2nd-level        |                                          
-                                           | cache: 128 KByte, 8-way set associative,       |                                          
-                                           | 64 byte line size, 2 lines per sector          |                                          
-                                           | 2nd-level cache: 256 KByte, 8-way set          |                                          
-                                           | associative, 64 byte line size, 2 lines        |                                          
-                                           | per sector 2nd-level cache: 512 KByte,         |                                          
-                                           | 8-way set associative, 64 byte line            |                                          
-                                           | size, 2 lines per sector 2nd-level cache:      |                                          
-                                           | 1 MByte, 8-way set associative, 64 byte        |                                          
-                                           | line size, 2 lines per sector 2nd-level        |                                          
-                                           | cache: 2 MByte, 8-way set associative,         |                                          
-                                           | 64byte line size 2nd-level cache: 512          |                                          
-                                           | KByte, 2-way set associative, 64-byte          |                                          
-                                           | line size 2nd-level cache: 512 KByte,          |                                          
-                                           | 8-way set associative, 64-byte line            |                                          
-                                           | size 2nd-level cache: 256 KByte, 8-way         |                                          
-                                           | set associative, 32 byte line size 2nd-level   |                                          
-                                           | cache: 512 KByte, 8-way set associative,       |                                          
-                                           | 32 byte line size 2nd-level cache: 1           |                                          
-                                           | MByte, 8-way set associative, 32 byte          |                                          
-                                           | line size 2nd-level cache: 2 MByte,            |                                          
-                                           | 8-way set associative, 32 byte line            |                                          
-                                           | size 2nd-level cache: 512 KByte, 4-way         |                                          
-                                           | set associative, 64 byte line size 2nd-level   |                                          
-                                           | cache: 1 MByte, 8-way set associative,         |                                          
-                                           | 64 byte line size DTLB: 4k pages, fully        |                                          
-                                           | associative, 32 entries Instruction            |                                          
-                                           | TLB: 4 KByte pages, 4-way set associative,     |                                          
-                                           | 128 entries Instruction TLB: 2M pages,         |                                          
-                                           | 4-way, 8 entries or 4M pages, 4-way,           |                                          
-                                           | 4 entries Instruction TLB: 4KByte pages,       |                                          
-                                           | 4-way set associative, 64 entries Data         |                                          
-                                           | TLB: 4 KByte pages, 4-way set associative,     |                                          
-                                           | 128 entries Data TLB1: 4 KByte pages,          |                                          
-                                           | 4-way associative, 256 entries Table           |                                          
-                                           | 3-22.                                          |                                          
- Value B5H B6H BAH C0H C1H C2H CAH D0H     | Type Instruction TLB: 4KByte pages,            | Description Example 3-1. The first member
- D1H D2H D6H D7H D8H DCH DDH DEH E2H       | 8-way set associative, 64 entries Instruction  | of the family of Pentium 4 processors    
- E3H E4H EAH EBH ECH F0H F1H FFH EAX       | TLB: 4KByte pages, 8-way set associative,      | returns the following information about  
- EBX ECX EDX The least-significant byte    | 128 entries Data TLB1: 4 KByte pages,          | caches and TLBs when the CPUID executes  
- (byte 0) of register EAX is set to 01H.   | 4-way associative, 64 entries Data TLB:        | with an input value of 2: Which means:   
- This indicates that CPUID needs to be     | 4 KByte and 4 MByte pages, 4-way associative,  | •••••                                    
- executed once with an input value of      | 8 entries Shared 2nd-Level TLB: 4 KByte/2MByte |                                          
- 2 to retrieve complete information about  | pages, 8-way associative, 1024 entries         |                                          
- caches and TLBs. The most-significant     | DTLB: 4 KByte/2 MByte pages, 4-way associative,|                                          
- bit of all four registers (EAX, EBX,      | 16 entries Shared 2nd-Level TLB: 4 KByte       |                                          
- ECX, and EDX) is set to 0, indicating     | pages, 4-way associative, 512 entries          |                                          
- that each register contains valid 1-byte  | 3rd-level cache: 512 KByte, 4-way set          |                                          
- descriptors. Bytes 1, 2, and 3 of register| associative, 64 byte line size 3rd-level       |                                          
- EAX indicate that the processor has:      | cache: 1 MByte, 4-way set associative,         |                                          
-  -  -  - The descriptors in registers EBX       | 64 byte line size 3rd-level cache: 2           |                                          
- and ECX are valid, but contain NULL       | MByte, 4-way set associative, 64 byte          |                                          
- descriptors. Bytes 0, 1, 2, and 3 of      | line size 3rd-level cache: 1 MByte,            |                                          
- register EDX indicate that the processor  | 8-way set associative, 64 byte line            |                                          
- has:  -  -  -  -                                  | size 3rd-level cache: 2 MByte, 8-way           |                                          
-                                           | set associative, 64 byte line size 3rd-level   |                                          
-                                           | cache: 4 MByte, 8-way set associative,         |                                          
-                                           | 64 byte line size 3rd-level cache: 1.5         |                                          
-                                           | MByte, 12-way set associative, 64 byte         |                                          
-                                           | line size 3rd-level cache: 3 MByte,            |                                          
-                                           | 12-way set associative, 64 byte line           |                                          
-                                           | size 3rd-level cache: 6 MByte, 12-way          |                                          
-                                           | set associative, 64 byte line size 3rd-level   |                                          
-                                           | cache: 2 MByte, 16-way set associative,        |                                          
-                                           | 64 byte line size 3rd-level cache: 4           |                                          
-                                           | MByte, 16-way set associative, 64 byte         |                                          
-                                           | line size 3rd-level cache: 8 MByte,            |                                          
-                                           | 16-way set associative, 64 byte line           |                                          
-                                           | size 3rd-level cache: 12MByte, 24-way          |                                          
-                                           | set associative, 64 byte line size 3rd-level   |                                          
-                                           | cache: 18MByte, 24-way set associative,        |                                          
-                                           | 64 byte line size 3rd-level cache: 24MByte,    |                                          
-                                           | 24-way set associative, 64 byte line           |                                          
-                                           | size 64-Byte prefetching 128-Byte prefetching  |                                          
-                                           | CPUID leaf 2 does not report cache descriptor  |                                          
-                                           | information, use CPUID leaf 4 to query         |                                          
-                                           | cache parameters Example of Cache and          |                                          
-                                           | TLB Interpretation 66 5B 50 01H 0H 0H          |                                          
-                                           | 00 7A 70 00H 50H - a 64-entry instruction      |                                          
-                                           | TLB, for mapping 4-KByte and 2-MByte           |                                          
-                                           | or 4-MByte pages. 5BH - a 64-entry data        |                                          
-                                           | TLB, for mapping 4-KByte and 4-MByte           |                                          
-                                           | pages. 66H - an 8-KByte 1st level data         |                                          
-                                           | cache, 4-way set associative, with a           |                                          
-                                           | 64-Byte cache line size. 00H - NULL            |                                          
-                                           | descriptor. 70H - Trace cache: 12 K-μop,       |                                          
-                                           | 8-way set associative. 7AH - a 256-KByte       |                                          
-                                           | 2nd level cache, 8-way set associative,        |                                          
-                                           | with a sectored, 64-byte cache line            |                                          
-                                           | size. 00H - NULL descriptor.                   |```
-
-### INPUT EAX = 04H: Returns Deterministic Cache Parameters for Each Level
-When CPUID executes with EAX set to 04H and ECX contains an index value, the
-processor returns encoded data that describe a set of deterministic cache parameters
-(for the cache level associated with the input in ECX). Valid index values start
-from 0.
-
-Software can enumerate the deterministic cache parameters for each level of
-the cache hierarchy starting with an index value of 0, until the parameters
-report the value associated with the cache type field is 0. The architecturally
-defined fields reported by deterministic cache parameters are documented in
-Table 3-17.
-
-This Cache Size in Bytes
-
-= (Ways + 1) * (Partitions + 1) * (Line_Size + 1) * (Sets + 1)
-
-= (EBX[31:22] + 1) * (EBX[21:12] + 1) * (EBX[11:0] + 1) * (ECX + 1)
-
-The CPUID leaf 04H also reports data that can be used to derive the topology
-of processor cores in a physical package. This information is constant for all
-valid index values. Software can query the raw data reported by executing CPUID
-with EAX=04H and ECX=0 and use it as part of the topology enumeration algorithm
-described in Chapter 8, “Multiple-Processor Management,” in the Intel® 64 and
-IA-32 Architectures Software Developer's Manual, Volume 3A.
-
-
-### INPUT EAX = 05H: Returns MONITOR and MWAIT Features
-When CPUID executes with EAX set to 05H, the processor returns information about
-features available to MONITOR/MWAIT instructions. The MONITOR instruction is
-used for address-range monitoring in conjunction with MWAIT instruction. The
-MWAIT instruction optionally provides additional extensions for advanced power
-management. See Table 3-17.
-
-
-### INPUT EAX = 06H: Returns Thermal and Power Management Features
-When CPUID executes with EAX set to 06H, the processor returns information about
-thermal and power management features. See Table 3-17.
-
-
-### INPUT EAX = 07H: Returns Structured Extended Feature Enumeration Information
-When CPUID executes with EAX set to 07H and ECX = 0, the processor returns information
-about the maximum input value for sub-leaves that contain extended feature flags.
-See Table 3-17.
-
-When CPUID executes with EAX set to 07H and the input value of ECX is invalid
-(see leaf 07H entry in Table 3-17), the processor returns 0 in EAX/EBX/ECX/EDX.
-In subleaf 0, EAX returns the maximum input value of the highest leaf 7 sub-leaf,
-and EBX, ECX & EDX contain information of extended feature flags.
-
-
-### INPUT EAX = 09H: Returns Direct Cache Access Information
-When CPUID executes with EAX set to 09H, the processor returns information about
-Direct Cache Access capabilities. See Table 3-17.
-
-
-### INPUT EAX = 0AH: Returns Architectural Performance Monitoring Features
-When CPUID executes with EAX set to 0AH, the processor returns information about
-support for architectural performance monitoring capabilities. Architectural
-performance monitoring is supported if the version ID (see Table 3-17) is greater
-than Pn 0. See Table 3-17.
-
-For each version of architectural performance monitoring capability, software
-must enumerate this leaf to discover the programming facilities and the architectural
-performance events available in the processor. The details are described in
-Chapter 23, “Introduction to Virtual-Machine Extensions,” in the Intel® 64 and
-IA-32 Architectures Software Developer's Manual, Volume 3C.
-
-
-### INPUT EAX = 0BH: Returns Extended Topology Information
-When CPUID executes with EAX set to 0BH, the processor returns information about
-extended topology enumeration data. Software must detect the presence of CPUID
-leaf 0BH by verifying (a) the highest leaf index supported by CPUID is >= 0BH,
-and (b) CPUID.0BH:EBX[15:0] reports a non-zero value. See Table 3-17.
-
-
-### INPUT EAX = 0DH: Returns Processor Extended States Enumeration Information
-When CPUID executes with EAX set to 0DH and ECX = 0, the processor returns information
-about the bit-vector representation of all processor state extensions that are
-supported in the processor and storage size requirements of the XSAVE/XRSTOR
-area. See Table 3-17.
-
-When CPUID executes with EAX set to 0DH and ECX = n (n > 1, and is a valid sub-leaf
-index), the processor returns information about the size and offset of each
-processor extended state save area within the XSAVE/XRSTOR area. See Table 3-17.
-Software can use the forward-extendable technique depicted below to query the
-valid sub-leaves and obtain size and offset information for each processor extended
-### state save area
-
-For i = 2 to 62 // sub-leaf 1 is reserved IF (CPUID.(EAX=0DH, ECX=0):VECTOR[i]
-= 1 ) // VECTOR is the 64-bit value of EDX:EAX Execute CPUID.(EAX=0DH, ECX =
-i) to examine size and offset for sub-leaf i; FI;
-
-
-### INPUT EAX = 0FH: Returns Platform Quality of Service (PQoS) Monitoring Enumeration Information
-When CPUID executes with EAX set to 0FH and ECX = 0, the processor returns information
-about the bit-vector representation of QoS monitoring resource types that are
-supported in the processor and maximum range of RMID values the processor can
-use to monitor of any supported resource types. Each bit, starting from bit
-1, corresponds to a specific resource type if the bit is set. The bit position
-corresponds to the sub-leaf index (or ResID) that software must use to query
-QoS monitoring capability available for that type. See Table 3-17.
-
-When CPUID executes with EAX set to 0FH and ECX = n (n >= 1, and is a valid
-ResID), the processor returns information software can use to program IA32_PQR_ASSOC,
-IA32_QM_EVTSEL MSRs before reading QoS data from the IA32_QM_CTR MSR.
-
-
-### INPUT EAX = 10H: Returns Platform Quality of Service (PQoS) Enforcement Enumeration Information
-When CPUID executes with EAX set to 10H and ECX = 0, the processor returns information
-about the bit-vector representation of QoS Enforcement resource types that are
-supported in the processor. Each bit, starting from bit 1, corresponds to a
-specific resource type if the bit is set. The bit position corresponds to the
-sub-leaf index (or ResID) that software must use to query QoS enforcement capability
-available for that type. See Table 3-17.
-
-When CPUID executes with EAX set to 10H and ECX = n (n >= 1, and is a valid
-ResID), the processor returns information about available classes of service
-and range of QoS mask MSRs that software can use to configure each class of
-services using capability bit masks in the QoS Mask registers, IA32_resourceType_Mask_n.
-
-
-### METHODS FOR RETURNING BRANDING INFORMATION
-### Use the following techniques to access branding information
-
-   | |  
----- | -----
- 1.| Processor brand string method; this    
-   | method also returns the processor's    
-   | maximum operating frequency            
- 2.| Processor brand index; this method uses
-   | a software supplied brand string table.
-These two methods are discussed in the following sections. For methods that
-are available in early processors, see Section: “Identification of Earlier IA-32
-Processors” in Chapter 17 of the Intel® 64 and IA-32 Architectures Software
-Developer's Manual, Volume 1.
-
-
-### The Processor Brand String Method
-brand identification software should execute this algorithm on all Intel 64
-and IA-32 processors.
-
-This method (introduced with Pentium 4 processors) returns an ASCII brand identification
-string and the maximum operating frequency of the processor to the EAX, EBX,
-ECX, and EDX registers.
-
-Input: EAX=0x80000000
-
-CPUID
-
-   | |  
----- | -----
- False| Processor Brand String Not Supported
-CPUID True ≥Function Extended Supported
-
-EAX Return Value =Max. Extended CPUID Function Index
-
-True
-
-   | |  
----- | -----
- IF (EAX Return Value ≥ 0x80000004)| Processor Brand String Supported
-OM15194
-
-   | |  
----- | -----
- Figure 3-8.| Determination of Support for the Processor
-            | Brand String                              
-
-### How Brand Strings Work
-To use the brand string method, execute CPUID with EAX input of 8000002H through
-80000004H. For each input value, CPUID returns 16 ASCII characters using EAX,
-EBX, ECX, and EDX. The returned string will be NULL-terminated.
-
-Table 3-23 shows the brand string that is returned by the first processor in
-the Pentium 4 processor family.
-
-
-### Table 3-23. Processor Brand String Returned with Pentium 4 Processor
-   | |  
----- | -----
- EAX Input Value| Return Values                              | ASCII Equivalent                      
- Table 3-23.    | Processor Brand String Returned with       | (Contd.) ””””“(let”“P )R”“itne”“R(mu”“
-                | Pentium 4 Processor EAX = 20202020H        | 4 )”“ UPC”“0051”“\\0zHM”               
-                | EBX = 20202020H ECX = 20202020H EDX        |                                       
-                | = 6E492020H EAX = 286C6574H EBX = 50202952H|                                       
-                | ECX = 69746E65H EDX = 52286D75H EAX        |                                       
-                | = 20342029H EBX = 20555043H ECX = 30303531H|                                       
-                | EDX = 007A484DH                            |                                       
-
-### Extracting the Maximum Processor Frequency from Brand Strings
-processor operating frequency from the processor brand string.
-
-
-<aside class="notification">
-NOTE:
-When a frequency is given in a brand string, it is the maximum qualified frequency
-of the processor, not the frequency at which the processor is currently running.
-</aside>
-
-   | |  
----- | -----
- Figure 3-9.| Algorithm for Extracting Maximum Processor
-            | Frequency                                 
-
-### The Processor Brand Index Method
-The brand index method (introduced with Pentium® III Xeon® processors) provides
-an entry point into a brand identification table that is maintained in memory
-by system software and is accessible from system- and user-level code. In this
-table, each brand index is associate with an ASCII brand identification string
-that identifies the official Intel family and model number of a processor.
-
-When CPUID executes with EAX set to 1, the processor returns a brand index to
-the low byte in EBX. Software can then use this index to locate the brand identification
-string for the processor in the brand identification table. The first entry
-(brand index 0) in this table is reserved, allowing for backward compatibility
-with processors that do not support the brand identification feature. Starting
-with processor signature family ID = 0FH, model = 03H, brand index method is
-no longer supported. Use brand string method instead.
-
-Table 3-24 shows brand indices that have identification strings associated with
-them.
-
-
-### Table 3-24. Mapping of Brand Indices; and Intel 64 and IA-32 Processor Brand Strings
-   | |  
----- | -----
- Brand Index This processor does not         | Brand String                         
- support the brand identification feature    |                                      
- Intel(R) Celeron(R) processor1 Intel(R)     |                                      
- Pentium(R) III processor1                   |                                      
- Table 3-24. Intel(R) Pentium(R) III         | Mapping of Brand Indices; and Intel  
- Xeon(R) processor; If processor signature   | 64 and IA-32 Processor Brand Strings 
- = 000006B1h, then Intel(R) Celeron(R)       | NOTES: 1. Indicates versions of these
- processor Intel(R) Pentium(R) III processor | processors that were introduced after
- Mobile Intel(R) Pentium(R) III processor-M  | the Pentium III                      
- Mobile Intel(R) Celeron(R) processor1       |                                      
- Intel(R) Pentium(R) 4 processor Intel(R)    |                                      
- Pentium(R) 4 processor Intel(R) Celeron(R)  |                                      
- processor1 Intel(R) Xeon(R) processor;      |                                      
- If processor signature = 00000F13h,         |                                      
- then Intel(R) Xeon(R) processor MP Intel(R) |                                      
- Xeon(R) processor MP Mobile Intel(R)        |                                      
- Pentium(R) 4 processor-M; If processor      |                                      
- signature = 00000F13h, then Intel(R)        |                                      
- Xeon(R) processor Mobile Intel(R) Celeron(R)|                                      
- processor1 Mobile Genuine Intel(R) processor|                                      
- Intel(R) Celeron(R) M processor Mobile      |                                      
- Intel(R) Celeron(R) processor1 Intel(R)     |                                      
- Celeron(R) processor Mobile Genuine         |                                      
- Intel(R) processor Intel(R) Pentium(R)      |                                      
- M processor Mobile Intel(R) Celeron(R)      |                                      
- processor1 RESERVED                         |                                      
-
-### IA-32 Architecture Compatibility
-CPUID is not supported in early models of the Intel486 processor or in any IA-32
-processor earlier than the Intel486 processor.
-
 > Operation
 
 ``` slim
-
 IA32_BIOS_SIGN_ID MSR <- Update with installed microcode revision number;
 CASE (EAX) OF
 ```
@@ -1463,6 +989,477 @@ ECX, and EDX registers. The information is reported in encoded form and fall
  - The least-significant byte in register EAX (register AL) indicates the number
 of times the CPUID instruction must be executed with an input value of 2 to
 get a complete description of the processor's TLB/Cache/Prefetch hardware. The
+Intel Xeon processor 7400 series will return a 1.
+ - The most significant bit (bit 31) of each register indicates whether the register
+contains valid information (set to 0) or is reserved (set to 1).
+ - If a register contains valid information, the information is contained in 1
+byte descriptors. There are four types of encoding values for the byte descriptor,
+the encoding type is noted in the second column of Table 3-22. Table 3-22 lists
+the encoding of these descriptors. Note that the order of descriptors in the
+EAX, EBX, ECX, and EDX registers is not defined; that is, specific bytes are
+not designated to contain descriptors for specific cache, prefetch, or TLB types.
+The descriptors may appear in any order. Note also a processor may report a
+general descriptor type (FFH) and not report any byte descriptor of “cache type”
+via CPUID leaf 2. Table 3-22. Encoding of CPUID Leaf 2 Descriptors
+
+   | |  
+---- | -----
+ Value 00H 01H 02H 03H 04H 05H 06H 08H     | Type Null descriptor, this byte contains       | Description (Contd.)                     
+ 09H 0AH 0BH 0CH 0DH 0EH 1DH 21H 22H       | no information Instruction TLB: 4 KByte        |                                          
+ 23H 24H 25H 29H 2CH 30H 40H 41H 42H       | pages, 4-way set associative, 32 entries       |                                          
+ 43H 44H 45H 46H 47H 48H 49H 4AH 4BH       | Instruction TLB: 4 MByte pages, fully          |                                          
+ 4CH 4DH 4EH 4FH                           | associative, 2 entries Data TLB: 4 KByte       |                                          
+                                           | pages, 4-way set associative, 64 entries       |                                          
+                                           | Data TLB: 4 MByte pages, 4-way set associative,|                                          
+                                           | 8 entries Data TLB1: 4 MByte pages,            |                                          
+                                           | 4-way set associative, 32 entries 1st-level    |                                          
+                                           | instruction cache: 8 KBytes, 4-way set         |                                          
+                                           | associative, 32 byte line size 1st-level       |                                          
+                                           | instruction cache: 16 KBytes, 4-way            |                                          
+                                           | set associative, 32 byte line size 1st-level   |                                          
+                                           | instruction cache: 32KBytes, 4-way set         |                                          
+                                           | associative, 64 byte line size 1st-level       |                                          
+                                           | data cache: 8 KBytes, 2-way set associative,   |                                          
+                                           | 32 byte line size Instruction TLB: 4           |                                          
+                                           | MByte pages, 4-way set associative,            |                                          
+                                           | 4 entries 1st-level data cache: 16 KBytes,     |                                          
+                                           | 4-way set associative, 32 byte line            |                                          
+                                           | size 1st-level data cache: 16 KBytes,          |                                          
+                                           | 4-way set associative, 64 byte line            |                                          
+                                           | size 1st-level data cache: 24 KBytes,          |                                          
+                                           | 6-way set associative, 64 byte line            |                                          
+                                           | size 2nd-level cache: 128 KBytes, 2-way        |                                          
+                                           | set associative, 64 byte line size 2nd-level   |                                          
+                                           | cache: 256 KBytes, 8-way set associative,      |                                          
+                                           | 64 byte line size 3rd-level cache: 512         |                                          
+                                           | KBytes, 4-way set associative, 64 byte         |                                          
+                                           | line size, 2 lines per sector 3rd-level        |                                          
+                                           | cache: 1 MBytes, 8-way set associative,        |                                          
+                                           | 64 byte line size, 2 lines per sector          |                                          
+                                           | 2nd-level cache: 1 MBytes, 16-way set          |                                          
+                                           | associative, 64 byte line size 3rd-level       |                                          
+                                           | cache: 2 MBytes, 8-way set associative,        |                                          
+                                           | 64 byte line size, 2 lines per sector          |                                          
+                                           | 3rd-level cache: 4 MBytes, 8-way set           |                                          
+                                           | associative, 64 byte line size, 2 lines        |                                          
+                                           | per sector 1st-level data cache: 32            |                                          
+                                           | KBytes, 8-way set associative, 64 byte         |                                          
+                                           | line size 1st-level instruction cache:         |                                          
+                                           | 32 KBytes, 8-way set associative, 64           |                                          
+                                           | byte line size No 2nd-level cache or,          |                                          
+                                           | if processor contains a valid 2nd-level        |                                          
+                                           | cache, no 3rd-level cache 2nd-level            |                                          
+                                           | cache: 128 KBytes, 4-way set associative,      |                                          
+                                           | 32 byte line size 2nd-level cache: 256         |                                          
+                                           | KBytes, 4-way set associative, 32 byte         |                                          
+                                           | line size 2nd-level cache: 512 KBytes,         |                                          
+                                           | 4-way set associative, 32 byte line            |                                          
+                                           | size 2nd-level cache: 1 MByte, 4-way           |                                          
+                                           | set associative, 32 byte line size 2nd-level   |                                          
+                                           | cache: 2 MByte, 4-way set associative,         |                                          
+                                           | 32 byte line size 3rd-level cache: 4           |                                          
+                                           | MByte, 4-way set associative, 64 byte          |                                          
+                                           | line size 3rd-level cache: 8 MByte,            |                                          
+                                           | 8-way set associative, 64 byte line            |                                          
+                                           | size 2nd-level cache: 3MByte, 12-way           |                                          
+                                           | set associative, 64 byte line size 3rd-level   |                                          
+                                           | cache: 4MB, 16-way set associative,            |                                          
+                                           | 64-byte line size (Intel Xeon processor        |                                          
+                                           | MP, Family 0FH, Model 06H); 2nd-level          |                                          
+                                           | cache: 4 MByte, 16-way set associative,        |                                          
+                                           | 64 byte line size 3rd-level cache: 6MByte,     |                                          
+                                           | 12-way set associative, 64 byte line           |                                          
+                                           | size 3rd-level cache: 8MByte, 16-way           |                                          
+                                           | set associative, 64 byte line size 3rd-level   |                                          
+                                           | cache: 12MByte, 12-way set associative,        |                                          
+                                           | 64 byte line size 3rd-level cache: 16MByte,    |                                          
+                                           | 16-way set associative, 64 byte line           |                                          
+                                           | size 2nd-level cache: 6MByte, 24-way           |                                          
+                                           | set associative, 64 byte line size Instruction |                                          
+                                           | TLB: 4 KByte pages, 32 entries Table           |                                          
+                                           | 3-22.                                          |                                          
+ Value 50H 51H 52H 55H 56H 57H 59H 5AH     | Type Instruction TLB: 4 KByte and 2-MByte      | Description (Contd.)                     
+ 5BH 5CH 5DH 60H 61H 63H 66H 67H 68H       | or 4-MByte pages, 64 entries Instruction       |                                          
+ 70H 71H 72H 76H 78H 79H 7AH 7BH 7CH       | TLB: 4 KByte and 2-MByte or 4-MByte            |                                          
+ 7DH 7FH 80H 82H 83H 84H 85H 86H 87H       | pages, 128 entries Instruction TLB:            |                                          
+ A0H B0H B1H B2H B3H B4H                   | 4 KByte and 2-MByte or 4-MByte pages,          |                                          
+                                           | 256 entries Instruction TLB: 2-MByte           |                                          
+                                           | or 4-MByte pages, fully associative,           |                                          
+                                           | 7 entries Data TLB0: 4 MByte pages,            |                                          
+                                           | 4-way set associative, 16 entries Data         |                                          
+                                           | TLB0: 4 KByte pages, 4-way associative,        |                                          
+                                           | 16 entries Data TLB0: 4 KByte pages,           |                                          
+                                           | fully associative, 16 entries Data TLB0:       |                                          
+                                           | 2-MByte or 4 MByte pages, 4-way set            |                                          
+                                           | associative, 32 entries Data TLB: 4            |                                          
+                                           | KByte and 4 MByte pages, 64 entries            |                                          
+                                           | Data TLB: 4 KByte and 4 MByte pages,128        |                                          
+                                           | entries Data TLB: 4 KByte and 4 MByte          |                                          
+                                           | pages,256 entries 1st-level data cache:        |                                          
+                                           | 16 KByte, 8-way set associative, 64            |                                          
+                                           | byte line size Instruction TLB: 4 KByte        |                                          
+                                           | pages, fully associative, 48 entries           |                                          
+                                           | Data TLB: 1 GByte pages, 4-way set associative,|                                          
+                                           | 4 entries 1st-level data cache: 8 KByte,       |                                          
+                                           | 4-way set associative, 64 byte line            |                                          
+                                           | size 1st-level data cache: 16 KByte,           |                                          
+                                           | 4-way set associative, 64 byte line            |                                          
+                                           | size 1st-level data cache: 32 KByte,           |                                          
+                                           | 4-way set associative, 64 byte line            |                                          
+                                           | size Trace cache: 12 K-μop, 8-way set          |                                          
+                                           | associative Trace cache: 16 K-μop, 8-way       |                                          
+                                           | set associative Trace cache: 32 K-μop,         |                                          
+                                           | 8-way set associative Instruction TLB:         |                                          
+                                           | 2M/4M pages, fully associative, 8 entries      |                                          
+                                           | 2nd-level cache: 1 MByte, 4-way set            |                                          
+                                           | associative, 64byte line size 2nd-level        |                                          
+                                           | cache: 128 KByte, 8-way set associative,       |                                          
+                                           | 64 byte line size, 2 lines per sector          |                                          
+                                           | 2nd-level cache: 256 KByte, 8-way set          |                                          
+                                           | associative, 64 byte line size, 2 lines        |                                          
+                                           | per sector 2nd-level cache: 512 KByte,         |                                          
+                                           | 8-way set associative, 64 byte line            |                                          
+                                           | size, 2 lines per sector 2nd-level cache:      |                                          
+                                           | 1 MByte, 8-way set associative, 64 byte        |                                          
+                                           | line size, 2 lines per sector 2nd-level        |                                          
+                                           | cache: 2 MByte, 8-way set associative,         |                                          
+                                           | 64byte line size 2nd-level cache: 512          |                                          
+                                           | KByte, 2-way set associative, 64-byte          |                                          
+                                           | line size 2nd-level cache: 512 KByte,          |                                          
+                                           | 8-way set associative, 64-byte line            |                                          
+                                           | size 2nd-level cache: 256 KByte, 8-way         |                                          
+                                           | set associative, 32 byte line size 2nd-level   |                                          
+                                           | cache: 512 KByte, 8-way set associative,       |                                          
+                                           | 32 byte line size 2nd-level cache: 1           |                                          
+                                           | MByte, 8-way set associative, 32 byte          |                                          
+                                           | line size 2nd-level cache: 2 MByte,            |                                          
+                                           | 8-way set associative, 32 byte line            |                                          
+                                           | size 2nd-level cache: 512 KByte, 4-way         |                                          
+                                           | set associative, 64 byte line size 2nd-level   |                                          
+                                           | cache: 1 MByte, 8-way set associative,         |                                          
+                                           | 64 byte line size DTLB: 4k pages, fully        |                                          
+                                           | associative, 32 entries Instruction            |                                          
+                                           | TLB: 4 KByte pages, 4-way set associative,     |                                          
+                                           | 128 entries Instruction TLB: 2M pages,         |                                          
+                                           | 4-way, 8 entries or 4M pages, 4-way,           |                                          
+                                           | 4 entries Instruction TLB: 4KByte pages,       |                                          
+                                           | 4-way set associative, 64 entries Data         |                                          
+                                           | TLB: 4 KByte pages, 4-way set associative,     |                                          
+                                           | 128 entries Data TLB1: 4 KByte pages,          |                                          
+                                           | 4-way associative, 256 entries Table           |                                          
+                                           | 3-22.                                          |                                          
+ Value B5H B6H BAH C0H C1H C2H CAH D0H     | Type Instruction TLB: 4KByte pages,            | Description Example 3-1. The first member
+ D1H D2H D6H D7H D8H DCH DDH DEH E2H       | 8-way set associative, 64 entries Instruction  | of the family of Pentium 4 processors    
+ E3H E4H EAH EBH ECH F0H F1H FFH EAX       | TLB: 4KByte pages, 8-way set associative,      | returns the following information about  
+ EBX ECX EDX The least-significant byte    | 128 entries Data TLB1: 4 KByte pages,          | caches and TLBs when the CPUID executes  
+ (byte 0) of register EAX is set to 01H.   | 4-way associative, 64 entries Data TLB:        | with an input value of 2: Which means:   
+ This indicates that CPUID needs to be     | 4 KByte and 4 MByte pages, 4-way associative,  | •••••                                    
+ executed once with an input value of      | 8 entries Shared 2nd-Level TLB: 4 KByte/2MByte |                                          
+ 2 to retrieve complete information about  | pages, 8-way associative, 1024 entries         |                                          
+ caches and TLBs. The most-significant     | DTLB: 4 KByte/2 MByte pages, 4-way associative,|                                          
+ bit of all four registers (EAX, EBX,      | 16 entries Shared 2nd-Level TLB: 4 KByte       |                                          
+ ECX, and EDX) is set to 0, indicating     | pages, 4-way associative, 512 entries          |                                          
+ that each register contains valid 1-byte  | 3rd-level cache: 512 KByte, 4-way set          |                                          
+ descriptors. Bytes 1, 2, and 3 of register| associative, 64 byte line size 3rd-level       |                                          
+ EAX indicate that the processor has:      | cache: 1 MByte, 4-way set associative,         |                                          
+  -  -  - The descriptors in registers EBX       | 64 byte line size 3rd-level cache: 2           |                                          
+ and ECX are valid, but contain NULL       | MByte, 4-way set associative, 64 byte          |                                          
+ descriptors. Bytes 0, 1, 2, and 3 of      | line size 3rd-level cache: 1 MByte,            |                                          
+ register EDX indicate that the processor  | 8-way set associative, 64 byte line            |                                          
+ has:  -  -  -  -                                  | size 3rd-level cache: 2 MByte, 8-way           |                                          
+                                           | set associative, 64 byte line size 3rd-level   |                                          
+                                           | cache: 4 MByte, 8-way set associative,         |                                          
+                                           | 64 byte line size 3rd-level cache: 1.5         |                                          
+                                           | MByte, 12-way set associative, 64 byte         |                                          
+                                           | line size 3rd-level cache: 3 MByte,            |                                          
+                                           | 12-way set associative, 64 byte line           |                                          
+                                           | size 3rd-level cache: 6 MByte, 12-way          |                                          
+                                           | set associative, 64 byte line size 3rd-level   |                                          
+                                           | cache: 2 MByte, 16-way set associative,        |                                          
+                                           | 64 byte line size 3rd-level cache: 4           |                                          
+                                           | MByte, 16-way set associative, 64 byte         |                                          
+                                           | line size 3rd-level cache: 8 MByte,            |                                          
+                                           | 16-way set associative, 64 byte line           |                                          
+                                           | size 3rd-level cache: 12MByte, 24-way          |                                          
+                                           | set associative, 64 byte line size 3rd-level   |                                          
+                                           | cache: 18MByte, 24-way set associative,        |                                          
+                                           | 64 byte line size 3rd-level cache: 24MByte,    |                                          
+                                           | 24-way set associative, 64 byte line           |                                          
+                                           | size 64-Byte prefetching 128-Byte prefetching  |                                          
+                                           | CPUID leaf 2 does not report cache descriptor  |                                          
+                                           | information, use CPUID leaf 4 to query         |                                          
+                                           | cache parameters Example of Cache and          |                                          
+                                           | TLB Interpretation 66 5B 50 01H 0H 0H          |                                          
+                                           | 00 7A 70 00H 50H - a 64-entry instruction      |                                          
+                                           | TLB, for mapping 4-KByte and 2-MByte           |                                          
+                                           | or 4-MByte pages. 5BH - a 64-entry data        |                                          
+                                           | TLB, for mapping 4-KByte and 4-MByte           |                                          
+                                           | pages. 66H - an 8-KByte 1st level data         |                                          
+                                           | cache, 4-way set associative, with a           |                                          
+                                           | 64-Byte cache line size. 00H - NULL            |                                          
+                                           | descriptor. 70H - Trace cache: 12 K-μop,       |                                          
+                                           | 8-way set associative. 7AH - a 256-KByte       |                                          
+                                           | 2nd level cache, 8-way set associative,        |                                          
+                                           | with a sectored, 64-byte cache line            |                                          
+                                           | size. 00H - NULL descriptor.                   |                                          
+
+### INPUT EAX = 04H: Returns Deterministic Cache Parameters for Each Level
+When CPUID executes with EAX set to 04H and ECX contains an index value, the
+processor returns encoded data that describe a set of deterministic cache parameters
+(for the cache level associated with the input in ECX). Valid index values start
+from 0.
+
+Software can enumerate the deterministic cache parameters for each level of
+the cache hierarchy starting with an index value of 0, until the parameters
+report the value associated with the cache type field is 0. The architecturally
+defined fields reported by deterministic cache parameters are documented in
+Table 3-17.
+
+This Cache Size in Bytes
+
+= (Ways + 1) * (Partitions + 1) * (Line_Size + 1) * (Sets + 1)
+
+= (EBX[31:22] + 1) * (EBX[21:12] + 1) * (EBX[11:0] + 1) * (ECX + 1)
+
+The CPUID leaf 04H also reports data that can be used to derive the topology
+of processor cores in a physical package. This information is constant for all
+valid index values. Software can query the raw data reported by executing CPUID
+with EAX=04H and ECX=0 and use it as part of the topology enumeration algorithm
+described in Chapter 8, “Multiple-Processor Management,” in the Intel® 64 and
+IA-32 Architectures Software Developer's Manual, Volume 3A.
+
+
+### INPUT EAX = 05H: Returns MONITOR and MWAIT Features
+When CPUID executes with EAX set to 05H, the processor returns information about
+features available to MONITOR/MWAIT instructions. The MONITOR instruction is
+used for address-range monitoring in conjunction with MWAIT instruction. The
+MWAIT instruction optionally provides additional extensions for advanced power
+management. See Table 3-17.
+
+
+### INPUT EAX = 06H: Returns Thermal and Power Management Features
+When CPUID executes with EAX set to 06H, the processor returns information about
+thermal and power management features. See Table 3-17.
+
+
+### INPUT EAX = 07H: Returns Structured Extended Feature Enumeration Information
+When CPUID executes with EAX set to 07H and ECX = 0, the processor returns information
+about the maximum input value for sub-leaves that contain extended feature flags.
+See Table 3-17.
+
+When CPUID executes with EAX set to 07H and the input value of ECX is invalid
+(see leaf 07H entry in Table 3-17), the processor returns 0 in EAX/EBX/ECX/EDX.
+In subleaf 0, EAX returns the maximum input value of the highest leaf 7 sub-leaf,
+and EBX, ECX & EDX contain information of extended feature flags.
+
+
+### INPUT EAX = 09H: Returns Direct Cache Access Information
+When CPUID executes with EAX set to 09H, the processor returns information about
+Direct Cache Access capabilities. See Table 3-17.
+
+
+### INPUT EAX = 0AH: Returns Architectural Performance Monitoring Features
+When CPUID executes with EAX set to 0AH, the processor returns information about
+support for architectural performance monitoring capabilities. Architectural
+performance monitoring is supported if the version ID (see Table 3-17) is greater
+than Pn 0. See Table 3-17.
+
+For each version of architectural performance monitoring capability, software
+must enumerate this leaf to discover the programming facilities and the architectural
+performance events available in the processor. The details are described in
+Chapter 23, “Introduction to Virtual-Machine Extensions,” in the Intel® 64 and
+IA-32 Architectures Software Developer's Manual, Volume 3C.
+
+
+### INPUT EAX = 0BH: Returns Extended Topology Information
+When CPUID executes with EAX set to 0BH, the processor returns information about
+extended topology enumeration data. Software must detect the presence of CPUID
+leaf 0BH by verifying (a) the highest leaf index supported by CPUID is >= 0BH,
+and (b) CPUID.0BH:EBX[15:0] reports a non-zero value. See Table 3-17.
+
+
+### INPUT EAX = 0DH: Returns Processor Extended States Enumeration Information
+When CPUID executes with EAX set to 0DH and ECX = 0, the processor returns information
+about the bit-vector representation of all processor state extensions that are
+supported in the processor and storage size requirements of the XSAVE/XRSTOR
+area. See Table 3-17.
+
+When CPUID executes with EAX set to 0DH and ECX = n (n > 1, and is a valid sub-leaf
+index), the processor returns information about the size and offset of each
+processor extended state save area within the XSAVE/XRSTOR area. See Table 3-17.
+Software can use the forward-extendable technique depicted below to query the
+valid sub-leaves and obtain size and offset information for each processor extended
+### state save area
+
+For i = 2 to 62 // sub-leaf 1 is reserved IF (CPUID.(EAX=0DH, ECX=0):VECTOR[i]
+= 1 ) // VECTOR is the 64-bit value of EDX:EAX Execute CPUID.(EAX=0DH, ECX =
+i) to examine size and offset for sub-leaf i; FI;
+
+
+### INPUT EAX = 0FH: Returns Platform Quality of Service (PQoS) Monitoring Enumeration Information
+When CPUID executes with EAX set to 0FH and ECX = 0, the processor returns information
+about the bit-vector representation of QoS monitoring resource types that are
+supported in the processor and maximum range of RMID values the processor can
+use to monitor of any supported resource types. Each bit, starting from bit
+1, corresponds to a specific resource type if the bit is set. The bit position
+corresponds to the sub-leaf index (or ResID) that software must use to query
+QoS monitoring capability available for that type. See Table 3-17.
+
+When CPUID executes with EAX set to 0FH and ECX = n (n >= 1, and is a valid
+ResID), the processor returns information software can use to program IA32_PQR_ASSOC,
+IA32_QM_EVTSEL MSRs before reading QoS data from the IA32_QM_CTR MSR.
+
+
+### INPUT EAX = 10H: Returns Platform Quality of Service (PQoS) Enforcement Enumeration Information
+When CPUID executes with EAX set to 10H and ECX = 0, the processor returns information
+about the bit-vector representation of QoS Enforcement resource types that are
+supported in the processor. Each bit, starting from bit 1, corresponds to a
+specific resource type if the bit is set. The bit position corresponds to the
+sub-leaf index (or ResID) that software must use to query QoS enforcement capability
+available for that type. See Table 3-17.
+
+When CPUID executes with EAX set to 10H and ECX = n (n >= 1, and is a valid
+ResID), the processor returns information about available classes of service
+and range of QoS mask MSRs that software can use to configure each class of
+services using capability bit masks in the QoS Mask registers, IA32_resourceType_Mask_n.
+
+
+### METHODS FOR RETURNING BRANDING INFORMATION
+### Use the following techniques to access branding information
+
+   | |  
+---- | -----
+ 1.| Processor brand string method; this    
+   | method also returns the processor's    
+   | maximum operating frequency            
+ 2.| Processor brand index; this method uses
+   | a software supplied brand string table.
+These two methods are discussed in the following sections. For methods that
+are available in early processors, see Section: “Identification of Earlier IA-32
+Processors” in Chapter 17 of the Intel® 64 and IA-32 Architectures Software
+Developer's Manual, Volume 1.
+
+
+### The Processor Brand String Method
+brand identification software should execute this algorithm on all Intel 64
+and IA-32 processors.
+
+This method (introduced with Pentium 4 processors) returns an ASCII brand identification
+string and the maximum operating frequency of the processor to the EAX, EBX,
+ECX, and EDX registers.
+
+Input: EAX=0x80000000
+
+CPUID
+
+   | |  
+---- | -----
+ False| Processor Brand String Not Supported
+CPUID True ≥Function Extended Supported
+
+EAX Return Value =Max. Extended CPUID Function Index
+
+True
+
+   | |  
+---- | -----
+ IF (EAX Return Value ≥ 0x80000004)| Processor Brand String Supported
+OM15194
+
+   | |  
+---- | -----
+ Figure 3-8.| Determination of Support for the Processor
+            | Brand String                              
+
+### How Brand Strings Work
+To use the brand string method, execute CPUID with EAX input of 8000002H through
+80000004H. For each input value, CPUID returns 16 ASCII characters using EAX,
+EBX, ECX, and EDX. The returned string will be NULL-terminated.
+
+Table 3-23 shows the brand string that is returned by the first processor in
+the Pentium 4 processor family.
+
+
+### Table 3-23. Processor Brand String Returned with Pentium 4 Processor
+   | |  
+---- | -----
+ EAX Input Value| Return Values                              | ASCII Equivalent                      
+ Table 3-23.    | Processor Brand String Returned with       | (Contd.) ””””“(let”“P )R”“itne”“R(mu”“
+                | Pentium 4 Processor EAX = 20202020H        | 4 )”“ UPC”“0051”“\\0zHM”               
+                | EBX = 20202020H ECX = 20202020H EDX        |                                       
+                | = 6E492020H EAX = 286C6574H EBX = 50202952H|                                       
+                | ECX = 69746E65H EDX = 52286D75H EAX        |                                       
+                | = 20342029H EBX = 20555043H ECX = 30303531H|                                       
+                | EDX = 007A484DH                            |                                       
+
+### Extracting the Maximum Processor Frequency from Brand Strings
+processor operating frequency from the processor brand string.
+
+
+<aside class="notification">
+NOTE:
+When a frequency is given in a brand string, it is the maximum qualified frequency
+of the processor, not the frequency at which the processor is currently running.
+</aside>
+
+   | |  
+---- | -----
+ Figure 3-9.| Algorithm for Extracting Maximum Processor
+            | Frequency                                 
+
+### The Processor Brand Index Method
+The brand index method (introduced with Pentium® III Xeon® processors) provides
+an entry point into a brand identification table that is maintained in memory
+by system software and is accessible from system- and user-level code. In this
+table, each brand index is associate with an ASCII brand identification string
+that identifies the official Intel family and model number of a processor.
+
+When CPUID executes with EAX set to 1, the processor returns a brand index to
+the low byte in EBX. Software can then use this index to locate the brand identification
+string for the processor in the brand identification table. The first entry
+(brand index 0) in this table is reserved, allowing for backward compatibility
+with processors that do not support the brand identification feature. Starting
+with processor signature family ID = 0FH, model = 03H, brand index method is
+no longer supported. Use brand string method instead.
+
+Table 3-24 shows brand indices that have identification strings associated with
+them.
+
+
+### Table 3-24. Mapping of Brand Indices; and Intel 64 and IA-32 Processor Brand Strings
+   | |  
+---- | -----
+ Brand Index This processor does not         | Brand String                         
+ support the brand identification feature    |                                      
+ Intel(R) Celeron(R) processor1 Intel(R)     |                                      
+ Pentium(R) III processor1                   |                                      
+ Table 3-24. Intel(R) Pentium(R) III         | Mapping of Brand Indices; and Intel  
+ Xeon(R) processor; If processor signature   | 64 and IA-32 Processor Brand Strings 
+ = 000006B1h, then Intel(R) Celeron(R)       | NOTES: 1. Indicates versions of these
+ processor Intel(R) Pentium(R) III processor | processors that were introduced after
+ Mobile Intel(R) Pentium(R) III processor-M  | the Pentium III                      
+ Mobile Intel(R) Celeron(R) processor1       |                                      
+ Intel(R) Pentium(R) 4 processor Intel(R)    |                                      
+ Pentium(R) 4 processor Intel(R) Celeron(R)  |                                      
+ processor1 Intel(R) Xeon(R) processor;      |                                      
+ If processor signature = 00000F13h,         |                                      
+ then Intel(R) Xeon(R) processor MP Intel(R) |                                      
+ Xeon(R) processor MP Mobile Intel(R)        |                                      
+ Pentium(R) 4 processor-M; If processor      |                                      
+ signature = 00000F13h, then Intel(R)        |                                      
+ Xeon(R) processor Mobile Intel(R) Celeron(R)|                                      
+ processor1 Mobile Genuine Intel(R) processor|                                      
+ Intel(R) Celeron(R) M processor Mobile      |                                      
+ Intel(R) Celeron(R) processor1 Intel(R)     |                                      
+ Celeron(R) processor Mobile Genuine         |                                      
+ Intel(R) processor Intel(R) Pentium(R)      |                                      
+ M processor Mobile Intel(R) Celeron(R)      |                                      
+ processor1 RESERVED                         |                                      
+
+### IA-32 Architecture Compatibility
+CPUID is not supported in early models of the Intel486 processor or in any IA-32
+processor earlier than the Intel486 processor.
+
 
 
 ###   EAX = 0

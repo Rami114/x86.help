@@ -1,21 +1,8 @@
 ## HLT - Halt
 
-> Intel Hyper-Threading Technology, only the logical processor that executes the
-
-``` slim
-instruction is halted. The other logical processors in the physical processor
-remain active, unless they are each individually halted by executing a HLT instruction.
-
-The HLT instruction is a privileged instruction. When the processor is running
-in protected or virtual-8086 mode, the privilege level of a program or procedure
-must be 0 to execute the HLT instruction.
-
-This instruction's operation is the same in non-64-bit modes and 64-bit mode.
-
 > Operation
 
 ``` slim
-
 Enter Halt state;
 
 ```
@@ -37,6 +24,16 @@ NMI) is used to resume execution after a HLT instruction, the saved instruction
 pointer (CS:EIP) points to the instruction following the HLT instruction.
 
 When a HLT instruction is executed on an Intel 64 or IA-32 processor supporting
+Intel Hyper-Threading Technology, only the logical processor that executes the
+instruction is halted. The other logical processors in the physical processor
+remain active, unless they are each individually halted by executing a HLT instruction.
+
+The HLT instruction is a privileged instruction. When the processor is running
+in protected or virtual-8086 mode, the privilege level of a program or procedure
+must be 0 to execute the HLT instruction.
+
+This instruction's operation is the same in non-64-bit modes and 64-bit mode.
+
 
 
 ### Flags Affected

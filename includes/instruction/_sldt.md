@@ -1,27 +1,8 @@
 ## SLDT - Store Local Descriptor Table Register
 
-> Intel386 processors. When the destination operand is a memory location, the
-
-``` slim
-segment selector is written to memory as a 16-bit quantity, regardless of the
-operand size.
-
-In compatibility mode, when the destination operand is a 32-bit register, the
-16-bit segment selector is copied into the low-order 16 bits of the register.
-The high-order 16 bits of the register are cleared. When the destination operand
-is a memory location, the segment selector is written to memory as a 16-bit
-quantity, regardless of the operand size.
-
-In 64-bit mode, using a REX prefix in the form of REX.R permits access to additional
-registers (R8-R15). The behavior of SLDT with a 64-bit register is to zero-extend
-the 16-bit selector and store it in the register. If the destination is memory
-and operand size is 64, SLDT will write the 16-bit selector to memory as a 16-bit
-quantity, regardless of the operand size
-
 > Operation
 
 ``` slim
-
 DEST <- LDTR(SegmentSelector);
 
 ```
@@ -49,6 +30,22 @@ Outside IA-32e mode, when the destination operand is a 32-bit register, the
 16-bit segment selector is copied into the low-order 16 bits of the register.
 The high-order 16 bits of the register are cleared for the Pentium 4, Intel
 Xeon, and P6 family processors. They are undefined for Pentium, Intel486, and
+Intel386 processors. When the destination operand is a memory location, the
+segment selector is written to memory as a 16-bit quantity, regardless of the
+operand size.
+
+In compatibility mode, when the destination operand is a 32-bit register, the
+16-bit segment selector is copied into the low-order 16 bits of the register.
+The high-order 16 bits of the register are cleared. When the destination operand
+is a memory location, the segment selector is written to memory as a 16-bit
+quantity, regardless of the operand size.
+
+In 64-bit mode, using a REX prefix in the form of REX.R permits access to additional
+registers (R8-R15). The behavior of SLDT with a 64-bit register is to zero-extend
+the 16-bit selector and store it in the register. If the destination is memory
+and operand size is 64, SLDT will write the 16-bit selector to memory as a 16-bit
+quantity, regardless of the operand size
+
 
 
 ### Flags Affected

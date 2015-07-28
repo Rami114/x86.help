@@ -1,15 +1,8 @@
 ## BSWAP - Byte Swap
 
-> Intel486™ processor family. For compatibility with this instruction, software
-
-``` slim
-should include functionally equivalent code for execution on Intel processors
-earlier than the Intel486 processor family.
-
 > Operation
 
 ``` slim
-
 TEMP <- DEST
 IF 64-bit mode AND OperandSize = 64
   THEN
@@ -60,6 +53,10 @@ summary chart at the beginning of this section for encoding data and limits.
 
 ### IA-32 Architecture Legacy Compatibility
 The BSWAP instruction is not supported on IA-32 processors earlier than the
+Intel486™ processor family. For compatibility with this instruction, software
+should include functionally equivalent code for execution on Intel processors
+earlier than the Intel486 processor family.
+
 
 
 ### Flags Affected
