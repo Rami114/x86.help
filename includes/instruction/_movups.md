@@ -14,6 +14,17 @@ DEST[VLMAX-1:128] <- 0
 VMOVUPS (VEX.256 encoded version)
 DEST[255:0] <- SRC[255:0]
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ MOVUPS: | __m128 _mm_loadu_ps(double \* p)      
+ MOVUPS: | void _mm_storeu_ps(double \*p, __m128 
+         | a)                                   
+ VMOVUPS:| __m256 _mm256_loadu_ps (__m256 \* p); 
+ VMOVUPS:| _mm256_storeu_ps(_m256 \*p, __m256 a);
+
 ```
 
  Opcode/Instruction                          | Op/En| 64/32-bit Mode| CPUID Feature Flag| Description                                
@@ -50,7 +61,7 @@ corresponding YMM destination register remain unchanged.
 
 When the source or destination operand is a memory operand, the operand may
 be unaligned on a 16-byte boundary without causing a general-protection exception
-(#GP) to be generated.1
+(**``#GP)``** to be generated.1
 
 To move packed single-precision floating-point values to and from memory locations
 that are known to be aligned on 16-byte boundaries, use the MOVAPS instruction.
@@ -58,7 +69,7 @@ that are known to be aligned on 16-byte boundaries, use the MOVAPS instruction.
 While executing in 16-bit addressing mode, a linear address for a 128-bit data
 access that overlaps the end of a 16bit segment is not allowed and is defined
 as reserved behavior. A specific processor implementation may or may not generate
-a general-protection exception (#GP) in this situation, and the address that
+a general-protection exception (**``#GP)``** in this situation, and the address that
 spans the end of the segment may or may not wrap around to the beginning of
 the segment. VEX.128 encoded version: Bits (VLMAX-1:128) of the destination
 YMM register are zeroed.
@@ -68,7 +79,7 @@ values from the source operand (second operand) to the destination operand (firs
 operand). This instruction can be used to load a YMM register from a 256-bit
 memory location, to store the contents of a YMM register into a 256-bit memory
 location, or to move data between two YMM registers. Note: In VEX-encoded versions,
-VEX.vvvv is reserved and must be 1111b otherwise instructions will #UD.
+VEX.vvvv is reserved and must be 1111b otherwise instructions will **``#UD.``**
 
    | |  
 ---- | -----
@@ -80,21 +91,12 @@ VEX.vvvv is reserved and must be 1111b otherwise instructions will #UD.
    | is not aligned on an 8-byte boundary.     
 
 
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- MOVUPS: | __m128 _mm_loadu_ps(double \* p)      
- MOVUPS: | void _mm_storeu_ps(double \*p, __m128 
-         | a)                                   
- VMOVUPS:| __m256 _mm256_loadu_ps (__m256 \* p); 
- VMOVUPS:| _mm256_storeu_ps(_m256 \*p, __m256 a);
-
 ### SIMD Floating-Point Exceptions
 None.
 
 
 ### Other Exceptions
-See Exceptions Type 4 Note treatment of #AC varies; additionally
+See Exceptions Type 4 Note treatment of **``#AC``** varies; additionally
 
    | |  
 ---- | -----

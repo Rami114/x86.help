@@ -38,6 +38,23 @@ VPADDSW (VEX.256 encoded version)
   (\* Repeat add operation for 2nd through 15th words \*)
   DEST[255:240] <- SaturateToSignedWord (SRC1[255:240] + SRC2[255:240])
 
+> Intel C/C++ Compiler Intrinsic Equivalents
+
+``` slim
+   | |  
+---- | -----
+ PADDSB:   | __m64 _mm_adds_pi8(__m64 m1, __m64 m2)    
+ (V)PADDSB:| __m128i _mm_adds_epi8 ( __m128i a, __m128i
+           | b)                                        
+ VPADDSB:  | __m256i _mm256_adds_epi8 ( __m256i a,     
+           | __m256i b)                                
+ PADDSW:   | __m64 _mm_adds_pi16(__m64 m1, __m64       
+           | m2)                                       
+ (V)PADDSW:| __m128i _mm_adds_epi16 ( __m128i a,       
+           | __m128i b)                                
+ VPADDSW:  | __m256i _mm256_adds_epi16 ( __m256i       
+           | a, __m256i b)                             
+
 ```
 
  Opcode/Instruction                 | Op/En| 64/32 bit Mode Support| CPUID Feature Flag| Description                                
@@ -117,21 +134,6 @@ VEX.L must be 0, otherwise the instruction will #UD.
 </aside>
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalents
-   | |  
----- | -----
- PADDSB:   | __m64 _mm_adds_pi8(__m64 m1, __m64 m2)    
- (V)PADDSB:| __m128i _mm_adds_epi8 ( __m128i a, __m128i
-           | b)                                        
- VPADDSB:  | __m256i _mm256_adds_epi8 ( __m256i a,     
-           | __m256i b)                                
- PADDSW:   | __m64 _mm_adds_pi16(__m64 m1, __m64       
-           | m2)                                       
- (V)PADDSW:| __m128i _mm_adds_epi16 ( __m128i a,       
-           | __m128i b)                                
- VPADDSW:  | __m256i _mm256_adds_epi16 ( __m256i       
-           | a, __m256i b)                             
 
 ### Flags Affected
 None.

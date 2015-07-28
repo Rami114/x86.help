@@ -38,6 +38,22 @@ VPAVGW (VEX.256 encoded instruction)
   (\* Repeat operation performed for words 2 through 15)
   DEST[255:14]) <- (SRC1[255:240] + SRC2[255:240] + 1) >> 1;
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ PAVGB:   | __m64 _mm_avg_pu8 (__m64 a, __m64 b)      
+ PAVGW:   | __m64 _mm_avg_pu16 (__m64 a, __m64 b)     
+ (V)PAVGB:| __m128i _mm_avg_epu8 ( __m128i a, __m128i 
+          | b)                                        
+ (V)PAVGW:| __m128i _mm_avg_epu16 ( __m128i a, __m128i
+          | b)                                        
+ VPAVGB:  | __m256i _mm256_avg_epu8 ( __m256i a,      
+          | __m256i b)                                
+ VPAVGW:  | __m256i _mm256_avg_epu16 ( __m256i a,     
+          | __m256i b)                                
+
 ```
 
  Opcode/Instruction                      | Op/En| 64/32 bit Mode Support| CPUID Feature Flag| Description                           
@@ -103,20 +119,6 @@ operand is a YMM register. The second source operand is a YMM register or a
 256-bit memory location. The destination operand is a YMM register.
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- PAVGB:   | __m64 _mm_avg_pu8 (__m64 a, __m64 b)      
- PAVGW:   | __m64 _mm_avg_pu16 (__m64 a, __m64 b)     
- (V)PAVGB:| __m128i _mm_avg_epu8 ( __m128i a, __m128i 
-          | b)                                        
- (V)PAVGW:| __m128i _mm_avg_epu16 ( __m128i a, __m128i
-          | b)                                        
- VPAVGB:  | __m256i _mm256_avg_epu8 ( __m256i a,      
-          | __m256i b)                                
- VPAVGW:  | __m256i _mm256_avg_epu16 ( __m256i a,     
-          | __m256i b)                                
 
 ### Flags Affected
 None.

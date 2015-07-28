@@ -12,6 +12,14 @@ DEST[63:0] <- SRC1[63:0]
 DEST[127:64] <- SRC2[63:0]
 DEST[VLMAX-1:128] <- 0
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ MOVHLPS:| __m128 _mm_movelh_ps(__m128 a, __m128
+         | b)                                   
+
 ```
 
  Opcode/Instruction                     | Op/En| 64/32-bit Mode| CPUID Feature Flag| Description                                    
@@ -41,18 +49,12 @@ operand) to the high quadword of the destination (first operand). Copies the
 low quadword from the second XMM argument (second operand) to the low quadword
 of the destination (first operand). The upper 128-bits of the destination YMM
 register are zeroed. If VMOVLHPS is encoded with VEX.L= 1, an attempt to execute
-the instruction encoded with VEX.L= 1 will cause an #UD exception.
+the instruction encoded with VEX.L= 1 will cause an **``#UD``** exception.
 
 In 64-bit mode, use of the REX.R prefix permits this instruction to access additional
 registers (XMM8-XMM15).
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- MOVHLPS:| __m128 _mm_movelh_ps(__m128 a, __m128
-         | b)                                   
 
 ### SIMD Floating-Point Exceptions
 None.

@@ -5,11 +5,11 @@
 ``` slim
 PSUBB (with 64-bit operands)
   DEST[7:0] <- DEST[7:0] − SRC[7:0];
-  (\* Repeat subtract operation for 2nd through 7th byte \*)
+  (* Repeat subtract operation for 2nd through 7th byte *)
   DEST[63:56] <- DEST[63:56] − SRC[63:56];
 PSUBB (with 128-bit operands)
   DEST[7:0] <- DEST[7:0] − SRC[7:0];
-  (\* Repeat subtract operation for 2nd through 14th byte \*)
+  (* Repeat subtract operation for 2nd through 14th byte *)
   DEST[127:120] <- DEST[111:120] − SRC[127:120];
 VPSUBB (VEX.128 encoded version)
 DEST[7:0] <- SRC1[7:0]-SRC2[7:0]
@@ -64,11 +64,11 @@ DEST[247:240] <- SRC1[247:240]-SRC2[247:240]
 DEST[255:248] <- SRC1[255:248]-SRC2[255:248]
 PSUBW (with 64-bit operands)
   DEST[15:0] <- DEST[15:0] − SRC[15:0];
-  (\* Repeat subtract operation for 2nd and 3rd word \*)
+  (* Repeat subtract operation for 2nd and 3rd word *)
   DEST[63:48] <- DEST[63:48] − SRC[63:48];
 PSUBW (with 128-bit operands)
   DEST[15:0]
-  (\* Repeat subtract operation for 2nd through 7th word \*)
+  (* Repeat subtract operation for 2nd through 7th word *)
   DEST[127:112] <- DEST[127:112] − SRC[127:112];
 VPSUBW (VEX.128 encoded version)
 DEST[15:0] <- SRC1[15:0]-SRC2[15:0]
@@ -102,7 +102,7 @@ PSUBD (with 64-bit operands)
   DEST[63:32] <- DEST[63:32] − SRC[63:32];
 PSUBD (with 128-bit operands)
   DEST[31:0]
-  (\* Repeat subtract operation for 2nd and 3rd doubleword \*)
+  (* Repeat subtract operation for 2nd and 3rd doubleword *)
   DEST[127:96] <- DEST[127:96] − SRC[127:96];
 VPSUBD (VEX.128 encoded version)
 DEST[31:0] <- SRC1[31:0]-SRC2[31:0]
@@ -119,6 +119,27 @@ DEST[159:128] <- SRC1[159:128]-SRC2[159:128]
 DEST[191:160] <- SRC1[191:160]-SRC2[191:160]
 DEST[223:192] <- SRC1[223:192]-SRC2[223:192]
 DEST[255:224] <- SRC1[255:224]-SRC2[255:224]
+
+> Intel C/C++ Compiler Intrinsic Equivalents
+
+``` slim
+   | |  
+---- | -----
+ PSUBB:   | __m64 _mm_sub_pi8(__m64 m1, __m64 m2)     
+ (V)PSUBB:| __m128i _mm_sub_epi8 ( __m128i a, __m128i 
+          | b)                                        
+ VPSUBB:  | __m256i _mm256_sub_epi8 ( __m256i a,      
+          | __m256i b)                                
+ PSUBW:   | __m64 _mm_sub_pi16(__m64 m1, __m64 m2)    
+ (V)PSUBW:| __m128i _mm_sub_epi16 ( __m128i a, __m128i
+          | b)                                        
+ VPSUBW:  | __m256i _mm256_sub_epi16 ( __m256i a,     
+          | __m256i b)                                
+ PSUBD:   | __m64 _mm_sub_pi32(__m64 m1, __m64 m2)    
+ (V)PSUBD:| __m128i _mm_sub_epi32 ( __m128i a, __m128i
+          | b)                                        
+ VPSUBD:  | __m256i _mm256_sub_epi32 ( __m256i a,     
+          | __m256i b)                                
 
 ```
 
@@ -213,25 +234,6 @@ VEX.L must be 0, otherwise instructions will #UD.
 </aside>
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalents
-   | |  
----- | -----
- PSUBB:   | __m64 _mm_sub_pi8(__m64 m1, __m64 m2)     
- (V)PSUBB:| __m128i _mm_sub_epi8 ( __m128i a, __m128i 
-          | b)                                        
- VPSUBB:  | __m256i _mm256_sub_epi8 ( __m256i a,      
-          | __m256i b)                                
- PSUBW:   | __m64 _mm_sub_pi16(__m64 m1, __m64 m2)    
- (V)PSUBW:| __m128i _mm_sub_epi16 ( __m128i a, __m128i
-          | b)                                        
- VPSUBW:  | __m256i _mm256_sub_epi16 ( __m256i a,     
-          | __m256i b)                                
- PSUBD:   | __m64 _mm_sub_pi32(__m64 m1, __m64 m2)    
- (V)PSUBD:| __m128i _mm_sub_epi32 ( __m128i a, __m128i
-          | b)                                        
- VPSUBD:  | __m256i _mm256_sub_epi32 ( __m256i a,     
-          | __m256i b)                                
 
 ### Flags Affected
 None.

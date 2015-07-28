@@ -25,6 +25,14 @@ DEST[191:160] <- SRC[191:160]
 DEST[223:192] <- SRC[255:224]
 DEST[255:224] <- SRC[255:224]
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ (V)MOVSHDUP:| __m128 _mm_movehdup_ps(__m128 a)     
+ VMOVSHDUP:  | __m256 _mm256_movehdup_ps (__m256 a);
+
 ```
 
  Opcode/Instruction                     | Op/En| 64/32-bit Mode| CPUID Feature Flag| Description                                   
@@ -74,15 +82,9 @@ to access additional registers (XMM8-XMM15). 128-bit Legacy SSE version: Bits
 (VLMAX-1:128) of the corresponding YMM destination register remain unchanged.
 VEX.128 encoded version: Bits (VLMAX-1:128) of the destination YMM register
 are zeroed. Note: In VEX-encoded versions, VEX.vvvv is reserved and must be
-1111b otherwise instructions will #UD.
+1111b otherwise instructions will **``#UD.``**
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- (V)MOVSHDUP:| __m128 _mm_movehdup_ps(__m128 a)     
- VMOVSHDUP:  | __m256 _mm256_movehdup_ps (__m256 a);
 
 ### Exceptions
 General protection exception if not aligned on 16-byte boundary, regardless

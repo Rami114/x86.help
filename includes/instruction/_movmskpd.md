@@ -20,6 +20,13 @@ IF DEST = r32
   ELSE DEST[63:4] <- 0;
 FI
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ MOVMSKPD:| int _mm_movemask_pd ( __m128d a)
+
 ```
 
  Opcode/Instruction                    | Op/En| 64/32-bit Mode| CPUID Feature Flag| Description                          
@@ -53,14 +60,9 @@ R8-R15) when used with a REX.R prefix. The default operand size is 64-bit in
 operand is a general purpose register. VEX.256 encoded version: The source operand
 ### is a YMM register. The destination operand is a general purpose register. Note
 In VEX-encoded versions, VEX.vvvv is reserved and must be 1111b, otherwise instructions
-will #UD.
+will **``#UD.``**
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- MOVMSKPD:| int _mm_movemask_pd ( __m128d a)
 
 ### SIMD Floating-Point Exceptions
 None.

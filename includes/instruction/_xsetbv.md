@@ -3,7 +3,19 @@
 > Operation
 
 ``` slim
-XCR[ECX] <- EDX:EAX;
+XCR[ECX] <- EDX:EAX;```
+
+### Flags Affected
+None.
+
+
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ XSETBV:| void _xsetbv( unsigned int, unsigned
+        | __int64);                           
 
 ```
 
@@ -28,31 +40,21 @@ and RDX are ignored.) Undefined or reserved bits in an XCR should be set to
 values previously read.
 
 This instruction must be executed at privilege level 0 or in real-address mode;
-otherwise, a general protection exception #GP(0) is generated. Specifying a
+otherwise, a general protection exception **``#GP(0)``** is generated. Specifying a
 reserved or unimplemented XCR in ECX will also cause a general protection exception.
 The processor will also generate a general protection exception if software
 attempts to write to reserved bits in an XCR.
 
 Currently, only XCR0 is supported. Thus, all other values of ECX are reserved
-and will cause a #GP(0). Note that bit 0 of XCR0 (corresponding to x87 state)
-must be set to 1; the instruction will cause a #GP(0) if an attempt is made
-to clear this bit. In addition, the instruction causes a #GP(0) if an attempt
+and will cause a **``#GP(0).``** Note that bit 0 of XCR0 (corresponding to x87 state)
+must be set to 1; the instruction will cause a **``#GP(0)``** if an attempt is made
+to clear this bit. In addition, the instruction causes a **``#GP(0)``** if an attempt
 is made to set XCR0[2] (AVX state) while clearing XCR0[1] (SSE state); it is
 necessary to set both bits to use AVX instructions; Section 13.3, “Enabling
 the XSAVE Feature Set and XSAVE-Supported Features,” of Intel® 64 and IA-32
 Architectures Software Developer's Manual, Volume 1.
 
 
-
-### Flags Affected
-None.
-
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- XSETBV:| void _xsetbv( unsigned int, unsigned
-        | __int64);                           
 
 ### Protected Mode Exceptions
    | |  

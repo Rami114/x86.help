@@ -39,6 +39,15 @@ r64[1] <- SRC[15];
 r64[31] <- SRC[255];
 r64[63:32] <- ZERO_FILL;
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ PMOVMSKB:   | int _mm_movemask_pi8(__m64 a)        
+ (V)PMOVMSKB:| int _mm_movemask_epi8 ( __m128i a)   
+ VPMOVMSKB:  | int _mm256_movemask_epi8 ( __m256i a)
+
 ```
 
  Opcode/Instruction                    | Op/En| 64/32 bit Mode Support| CPUID Feature Flag| Description                             
@@ -80,16 +89,9 @@ R8-R15) when used with a REX.R prefix. The default operand size is 64-bit in
 
 VEX.128 encoded version: The source operand is an XMM register. VEX.256 encoded
 version: The source operand is a YMM register. Note: VEX.vvvv is reserved and
-must be 1111b, VEX.L must be 0, otherwise the instruction will #UD.
+must be 1111b, VEX.L must be 0, otherwise the instruction will **``#UD.``**
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- PMOVMSKB:   | int _mm_movemask_pi8(__m64 a)        
- (V)PMOVMSKB:| int _mm_movemask_epi8 ( __m128i a)   
- VPMOVMSKB:  | int _mm256_movemask_epi8 ( __m256i a)
 
 ### Flags Affected
 None.

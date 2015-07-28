@@ -21,7 +21,19 @@ DEST[31:0] <-vCvt_h2s(SRC1[15:0]);
 DEST[63:32] <-vCvt_h2s(SRC1[31:16]);
 DEST[95:64] <-vCvt_h2s(SRC1[47:32]);
 DEST[127:96] <-vCvt_h2s(SRC1[63:48]);
-DEST[VLMAX-1:128] <-0
+DEST[VLMAX-1:128] <-0```
+
+### Flags Affected
+None
+
+
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+__m128 _mm_cvtph_ps ( __m128i m1);
+
+__m256 _mm256_cvtph_ps ( __m128i m1)
+
 
 ```
 
@@ -63,22 +75,12 @@ reserved (must be 1111b).
  Figure 4-31.                          | VCVTPH2PS (128-bit Version)      
 
 
-### Flags Affected
-None
-
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-__m128 _mm_cvtph_ps ( __m128i m1);
-
-__m256 _mm256_cvtph_ps ( __m128i m1)
-
-
 ### SIMD Floating-Point Exceptions
 Invalid
 
 
 ### Other Exceptions
-Exceptions Type 11 (do not report #AC); additionally
+Exceptions Type 11 (do not report **``#AC);``** additionally
 
    | |  
 ---- | -----

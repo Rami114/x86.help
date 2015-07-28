@@ -122,6 +122,24 @@ VPACKSSDW instruction (VEX.256 encoded version)
   DEST[239:224] <- SaturateSignedDwordToSignedWord (SRC2[223:192]);
   DEST[255:240] <- SaturateSignedDwordToSignedWord (SRC2[255:224]);
 
+> Intel C/C++ Compiler Intrinsic Equivalents
+
+``` slim
+   | |  
+---- | -----
+ PACKSSWB:   | __m64 _mm_packs_pi16(__m64 m1, __m64  
+             | m2)                                   
+ (V)PACKSSWB:| __m128i _mm_packs_epi16(__m128i m1,   
+             | __m128i m2)                           
+ VPACKSSWB:  | __m256i _mm256_packs_epi16(__m256i m1,
+             | __m256i m2)                           
+ PACKSSDW:   | __m64 _mm_packs_pi32 (__m64 m1, __m64 
+             | m2)                                   
+ (V)PACKSSDW:| __m128i _mm_packs_epi32(__m128i m1,   
+             | __m128i m2)                           
+ VPACKSSDW:  | __m256i _mm256_packs_epi32(__m256i m1,
+             | __m256i m2)                           
+
 ```
 
  Opcode/Instruction                   | Op/En| 64/32 bit Mode Support| CPUID Feature Flag| Description                             
@@ -198,7 +216,6 @@ signed byte integer value of 7FH or 80H, respectively, is stored in the destinat
 The (V)PACKSSDW instruction packs 2, 4 or 8 signed doublewords from the destination
 operand (first operand) and 2, 4 or 8 signed doublewords from the source operand
 (second operand) into 4, 8 or 16 signed words in the destination operand (see
-Figure 4-2). If a signed doubleword integer value is beyond the range of a signed
 word (that is, greater than 7FFFH for a positive integer or greater than 8000H
 for a negative integer), the saturated signed word integer value of 7FFFH or
 8000H, respectively, is stored into the destination.
@@ -226,22 +243,6 @@ VEX.L must be 0, otherwise the instruction will #UD.
 </aside>
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalents
-   | |  
----- | -----
- PACKSSWB:   | __m64 _mm_packs_pi16(__m64 m1, __m64  
-             | m2)                                   
- (V)PACKSSWB:| __m128i _mm_packs_epi16(__m128i m1,   
-             | __m128i m2)                           
- VPACKSSWB:  | __m256i _mm256_packs_epi16(__m256i m1,
-             | __m256i m2)                           
- PACKSSDW:   | __m64 _mm_packs_pi32 (__m64 m1, __m64 
-             | m2)                                   
- (V)PACKSSDW:| __m128i _mm_packs_epi32(__m128i m1,   
-             | __m128i m2)                           
- VPACKSSDW:  | __m256i _mm256_packs_epi32(__m256i m1,
-             | __m256i m2)                           
 
 ### Flags Affected
 None.

@@ -5,9 +5,15 @@
 ``` slim
 m32 <- MXCSR;
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+_mm_getcsr(void)
+
+
 ```
 
- Opcode\*/Instruction             | Op/En| 64/32 bit Mode Support| CPUID Feature Flag| Description                        
+ Opcode*/Instruction             | Op/En| 64/32 bit Mode Support| CPUID Feature Flag| Description                        
  ---  | --- | --- | --- | ---
  0F AE /3 STMXCSR m32            | M    | V/V                   | SSE               | Store contents of MXCSR register to
                                  |      |                       |                   | m32.                               
@@ -25,17 +31,13 @@ operand. The destination operand is a 32-bit memory location. The reserved bits
 in the MXCSR register are stored as 0s.
 
 This instruction's operation is the same in non-64-bit modes and 64-bit mode.
-VEX.L must be 0, otherwise instructions will #UD.
+VEX.L must be 0, otherwise instructions will **``#UD.``**
 
 <aside class="notification">
 In VEX-encoded versions, VEX.vvvv is reserved and must be 1111b, otherwise
-instructions will #UD.
+instructions will **``#UD.``**
 </aside>
 
-
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-_mm_getcsr(void)
 
 
 ### SIMD Floating-Point Exceptions

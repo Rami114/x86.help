@@ -33,7 +33,7 @@ range scaling operations. The FXTRACT instruction is also useful for converting
 numbers in double extended-precision floating-point format to decimal representations
 (e.g., for printing or displaying).
 
-If the floating-point zero-divide exception (#Z) is masked and the source operand
+If the floating-point zero-divide exception (**``#Z)``** is masked and the source operand
 is zero, an exponent value of ∞ is stored in register ST(1) and 0 with the sign
 of the source operand is stored in register ST(0).
 

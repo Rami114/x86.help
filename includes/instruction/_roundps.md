@@ -37,9 +37,25 @@ DEST[191:160] <- RoundToInteger(SRC[191:160]], ROUND_CONTROL)
 DEST[223:192] <- RoundToInteger(SRC[223:192] ], ROUND_CONTROL)
 DEST[255:224] <- RoundToInteger(SRC[255:224] ], ROUND_CONTROL)
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+__m128 _mm_round_ps(__m128 s1, int iRoundMode);
+
+__m128 _mm_floor_ps(__m128 s1);
+
+__m128 _mm_ceil_ps(__m128 s1)
+
+__m256 _mm256_round_ps(__m256 s1, int iRoundMode);
+
+__m256 _mm256_floor_ps(__m256 s1);
+
+__m256 _mm256_ceil_ps(__m256 s1)
+
+
 ```
 
- Opcode\*/Instruction                       | Op/En| 64/32 bit Mode Support| CPUID Feature Flag| Description                                 
+ Opcode*/Instruction                       | Op/En| 64/32 bit Mode Support| CPUID Feature Flag| Description                                 
  ---  | --- | --- | --- | ---
  66 0F 3A 08 /r ib ROUNDPS xmm1, xmm2/m128,| RMI  | V/V                   | SSE4_1            | Round packed single precision floating-point
  imm8                                      |      |                       |                   | values in xmm2/m128 and place the result    
@@ -83,22 +99,8 @@ or a 128-bit memory location. The destination operand is an XMM register. The
 upper bits (VLMAX-1:128) of the corresponding YMM register destination are zeroed.
 VEX.256 encoded version: The source operand is a YMM register or a 256-bit memory
 location. The destination operand is a YMM register. Note: In VEX-encoded versions,
-VEX.vvvv is reserved and must be 1111b otherwise instructions will #UD.
+VEX.vvvv is reserved and must be 1111b otherwise instructions will **``#UD.``**
 
-
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-__m128 _mm_round_ps(__m128 s1, int iRoundMode);
-
-__m128 _mm_floor_ps(__m128 s1);
-
-__m128 _mm_ceil_ps(__m128 s1)
-
-__m256 _mm256_round_ps(__m256 s1, int iRoundMode);
-
-__m256 _mm256_floor_ps(__m256 s1);
-
-__m256 _mm256_ceil_ps(__m256 s1)
 
 
 ### SIMD Floating-Point Exceptions

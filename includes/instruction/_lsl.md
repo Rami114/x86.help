@@ -17,9 +17,9 @@ or Segment type is not valid for instruction
           THEN temp <- ShiftLeft(12, temp) OR 00000FFFH;
        ELSE IF OperandSize = 32
           THEN DEST <- temp; FI;
-       ELSE IF OperandSize = 64 (\* REX.W used \*)
-          THEN DEST (\* Zero-extended \*) <- temp; FI;
-       ELSE (\* OperandSize = 16 \*)
+       ELSE IF OperandSize = 64 (* REX.W used *)
+          THEN DEST (* Zero-extended *) <- temp; FI;
+       ELSE (* OperandSize = 16 *)
           DEST <- temp AND FFFFH;
        FI;
 FI;
@@ -30,12 +30,12 @@ FI;
  ---  | --- | --- | --- | --- | ---
  0F 03 /r        | LSL r16, r16/m16 | RM   | Valid      | Valid          | Load: r16 ← segment limit, selector
                  |                  |      |            |                | r16/m16.                           
- 0F 03 /r        | LSL r32, r32/m16\*| RM   | Valid      | Valid          | Load: r32 ← segment limit, selector
+ 0F 03 /r        | LSL r32, r32/m16*| RM   | Valid      | Valid          | Load: r32 ← segment limit, selector
                  |                  |      |            |                | r32/m16.                           
- REX.W + 0F 03 /r| LSL r64, r32/m16\*| RM   | Valid      | Valid          | Load: r64 ← segment limit, selector
+ REX.W + 0F 03 /r| LSL r64, r32/m16*| RM   | Valid      | Valid          | Load: r64 ← segment limit, selector
                  |                  |      |            |                | r32/m16                            
 <aside class="notification">
-\* For all loads (regardless of destination sizing), only bits 16-0 are
+* For all loads (regardless of destination sizing), only bits 16-0 are
 used. Other bits are ignored.
 </aside>
 

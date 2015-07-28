@@ -6,16 +6,23 @@
 DEST[63:0] <- Convert_Integer_To_Double_Precision_Floating_Point(SRC[31:0]);
 DEST[127:64] <- Convert_Integer_To_Double_Precision_Floating_Point(SRC[63:32]);
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ CVTPI2PD:| __m128d _mm_cvtpi32_pd(__m64 a)
+
 ```
 
  Opcode/Instruction               | Op/En| 64-Bit Mode| Compat/Leg Mode| Description                           
  ---  | --- | --- | --- | ---
- 66 0F 2A /r CVTPI2PD xmm, mm/m64\*| RM   | Valid      | Valid          | Convert two packed signed doubleword  
+ 66 0F 2A /r CVTPI2PD xmm, mm/m64*| RM   | Valid      | Valid          | Convert two packed signed doubleword  
                                   |      |            |                | integers from mm/mem64 to two packed  
                                   |      |            |                | double-precision floating-point values
                                   |      |            |                | in xmm.                               
 <aside class="notification">
-\*Operation is different for different operand sets; see the Description
+*Operation is different for different operand sets; see the Description
 section.
 </aside>
 
@@ -46,11 +53,6 @@ In 64-bit mode, use of the REX.R prefix permits this instruction to access addit
 registers (XMM8-XMM15).
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- CVTPI2PD:| __m128d _mm_cvtpi32_pd(__m64 a)
 
 ### SIMD Floating-Point Exceptions
 None.

@@ -3,7 +3,7 @@
 > Operation
 
 ``` slim
-C1 <- sign bit of ST; (\* 0 for positive, 1 for negative \*)
+C1 <- sign bit of ST; (* 0 for positive, 1 for negative *)
 CASE (class of value or number in ST(0)) OF
   Unsupported:C3, C2, C0 <- 000;
 ```

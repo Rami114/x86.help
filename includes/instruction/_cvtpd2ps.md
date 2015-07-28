@@ -19,6 +19,14 @@ DEST[95:64] <- Convert_Double_Precision_To_Single_Precision_Floating_Point(SRC[1
 DEST[127:96] <- Convert_Double_Precision_To_Single_Precision_Floating_Point(SRC[255:192)
 DEST[255:128]<- 0
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ CVTPD2PS:| __m128 _mm_cvtpd_ps(__m128d a)    
+ CVTPD2PS:| __m256 _mm256_cvtpd_ps (__m256d a)
+
 ```
 
  Opcode/Instruction                     | Op/En| 64/32-bit Mode| CPUID Feature Flag| Description                               
@@ -59,18 +67,12 @@ VEX.256 encoded version: The source operand is a YMM register or 256- bit memory
 location. The destination operation is an XMM register. The upper bits (255:128)
 of the corresponding YMM register destination are zeroed. Note: In VEX-encoded
 versions, VEX.vvvv is reserved and must be 1111b otherwise instructions will
-#UD.
+**``#UD.``**
 
    | |  
 ---- | -----
  SRC DEST| X3 Figure 3-12.| X2 0 VCVTPD2PS (VEX.256 encoded version)| X1 X2| X0 X0
 
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- CVTPD2PS:| __m128 _mm_cvtpd_ps(__m128d a)    
- CVTPD2PS:| __m256 _mm256_cvtpd_ps (__m256d a)
 
 ### SIMD Floating-Point Exceptions
 Overflow, Underflow, Invalid, Precision, Denormal.

@@ -7,7 +7,7 @@ IF -263 < ST(0) < 263
   THEN
      C2 <- 0;
      ST(0) <- sin(ST(0));
-  ELSE (\* Source operand out of range \*)
+  ELSE (* Source operand out of range *)
      C2 <- 1;
 FI;
 
@@ -34,8 +34,8 @@ the sine of various classes of numbers, assuming that underflow does not occur.
  + F + ∞        | − 1 to +1   
  NaN            | NaN         
 <aside class="notification">
-F Means finite floating-point value. \* Indicates floating-point invalid-arithmetic-operand
-(#IA) exception.
+F Means finite floating-point value. * Indicates floating-point invalid-arithmetic-operand
+(**``#IA)``** exception.
 </aside>
 
 If the source operand is outside the acceptable range, the C2 flag in the FPU

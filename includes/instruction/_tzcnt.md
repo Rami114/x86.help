@@ -18,7 +18,23 @@ IF DEST = 0
   ZF <- 1
 ELSE
   ZF <- 0
-FI
+FI```
+
+### Flags Affected
+ZF is set to 1 in case of zero output (least significant bit of the source is
+set), and to 0 otherwise, CF is set to 1 if the input was zero and cleared otherwise.
+OF, SF, PF and AF flags are undefined.
+
+
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ TZCNT:| unsigned __int32 _tzcnt_u32(unsigned
+       | __int32 src);                       
+ TZCNT:| unsigned __int64 _tzcnt_u64(unsigned
+       | __int64 src);                       
 
 ```
 
@@ -46,20 +62,6 @@ the content of destination operand are undefined. On processors that do not
 support TZCNT, the instruction byte encoding is executed as BSF.
 
 
-
-### Flags Affected
-ZF is set to 1 in case of zero output (least significant bit of the source is
-set), and to 0 otherwise, CF is set to 1 if the input was zero and cleared otherwise.
-OF, SF, PF and AF flags are undefined.
-
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- TZCNT:| unsigned __int32 _tzcnt_u32(unsigned
-       | __int32 src);                       
- TZCNT:| unsigned __int64 _tzcnt_u64(unsigned
-       | __int64 src);                       
 
 ### Protected Mode Exceptions
    | |  

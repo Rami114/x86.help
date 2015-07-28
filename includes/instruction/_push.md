@@ -3,8 +3,8 @@
 > Operation
 
 ``` slim
-(\* See Description section for possible sign-extension or zero-extension of source operand and for \*)
-(\* a case in which the size of the memory store may be smaller than the instruction's operand size \*)
+(* See Description section for possible sign-extension or zero-extension of source operand and for *)
+(* a case in which the size of the memory store may be smaller than the instruction's operand size *)
 IF StackAddrSize = 64
   THEN
      IF OperandSize = 64
@@ -15,7 +15,7 @@ IF StackAddrSize = 64
        THEN
           RSP <- RSP - 4;
           Memory[SS:RSP] <- SRC;
-       ELSE (\* OperandSize = 16 \*)
+       ELSE (* OperandSize = 16 *)
           RSP <- RSP - 2;
           Memory[SS:RSP] <- SRC;
      FI;
@@ -29,16 +29,16 @@ ELSE IF StackAddrSize = 32
        THEN
           ESP <- ESP - 4;
           Memory[SS:ESP] <- SRC;
-       ELSE (\* OperandSize = 16 \*)
+       ELSE (* OperandSize = 16 *)
           ESP <- ESP - 2;
           Memory[SS:ESP] <- SRC;
      FI;
-  ELSE (\* StackAddrSize = 16 \*)
+  ELSE (* StackAddrSize = 16 *)
      IF OperandSize = 32
        THEN
           SP <- SP - 4;
           Memory[SS:SP] <- SRC;
-       ELSE (\* OperandSize = 16 \*)
+       ELSE (* OperandSize = 16 *)
           SP <- SP - 2;
           Memory[SS:SP] <- SRC;
      FI;
@@ -46,7 +46,7 @@ FI;
 
 ```
 
- Opcode\*| Instruction| Op/En| 64-Bit Mode| Compat/Leg Mode| Description
+ Opcode*| Instruction| Op/En| 64-Bit Mode| Compat/Leg Mode| Description
  ---  | --- | --- | --- | --- | ---
  FF /6  | PUSH r/m16 | M    | Valid      | Valid          | Push r/m16.
  FF /6  | PUSH r/m32 | M    | N.E.       | Valid          | Push r/m32.
@@ -64,7 +64,7 @@ FI;
  0F A0  | PUSH FS    | NP   | Valid      | Valid          | Push FS.   
  0F A8  | PUSH GS    | NP   | Valid      | Valid          | Push GS.   
 <aside class="notification">
-\* See IA-32 Architecture Compatibility section below.
+* See IA-32 Architecture Compatibility section below.
 </aside>
 
 
@@ -110,9 +110,9 @@ in which the ESP register is used for computing the operand address, the address
 of the operand is computed before the ESP register is decremented.
 
 If the ESP or SP register is 1 when the PUSH instruction is executed in real-address
-mode, a stack-fault exception (#SS) is generated (because the limit of the stack
+mode, a stack-fault exception (**``#SS)``** is generated (because the limit of the stack
 segment is violated). Its delivery encounters a second stackfault exception
-(for the same reason), causing generation of a double-fault exception (#DF).
+(for the same reason), causing generation of a double-fault exception (**``#DF).``**
 Delivery of the double-fault exception encounters a third stack-fault exception,
 and the logical processor enters shutdown mode. See the discussion of the double-fault
 exception in Chapter 6 of the Intel® 64 and IA-32 Architectures Software Developer's

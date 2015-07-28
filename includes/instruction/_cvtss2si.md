@@ -10,6 +10,12 @@ IF 64-bit Mode and OperandSize = 64
      DEST[31:0] <- Convert_Single_Precision_Floating_Point_To_Integer(SRC[31:0]);
 FI;
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+int _mm_cvtss_si32(__m128d a) __int64 _mm_cvtss_si64(__m128d a)
+
+
 ```
 
  Opcode/Instruction                     | Op/En| 64/32-bit Mode| CPUID Feature Flag| Description                                 
@@ -58,13 +64,9 @@ Use of the REX.W prefix promotes the instruction to 64-bit operands. See the
 summary chart at the beginning of this section for encoding data and limits.
 <aside class="notification">
 In VEX-encoded versions, VEX.vvvv is reserved and must be 1111b, otherwise
-instructions will #UD.
+instructions will **``#UD.``**
 </aside>
 
-
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-int _mm_cvtss_si32(__m128d a) __int64 _mm_cvtss_si64(__m128d a)
 
 
 ### SIMD Floating-Point Exceptions

@@ -35,6 +35,14 @@ ELSE
   For (i = 0 to 31) DEST[i + 224] <- (SRC1[255] );
 FI;
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+VPSRAVD: __m256i _mm256_srav_epi32 (__m256i m, __m256i count)
+
+VPSRAVD: __m128i _mm_srav_epi32 (__m128i m, __m128i count)
+
+
 ```
 
  Opcode/Instruction                  | Op/En| 64/32 -bit Mode| CPUID Feature Flag| Description                             
@@ -68,12 +76,6 @@ of the corresponding YMM register are zeroed. VEX.256 encoded version: The desti
 and first source operands are YMM registers. The count operand can be either
 an YMM register or a 256-bit memory location.
 
-
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-VPSRAVD: __m256i _mm256_srav_epi32 (__m256i m, __m256i count)
-
-VPSRAVD: __m128i _mm_srav_epi32 (__m128i m, __m128i count)
 
 
 ### SIMD Floating-Point Exceptions

@@ -61,6 +61,14 @@ For i = 64 to 126 {
 }
 DEST[VLMAX-1:127] <- 0;
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ (V)PCLMULQDQ:| __m128i| _mm_clmulepi64_si128 (__m128i, __m128i,
+              |        | const int)                             
+
 ```
 
  Opcode/Instruction                          | Op/En| 64/32 bit Mode Support| CPUID Feature Flag      | Description                              
@@ -121,12 +129,6 @@ programming and emit the required encoding for Imm8.
  PCLMULLQHDQ xmm1, xmm2 | 0001_0000B   
  PCLMULHQHDQ xmm1, xmm2 | 0001_0001B   
 
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- (V)PCLMULQDQ:| __m128i| _mm_clmulepi64_si128 (__m128i, __m128i,
-              |        | const int)                             
 
 ### SIMD Floating-Point Exceptions
 None.

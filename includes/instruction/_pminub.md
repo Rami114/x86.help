@@ -23,7 +23,42 @@ PMINUB (for 128-bit operands)
      DEST[127:120] <- DEST[127:120];
   ELSE
      DEST[127:120] <- SRC[127:120]; FI;
-VPMINUB (VEX.128 encoded version)
+VPMINUB (VEX.128 encoded version)```
+
+### VPMINUB instruction for 128-bit operands
+  IF SRC1[7:0] < SRC2[7:0] THEN
+     DEST[7:0] <- SRC1[7:0];
+  ELSE
+     DEST[7:0] <- SRC2[7:0]; FI;
+  (* Repeat operation for 2nd through 15th bytes in source and destination operands *)
+  IF SRC1[127:120] < SRC2[127:120] THEN
+     DEST[127:120] <- SRC1[127:120];
+  ELSE
+     DEST[127:120] <- SRC2[127:120]; FI;
+DEST[VLMAX-1:128] <- 0
+VPMINUB (VEX.256 encoded version)
+### VPMINUB instruction for 128-bit operands
+  IF SRC1[7:0] < SRC2[7:0] THEN
+     DEST[7:0] <- SRC1[7:0];
+  ELSE
+     DEST[15:0] <- SRC2[7:0]; FI;
+  (* Repeat operation for 2nd through 31st bytes in source and destination operands *)
+  IF SRC1[255:248] < SRC2[255:248] THEN
+     DEST[255:248] <- SRC1[255:248];
+  ELSE
+     DEST[255:248] <- SRC2[255:248]; FI;
+
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ PMINUB:   | __m64 _m_min_pu8 (__m64 a, __m64 b)      
+ (V)PMINUB:| __m128i _mm_min_epu8 ( __m128i a, __m128i
+           | b)                                       
+ VPMINUB:  | __m256i _mm256_min_epu8 ( __m256i a,     
+           | __m256i b)                               
+
 ```
 
  Opcode/Instruction                 | Op/En| 64/32 bit Mode Support| CPUID Feature Flag| Description                                
@@ -78,38 +113,6 @@ VEX.L must be 0, otherwise the instruction will #UD.
 </aside>
 
 
-
-### VPMINUB instruction for 128-bit operands
-  IF SRC1[7:0] < SRC2[7:0] THEN
-     DEST[7:0] <- SRC1[7:0];
-  ELSE
-     DEST[7:0] <- SRC2[7:0]; FI;
-  (\* Repeat operation for 2nd through 15th bytes in source and destination operands \*)
-  IF SRC1[127:120] < SRC2[127:120] THEN
-     DEST[127:120] <- SRC1[127:120];
-  ELSE
-     DEST[127:120] <- SRC2[127:120]; FI;
-DEST[VLMAX-1:128] <- 0
-VPMINUB (VEX.256 encoded version)
-### VPMINUB instruction for 128-bit operands
-  IF SRC1[7:0] < SRC2[7:0] THEN
-     DEST[7:0] <- SRC1[7:0];
-  ELSE
-     DEST[15:0] <- SRC2[7:0]; FI;
-  (\* Repeat operation for 2nd through 31st bytes in source and destination operands \*)
-  IF SRC1[255:248] < SRC2[255:248] THEN
-     DEST[255:248] <- SRC1[255:248];
-  ELSE
-     DEST[255:248] <- SRC2[255:248]; FI;
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- PMINUB:   | __m64 _m_min_pu8 (__m64 a, __m64 b)      
- (V)PMINUB:| __m128i _mm_min_epu8 ( __m128i a, __m128i
-           | b)                                       
- VPMINUB:  | __m256i _mm256_min_epu8 ( __m256i a,     
-           | __m256i b)                               
 
 ### Flags Affected
 None.

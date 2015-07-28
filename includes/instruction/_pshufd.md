@@ -25,6 +25,16 @@ DEST[191:160] <- (SRC[255:128] >> (ORDER[3:2] \* 32))[31:0];
 DEST[223:192] <- (SRC[255:128] >> (ORDER[5:4] \* 32))[31:0];
 DEST[255:224] <- (SRC[255:128] >> (ORDER[7:6] \* 32))[31:0];
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ (V)PSHUFD:| __m128i _mm_shuffle_epi32(__m128i a,
+           | int n)                              
+ VPSHUFD:  | __m256i _mm256_shuffle_epi32(__m256i
+           | a, const int n)                     
+
 ```
 
  Opcode/Instruction                      | Op/En| 64/32 bit Mode Support| CPUID Feature Flag| Description                            
@@ -83,18 +93,10 @@ source operand using the immediate byte as the order operand.
 
 <aside class="notification">
 VEX.vvvv is reserved and must be 1111b, VEX.L must be 0, otherwise the
-instruction will #UD.
+instruction will **``#UD.``**
 </aside>
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- (V)PSHUFD:| __m128i _mm_shuffle_epi32(__m128i a,
-           | int n)                              
- VPSHUFD:  | __m256i _mm256_shuffle_epi32(__m256i
-           | a, const int n)                     
 
 ### Flags Affected
 None.

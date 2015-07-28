@@ -237,6 +237,16 @@ TEMP3 <- ABS( DEST_BYTE10 - SRC_BYTE3)
 DEST[127:112] <- TEMP0 + TEMP1 + TEMP2 + TEMP3
 DEST[VLMAX-1:128] (Unmodified)
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ (V)MPSADBW:| __m128i _mm_mpsadbw_epu8 (__m128i s1,
+            | __m128i s2, const int mask);         
+ VMPSADBW:  | __m256i _mm256_mpsadbw_epu8 (__m256i 
+            | s1, __m256i s2, const int mask);     
+
 ```
 
  Opcode/Instruction                        | Op/En| 64/32-bit Mode| CPUID Feature Flag| Description                             
@@ -306,7 +316,7 @@ The first source operand is a YMM register. The second source register can be
 a YMM register or a 256-bit memory location. The destination operand is a YMM
 register. Bits 7:6 of the immediate byte are ignored. Note: If VMPSADBW is encoded
 with VEX.L= 1, an attempt to execute the instruction encoded with VEX.L= 1 will
-cause an #UD exception.
+cause an **``#UD``** exception.
 
 Imm[4:3]\*32+128
 
@@ -340,14 +350,6 @@ Destination
 ---- | -----
  Figure 3-27.| VMPSADBW Operation
 
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- (V)MPSADBW:| __m128i _mm_mpsadbw_epu8 (__m128i s1,
-            | __m128i s2, const int mask);         
- VMPSADBW:  | __m256i _mm256_mpsadbw_epu8 (__m256i 
-            | s1, __m256i s2, const int mask);     
 
 ### Flags Affected
 None

@@ -14,7 +14,7 @@ DEST[FPULastInstructionOpcode] <- FPULastInstructionOpcode;
 
  Opcode        | Instruction                          | 64-Bit Mode| Compat/Leg Mode| Description                                
  ---  | --- | --- | --- | ---
- 9B D9 /6 D9 /6| FSTENV m14/28byte FNSTENV\* m14/28byte| Valid Valid| Valid Valid    | Store FPU environment to m14byte or        
+ 9B D9 /6 D9 /6| FSTENV m14/28byte FNSTENV* m14/28byte| Valid Valid| Valid Valid    | Store FPU environment to m14byte or        
                |                                      |            |                | m28byte after checking for pending unmasked
                |                                      |            |                | floating-point exceptions. Then mask       
                |                                      |            |                | all floating-point exceptions. Store       
@@ -23,7 +23,7 @@ DEST[FPULastInstructionOpcode] <- FPULastInstructionOpcode;
                |                                      |            |                | floatingpoint exceptions. Then mask        
                |                                      |            |                | all floatingpoint exceptions.              
 <aside class="notification">
-\* See IA-32 Architecture Compatibility section below.
+* See IA-32 Architecture Compatibility section below.
 </aside>
 
 

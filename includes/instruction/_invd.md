@@ -5,7 +5,7 @@
 ``` slim
 Flush(InternalCaches);
 SignalFlush(ExternalCaches);
-Continue (\* Continue execution \*)
+Continue (* Continue execution *)
 
 ```
 
@@ -14,7 +14,7 @@ Continue (\* Continue execution \*)
  0F 08 | INVD       | NP   | Valid      | Valid          | Flush internal caches; initiate flushing
        |            |      |            |                | of external caches.                     
 <aside class="notification">
-\* See the IA-32 Architecture Compatibility section below.
+* See the IA-32 Architecture Compatibility section below.
 </aside>
 
 

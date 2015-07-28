@@ -5,6 +5,14 @@
 ``` slim
 DEST <- SRC;
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ MOVNTQ:| void _mm_stream_pi(__m64 \* p, __m64
+        | a)                                 
+
 ```
 
  Opcode  | Instruction   | Op/En| 64-Bit Mode| Compat/Leg Mode| Description                                   
@@ -42,12 +50,6 @@ memory types to read/write the destination memory locations.
 This instruction's operation is the same in non-64-bit modes and 64-bit mode.
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- MOVNTQ:| void _mm_stream_pi(__m64 \* p, __m64
-        | a)                                 
 
 ### SIMD Floating-Point Exceptions
 None.

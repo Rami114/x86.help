@@ -10,7 +10,7 @@ IF DEST = 0
      IF Instruction = FIDIVR
        THEN
           DEST <- ConvertToDoubleExtendedPrecisionFP(SRC) / DEST;
-       ELSE (\* Source operand is floating-point value \*)
+       ELSE (* Source operand is floating-point value *)
           DEST <- SRC / DEST;
      FI;
 FI;
@@ -67,7 +67,7 @@ instruction is FDIVR rather than FDIVRP.
 The FIDIVR instructions convert an integer source operand to double extended-precision
 floating-point format before performing the division.
 
-If an unmasked divide-by-zero exception (#Z) is generated, no result is stored;
+If an unmasked divide-by-zero exception (**``#Z)``** is generated, no result is stored;
 if the exception is masked, an ∞ of the appropriate sign is stored in the destination
 operand.
 
@@ -81,10 +81,10 @@ DEST
    | |  
 ---- | -----
  − ∞     | − F + ∞    | − 0 + ∞| + 0 − ∞| + F − ∞    | + ∞     | NaN NaN    
- +0      | + F        | \*\*     | \*\*     | − F        | −0      | NaN        
- +0 +0 −0| + F + 0 − 0| \*\*     | \*\*     | − F − 0 + 0| −0 −0 +0| NaN NaN NaN
- −0      | − F        | \*\*     | \*\*     | + F        | +0      | NaN        
- −0      | − F − ∞    | \*\*− ∞  | \*\*+ ∞  | + F + ∞    | +0      | NaN NaN    
+ +0      | + F        | **     | **     | − F        | −0      | NaN        
+ +0 +0 −0| + F + 0 − 0| **     | **     | − F − 0 + 0| −0 −0 +0| NaN NaN NaN
+ −0      | − F        | **     | **     | + F        | +0      | NaN        
+ −0      | − F − ∞    | **− ∞  | **+ ∞  | + F + ∞    | +0      | NaN NaN    
  NaN     | NaN        | NaN    | NaN    | NaN        | NaN     | NaN        
 <aside class="notification">
 F Means finite floating-point value.
@@ -92,8 +92,8 @@ F Means finite floating-point value.
 
    | |  
 ---- | -----
- I \* Indicates floating-point invalid-arithmetic-operand| Means integer.
- (**``#IA)``** exception. \*\* Indicates floating-point           |               
+ I * Indicates floating-point invalid-arithmetic-operand| Means integer.
+ (**``#IA)``** exception. ** Indicates floating-point           |               
  zero-divide (**``#Z)``** exception.                            |               
 When the source operand is an integer 0, it is treated as a +0. This instruction's
 operation is the same in non-64-bit modes and 64-bit mode.

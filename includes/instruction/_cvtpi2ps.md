@@ -7,6 +7,14 @@ DEST[31:0] <- Convert_Integer_To_Single_Precision_Floating_Point(SRC[31:0]);
 DEST[63:32] <- Convert_Integer_To_Single_Precision_Floating_Point(SRC[63:32]);
 (\* High quadword of destination unchanged \*)
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ CVTPI2PS:| __m128 _mm_cvtpi32_ps(__m128 a, __m64
+          | b)                                   
+
 ```
 
  Opcode/Instruction           | Op/En| 64-Bit Mode| Compat/Leg Mode| Description                           
@@ -41,12 +49,6 @@ In 64-bit mode, use of the REX.R prefix permits this instruction to access addit
 registers (XMM8-XMM15).
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- CVTPI2PS:| __m128 _mm_cvtpi32_ps(__m128 a, __m64
-          | b)                                   
 
 ### SIMD Floating-Point Exceptions
 Precision.

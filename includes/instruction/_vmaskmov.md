@@ -50,6 +50,22 @@ VMASKMOVPS - 256-bit load
 IF (SRC1[191]) DEST[191:128] <- SRC2[191:128]
 IF (SRC1[255]) DEST[255:192] <- SRC2[255:192]
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ __m256                                | _mm256_maskload_ps(float const *a, __m256i
+                                       | mask)                                     
+ void __m256d _mm256_maskload_pd(double| _mm256_maskstore_ps(float *a, __m256i     
+ *a, __m256i mask);                    | mask, __m256 b)                           
+ void __m128 _mm128_maskload_ps(float  | _mm256_maskstore_pd(double *a, __m256i    
+ const *a, __m128i mask)               | mask, __m256d b);                         
+ void __m128d _mm128_maskload_pd(double| _mm128_maskstore_ps(float *a, __m128i     
+ *a, __m128i mask);                    | mask, __m128 b)                           
+ void                                  | _mm128_maskstore_pd(double *a, __m128i    
+                                       | mask, __m128d b);                         
+
 ```
 
  Opcode/Instruction                     | Op/En| 64/32-bit Mode| CPUID Feature Flag| Description                                
@@ -116,20 +132,6 @@ is encoded in rm_field.
 </aside>
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- __m256                                | _mm256_maskload_ps(float const \*a, __m256i
-                                       | mask)                                     
- void __m256d _mm256_maskload_pd(double| _mm256_maskstore_ps(float \*a, __m256i     
- \*a, __m256i mask);                    | mask, __m256 b)                           
- void __m128 _mm128_maskload_ps(float  | _mm256_maskstore_pd(double \*a, __m256i    
- const \*a, __m128i mask)               | mask, __m256d b);                         
- void __m128d _mm128_maskload_pd(double| _mm128_maskstore_ps(float \*a, __m128i     
- \*a, __m128i mask);                    | mask, __m128 b)                           
- void                                  | _mm128_maskstore_pd(double \*a, __m128i    
-                                       | mask, __m128d b);                         
 
 ### SIMD Floating-Point Exceptions
 None

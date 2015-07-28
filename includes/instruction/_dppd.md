@@ -24,7 +24,19 @@ DEST[127:0]<-DP_Primitive(SRC1[127:0], SRC2[127:0]);
 DEST[VLMAX-1:128] (Unmodified)
 VDPPD (VEX.128 encoded version)
 DEST[127:0]<-DP_Primitive(SRC1[127:0], SRC2[127:0]);
-DEST[VLMAX-1:128] <- 0
+DEST[VLMAX-1:128] <- 0```
+
+### Flags Affected
+None
+
+
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ DPPD:| __m128d _mm_dp_pd ( __m128d a, __m128d
+      | b, const int mask);                   
 
 ```
 
@@ -75,19 +87,9 @@ VEX.128 encoded version: the first source operand is an XMM register or 128-bit
 memory location. The destination operand is an XMM register. The upper bits
 (VLMAX-1:128) of the corresponding YMM register destination are zeroed. If VDPPD
 is encoded with VEX.L= 1, an attempt to execute the instruction encoded with
-VEX.L= 1 will cause an #UD exception.
+VEX.L= 1 will cause an **``#UD``** exception.
 
 
-
-### Flags Affected
-None
-
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- DPPD:| __m128d _mm_dp_pd ( __m128d a, __m128d
-      | b, const int mask);                   
 
 ### SIMD Floating-Point Exceptions
 Overflow, Underflow, Invalid, Precision, Denormal Exceptions are determined

@@ -20,6 +20,16 @@ ELSE
   DEST[31:0] <- (SRC[127:0] » (SRC_OFFET\*32)) AND 0FFFFFFFFh
 FI
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ EXTRACTPS:| _mm_extractmem_ps (float \*dest, __m128
+           | a, const int nidx);                   
+ EXTRACTPS:| __m128 _mm_extract_ps (__m128 a, const
+           | int nidx);                            
+
 ```
 
  Opcode/Instruction                     | Op/En| 64/32-bit Mode| CPUID Feature Flag| Description                                
@@ -52,21 +62,13 @@ with a general purpose register (GPR) as a destination operand, the packed singl
 quantity is zero extended to 64 bits. VEX.128 encoded version: When VEX.128.66.0F3A.W1
 17 form is used in 64-bit mode with a general purpose register (GPR) as a destination
 operand, the packed single quantity is zero extended to 64 bits. VEX.vvvv is
-reserved and must be 1111b otherwise instructions will #UD. The source register
+reserved and must be 1111b otherwise instructions will **``#UD.``** The source register
 is an XMM register. Imm8[1:0] determine the starting DWORD offset from which
 to extract the 32-bit floating-point value. If VEXTRACTPS is encoded with VEX.L=
 1, an attempt to execute the instruction encoded with VEX.L= 1 will cause an
-#UD exception.
+**``#UD``** exception.
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- EXTRACTPS:| _mm_extractmem_ps (float \*dest, __m128
-           | a, const int nidx);                   
- EXTRACTPS:| __m128 _mm_extract_ps (__m128 a, const
-           | int nidx);                            
 
 ### SIMD Floating-Point Exceptions
 None

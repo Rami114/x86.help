@@ -8,6 +8,14 @@ effective address and puts the monitor hardware in armed state. Always use memor
 type. A store to the specified address range will trigger the monitor hardware. The content of ECX and EDX are
 used to communicate other information to the monitor hardware.
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ MONITOR:| void _mm_monitor(void const \*p, unsigned
+         | extensions,unsigned hints)              
+
 ```
 
  Opcode  | Instruction| Op/En| 64-Bit Mode| Compat/Leg Mode| Description                            
@@ -63,12 +71,6 @@ execution to generate an invalid-opcode exception.
 The instruction's operation is the same in non-64-bit modes and 64-bit mode.
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- MONITOR:| void _mm_monitor(void const \*p, unsigned
-         | extensions,unsigned hints)              
 
 ### Numeric Exceptions
 None

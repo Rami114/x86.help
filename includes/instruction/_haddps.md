@@ -25,6 +25,16 @@ DEST[191:160] <- SRC1[255:224] + SRC1[223:192]
 DEST[223:192] <- SRC2[191:160] + SRC2[159:128]
 DEST[255:224] <- SRC2[255:224] + SRC2[223:192]
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ HADDPS: | __m128 _mm_hadd_ps (__m128 a, __m128   
+         | b);                                    
+ VHADDPS:| __m256 _mm256_hadd_ps (__m256 a, __m256
+         | b);                                    
+
 ```
 
  Opcode/Instruction                 | Op/En| 64/32-bit Mode| CPUID Feature Flag| Description                           
@@ -99,17 +109,9 @@ operand is a YMM register.
 
 
 
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- HADDPS: | __m128 _mm_hadd_ps (__m128 a, __m128   
-         | b);                                    
- VHADDPS:| __m256 _mm256_hadd_ps (__m256 a, __m256
-         | b);                                    
-
 ### Exceptions
 When the source operand is a memory operand, the operand must be aligned on
-a 16-byte boundary or a generalprotection exception (#GP) will be generated.
+a 16-byte boundary or a generalprotection exception (**``#GP)``** will be generated.
 
 
 ### Numeric Exceptions

@@ -33,6 +33,13 @@ ELSE
   YMM8-15: unmodified
 FI
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ VZEROUPPER:| _mm256_zeroupper()
+
 ```
 
  Opcode/Instruction          | Op/En| 64/32 bit Mode Support| CPUID Feature Flag| Description                              
@@ -56,11 +63,6 @@ In Compatibility and legacy 32-bit mode only the lower 8 registers are modified.
 </aside>
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- VZEROUPPER:| _mm256_zeroupper()
 
 ### SIMD Floating-Point Exceptions
 None.

@@ -14,6 +14,19 @@ DEST[VLMAX-1:128] <- 0
 VMOVDQU (VEX.256 encoded version)
 DEST[255:0] <- SRC[255:0]
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ MOVDQU: | void _mm_storeu_si128 ( __m128i *p,   
+         | __m128i a)                            
+ MOVDQU: | __m128i _mm_loadu_si128 ( __m128i *p) 
+ VMOVDQU:| __m256i _mm256_loadu_si256 (__m256i   
+         | * p);                                 
+ VMOVDQU:| _mm256_storeu_si256(_m256i *p, __m256i
+         | a);                                   
+
 ```
 
  Opcode/Instruction                        | Op/En| 64/32-bit Mode| CPUID Feature Flag| Description                         
@@ -46,7 +59,7 @@ load an XMM register from a 128-bit memory location, to store the contents of
 an XMM register into a 128-bit memory location, or to move data between two
 XMM registers. When the source or destination operand is a memory operand, the
 operand may be unaligned on a 16-byte boundary without causing a general-protection
-exception (#GP) to be generated.1
+exception (**``#GP)``** to be generated.1
 
 To move a double quadword to or from memory locations that are known to be aligned
 on 16-byte boundaries, use the MOVDQA instruction.
@@ -54,7 +67,7 @@ on 16-byte boundaries, use the MOVDQA instruction.
 While executing in 16-bit addressing mode, a linear address for a 128-bit data
 access that overlaps the end of a 16bit segment is not allowed and is defined
 as reserved behavior. A specific processor implementation may or may not generate
-a general-protection exception (#GP) in this situation, and the address that
+a general-protection exception (**``#GP)``** in this situation, and the address that
 spans the end of the segment may or may not wrap around to the beginning of
 the segment.
 
@@ -62,7 +75,7 @@ In 64-bit mode, use of the REX.R prefix permits this instruction to access addit
 registers (XMM8-XMM15). 128-bit Legacy SSE version: Bits (VLMAX-1:128) of the
 corresponding YMM destination register remain unchanged. When the source or
 destination operand is a memory operand, the operand may be unaligned to any
-alignment without causing a general-protection exception (#GP) to be generated
+alignment without causing a general-protection exception (**``#GP)``** to be generated
 VEX.128 encoded version: Bits (VLMAX-1:128) of the destination YMM register
 are zeroed.
 
@@ -80,20 +93,9 @@ can be used to load a YMM register from a 256-bit memory
    | is not aligned on an 8-byte boundary.     
 location, to store the contents of a YMM register into a 256-bit memory location,
 or to move data between two YMM registers. Note: In VEX-encoded versions, VEX.vvvv
-is reserved and must be 1111b otherwise instructions will #UD.
+is reserved and must be 1111b otherwise instructions will **``#UD.``**
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- MOVDQU: | void _mm_storeu_si128 ( __m128i \*p,   
-         | __m128i a)                            
- MOVDQU: | __m128i _mm_loadu_si128 ( __m128i \*p) 
- VMOVDQU:| __m256i _mm256_loadu_si256 (__m256i   
-         | \* p);                                 
- VMOVDQU:| _mm256_storeu_si256(_m256i \*p, __m256i
-         | a);                                   
 
 ### SIMD Floating-Point Exceptions
 None.

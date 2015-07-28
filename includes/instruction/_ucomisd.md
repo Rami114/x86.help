@@ -5,7 +5,24 @@
 ``` slim
 RESULT <- UnorderedCompare(SRC1[63:0] < > SRC2[63:0]) {
 (\* Set EFLAGS \*)
-CASE (RESULT) OF
+CASE (RESULT) OF```
+
+###   UNORDERED
+###   GREATER_THAN
+###   LESS_THAN
+###   EQUAL
+ESAC;
+OF, AF, SF <- 0;
+
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+int _mm_ucomieq_sd(__m128d a, __m128d b) int _mm_ucomilt_sd(__m128d a, __m128d
+b) int _mm_ucomile_sd(__m128d a, __m128d b) int _mm_ucomigt_sd(__m128d a, __m128d
+b) int _mm_ucomige_sd(__m128d a, __m128d b) int _mm_ucomineq_sd(__m128d a, __m128d
+b)
+
+
 ```
 
  Opcode/Instruction                    | Op/En| 64/32 bit Mode Support| CPUID Feature Flag| Description                                 
@@ -35,7 +52,7 @@ Source operand 1 is an XMM register; source operand 2 can be an XMM register
 or a 64 bit memory location.
 
 The UCOMISD instruction differs from the COMISD instruction in that it signals
-a SIMD floating-point invalid operation exception (#I) only when a source operand
+a SIMD floating-point invalid operation exception (**``#I)``** only when a source operand
 is an SNaN. The COMISD instruction signals an invalid operation exception if
 a source operand is either a QNaN or an SNaN.
 
@@ -44,22 +61,8 @@ is generated.
 
 In 64-bit mode, using a REX prefix in the form of REX.R permits this instruction
 to access additional registers (XMM8-XMM15). Note: In VEX-encoded versions,
-VEX.vvvv is reserved and must be 1111b, otherwise instructions will #UD.
+VEX.vvvv is reserved and must be 1111b, otherwise instructions will **``#UD.``**
 
-
-
-###   UNORDERED
-###   GREATER_THAN
-###   LESS_THAN
-###   EQUAL
-ESAC;
-OF, AF, SF <- 0;
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-int _mm_ucomieq_sd(__m128d a, __m128d b) int _mm_ucomilt_sd(__m128d a, __m128d
-b) int _mm_ucomile_sd(__m128d a, __m128d b) int _mm_ucomigt_sd(__m128d a, __m128d
-b) int _mm_ucomige_sd(__m128d a, __m128d b) int _mm_ucomineq_sd(__m128d a, __m128d
-b)
 
 
 ### SIMD Floating-Point Exceptions

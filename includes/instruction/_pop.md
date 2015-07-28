@@ -7,10 +7,10 @@ IF StackAddrSize = 32
   THEN
      IF OperandSize = 32
        THEN
-          DEST <- SS:ESP; (\* Copy a doubleword \*)
+          DEST <- SS:ESP; (* Copy a doubleword *)
           ESP <- ESP + 4;
-       ELSE (\* OperandSize = 16\*)
-          DEST <- SS:ESP; (\* Copy a word \*)
+       ELSE (* OperandSize = 16*)
+          DEST <- SS:ESP; (* Copy a word *)
 1.
   may not be triggered. However, in a sequence of instructions that POP the SS register, only the first instruction in the sequence is
   guaranteed to delay an interrupt.
@@ -91,7 +91,7 @@ section below).
 A NULL value (0000-0003) may be popped into the DS, ES, FS, or GS register without
 causing a general protection fault. However, any subsequent attempt to reference
 a segment whose corresponding segment register is loaded with a NULL value causes
-a general protection exception (#GP). In this situation, no memory reference
+a general protection exception (**``#GP).``** In this situation, no memory reference
 occurs and the saved value of the segment register is NULL.
 
 The POP instruction cannot pop a value into the CS register. To load the CS
@@ -129,10 +129,10 @@ beginning of this section for encoding data and limits.
      THEN
        IF OperandSize = 64
           THEN
-             DEST <- SS:RSP; (\* Copy quadword \*)
+             DEST <- SS:RSP; (* Copy quadword *)
              RSP <- RSP + 8;
-          ELSE (\* OperandSize = 16\*)
-             DEST <- SS:RSP; (\* Copy a word \*)
+          ELSE (* OperandSize = 16*)
+             DEST <- SS:RSP; (* Copy a word *)
              RSP <- RSP + 2;
        FI;
      FI;
@@ -140,10 +140,10 @@ beginning of this section for encoding data and limits.
      THEN
        IF OperandSize = 16
           THEN
-             DEST <- SS:SP; (\* Copy a word \*)
+             DEST <- SS:SP; (* Copy a word *)
              SP <- SP + 2;
-          ELSE (\* OperandSize = 32 \*)
-             DEST <- SS:SP; (\* Copy a doubleword \*)
+          ELSE (* OperandSize = 32 *)
+             DEST <- SS:SP; (* Copy a doubleword *)
              SP <- SP + 4;
        FI;
 FI;
@@ -156,9 +156,9 @@ IF FS, or GS is loaded with non-NULL selector;
        OR segment is not a data or readable code segment
        OR ((segment is a data or nonconforming code segment)
           AND (both RPL and CPL > DPL))
-             THEN #GP(selector);
+             THEN **``#GP(selector);``**
        IF segment not marked present
-          THEN #NP(selector);
+          THEN **``#NP(selector);``**
      ELSE
        SegmentRegister <- segment selector;
        SegmentRegister <- segment descriptor;
@@ -173,16 +173,16 @@ PREOTECTED MODE OR COMPATIBILITY MODE;
 IF SS is loaded;
   THEN
      IF segment selector is NULL
-       THEN #GP(0);
+       THEN **``#GP(0);``**
      FI;
      IF segment selector index is outside descriptor table limits
        or segment selector's RPL != CPL
        or segment is not a writable data segment
        or DPL != CPL
-          THEN #GP(selector);
+          THEN **``#GP(selector);``**
      FI;
      IF segment not marked present
-       THEN #SS(selector);
+       THEN **``#SS(selector);``**
        ELSE
           SS <- segment selector;
           SS <- segment descriptor;
@@ -194,10 +194,10 @@ IF DS, ES, FS, or GS is loaded with non-NULL selector;
        or segment is not a data or readable code segment
        or ((segment is a data or nonconforming code segment)
        and (both RPL and CPL > DPL))
-          THEN #GP(selector);
+          THEN **``#GP(selector);``**
      FI;
      IF segment not marked present
-       THEN #NP(selector);
+       THEN **``#NP(selector);``**
        ELSE
           SegmentRegister <- segment selector;
           SegmentRegister <- segment descriptor;

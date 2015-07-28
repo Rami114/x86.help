@@ -11,7 +11,7 @@ DISP: optional 1, 4 byte displacement;
 MASK <- SRC3;
 VPGATHERDQ (VEX.128 version)
 FOR j<- 0 to 1
-  i <- j \* 64;
+  i <- j * 64;
   IF MASK[63+i] THEN
      MASK[i +63:i] <- 0xFFFFFFFF_FFFFFFFF; // extend from most significant bit
   ELSE
@@ -19,9 +19,9 @@ FOR j<- 0 to 1
   FI;
 ENDFOR
 FOR j<- 0 to 1
-  k <- j \* 32;
-  i <- j \* 64;
-  DATA_ADDR <- BASE_ADDR + (SignExtend(VINDEX[k+31:k])\*SCALE + DISP;
+  k <- j * 32;
+  i <- j * 64;
+  DATA_ADDR <- BASE_ADDR + (SignExtend(VINDEX[k+31:k])*SCALE + DISP;
   IF MASK[63+i] THEN
      DEST[i +63:i] <- FETCH_64BITS(DATA_ADDR); // a fault exits the instruction
   FI;
@@ -32,7 +32,7 @@ DEST[VLMAX-1:128] <- 0;
 (non-masked elements of the mask register have the content of respective element
 VPGATHERQQ (VEX.128 version)
 FOR j<- 0 to 1
-  i <- j \* 64;
+  i <- j * 64;
   IF MASK[63+i] THEN
      MASK[i +63:i] <- 0xFFFFFFFF_FFFFFFFF; // extend from most significant bit
   ELSE
@@ -40,8 +40,8 @@ FOR j<- 0 to 1
   FI;
 ENDFOR
 FOR j<- 0 to 1
-  i <-j \* 64;
-  DATA_ADDR <- BASE_ADDR + (SignExtend(VINDEX1[i+63:i])\*SCALE + DISP;
+  i <-j * 64;
+  DATA_ADDR <- BASE_ADDR + (SignExtend(VINDEX1[i+63:i])*SCALE + DISP;
   IF MASK[63+i] THEN
      DEST[i +63:i] <- FETCH_64BITS(DATA_ADDR); // a fault exits the instruction
   FI;
@@ -52,7 +52,7 @@ DEST[VLMAX-1:128] <- 0;
 (non-masked elements of the mask register have the content of respective element
 VPGATHERQQ (VEX.256 version)
 FOR j<- 0 to 3
-  i <- j \* 64;
+  i <- j * 64;
   IF MASK[63+i] THEN
      MASK[i +63:i] <- 0xFFFFFFFF_FFFFFFFF; // extend from most significant bit
   ELSE
@@ -60,8 +60,8 @@ FOR j<- 0 to 3
   FI;
 ENDFOR
 FOR j<- 0 to 3
-  i <- j \* 64;
-  DATA_ADDR <- BASE_ADDR + (SignExtend(VINDEX1[i+63:i])\*SCALE + DISP;
+  i <- j * 64;
+  DATA_ADDR <- BASE_ADDR + (SignExtend(VINDEX1[i+63:i])*SCALE + DISP;
   IF MASK[63+i] THEN
      DEST[i +63:i] <- FETCH_64BITS(DATA_ADDR); // a fault exits the instruction
   FI;
@@ -70,7 +70,7 @@ ENDFOR
 (non-masked elements of the mask register have the content of respective element
 VPGATHERDQ (VEX.256 version)
 FOR j<- 0 to 3
-  i <- j \* 64;
+  i <- j * 64;
   IF MASK[63+i] THEN
      MASK[i +63:i] <- 0xFFFFFFFF_FFFFFFFF; // extend from most significant bit
   ELSE
@@ -78,15 +78,43 @@ FOR j<- 0 to 3
   FI;
 ENDFOR
 FOR j<- 0 to 3
-  k <- j \* 32;
-  i <- j \* 64;
-  DATA_ADDR <- BASE_ADDR + (SignExtend(VINDEX1[k+31:k])\*SCALE + DISP;
+  k <- j * 32;
+  i <- j * 64;
+  DATA_ADDR <- BASE_ADDR + (SignExtend(VINDEX1[k+31:k])*SCALE + DISP;
   IF MASK[63+i] THEN
      DEST[i +63:i] <- FETCH_64BITS(DATA_ADDR); // a fault exits the instruction
   FI;
   MASK[i +63:i] <- 0;
 ENDFOR
 (non-masked elements of the mask register have the content of respective element
+
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+VPGATHERDQ: __m128i _mm_i32gather_epi64 (int64 const * base, __m128i index,
+const int scale);
+
+VPGATHERDQ: __m128i _mm_mask_i32gather_epi64 (__m128i src, int64 const * base,
+__m128i index, __m128i mask, const int scale);
+
+VPGATHERDQ: __m256i _mm256_i32gather_epi64 ( int64 const * base, __m128i index,
+const int scale);
+
+VPGATHERDQ: __m256i _mm256_mask_i32gather_epi64 (__m256i src, int64 const *
+base, __m128i index, __m256i mask, const int scale);
+
+VPGATHERQQ: __m128i _mm_i64gather_epi64 (int64 const * base, __m128i index,
+const int scale);
+
+VPGATHERQQ: __m128i _mm_mask_i64gather_epi64 (__m128i src, int64 const * base,
+__m128i index, __m128i mask, const int scale);
+
+VPGATHERQQ: __m256i _mm256_i64gather_epi64 (int64 const * base, __m256i index,
+const int scale);
+
+VPGATHERQQ: __m256i _mm256_mask_i64gather_epi64 (__m256i src, int64 const *
+base, __m256i index, __m256i mask, const int scale);
+
 
 ```
 
@@ -178,8 +206,8 @@ fault is delivered. A given implementation of this instruction is repeatable
 to the left of the faulting one will be gathered.
  - This instruction does not perform AC checks, and so will never deliver an AC
 fault.
- - This instruction will cause a #UD if the address size attribute is 16-bit.
- - This instruction will cause a #UD if the memory operand is encoded without the
+ - This instruction will cause a **``#UD``** if the address size attribute is 16-bit.
+ - This instruction will cause a **``#UD``** if the memory operand is encoded without the
 SIB byte.
  - This instruction should not be used to access memory mapped I/O as the ordering
 of the individual loads it does is implementation specific, and some implementations
@@ -189,32 +217,6 @@ number of times.
 by the processor (e.g., in 32bit mode, if the scale is greater than one). In
 this case, the most significant bits beyond the number of address bits are ignored.
 
-
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-VPGATHERDQ: __m128i _mm_i32gather_epi64 (int64 const \* base, __m128i index,
-const int scale);
-
-VPGATHERDQ: __m128i _mm_mask_i32gather_epi64 (__m128i src, int64 const \* base,
-__m128i index, __m128i mask, const int scale);
-
-VPGATHERDQ: __m256i _mm256_i32gather_epi64 ( int64 const \* base, __m128i index,
-const int scale);
-
-VPGATHERDQ: __m256i _mm256_mask_i32gather_epi64 (__m256i src, int64 const \*
-base, __m128i index, __m256i mask, const int scale);
-
-VPGATHERQQ: __m128i _mm_i64gather_epi64 (int64 const \* base, __m128i index,
-const int scale);
-
-VPGATHERQQ: __m128i _mm_mask_i64gather_epi64 (__m128i src, int64 const \* base,
-__m128i index, __m128i mask, const int scale);
-
-VPGATHERQQ: __m256i _mm256_i64gather_epi64 (int64 const \* base, __m256i index,
-const int scale);
-
-VPGATHERQQ: __m256i _mm256_mask_i64gather_epi64 (__m256i src, int64 const \*
-base, __m256i index, __m256i mask, const int scale);
 
 
 ### SIMD Floating-Point Exceptions

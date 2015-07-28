@@ -30,14 +30,14 @@ PMULLW (with 128-bit operands)
   DEST[111:96] <-
   DEST[127:112] <- TEMP7[15:0];
 VPMULLW (VEX.128 encoded version)
-Temp0[31:0] <- SRC1[15:0] \* SRC2[15:0]
-Temp1[31:0] <- SRC1[31:16] \* SRC2[31:16]
-Temp2[31:0] <- SRC1[47:32] \* SRC2[47:32]
-Temp3[31:0] <- SRC1[63:48] \* SRC2[63:48]
-Temp4[31:0] <- SRC1[79:64] \* SRC2[79:64]
-Temp5[31:0] <- SRC1[95:80] \* SRC2[95:80]
-Temp6[31:0] <- SRC1[111:96] \* SRC2[111:96]
-Temp7[31:0] <- SRC1[127:112] \* SRC2[127:112]
+Temp0[31:0] <- SRC1[15:0] * SRC2[15:0]
+Temp1[31:0] <- SRC1[31:16] * SRC2[31:16]
+Temp2[31:0] <- SRC1[47:32] * SRC2[47:32]
+Temp3[31:0] <- SRC1[63:48] * SRC2[63:48]
+Temp4[31:0] <- SRC1[79:64] * SRC2[79:64]
+Temp5[31:0] <- SRC1[95:80] * SRC2[95:80]
+Temp6[31:0] <- SRC1[111:96] * SRC2[111:96]
+Temp7[31:0] <- SRC1[127:112] * SRC2[127:112]
 DEST[15:0] <- Temp0[15:0]
 DEST[31:16] <- Temp1[15:0]
 DEST[47:32] <- Temp2[15:0]
@@ -48,14 +48,14 @@ DEST[111:96] <- Temp6[15:0]
 DEST[127:112] <- Temp7[15:0]
 DEST[VLMAX-1:128] <- 0
 VPMULLD (VEX.256 encoded version)
-Temp0[63:0] <- SRC1[31:0] \* SRC2[31:0]
-Temp1[63:0] <- SRC1[63:32] \* SRC2[63:32]
-Temp2[63:0] <- SRC1[95:64] \* SRC2[95:64]
-Temp3[63:0] <- SRC1[127:96] \* SRC2[127:96]
-Temp4[63:0] <- SRC1[159:128] \* SRC2[159:128]
-Temp5[63:0] <- SRC1[191:160] \* SRC2[191:160]
-Temp6[63:0] <- SRC1[223:192] \* SRC2[223:192]
-Temp7[63:0] <- SRC1[255:224] \* SRC2[255:224]
+Temp0[63:0] <- SRC1[31:0] * SRC2[31:0]
+Temp1[63:0] <- SRC1[63:32] * SRC2[63:32]
+Temp2[63:0] <- SRC1[95:64] * SRC2[95:64]
+Temp3[63:0] <- SRC1[127:96] * SRC2[127:96]
+Temp4[63:0] <- SRC1[159:128] * SRC2[159:128]
+Temp5[63:0] <- SRC1[191:160] * SRC2[191:160]
+Temp6[63:0] <- SRC1[223:192] * SRC2[223:192]
+Temp7[63:0] <- SRC1[255:224] * SRC2[255:224]
 DEST[31:0] <- Temp0[31:0]
 DEST[63:32] <- Temp1[31:0]
 DEST[95:64] <- Temp2[31:0]
@@ -64,6 +64,18 @@ DEST[159:128] <- Temp4[31:0]
 DEST[191:160] <- Temp5[31:0]
 DEST[223:192] <- Temp6[31:0]
 DEST[255:224] <- Temp7[31:0]
+
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ PMULLW:   | __m64 _mm_mullo_pi16(__m64 m1, __m64
+           | m2)                                 
+ (V)PMULLW:| __m128i _mm_mullo_epi16 ( __m128i a,
+           | __m128i b)                          
+ VPMULLW:  | __m256i _mm256_mullo_epi16 ( __m256i
+           | a, __m256i b);                      
 
 ```
 
@@ -120,20 +132,10 @@ The first source and destination operands are YMM registers.
    | |  
 ---- | -----
  SRC                                    | X3             | X2      | X1             | X0                 
- DEST                                   | Y3 Z2 = X2 \* Y2| Y2      | Y1 Z1 = X1 \* Y1| Y0 Z0 = X0 \* Y0    
+ DEST                                   | Y3 Z2 = X2 * Y2| Y2      | Y1 Z1 = X1 * Y1| Y0 Z0 = X0 * Y0    
  DEST PMULLU Instruction Operation Using| Z3[15:0]       | Z2[15:0]| Z1[15:0]       | Z0[15:0]Figure 4-9.
  64-bit Operands                        |                |         |                |                    
 
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- PMULLW:   | __m64 _mm_mullo_pi16(__m64 m1, __m64
-           | m2)                                 
- (V)PMULLW:| __m128i _mm_mullo_epi16 ( __m128i a,
-           | __m128i b)                          
- VPMULLW:  | __m256i _mm256_mullo_epi16 ( __m256i
-           | a, __m256i b);                      
 
 ### Flags Affected
 None.

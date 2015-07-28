@@ -49,28 +49,28 @@ FI;
 
  Opcode          | Instruction           | Op/En| 64-Bit Mode| Compat/Leg Mode| Description                               
  ---  | --- | --- | --- | --- | ---
- F6 /5           | IMUL r/m8\*            | M    | Valid      | Valid          | AX← AL \* r/m byte.                        
- F7 /5           | IMUL r/m16            | M    | Valid      | Valid          | DX:AX ← AX \* r/m word.                    
- F7 /5           | IMUL r/m32            | M    | Valid      | Valid          | EDX:EAX ← EAX \* r/m32.                    
- REX.W + F7 /5   | IMUL r/m64            | M    | Valid      | N.E.           | RDX:RAX ← RAX \* r/m64.                    
- 0F AF /r        | IMUL r16, r/m16       | RM   | Valid      | Valid          | word register ← word register \* r/m16.    
+ F6 /5           | IMUL r/m8*            | M    | Valid      | Valid          | AX← AL * r/m byte.                        
+ F7 /5           | IMUL r/m16            | M    | Valid      | Valid          | DX:AX ← AX * r/m word.                    
+ F7 /5           | IMUL r/m32            | M    | Valid      | Valid          | EDX:EAX ← EAX * r/m32.                    
+ REX.W + F7 /5   | IMUL r/m64            | M    | Valid      | N.E.           | RDX:RAX ← RAX * r/m64.                    
+ 0F AF /r        | IMUL r16, r/m16       | RM   | Valid      | Valid          | word register ← word register * r/m16.    
  0F AF /r        | IMUL r32, r/m32       | RM   | Valid      | Valid          | doubleword register ← doubleword register 
-                 |                       |      |            |                | \*r/m32.                                   
+                 |                       |      |            |                | *r/m32.                                   
  REX.W + 0F AF /r| IMUL r64, r/m64       | RM   | Valid      | N.E.           | Quadword register ← Quadword register     
-                 |                       |      |            |                | \*r/m64.                                   
- 6B /r ib        | IMUL r16, r/m16, imm8 | RMI  | Valid      | Valid          | word register ← r/m16 \* sign-extended     
+                 |                       |      |            |                | *r/m64.                                   
+ 6B /r ib        | IMUL r16, r/m16, imm8 | RMI  | Valid      | Valid          | word register ← r/m16 * sign-extended     
                  |                       |      |            |                | immediate byte.                           
- 6B /r ib        | IMUL r32, r/m32, imm8 | RMI  | Valid      | Valid          | doubleword register ← r/m32 \* signextended
+ 6B /r ib        | IMUL r32, r/m32, imm8 | RMI  | Valid      | Valid          | doubleword register ← r/m32 * signextended
                  |                       |      |            |                | immediate byte.                           
- REX.W + 6B /r ib| IMUL r64, r/m64, imm8 | RMI  | Valid      | N.E.           | Quadword register ← r/m64 \* sign-extended 
+ REX.W + 6B /r ib| IMUL r64, r/m64, imm8 | RMI  | Valid      | N.E.           | Quadword register ← r/m64 * sign-extended 
                  |                       |      |            |                | immediate byte.                           
- 69 /r iw        | IMUL r16, r/m16, imm16| RMI  | Valid      | Valid          | word register ← r/m16 \* immediate word.   
- 69 /r id        | IMUL r32, r/m32, imm32| RMI  | Valid      | Valid          | doubleword register ← r/m32 \* immediate   
+ 69 /r iw        | IMUL r16, r/m16, imm16| RMI  | Valid      | Valid          | word register ← r/m16 * immediate word.   
+ 69 /r id        | IMUL r32, r/m32, imm32| RMI  | Valid      | Valid          | doubleword register ← r/m32 * immediate   
                  |                       |      |            |                | doubleword.                               
- REX.W + 69 /r id| IMUL r64, r/m64, imm32| RMI  | Valid      | N.E.           | Quadword register ← r/m64 \* immediate     
+ REX.W + 69 /r id| IMUL r64, r/m64, imm32| RMI  | Valid      | N.E.           | Quadword register ← r/m64 * immediate     
                  |                       |      |            |                | doubleword.                               
 <aside class="notification">
-\* In 64-bit mode, r/m8 can not be encoded to access the following byte
+* In 64-bit mode, r/m8 can not be encoded to access the following byte
 registers if a REX prefix is used: AH, BH, CH, DH.
 </aside>
 

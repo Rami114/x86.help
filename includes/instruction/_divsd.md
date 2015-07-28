@@ -11,6 +11,13 @@ DEST[63:0] <- SRC1[63:0] / SRC2[63:0]
 DEST[127:64] <- SRC1[127:64]
 DEST[VLMAX-1:128] <- 0
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ DIVSD:| __m128d _mm_div_sd (m128d a, m128d b)
+
 ```
 
  Opcode/Instruction                      | Op/En| 64/32-bit Mode| CPUID Feature Flag| Description                                 
@@ -46,11 +53,6 @@ YMM destination register remain unchanged. VEX.128 encoded version: Bits (VLMAX-
 of the destination YMM register are zeroed.
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- DIVSD:| __m128d _mm_div_sd (m128d a, m128d b)
 
 ### SIMD Floating-Point Exceptions
 Overflow, Underflow, Invalid, Divide-by-Zero, Precision, Denormal.

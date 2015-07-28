@@ -11,6 +11,14 @@ DEST[63:0] <- Convert_Single_Precision_To_Double_Precision_Floating_Point(SRC2[3
 DEST[127:64] <- SRC1[127:64]
 DEST[VLMAX-1:128] <- 0
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ CVTSS2SD:| __m128d _mm_cvtss_sd(__m128d a, __m128
+          | b)                                    
+
 ```
 
  Opcode/Instruction                   | Op/En| 64/32-bit Mode| CPUID Feature Flag| Description                                
@@ -46,12 +54,6 @@ register destination are copied from corresponding bits in the first source
 operand. Bits (VLMAX-1:128) of the destination YMM register are zeroed.
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- CVTSS2SD:| __m128d _mm_cvtss_sd(__m128d a, __m128
-          | b)                                    
 
 ### SIMD Floating-Point Exceptions
 Invalid, Denormal.

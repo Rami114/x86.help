@@ -5,6 +5,12 @@
 ``` slim
 Wait_On_Following_Loads_And_Stores_Until(preceding_loads_and_stores_globally_visible);
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+void _mm_mfence(void)
+
+
 ```
 
  Opcode  | Instruction| Op/En| 64-Bit Mode| Compat/Leg Mode| Description                          
@@ -43,10 +49,6 @@ an MFENCE instruction.
 
 This instruction's operation is the same in non-64-bit modes and 64-bit mode.
 
-
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-void _mm_mfence(void)
 
 
 ### Exceptions (All Modes of Operation)

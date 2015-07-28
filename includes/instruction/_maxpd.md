@@ -26,6 +26,16 @@ DEST[127:64] <- MAX(SRC1[127:64], SRC2[127:64])
 DEST[191:128] <- MAX(SRC1[191:128], SRC2[191:128])
 DEST[255:192] <- MAX(SRC1[255:192], SRC2[255:192])
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ MAXPD: | __m128d _mm_max_pd(__m128d a, __m128d    
+        | b);                                      
+ VMAXPD:| __m256d _mm256_max_pd (__m256d a, __m256d
+        | b);                                      
+
 ```
 
  Opcode/Instruction                           | Op/En| 64/32-bit Mode| CPUID Feature Flag| Description                               
@@ -72,14 +82,6 @@ operand is a YMM register. The second source operand can be a YMM register or
 a 256-bit memory location. The destination operand is a YMM register.
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- MAXPD: | __m128d _mm_max_pd(__m128d a, __m128d    
-        | b);                                      
- VMAXPD:| __m256d _mm256_max_pd (__m256d a, __m256d
-        | b);                                      
 
 ### SIMD Floating-Point Exceptions
 Invalid (including QNaN source operand), Denormal.

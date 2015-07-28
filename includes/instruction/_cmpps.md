@@ -108,6 +108,38 @@ IF CMP7 = TRUE
   THEN DEST[255:224] <- FFFFFFFFH;
   ELSE DEST[255:224] <- 000000000H; FI;
 
+> Intel C/C++ Compiler Intrinsic Equivalents
+
+``` slim
+   | |  
+---- | -----
+ CMPPS for equality:                     | __m128 _mm_cmpeq_ps(__m128 a, __m128   
+                                         | b)                                     
+ CMPPS for less-than:                    | __m128 _mm_cmplt_ps(__m128 a, __m128   
+                                         | b)                                     
+ CMPPS for less-than-or-equal:           | __m128 _mm_cmple_ps(__m128 a, __m128   
+                                         | b)                                     
+ CMPPS for greater-than:                 | __m128 _mm_cmpgt_ps(__m128 a, __m128   
+                                         | b)                                     
+ CMPPS for greater-than-or-equal:        | __m128 _mm_cmpge_ps(__m128 a, __m128   
+                                         | b)                                     
+ CMPPS for inequality:                   | __m128 _mm_cmpneq_ps(__m128 a, __m128  
+                                         | b)                                     
+ CMPPS for not-less-than:                | __m128 _mm_cmpnlt_ps(__m128 a, __m128  
+                                         | b)                                     
+ CMPPS for not-greater-than:             | __m128 _mm_cmpngt_ps(__m128 a, __m128  
+                                         | b)                                     
+ CMPPS for not-greater-than-or-equal:    | __m128 _mm_cmpnge_ps(__m128 a, __m128  
+                                         | b)                                     
+ CMPPS for ordered:                      | __m128 _mm_cmpord_ps(__m128 a, __m128  
+                                         | b)                                     
+ CMPPS for unordered:                    | __m128 _mm_cmpunord_ps(__m128 a, __m128
+                                         | b)                                     
+ CMPPS for not-less-than-or-equal: __m256| __m128 _mm_cmpnle_ps(__m128 a, __m128  
+ _mm256_cmp_ps(__m256 a, __m256 b, const | b)                                     
+ int imm) __m128 _mm_cmp_ps(__m128 a,    |                                        
+ __m128 b, const int imm)                |                                        
+
 ```
 
  Opcode/Instruction                      | Op/En| 64/32bit Mode| CPUID Feature Flag| Description                                  
@@ -242,36 +274,6 @@ constants to support a simpler intrinsic interface.
                                                 |                        | reg1, reg2, reg3, 1DH VCMPPS reg1, reg2,      
                                                 |                        | reg3, 1EH VCMPPS reg1, reg2, reg3, 1FH        
 
-
-### Intel C/C++ Compiler Intrinsic Equivalents
-   | |  
----- | -----
- CMPPS for equality:                     | __m128 _mm_cmpeq_ps(__m128 a, __m128   
-                                         | b)                                     
- CMPPS for less-than:                    | __m128 _mm_cmplt_ps(__m128 a, __m128   
-                                         | b)                                     
- CMPPS for less-than-or-equal:           | __m128 _mm_cmple_ps(__m128 a, __m128   
-                                         | b)                                     
- CMPPS for greater-than:                 | __m128 _mm_cmpgt_ps(__m128 a, __m128   
-                                         | b)                                     
- CMPPS for greater-than-or-equal:        | __m128 _mm_cmpge_ps(__m128 a, __m128   
-                                         | b)                                     
- CMPPS for inequality:                   | __m128 _mm_cmpneq_ps(__m128 a, __m128  
-                                         | b)                                     
- CMPPS for not-less-than:                | __m128 _mm_cmpnlt_ps(__m128 a, __m128  
-                                         | b)                                     
- CMPPS for not-greater-than:             | __m128 _mm_cmpngt_ps(__m128 a, __m128  
-                                         | b)                                     
- CMPPS for not-greater-than-or-equal:    | __m128 _mm_cmpnge_ps(__m128 a, __m128  
-                                         | b)                                     
- CMPPS for ordered:                      | __m128 _mm_cmpord_ps(__m128 a, __m128  
-                                         | b)                                     
- CMPPS for unordered:                    | __m128 _mm_cmpunord_ps(__m128 a, __m128
-                                         | b)                                     
- CMPPS for not-less-than-or-equal: __m256| __m128 _mm_cmpnle_ps(__m128 a, __m128  
- _mm256_cmp_ps(__m256 a, __m256 b, const | b)                                     
- int imm) __m128 _mm_cmp_ps(__m128 a,    |                                        
- __m128 b, const int imm)                |                                        
 
 ### SIMD Floating-Point Exceptions
 Invalid if SNaN operand and invalid if QNaN and predicate as listed in above

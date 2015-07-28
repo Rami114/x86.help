@@ -29,6 +29,16 @@ DEST[175:160] <- (SRC1 >> (imm[5:4] \* 16))[143:128]
 DEST[191:176] <- (SRC1 >> (imm[7:6] \* 16))[143:128]
 DEST[255:192] <- SRC1[255:192]
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ (V)PSHUFLW:| __m128i _mm_shufflelo_epi16(__m128i   
+            | a, int n)                             
+ VPSHUFLW:  | __m256i _mm256_shufflelo_epi16(__m256i
+            | a, const int n)                       
+
 ```
 
  Opcode/Instruction                     | Op/En| 64/32 bit Mode Support| CPUID Feature Flag| Description                             
@@ -75,18 +85,10 @@ can be an YMM register or a 256-bit memory location.
 
 <aside class="notification">
 VEX.vvvv is reserved and must be 1111b, VEX.L must be 0, otherwise instructions
-will #UD.
+will **``#UD.``**
 </aside>
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- (V)PSHUFLW:| __m128i _mm_shufflelo_epi16(__m128i   
-            | a, int n)                             
- VPSHUFLW:  | __m256i _mm256_shufflelo_epi16(__m256i
-            | a, const int n)                       
 
 ### Flags Affected
 None.

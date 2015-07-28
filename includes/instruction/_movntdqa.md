@@ -12,6 +12,16 @@ DEST[VLMAX-1:128] <- 0
 VMOVNTDQA (VEX.256 encoded form)
 DEST[255:0] <- SRC[255:0]
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ (V)MOVNTDQA:| __m128i _mm_stream_load_si128 (__m128i 
+             | *p);                                   
+ VMOVNTDQA:  | __m256i _mm256_stream_load_si256 (const
+             | __m256i *p);                           
+
 ```
 
  Opcode/Instruction                 | Op/En| 64/32-bit Mode| CPUID Feature Flag| Description                             
@@ -80,20 +90,12 @@ to I/O devices having side effects or when reads to these devices are destruc-
 tive. For additional information on MOVNTDQA usages, see Section 12.10.3 in
 Chapter 12, “Programming with SSE3, SSSE3 and SSE4” of Intel® 64 and IA-32 Architectures
 Software Developer's Manual, Volume 1. The 128-bit (V)MOVNTDQA addresses must
-be 16-byte aligned or the instruction will cause a #GP. The 256-bit VMOVNTDQA
+be 16-byte aligned or the instruction will cause a **``#GP.``** The 256-bit VMOVNTDQA
 ### addresses must be 32-byte aligned or the instruction will cause a #GP. Note
 In VEX-128 encoded versions, VEX.vvvv is reserved and must be 1111b, VEX.L must
-be 0; otherwise instructions will #UD.
+be 0; otherwise instructions will **``#UD.``**
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- (V)MOVNTDQA:| __m128i _mm_stream_load_si128 (__m128i 
-             | \*p);                                   
- VMOVNTDQA:  | __m256i _mm256_stream_load_si256 (const
-             | __m256i \*p);                           
 
 ### Flags Affected
 None

@@ -49,7 +49,7 @@ WHILE CountReg != 0
  F3 REX.W A5| REP MOVS m64, m64  | NP   | Valid      | N.E.           | Move RCX quadwords from [RSI] to [RDI].      
  F3 6E      | REP OUTS DX, r/m8  | NP   | Valid      | Valid          | Output (E)CX bytes from DS:[(E)SI] to        
             |                    |      |            |                | port DX.                                     
- F3 REX.W 6E| REP OUTS DX, r/m8\* | NP   | Valid      | N.E.           | Output RCX bytes from [RSI] to port          
+ F3 REX.W 6E| REP OUTS DX, r/m8* | NP   | Valid      | N.E.           | Output RCX bytes from [RSI] to port          
             |                    |      |            |                | DX.                                          
  F3 6F      | REP OUTS DX, r/m16 | NP   | Valid      | Valid          | Output (E)CX words from DS:[(E)SI] to        
             |                    |      |            |                | port DX.                                     
@@ -106,7 +106,7 @@ WHILE CountReg != 0
  F2 AF      | REPNE SCAS m32     | NP   | Valid      | Valid          | Find EAX, starting at ES:[(E)DI].            
  F2 REX.W AF| REPNE SCAS m64     | NP   | Valid      | N.E.           | Find RAX, starting at [RDI].                 
 <aside class="notification">
-\* In 64-bit mode, r/m8 can not be encoded to access the following byte
+* In 64-bit mode, r/m8 can not be encoded to access the following byte
 registers if a REX prefix is used: AH, BH, CH, DH.
 </aside>
 
@@ -136,12 +136,12 @@ until the count in register is decremented to 0. See Table 4-13.
 ### Table 4-13. Repeat Prefixes
    | |  
 ---- | -----
- Repeat Prefix| Termination Condition 1\*| Termination Condition 2
+ Repeat Prefix| Termination Condition 1*| Termination Condition 2
  REP          | RCX or (E)CX = 0        | None                   
  REPE/REPZ    | RCX or (E)CX = 0        | ZF = 0                 
  REPNE/REPNZ  | RCX or (E)CX = 0        | ZF = 1                 
 <aside class="notification">
-\* Count register is CX, ECX or RCX by default, depending on attributes
+* Count register is CX, ECX or RCX by default, depending on attributes
 of the operating modes.
 </aside>
 

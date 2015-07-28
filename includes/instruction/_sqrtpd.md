@@ -17,9 +17,17 @@ DEST[127:64] <- SQRT(SRC[127:64])
 DEST[191:128] <- SQRT(SRC[191:128])
 DEST[255:192] <- SQRT(SRC[255:192])
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ SQRTPD:| __m128d _mm_sqrt_pd (m128d a)      
+ SQRTPD:| __m256d _mm256_sqrt_pd (__m256d a);
+
 ```
 
- Opcode\*/Instruction                  | Op/En| 64/32 bit Mode Support| CPUID Feature Flag| Description                          
+ Opcode*/Instruction                  | Op/En| 64/32 bit Mode Support| CPUID Feature Flag| Description                          
  ---  | --- | --- | --- | ---
  66 0F 51 /r SQRTPD xmm1, xmm2/m128   | RM   | V/V                   | SSE2              | Computes square roots of the packed  
                                       |      |                       |                   | doubleprecision floating-point values
@@ -58,15 +66,9 @@ The destination operand is an XMM register. The upper bits (VLMAX-1:128) of
 ### the corresponding YMM register destination are zeroed. VEX.256 encoded version
 The source operand is a YMM register or a 256-bit memory location. The destination
 operand is a YMM register. Note: In VEX-encoded versions, VEX.vvvv is reserved
-and must be 1111b otherwise instructions will #UD.
+and must be 1111b otherwise instructions will **``#UD.``**
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- SQRTPD:| __m128d _mm_sqrt_pd (m128d a)      
- SQRTPD:| __m256d _mm256_sqrt_pd (__m256d a);
 
 ### SIMD Floating-Point Exceptions
 Invalid, Precision, Denormal.

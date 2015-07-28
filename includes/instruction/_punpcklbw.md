@@ -2,108 +2,7 @@
 
 > Operation
 
-``` slim
-```
-
- Opcode/Instruction                     | Op/En| 64/32 bit Mode Support| CPUID Feature Flag| Description                            
- ---  | --- | --- | --- | ---
- 0F 60 /r1 PUNPCKLBW mm, mm/m32         | RM   | V/V                   | MMX               | Interleave low-order bytes from mm and 
-                                        |      |                       |                   | mm/m32 into mm.                        
- 66 0F 60 /r PUNPCKLBW xmm1, xmm2/m128  | RM   | V/V                   | SSE2              | Interleave low-order bytes from xmm1   
-                                        |      |                       |                   | and xmm2/m128 into xmm1.               
- 0F 61 /r1 PUNPCKLWD mm, mm/m32         | RM   | V/V                   | MMX               | Interleave low-order words from mm and 
-                                        |      |                       |                   | mm/m32 into mm.                        
- 66 0F 61 /r PUNPCKLWD xmm1, xmm2/m128  | RM   | V/V                   | SSE2              | Interleave low-order words from xmm1   
-                                        |      |                       |                   | and xmm2/m128 into xmm1.               
- 0F 62 /r1 PUNPCKLDQ mm, mm/m32         | RM   | V/V                   | MMX               | Interleave low-order doublewords from  
-                                        |      |                       |                   | mm and mm/m32 into mm.                 
- 66 0F 62 /r PUNPCKLDQ xmm1, xmm2/m128  | RM   | V/V                   | SSE2              | Interleave low-order doublewords from  
-                                        |      |                       |                   | xmm1 and xmm2/m128 into xmm1.          
- 66 0F 6C /r PUNPCKLQDQ xmm1, xmm2/m128 | RM   | V/V                   | SSE2              | Interleave low-order quadword from xmm1
-                                        |      |                       |                   | and xmm2/m128 into xmm1 register.      
- VEX.NDS.128.66.0F.WIG 60/r VPUNPCKLBW  | RVM  | V/V                   | AVX               | Interleave low-order bytes from xmm2   
- xmm1,xmm2, xmm3/m128                   |      |                       |                   | and xmm3/m128 into xmm1.               
- VEX.NDS.128.66.0F.WIG 61/r VPUNPCKLWD  | RVM  | V/V                   | AVX               | Interleave low-order words from xmm2   
- xmm1,xmm2, xmm3/m128                   |      |                       |                   | and xmm3/m128 into xmm1.               
- VEX.NDS.128.66.0F.WIG 62/r VPUNPCKLDQ  | RVM  | V/V                   | AVX               | Interleave low-order doublewords from  
- xmm1, xmm2, xmm3/m128                  |      |                       |                   | xmm2 and xmm3/m128 into xmm1.          
- VEX.NDS.128.66.0F.WIG 6C/r VPUNPCKLQDQ | RVM  | V/V                   | AVX               | Interleave low-order quadword from xmm2
- xmm1, xmm2, xmm3/m128                  |      |                       |                   | and xmm3/m128 into xmm1 register.      
- VEX.NDS.256.66.0F.WIG 60 /r VPUNPCKLBW | RVM  | V/V                   | AVX2              | Interleave low-order bytes from ymm2   
- ymm1, ymm2, ymm3/m256                  |      |                       |                   | and ymm3/m256 into ymm1 register.      
- VEX.NDS.256.66.0F.WIG 61 /r VPUNPCKLWD | RVM  | V/V                   | AVX2              | Interleave low-order words from ymm2   
- ymm1, ymm2, ymm3/m256                  |      |                       |                   | and ymm3/m256 into ymm1 register.      
- VEX.NDS.256.66.0F.WIG 62 /r VPUNPCKLDQ | RVM  | V/V                   | AVX2              | Interleave low-order doublewords from  
- ymm1, ymm2, ymm3/m256                  |      |                       |                   | ymm2 and ymm3/m256 into ymm1 register. 
- VEX.NDS.256.66.0F.WIG 6C /r VPUNPCKLQDQ| RVM  | V/V                   | AVX2              | Interleave low-order quadword from ymm2
- ymm1, ymm2, ymm3/m256                  |      |                       |                   | and ymm3/m256 into ymm1 register.      
-<aside class="notification">
-1. See note in Section 2.4, “Instruction Exception Specification” in
-the Intel® 64 and IA-32 Architectures Software Developer's Manual, Volume 2A
-and Section 22.25.3, “Exception Conditions of Legacy SIMD Instructions Operating
-on MMX Registers” in the Intel® 64 and IA-32 Architectures Software Developer's
-Manual, Volume 3A.
-</aside>
-
-
-### Instruction Operand Encoding
- Op/En| Operand 1       | Operand 2    | Operand 3    | Operand 4
- ---  | --- | --- | --- | ---
- RM   | ModRM:reg (r, w)| ModRM:r/m (r)| NA           | NA       
- RVM  | ModRM:reg (w)   | VEX.vvvv (r) | ModRM:r/m (r)| NA       
-
-### Description
-Unpacks and interleaves the low-order data elements (bytes, words, doublewords,
-and quadwords) of the destination operand (first operand) and source operand
-(second operand) into the destination operand. (Figure 4-18 shows the unpack
-operation for bytes in 64-bit operands.). The high-order data elements are ignored.
-
-   | |  
----- | -----
- SRC SRC| Y7 Figure 4-18. 255 Y7| Y6 Y6 Figure 4-19.| Y5 Y5| Y4 PUNPCKLBW Instruction Operation Using| Y3 Y3| Y2 Y2 256-bit VPUNPCKLDQ Instruction| Y1 DEST Y1 DEST| Y0 Y3 0 Y0 255 Y5| X7 Y2 255 X7 Y4| X6 X2 X6 X4| X5 Y1 X5 Y1| X4 X1 X4 X1| X3 Y0 X3 Y0| X2 X0 X2 X0| X1 X1 0| X0 31 X0| DEST 0
-        |                       |                   |      | 64-bit Operands Y4                      |      | Operation                           |                |                  |                |            |            |            |            |            |        |         |       
-When the source data comes from a 128-bit memory operand, an implementation
-may fetch only the appropriate 64 bits; however, alignment to a 16-byte boundary
-and normal segment checking will still be enforced.
-
-The (V)PUNPCKLBW instruction interleaves the low-order bytes of the source and
-destination operands, the (V)PUNPCKLWD instruction interleaves the low-order
-words of the source and destination operands, the (V)PUNPCKLDQ instruction interleaves
-the low-order doubleword (or doublewords) of the source and destination operands,
-and the (V)PUNPCKLQDQ instruction interleaves the low-order quadwords of the
-source and destination operands.
-
-These instructions can be used to convert bytes to words, words to doublewords,
-doublewords to quadwords, and quadwords to double quadwords, respectively, by
-placing all 0s in the source operand. Here, if the source operand contains all
-0s, the result (stored in the destination operand) contains zero extensions
-of the high-order data elements from the original value in the destination operand.
-For example, with the (V)PUNPCKLBW instruction the high-order bytes are zero
-extended (that is, unpacked into unsigned word integers), and with the (V)PUNPCKLWD
-instruction, the high-order words are zero extended (unpacked into unsigned
-doubleword integers).
-
-In 64-bit mode, using a REX prefix in the form of REX.R permits this instruction
-to access additional registers (XMM8-XMM15).
-
-Legacy SSE versions: The source operand can be an MMX technology register or
-a 32-bit memory location. The destination operand is an MMX technology register.
-128-bit Legacy SSE versions: The second source operand is an XMM register or
-a 128-bit memory location. The first source operand and destination operands
-are XMM registers. Bits (VLMAX-1:128) of the corresponding YMM destination register
-remain unchanged. VEX.128 encoded versions: The second source operand is an
-XMM register or a 128-bit memory location. The first source operand and destination
-operands are XMM registers. Bits (VLMAX-1:128) of the destination YMM register
-are zeroed.
-
-VEX.256 encoded version: The second source operand is an YMM register or a 256-bit
-memory location. The first source operand and destination operands are YMM registers.
-
-<aside class="notification">
-VEX.L must be 0, otherwise instructions will #UD.
-</aside>
-
-
+``` slim```
 
 ### PUNPCKLBW instruction with 64-bit operands
   DEST[63:56] <- SRC[31:24];
@@ -287,7 +186,9 @@ DEST[VLMAX-1:128] <- 0
 VPUNPCKLQDQ (VEX.256 encoded instruction)
 DEST[255:0] <- INTERLEAVE_QWORDS(SRC1, SRC2)
 
-### Intel C/C++ Compiler Intrinsic Equivalents
+> Intel C/C++ Compiler Intrinsic Equivalents
+
+``` slim
    | |  
 ---- | -----
  PUNPCKLBW:    | __m64 _mm_unpacklo_pi8 (__m64 m1, __m64 
@@ -312,6 +213,108 @@ DEST[255:0] <- INTERLEAVE_QWORDS(SRC1, SRC2)
                | m1, __m128i m2)                         
  VPUNPCKLQDQ:  | __m256i _mm256_unpacklo_epi64 (__m256i  
                | m1, __m256i m2)                         
+
+```
+
+ Opcode/Instruction                     | Op/En| 64/32 bit Mode Support| CPUID Feature Flag| Description                            
+ ---  | --- | --- | --- | ---
+ 0F 60 /r1 PUNPCKLBW mm, mm/m32         | RM   | V/V                   | MMX               | Interleave low-order bytes from mm and 
+                                        |      |                       |                   | mm/m32 into mm.                        
+ 66 0F 60 /r PUNPCKLBW xmm1, xmm2/m128  | RM   | V/V                   | SSE2              | Interleave low-order bytes from xmm1   
+                                        |      |                       |                   | and xmm2/m128 into xmm1.               
+ 0F 61 /r1 PUNPCKLWD mm, mm/m32         | RM   | V/V                   | MMX               | Interleave low-order words from mm and 
+                                        |      |                       |                   | mm/m32 into mm.                        
+ 66 0F 61 /r PUNPCKLWD xmm1, xmm2/m128  | RM   | V/V                   | SSE2              | Interleave low-order words from xmm1   
+                                        |      |                       |                   | and xmm2/m128 into xmm1.               
+ 0F 62 /r1 PUNPCKLDQ mm, mm/m32         | RM   | V/V                   | MMX               | Interleave low-order doublewords from  
+                                        |      |                       |                   | mm and mm/m32 into mm.                 
+ 66 0F 62 /r PUNPCKLDQ xmm1, xmm2/m128  | RM   | V/V                   | SSE2              | Interleave low-order doublewords from  
+                                        |      |                       |                   | xmm1 and xmm2/m128 into xmm1.          
+ 66 0F 6C /r PUNPCKLQDQ xmm1, xmm2/m128 | RM   | V/V                   | SSE2              | Interleave low-order quadword from xmm1
+                                        |      |                       |                   | and xmm2/m128 into xmm1 register.      
+ VEX.NDS.128.66.0F.WIG 60/r VPUNPCKLBW  | RVM  | V/V                   | AVX               | Interleave low-order bytes from xmm2   
+ xmm1,xmm2, xmm3/m128                   |      |                       |                   | and xmm3/m128 into xmm1.               
+ VEX.NDS.128.66.0F.WIG 61/r VPUNPCKLWD  | RVM  | V/V                   | AVX               | Interleave low-order words from xmm2   
+ xmm1,xmm2, xmm3/m128                   |      |                       |                   | and xmm3/m128 into xmm1.               
+ VEX.NDS.128.66.0F.WIG 62/r VPUNPCKLDQ  | RVM  | V/V                   | AVX               | Interleave low-order doublewords from  
+ xmm1, xmm2, xmm3/m128                  |      |                       |                   | xmm2 and xmm3/m128 into xmm1.          
+ VEX.NDS.128.66.0F.WIG 6C/r VPUNPCKLQDQ | RVM  | V/V                   | AVX               | Interleave low-order quadword from xmm2
+ xmm1, xmm2, xmm3/m128                  |      |                       |                   | and xmm3/m128 into xmm1 register.      
+ VEX.NDS.256.66.0F.WIG 60 /r VPUNPCKLBW | RVM  | V/V                   | AVX2              | Interleave low-order bytes from ymm2   
+ ymm1, ymm2, ymm3/m256                  |      |                       |                   | and ymm3/m256 into ymm1 register.      
+ VEX.NDS.256.66.0F.WIG 61 /r VPUNPCKLWD | RVM  | V/V                   | AVX2              | Interleave low-order words from ymm2   
+ ymm1, ymm2, ymm3/m256                  |      |                       |                   | and ymm3/m256 into ymm1 register.      
+ VEX.NDS.256.66.0F.WIG 62 /r VPUNPCKLDQ | RVM  | V/V                   | AVX2              | Interleave low-order doublewords from  
+ ymm1, ymm2, ymm3/m256                  |      |                       |                   | ymm2 and ymm3/m256 into ymm1 register. 
+ VEX.NDS.256.66.0F.WIG 6C /r VPUNPCKLQDQ| RVM  | V/V                   | AVX2              | Interleave low-order quadword from ymm2
+ ymm1, ymm2, ymm3/m256                  |      |                       |                   | and ymm3/m256 into ymm1 register.      
+<aside class="notification">
+1. See note in Section 2.4, “Instruction Exception Specification” in
+the Intel® 64 and IA-32 Architectures Software Developer's Manual, Volume 2A
+and Section 22.25.3, “Exception Conditions of Legacy SIMD Instructions Operating
+on MMX Registers” in the Intel® 64 and IA-32 Architectures Software Developer's
+Manual, Volume 3A.
+</aside>
+
+
+### Instruction Operand Encoding
+ Op/En| Operand 1       | Operand 2    | Operand 3    | Operand 4
+ ---  | --- | --- | --- | ---
+ RM   | ModRM:reg (r, w)| ModRM:r/m (r)| NA           | NA       
+ RVM  | ModRM:reg (w)   | VEX.vvvv (r) | ModRM:r/m (r)| NA       
+
+### Description
+Unpacks and interleaves the low-order data elements (bytes, words, doublewords,
+and quadwords) of the destination operand (first operand) and source operand
+(second operand) into the destination operand. (Figure 4-18 shows the unpack
+operation for bytes in 64-bit operands.). The high-order data elements are ignored.
+
+   | |  
+---- | -----
+ SRC SRC| Y7 Figure 4-18. 255 Y7| Y6 Y6 Figure 4-19.| Y5 Y5| Y4 PUNPCKLBW Instruction Operation Using| Y3 Y3| Y2 Y2 256-bit VPUNPCKLDQ Instruction| Y1 DEST Y1 DEST| Y0 Y3 0 Y0 255 Y5| X7 Y2 255 X7 Y4| X6 X2 X6 X4| X5 Y1 X5 Y1| X4 X1 X4 X1| X3 Y0 X3 Y0| X2 X0 X2 X0| X1 X1 0| X0 31 X0| DEST 0
+        |                       |                   |      | 64-bit Operands Y4                      |      | Operation                           |                |                  |                |            |            |            |            |            |        |         |       
+When the source data comes from a 128-bit memory operand, an implementation
+may fetch only the appropriate 64 bits; however, alignment to a 16-byte boundary
+and normal segment checking will still be enforced.
+
+The (V)PUNPCKLBW instruction interleaves the low-order bytes of the source and
+destination operands, the (V)PUNPCKLWD instruction interleaves the low-order
+words of the source and destination operands, the (V)PUNPCKLDQ instruction interleaves
+the low-order doubleword (or doublewords) of the source and destination operands,
+and the (V)PUNPCKLQDQ instruction interleaves the low-order quadwords of the
+source and destination operands.
+
+These instructions can be used to convert bytes to words, words to doublewords,
+doublewords to quadwords, and quadwords to double quadwords, respectively, by
+placing all 0s in the source operand. Here, if the source operand contains all
+0s, the result (stored in the destination operand) contains zero extensions
+of the high-order data elements from the original value in the destination operand.
+For example, with the (V)PUNPCKLBW instruction the high-order bytes are zero
+extended (that is, unpacked into unsigned word integers), and with the (V)PUNPCKLWD
+instruction, the high-order words are zero extended (unpacked into unsigned
+doubleword integers).
+
+In 64-bit mode, using a REX prefix in the form of REX.R permits this instruction
+to access additional registers (XMM8-XMM15).
+
+Legacy SSE versions: The source operand can be an MMX technology register or
+a 32-bit memory location. The destination operand is an MMX technology register.
+128-bit Legacy SSE versions: The second source operand is an XMM register or
+a 128-bit memory location. The first source operand and destination operands
+are XMM registers. Bits (VLMAX-1:128) of the corresponding YMM destination register
+remain unchanged. VEX.128 encoded versions: The second source operand is an
+XMM register or a 128-bit memory location. The first source operand and destination
+operands are XMM registers. Bits (VLMAX-1:128) of the destination YMM register
+are zeroed.
+
+VEX.256 encoded version: The second source operand is an YMM register or a 256-bit
+memory location. The first source operand and destination operands are YMM registers.
+
+<aside class="notification">
+VEX.L must be 0, otherwise instructions will #UD.
+</aside>
+
+
 
 ### Flags Affected
 None.

@@ -11,9 +11,16 @@ DEST[31:0] <- APPROXIMATE(1/SQRT(SRC2[31:0]))
 DEST[127:32] <- SRC1[31:0]
 DEST[VLMAX-1:128] <- 0
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ RSQRTSS:| __m128 _mm_rsqrt_ss(__m128 a)
+
 ```
 
- Opcode\*/Instruction                 | Op/En| 64/32 bit Mode Support| CPUID Feature Flag| Description                                   
+ Opcode*/Instruction                 | Op/En| 64/32 bit Mode Support| CPUID Feature Flag| Description                                   
  ---  | --- | --- | --- | ---
  F3 0F 52 /r RSQRTSS xmm1, xmm2/m32  | RM   | V/V                   | SSE               | Computes the approximate reciprocal           
                                      |      |                       |                   | of the square root of the low single-precision
@@ -47,7 +54,7 @@ floating-point operation.
 
    | |  
 ---- | -----
-Relative Error| ≤ 1.5 \* 2−12
+Relative Error| ≤ 1.5 * 2−12
 
 The RSQRTSS instruction is not affected by the rounding control bits in the
 MXCSR register. When a source value is a 0.0, an ∞ of the sign of the source
@@ -63,11 +70,6 @@ of the corresponding YMM destination register remain unchanged. VEX.128 encoded
 version: Bits (VLMAX-1:128) of the destination YMM register are zeroed.
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- RSQRTSS:| __m128 _mm_rsqrt_ss(__m128 a)
 
 ### SIMD Floating-Point Exceptions
 None.

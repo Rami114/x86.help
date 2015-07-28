@@ -20,6 +20,14 @@ DEST[31:0] <- MIN(SRC1[31:0], SRC2[31:0])
 DEST[127:32] <- SRC1[127:32]
 DEST[VLMAX-1:128] <- 0
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ MINSS:| __m128d _mm_min_ss(__m128d a, __m128d
+       | b)                                   
+
 ```
 
  Opcode/Instruction                           | Op/En| 64/32-bit Mode| CPUID Feature Flag| Description                               
@@ -60,12 +68,6 @@ register destination are copied from corresponding bits in the first source
 operand. Bits (VLMAX-1:128) of the destination YMM register are zeroed.
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- MINSS:| __m128d _mm_min_ss(__m128d a, __m128d
-       | b)                                   
 
 ### SIMD Floating-Point Exceptions
 Invalid (including QNaN source operand), Denormal.

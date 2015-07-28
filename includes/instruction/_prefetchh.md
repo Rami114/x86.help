@@ -5,6 +5,16 @@
 ``` slim
 FETCH (m8);
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+void _mm_prefetch(char *p, int i)
+
+The argument “*p” gives the address of the byte (and corresponding cache line)
+to be prefetched. The value “i”gives a constant (_MM_HINT_T0, _MM_HINT_T1, _MM_HINT_T2,
+or _MM_HINT_NTA) that specifies the type of prefetch operation to be performed.
+
+
 ```
 
  Opcode  | Instruction   | Op/En| 64-Bit Mode| Compat/Leg Mode| Description                              
@@ -72,14 +82,6 @@ instructions such as CPUID, WRMSR, OUT, and MOV CR.
 
 This instruction's operation is the same in non-64-bit modes and 64-bit mode.
 
-
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-void _mm_prefetch(char \*p, int i)
-
-The argument “\*p” gives the address of the byte (and corresponding cache line)
-to be prefetched. The value “i”gives a constant (_MM_HINT_T0, _MM_HINT_T1, _MM_HINT_T2,
-or _MM_HINT_NTA) that specifies the type of prefetch operation to be performed.
 
 
 ### Numeric Exceptions

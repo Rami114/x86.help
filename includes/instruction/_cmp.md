@@ -16,7 +16,7 @@ ModifyStatusFlags; (\* Modify status flags in the same manner as the SUB instruc
  REX.W + 3D id   | CMP RAX, imm32  | I    | Valid      | N.E.           | Compare imm32 sign-extended to 64-bits
                  |                 |      |            |                | with RAX.                             
  80 /7 ib        | CMP r/m8, imm8  | MI   | Valid      | Valid          | Compare imm8 with r/m8.               
- REX + 80 /7 ib  | CMP r/m8\*, imm8 | MI   | Valid      | N.E.           | Compare imm8 with r/m8.               
+ REX + 80 /7 ib  | CMP r/m8*, imm8 | MI   | Valid      | N.E.           | Compare imm8 with r/m8.               
  81 /7 iw        | CMP r/m16, imm16| MI   | Valid      | Valid          | Compare imm16 with r/m16.             
  81 /7 id        | CMP r/m32, imm32| MI   | Valid      | Valid          | Compare imm32 with r/m32.             
  REX.W + 81 /7 id| CMP r/m64, imm32| MI   | Valid      | N.E.           | Compare imm32 sign-extended to 64-bits
@@ -25,17 +25,17 @@ ModifyStatusFlags; (\* Modify status flags in the same manner as the SUB instruc
  83 /7 ib        | CMP r/m32, imm8 | MI   | Valid      | Valid          | Compare imm8 with r/m32.              
  REX.W + 83 /7 ib| CMP r/m64, imm8 | MI   | Valid      | N.E.           | Compare imm8 with r/m64.              
  38 /r           | CMP r/m8, r8    | MR   | Valid      | Valid          | Compare r8 with r/m8.                 
- REX + 38 /r     | CMP r/m8\*, r8\*  | MR   | Valid      | N.E.           | Compare r8 with r/m8.                 
+ REX + 38 /r     | CMP r/m8*, r8*  | MR   | Valid      | N.E.           | Compare r8 with r/m8.                 
  39 /r           | CMP r/m16, r16  | MR   | Valid      | Valid          | Compare r16 with r/m16.               
  39 /r           | CMP r/m32, r32  | MR   | Valid      | Valid          | Compare r32 with r/m32.               
  REX.W + 39 /r   | CMP r/m64,r64   | MR   | Valid      | N.E.           | Compare r64 with r/m64.               
  3A /r           | CMP r8, r/m8    | RM   | Valid      | Valid          | Compare r/m8 with r8.                 
- REX + 3A /r     | CMP r8\*, r/m8\*  | RM   | Valid      | N.E.           | Compare r/m8 with r8.                 
+ REX + 3A /r     | CMP r8*, r/m8*  | RM   | Valid      | N.E.           | Compare r/m8 with r8.                 
  3B /r           | CMP r16, r/m16  | RM   | Valid      | Valid          | Compare r/m16 with r16.               
  3B /r           | CMP r32, r/m32  | RM   | Valid      | Valid          | Compare r/m32 with r32.               
  REX.W + 3B /r   | CMP r64, r/m64  | RM   | Valid      | N.E.           | Compare r/m64 with r64.               
 <aside class="notification">
-\* In 64-bit mode, r/m8 can not be encoded to access the following byte
+* In 64-bit mode, r/m8 can not be encoded to access the following byte
 registers if a REX prefix is used: AH, BH, CH, DH.
 </aside>
 

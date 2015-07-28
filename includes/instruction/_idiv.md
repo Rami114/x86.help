@@ -4,50 +4,50 @@
 
 ``` slim
 IF SRC = 0
-  THEN #DE; (\* Divide error \*)
+  THEN #DE; (* Divide error *)
 FI;
-IF OperandSize = 8 (\* Word/byte operation \*)
+IF OperandSize = 8 (* Word/byte operation *)
   THEN
-     temp <- AX / SRC; (\* Signed division \*)
+     temp <- AX / SRC; (* Signed division *)
      IF (temp > 7FH) or (temp < 80H)
-     (\* If a positive result is greater than 7FH or a negative result is less than 80H \*)
-       THEN #DE; (\* Divide error \*)
+     (* If a positive result is greater than 7FH or a negative result is less than 80H *)
+       THEN #DE; (* Divide error *)
        ELSE
           AL <- temp;
           AH <- AX SignedModulus SRC;
      FI;
-  ELSE IF OperandSize = 16 (\* Doubleword/word operation \*)
+  ELSE IF OperandSize = 16 (* Doubleword/word operation *)
      THEN
-       temp <- DX:AX / SRC; (\* Signed division \*)
+       temp <- DX:AX / SRC; (* Signed division *)
        IF (temp > 7FFFH) or (temp < 8000H)
-       (\* If a positive result is greater than 7FFFH
-       or a negative result is less than 8000H \*)
+       (* If a positive result is greater than 7FFFH
+       or a negative result is less than 8000H *)
           THEN
-             #DE; (\* Divide error \*)
+             #DE; (* Divide error *)
           ELSE
              AX <- temp;
              DX <- DX:AX SignedModulus SRC;
        FI;
      FI;
-  ELSE IF OperandSize = 32 (\* Quadword/doubleword operation \*)
-       temp <- EDX:EAX / SRC; (\* Signed division \*)
+  ELSE IF OperandSize = 32 (* Quadword/doubleword operation *)
+       temp <- EDX:EAX / SRC; (* Signed division *)
        IF (temp > 7FFFFFFFH) or (temp < 80000000H)
-       (\* If a positive result is greater than 7FFFFFFFH
-       or a negative result is less than 80000000H \*)
+       (* If a positive result is greater than 7FFFFFFFH
+       or a negative result is less than 80000000H *)
           THEN
-             #DE; (\* Divide error \*)
+             #DE; (* Divide error *)
           ELSE
              EAX <- temp;
              EDX <- EDXE:AX SignedModulus SRC;
        FI;
      FI;
-  ELSE IF OperandSize = 64 (\* Doublequadword/quadword operation \*)
-       temp <- RDX:RAX / SRC; (\* Signed division \*)
+  ELSE IF OperandSize = 64 (* Doublequadword/quadword operation *)
+       temp <- RDX:RAX / SRC; (* Signed division *)
        IF (temp > 7FFFFFFFFFFFFFFFH) or (temp < 8000000000000000H)
-       (\* If a positive result is greater than 7FFFFFFFFFFFFFFFH
-       or a negative result is less than 8000000000000000H \*)
+       (* If a positive result is greater than 7FFFFFFFFFFFFFFFH
+       or a negative result is less than 8000000000000000H *)
           THEN
-             #DE; (\* Divide error \*)
+             #DE; (* Divide error *)
           ELSE
              RAX <- temp;
              RDX <- RDE:RAX SignedModulus SRC;
@@ -61,7 +61,7 @@ FI;
  ---  | --- | --- | --- | --- | ---
  F6 /7        | IDIV r/m8  | M    | Valid      | Valid          | Signed divide AX by r/m8, with result    
               |            |      |            |                | stored in: AL ← Quotient, AH ← Remainder.
- REX + F6 /7  | IDIV r/m8\* | M    | Valid      | N.E.           | Signed divide AX by r/m8, with result    
+ REX + F6 /7  | IDIV r/m8* | M    | Valid      | N.E.           | Signed divide AX by r/m8, with result    
               |            |      |            |                | stored in AL ← Quotient, AH ← Remainder. 
  F7 /7        | IDIV r/m16 | M    | Valid      | Valid          | Signed divide DX:AX by r/m16, with result
               |            |      |            |                | stored in AX ← Quotient, DX ← Remainder. 
@@ -72,7 +72,7 @@ FI;
               |            |      |            |                | result stored in RAX ← Quotient, RDX     
               |            |      |            |                | ← Remainder.                             
 <aside class="notification">
-\* In 64-bit mode, r/m8 can not be encoded to access the following byte
+* In 64-bit mode, r/m8 can not be encoded to access the following byte
 registers if a REX prefix is used: AH, BH, CH, DH.
 </aside>
 
@@ -89,7 +89,7 @@ registers. The source operand can be a general-purpose register or a memory
 location. The action of this instruction depends on the operand size (dividend/divisor).
 
 Non-integral results are truncated (chopped) towards 0. The remainder is always
-less than the divisor in magnitude. Overflow is indicated with the #DE (divide
+less than the divisor in magnitude. Overflow is indicated with the **``#DE``** (divide
 error) exception rather than with the CF flag.
 
 In 64-bit mode, the instruction's default operation size is 32 bits. Use of

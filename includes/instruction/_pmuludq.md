@@ -18,6 +18,17 @@ DEST[127:64] <- SRC1[95:64] \* SRC2[95:64
 DEST[191:128] <- SRC1[159:128] \* SRC2[159:128]
 DEST[255:192] <- SRC1[223:192] \* SRC2[223:192]
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ PMULUDQ:   | __m64 _mm_mul_su32 (__m64 a, __m64 b)     
+ (V)PMULUDQ:| __m128i _mm_mul_epu32 ( __m128i a, __m128i
+            | b)                                        
+ VPMULUDQ:  | __m256i _mm256_mul_epu32( __m256i a,      
+            | __m256i b);                               
+
 ```
 
  Opcode/Instruction                  | Op/En| 64/32 bit Mode Support| CPUID Feature Flag| Description                              
@@ -103,15 +114,6 @@ VEX.L must be 0, otherwise the instruction will #UD.
 </aside>
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- PMULUDQ:   | __m64 _mm_mul_su32 (__m64 a, __m64 b)     
- (V)PMULUDQ:| __m128i _mm_mul_epu32 ( __m128i a, __m128i
-            | b)                                        
- VPMULUDQ:  | __m256i _mm256_mul_epu32( __m256i a,      
-            | __m256i b);                               
 
 ### Flags Affected
 None.

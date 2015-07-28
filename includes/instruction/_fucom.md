@@ -28,13 +28,13 @@ of registers ST(0) and ST(1) are compared. The sign of zero is ignored, so that
 ### Table 3-51. FUCOM/FUCOMP/FUCOMPP Results
    | |  
 ---- | -----
- Comparison Results\*| C3| C2| C0
+ Comparison Results*| C3| C2| C0
  ST0 > ST(i)        | 0 | 0 | 0 
  ST0 < ST(i)        | 0 | 0 | 1 
  ST0 = ST(i)        | 1 | 0 | 0 
  Unordered          | 1 | 1 | 1 
 <aside class="notification">
-\* Flags not set if unmasked invalid-arithmetic-operand (#IA) exception
+* Flags not set if unmasked invalid-arithmetic-operand (#IA) exception
 is generated.
 </aside>
 
@@ -42,7 +42,7 @@ An unordered comparison checks the class of the numbers being compared (see
 “FXAM - Examine ModR/M” in this chapter). The FUCOM/FUCOMP/FUCOMPP instructions
 perform the same operations as the FCOM/FCOMP/FCOMPP instructions. The only
 difference is that the FUCOM/FUCOMP/FUCOMPP instructions raise the invalid-arithmeticoperand
-exception (#IA) only when either or both operands are an SNaN or are in an unsupported
+exception (**``#IA)``** only when either or both operands are an SNaN or are in an unsupported
 format; QNaNs cause the condition code flags to be set to unordered, but do
 not cause an exception to be generated. The FCOM/FCOMP/FCOMPP instructions raise
 an invalid-operation exception when either or both of the operands are a NaN
@@ -68,8 +68,8 @@ ESAC;
 IF ST(0) or SRC = QNaN, but not SNaN or unsupported format
   THEN
      C3, C2, C0 <- 111;
-  ELSE (\* ST(0) or SRC is SNaN or unsupported format \*)
-     #IA;
+  ELSE (* ST(0) or SRC is SNaN or unsupported format *)
+     **``#IA;``**
      IF FPUControlWord.IM = 1
        THEN
           C3, C2, C0 <- 111;

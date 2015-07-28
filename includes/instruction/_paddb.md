@@ -73,6 +73,27 @@ VPADDD (VEX.256 encoded instruction)
   (\* Repeat add operation for 2nd and 7th doubleword \*)
   DEST[255:224] <- SRC1[255:224] + SRC2[255:224];
 
+> Intel C/C++ Compiler Intrinsic Equivalents
+
+``` slim
+   | |  
+---- | -----
+ PADDB:   | __m64 _mm_add_pi8(__m64 m1, __m64 m2)     
+ (V)PADDB:| __m128i _mm_add_epi8 (__m128ia,__m128ib   
+          | )                                         
+ VPADDB:  | __m256i _mm256_add_epi8 (__m256ia,__m256i 
+          | b )                                       
+ PADDW:   | __m64 _mm_add_pi16(__m64 m1, __m64 m2)    
+ (V)PADDW:| __m128i _mm_add_epi16 ( __m128i a, __m128i
+          | b)                                        
+ VPADDW:  | __m256i _mm256_add_epi16 ( __m256i a,     
+          | __m256i b)                                
+ PADDD:   | __m64 _mm_add_pi32(__m64 m1, __m64 m2)    
+ (V)PADDD:| __m128i _mm_add_epi32 ( __m128i a, __m128i
+          | b)                                        
+ VPADDD:  | __m256i _mm256_add_epi32 ( __m256i a,     
+          | __m256i b)                                
+
 ```
 
  Opcode/Instruction                      | Op/En| 64/32 bit Mode Support| CPUID Feature Flag| Description                            
@@ -159,25 +180,6 @@ VEX.L must be 0, otherwise the instruction will #UD.
 </aside>
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalents
-   | |  
----- | -----
- PADDB:   | __m64 _mm_add_pi8(__m64 m1, __m64 m2)     
- (V)PADDB:| __m128i _mm_add_epi8 (__m128ia,__m128ib   
-          | )                                         
- VPADDB:  | __m256i _mm256_add_epi8 (__m256ia,__m256i 
-          | b )                                       
- PADDW:   | __m64 _mm_add_pi16(__m64 m1, __m64 m2)    
- (V)PADDW:| __m128i _mm_add_epi16 ( __m128i a, __m128i
-          | b)                                        
- VPADDW:  | __m256i _mm256_add_epi16 ( __m256i a,     
-          | __m256i b)                                
- PADDD:   | __m64 _mm_add_pi32(__m64 m1, __m64 m2)    
- (V)PADDD:| __m128i _mm_add_epi32 ( __m128i a, __m128i
-          | b)                                        
- VPADDD:  | __m256i _mm256_add_epi32 ( __m256i a,     
-          | __m256i b)                                
 
 ### Flags Affected
 None.

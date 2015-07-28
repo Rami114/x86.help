@@ -14,6 +14,17 @@ DEST[VLMAX-1:128] <- 0
 VMOVAPS (VEX.256 encoded version)
 DEST[255:0] <- SRC[255:0]
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ MOVAPS: | __m128 _mm_load_ps (float const \* p);
+ MOVAPS: | _mm_store_ps(float \* p, __m128 a);   
+ VMOVAPS:| __m256 _mm256_load_ps (float const \* 
+         | p);                                  
+ VMOVAPS:| _mm256_store_ps(float \* p, __m256 a);
+
 ```
 
  Opcode/Instruction                          | Op/En| 64/32-bit Mode| CPUID Feature Flag| Description                                
@@ -47,21 +58,21 @@ to store the contents of an XMM or YMM register into a 128-bit or 256-bit memory
 location, or to move data between two XMM or two YMM registers. When the source
 or destination operand is a memory operand, the operand must be aligned on a
 16-byte (128-bit version) or 32-byte (VEX.256 encoded version) boundary or a
-general-protection exception (#GP) will be generated.
+general-protection exception (**``#GP)``** will be generated.
 
 To move single-precision floating-point values to and from unaligned memory
 locations, use the (V)MOVUPS instruction.
 
 In 64-bit mode, use of the REX.R prefix permits this instruction to access additional
 registers (XMM8-XMM15). Note: In VEX-encoded versions, VEX.vvvv is reserved
-and must be 1111b otherwise instructions will #UD. 128-bit versions: Moves 128
+and must be 1111b otherwise instructions will **``#UD.``** 128-bit versions: Moves 128
 bits of packed single-precision floating-point values from the source operand
 (second operand) to the destination operand (first operand). This instruction
 can be used to load an XMM register from a 128-bit memory location, to store
 the contents of an XMM register into a 128-bit memory location, or to move data
 between two XMM registers. When the source or destination operand is a memory
 operand, the operand must be aligned on a 16-byte boundary or a general-protection
-exception (#GP) will be generated. To move single-precision floatingpoint values
+exception (**``#GP)``** will be generated. To move single-precision floatingpoint values
 to and from unaligned memory locations, use the VMOVUPS instruction. 128-bit
 Legacy SSE version: Bits (VLMAX-1:128) of the corresponding YMM destination
 register remain unchanged. VEX.128 encoded version: Bits (VLMAX-1:128) of the
@@ -73,15 +84,6 @@ of a YMM register into a 256-bit memory location, or to move data between two
 YMM registers.
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- MOVAPS: | __m128 _mm_load_ps (float const \* p);
- MOVAPS: | _mm_store_ps(float \* p, __m128 a);   
- VMOVAPS:| __m256 _mm256_load_ps (float const \* 
-         | p);                                  
- VMOVAPS:| _mm256_store_ps(float \* p, __m256 a);
 
 ### SIMD Floating-Point Exceptions
 None.

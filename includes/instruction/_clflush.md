@@ -5,6 +5,13 @@
 ``` slim
 Flush_Cache_Line(SRC);
 
+> Intel C/C++ Compiler Intrinsic Equivalents
+
+``` slim
+   | |  
+---- | -----
+ CLFLUSH:| void _mm_clflush(void const \*p)
+
 ```
 
  Opcode  | Instruction| Op/En| 64-bit Mode| Compat/Leg Mode| Description                      
@@ -60,11 +67,6 @@ that the CLFLUSH instruction is implemented in the processor.
 CLFLUSH operation is the same in non-64-bit modes and 64-bit mode.
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalents
-   | |  
----- | -----
- CLFLUSH:| void _mm_clflush(void const \*p)
 
 ### Protected Mode Exceptions
    | |  

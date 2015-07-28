@@ -17,6 +17,16 @@ DEST[127:64] <- SRC2[63:0]
 DEST[191:128] <- SRC1[191:128]
 DEST[255:192] <- SRC2[191:128]
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ UNPCKHPD:| __m128d _mm_unpacklo_pd(__m128d a, __m128d
+          | b)                                        
+ UNPCKLPD:| __m256d _mm256_unpacklo_pd(__m256d a,     
+          | __m256d b)                                
+
 ```
 
  Opcode/Instruction                   | Op/En| 64/32 bit Mode Support| CPUID Feature Flag| Description                             
@@ -63,14 +73,6 @@ The destination operand is an XMM register. The upper bits (VLMAX-1:128) of
 the corresponding YMM register destination are zeroed.
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- UNPCKHPD:| __m128d _mm_unpacklo_pd(__m128d a, __m128d
-          | b)                                        
- UNPCKLPD:| __m256d _mm256_unpacklo_pd(__m256d a,     
-          | __m256d b)                                
 
 ### SIMD Floating-Point Exceptions
 None.

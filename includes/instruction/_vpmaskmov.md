@@ -50,6 +50,25 @@ VPMASKMOVQ - 128-bit store
 IF (SRC1[63]) DEST[63:0] <- SRC2[63:0]
 IF (SRC1[127]) DEST[127:64] <-SRC2[127:64]
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+VPMASKMOVD: __m256i _mm256_maskload_epi32(int const \*a, __m256i mask)
+
+   | |  
+---- | -----
+ VPMASKMOVD: void VPMASKMOVQ: __m256i     | _mm256_maskstore_epi32(int \*a, __m256i    
+ _mm256_maskload_epi64(__int64 const      | mask, __m256i b)                          
+ \*a, __m256i mask);                       |                                           
+ VPMASKMOVQ: void VPMASKMOVD: __m128i     | _mm256_maskstore_epi64(__int64 \*a, __m256i
+ _mm_maskload_epi32(int const \*a, __m128i | mask, __m256d b);                         
+ mask)                                    |                                           
+ VPMASKMOVD: void VPMASKMOVQ: __m128i     | _mm_maskstore_epi32(int \*a, __m128i       
+ _mm_maskload_epi64(__int cont \*a, __m128i| mask, __m128 b)                           
+ mask);                                   |                                           
+ VPMASKMOVQ: void                         | _mm_maskstore_epi64(__int64 \*a, __m128i   
+                                          | mask, __m128i b);                         
+
 ```
 
  Opcode/Instruction                     | Op/En| 64/32 -bit Mode| CPUID Feature Flag| Description                          
@@ -113,23 +132,6 @@ mask) is encoded in VEX.vvvv; the second source register is encoded in reg_field
 and the destination memory location is encoded in rm_field.
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-VPMASKMOVD: __m256i _mm256_maskload_epi32(int const \*a, __m256i mask)
-
-   | |  
----- | -----
- VPMASKMOVD: void VPMASKMOVQ: __m256i     | _mm256_maskstore_epi32(int \*a, __m256i    
- _mm256_maskload_epi64(__int64 const      | mask, __m256i b)                          
- \*a, __m256i mask);                       |                                           
- VPMASKMOVQ: void VPMASKMOVD: __m128i     | _mm256_maskstore_epi64(__int64 \*a, __m256i
- _mm_maskload_epi32(int const \*a, __m128i | mask, __m256d b);                         
- mask)                                    |                                           
- VPMASKMOVD: void VPMASKMOVQ: __m128i     | _mm_maskstore_epi32(int \*a, __m128i       
- _mm_maskload_epi64(__int cont \*a, __m128i| mask, __m128 b)                           
- mask);                                   |                                           
- VPMASKMOVQ: void                         | _mm_maskstore_epi64(__int64 \*a, __m128i   
-                                          | mask, __m128i b);                         
 
 ### SIMD Floating-Point Exceptions
 None

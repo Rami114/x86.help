@@ -14,6 +14,16 @@ DEST[VLMAX-1:128] <- 0
 VMOVHPD (store)
 DEST[63:0] <- SRC[127:64]
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ MOVHPD:| __m128d _mm_loadh_pd ( __m128d a, double
+        | \*p)                                     
+ MOVHPD:| void _mm_storeh_pd (double \*p, __m128d  
+        | a)                                      
+
 ```
 
  Opcode/Instruction                     | Op/En| 64/32-bit Mode| CPUID Feature Flag| Description                            
@@ -54,18 +64,10 @@ the destination. The upper 128-bits of the destination YMM register are zeroed.
 (first operand). Note: VMOVHPD (store) (VEX.128.66.0F 17 /r) is legal and has
 the same behavior as the existing 66 0F 17 store. For VMOVHPD (store) (VEX.128.66.0F
 17 /r) instruction version, VEX.vvvv is reserved and must be 1111b otherwise
-instruction will #UD. If VMOVHPD is encoded with VEX.L= 1, an attempt to execute
-the instruction encoded with VEX.L= 1 will cause an #UD exception.
+instruction will **``#UD.``** If VMOVHPD is encoded with VEX.L= 1, an attempt to execute
+the instruction encoded with VEX.L= 1 will cause an **``#UD``** exception.
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- MOVHPD:| __m128d _mm_loadh_pd ( __m128d a, double
-        | \*p)                                     
- MOVHPD:| void _mm_storeh_pd (double \*p, __m128d  
-        | a)                                      
 
 ### SIMD Floating-Point Exceptions
 None.

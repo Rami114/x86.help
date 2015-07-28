@@ -11,7 +11,7 @@ FI;
 
 ```
 
- Opcode\*| Instruction| Op/En| 64-Bit Mode| Compat/Leg Mode| Description                          
+ Opcode*| Instruction| Op/En| 64-Bit Mode| Compat/Leg Mode| Description                          
  ---  | --- | --- | --- | --- | ---
  0F 31  | RDTSC      | NP   | Valid      | Valid          | Read time-stamp counter into EDX:EAX.
 

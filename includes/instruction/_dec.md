@@ -9,7 +9,7 @@ DEST <- DEST - 1;
 
  Opcode           | Instruction       | Op/En| 64-Bit Mode| Compat/Leg Mode| Description                        
  ---  | --- | --- | --- | --- | ---
- FE /1 REX + FE /1| DEC r/m8 DEC r/m8\*| M M  | Valid Valid| Valid N.E.     | Decrement r/m8 by 1. Decrement r/m8
+ FE /1 REX + FE /1| DEC r/m8 DEC r/m8*| M M  | Valid Valid| Valid N.E.     | Decrement r/m8 by 1. Decrement r/m8
                   |                   |      |            |                | by 1.                              
  FF /1            | DEC r/m16         | M    | Valid      | Valid          | Decrement r/m16 by 1.              
  FF /1            | DEC r/m32         | M    | Valid      | Valid          | Decrement r/m32 by 1.              
@@ -17,7 +17,7 @@ DEST <- DEST - 1;
  48+rw            | DEC r16           | O    | N.E.       | Valid          | Decrement r16 by 1.                
  48+rd            | DEC r32           | O    | N.E.       | Valid          | Decrement r32 by 1.                
 <aside class="notification">
-\* In 64-bit mode, r/m8 can not be encoded to access the following byte
+* In 64-bit mode, r/m8 can not be encoded to access the following byte
 registers if a REX prefix is used: AH, BH, CH, DH.
 </aside>
 

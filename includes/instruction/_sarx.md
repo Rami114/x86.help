@@ -23,7 +23,17 @@ DO WHILE (COUNT != 0)
           DEST[] <- DEST /2; // signed divide, round toward negative infinity
   FI;
   COUNT <- COUNT - 1;
-OD
+OD```
+
+### Flags Affected
+None.
+
+
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+Auto-generated from high-level language.
+
 
 ```
 
@@ -64,18 +74,10 @@ operand to the left (toward more significant bit locations). This instruction
 is not supported in real mode and virtual-8086 mode. The operand size is always
 32 bits if not in 64-bit mode. In 64-bit mode operand size 64 requires VEX.W1.
 VEX.W1 is ignored in non-64-bit modes. An attempt to execute this instruction
-with VEX.L not equal to 0 will cause #UD. If the value specified in the first
+with VEX.L not equal to 0 will cause **``#UD.``** If the value specified in the first
 source operand exceeds OperandSize -1, the COUNT value is masked. SARX,SHRX,
 and SHLX instructions do not update flags.
 
-
-
-### Flags Affected
-None.
-
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-Auto-generated from high-level language.
 
 
 ### SIMD Floating-Point Exceptions

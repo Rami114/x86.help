@@ -17,6 +17,16 @@ DEST[127:64] <- SRC2[127:64]
 DEST[191:128]<-SRC1[255:192]
 DEST[255:192]<-SRC2[255:192]
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ UNPCKHPD:| __m128d _mm_unpackhi_pd(__m128d a, __m128d
+          | b)                                        
+ UNPCKHPD:| __m256d _mm256_unpackhi_pd(__m256d a,     
+          | __m256d b)                                
+
 ```
 
  Opcode/Instruction                   | Op/En| 64/32 bit Mode Support| CPUID Feature Flag| Description                              
@@ -64,14 +74,6 @@ The upper bits (VLMAX-1:128) of the corresponding YMM register destination are
 zeroed.
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- UNPCKHPD:| __m128d _mm_unpackhi_pd(__m128d a, __m128d
-          | b)                                        
- UNPCKHPD:| __m256d _mm256_unpackhi_pd(__m256d a,     
-          | __m256d b)                                
 
 ### SIMD Floating-Point Exceptions
 None.

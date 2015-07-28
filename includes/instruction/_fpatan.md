@@ -8,9 +8,9 @@ PopRegisterStack;
 
 ```
 
- Opcode\*                              | Instruction| 64-Bit Mode| Compat/Leg Mode| Description                           
+ Opcode*                              | Instruction| 64-Bit Mode| Compat/Leg Mode| Description                           
  ---  | --- | --- | --- | ---
- D9 F3 NOTES: \* See IA-32 Architecture| FPATAN     | Valid      | Valid          | Replace ST(1) with arctan(ST(1)/ST(0))
+ D9 F3 NOTES: * See IA-32 Architecture| FPATAN     | Valid      | Valid          | Replace ST(1) with arctan(ST(1)/ST(0))
  Compatibility section below.         |            |            |                | and pop the register stack.           
 
 ### Description
@@ -37,15 +37,15 @@ ST(0)
    | |  
 ---- | -----
  − ∞    | − F       | − 0  | + 0  | + F       | + ∞   | NaN
- − 3π/4\*| − π/2     | − π/2| − π/2| − π/2     | − π/4\*| NaN
+ − 3π/4*| − π/2     | − π/2| − π/2| − π/2     | − π/4*| NaN
  -p     | −π to −π/2| −π/2 | −π/2 | −π/2 to −0| - 0   | NaN
- -p     | -p        | -p\*  | − 0\* | − 0       | − 0   | NaN
- +p     | + p       | + π\* | + 0\* | + 0       | + 0   | NaN
+ -p     | -p        | -p*  | − 0* | − 0       | − 0   | NaN
+ +p     | + p       | + π* | + 0* | + 0       | + 0   | NaN
  +p     | +π to +π/2| + π/2| +π/2 | +π/2 to +0| + 0   | NaN
- +3π/4\* | +π/2      | +π/2 | +π/2 | + π/2     | + π/4\*| NaN
+ +3π/4* | +π/2      | +π/2 | +π/2 | + π/2     | + π/4*| NaN
  NaN    | NaN       | NaN  | NaN  | NaN       | NaN   | NaN
 <aside class="notification">
-F Means finite floating-point value. \* Table 8-10 in the Intel® 64 and
+F Means finite floating-point value. * Table 8-10 in the Intel® 64 and
 IA-32 Architectures Software Developer's Manual, Volume 1, specifies that the
 ratios 0/0 and ∞/∞generate the floating-point invalid arithmetic-operation exception
 and, if this exception is masked, the floating-point QNaN indefinite value is

@@ -47,10 +47,10 @@ of the value being stored is rounded to the width of the destination (according
 to the rounding mode specified by the RC field of the FPU control word), and
 the exponent is converted to the width and bias of the destination format. If
 the value being stored is too large for the destination format, a numeric overflow
-exception (#O) is generated and, if the exception is unmasked, no value is stored
+exception (**``#O)``** is generated and, if the exception is unmasked, no value is stored
 in the destination operand. If the value being stored is a denormal value, the
-denormal exception (#D) is not generated. This condition is simply signaled
-as a numeric underflow exception (#U) condition.
+denormal exception (**``#D)``** is not generated. This condition is simply signaled
+as a numeric underflow exception (**``#U)``** condition.
 
 If the value being stored is ±0, ±∞, or a NaN, the least-significant bits of
 the significand and the exponent are truncated to fit the destination format.

@@ -17,6 +17,16 @@ DEST[127:64] <- SRC1[127:64] BITWISE XOR SRC2[127:64]
 DEST[191:128] <- SRC1[191:128] BITWISE XOR SRC2[191:128]
 DEST[255:192] <- SRC1[255:192] BITWISE XOR SRC2[255:192]
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ XORPD: | __m128d _mm_xor_pd(__m128d a, __m128d    
+        | b)                                       
+ VXORPD:| __m256d _mm256_xor_pd (__m256d a, __m256d
+        | b);                                      
+
 ```
 
  Opcode/Instruction                           | Op/En| 64/32 bit Mode Support| CPUID Feature Flag| Description                             
@@ -56,14 +66,6 @@ a YMM register or a 256-bit memory location. The destination operand is a YMM
 register.
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- XORPD: | __m128d _mm_xor_pd(__m128d a, __m128d    
-        | b)                                       
- VXORPD:| __m256d _mm256_xor_pd (__m256d a, __m256d
-        | b);                                      
 
 ### SIMD Floating-Point Exceptions
 None.

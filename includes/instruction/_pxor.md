@@ -12,9 +12,21 @@ DEST[VLMAX-1:128] <- 0
 VPXOR (VEX.256 encoded version)
 DEST <- SRC1 XOR SRC2
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ PXOR:   | __m64 _mm_xor_si64 (__m64 m1, __m64       
+         | m2)                                       
+ (V)PXOR:| __m128i _mm_xor_si128 ( __m128i a, __m128i
+         | b)                                        
+ VPXOR:  | __m256i _mm256_xor_si256 ( __m256i a,     
+         | __m256i b)                                
+
 ```
 
- Opcode\*/Instruction                    | Op/En| 64/32 bit Mode Support| CPUID Feature Flag| Description                       
+ Opcode*/Instruction                    | Op/En| 64/32 bit Mode Support| CPUID Feature Flag| Description                       
  ---  | --- | --- | --- | ---
  0F EF /r1 PXOR mm, mm/m64              | RM   | V/V                   | MMX               | Bitwise XOR of mm/m64 and mm.     
  66 0F EF /r PXOR xmm1, xmm2/m128       | RM   | V/V                   | SSE2              | Bitwise XOR of xmm2/m128 and xmm1.
@@ -64,16 +76,6 @@ VEX.L must be 0, otherwise instructions will #UD.
 </aside>
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- PXOR:   | __m64 _mm_xor_si64 (__m64 m1, __m64       
-         | m2)                                       
- (V)PXOR:| __m128i _mm_xor_si128 ( __m128i a, __m128i
-         | b)                                        
- VPXOR:  | __m256i _mm256_xor_si256 ( __m256i a,     
-         | __m256i b)                                
 
 ### Flags Affected
 None.

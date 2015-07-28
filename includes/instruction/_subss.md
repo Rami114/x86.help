@@ -11,6 +11,13 @@ DEST[31:0] <- SRC1[31:0] - SRC2[31:0]
 DEST[127:32] <- SRC1[127:32]
 DEST[VLMAX-1:128] <- 0
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ SUBSS:| __m128 _mm_sub_ss(__m128 a, __m128 b)
+
 ```
 
  Opcode/Instruction                           | Op/En| 64/32 bit Mode Support| CPUID Feature Flag| Description                                    
@@ -47,11 +54,6 @@ bits in the first source operand. Bits (VLMAX-1:128) of the destination YMM
 register are zeroed.
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- SUBSS:| __m128 _mm_sub_ss(__m128 a, __m128 b)
 
 ### SIMD Floating-Point Exceptions
 Overflow, Underflow, Invalid, Precision, Denormal.

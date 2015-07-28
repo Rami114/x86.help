@@ -48,7 +48,7 @@ All flags are affected
 
 
 ### C/C++ Compiler Intrinsic Equivalent
-void _m_prefetchw( void \* );
+void _m_prefetchw( void * );
 
 
 ### Protected Mode Exceptions

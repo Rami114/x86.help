@@ -7,7 +7,7 @@ IF |ST(0)| < 263
 THEN
   C2 <- 0;
   ST(0) <- cosine(ST(0));
-ELSE (\* Source operand is out-of-range \*)
+ELSE (* Source operand is out-of-range *)
   C2 <- 1;
 FI;
 
@@ -39,7 +39,7 @@ F Means finite floating-point value.
 
    | |  
 ---- | -----
- \*| Indicates floating-point invalid-arithmetic-operand
+ *| Indicates floating-point invalid-arithmetic-operand
   | (**``#IA)``** exception.                                   
 If the source operand is outside the acceptable range, the C2 flag in the FPU
 status word is set, and the value in register ST(0) remains unchanged. The instruction

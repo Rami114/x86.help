@@ -61,9 +61,9 @@ and use the current setting of the operand-size attribute to determine the size
 of values to be pushed from the stack, regardless of the mnemonic used.
 
 In the real-address mode, if the ESP or SP register is 1, 3, or 5 when PUSHA/PUSHAD
-executes: an #SS exception is generated but not delivered (the stack error reported
-prevents #SS delivery). Next, the processor generates a #DF exception and enters
-a shutdown state as described in the #DF discussion in Chapter 6 of the Intel®
+executes: an **``#SS``** exception is generated but not delivered (the stack error reported
+prevents **``#SS``** delivery). Next, the processor generates a **``#DF``** exception and enters
+a shutdown state as described in the **``#DF``** discussion in Chapter 6 of the Intel®
 64 and IA-32 Architectures Software Developer's Manual, Volume 3A.
 
 This instruction executes as described in compatibility mode and legacy mode.

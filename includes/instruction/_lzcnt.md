@@ -19,7 +19,23 @@ IF DEST = 0
   ZF <- 1
 ELSE
   ZF <- 0
-FI
+FI```
+
+### Flags Affected
+ZF flag is set to 1 in case of zero output (most significant bit of the source
+is set), and to 0 otherwise, CF flag is set to 1 if input was zero and cleared
+otherwise. OF, SF, PF and AF flags are undefined.
+
+
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ LZCNT:| unsigned __int32 _lzcnt_u32(unsigned
+       | __int32 src);                       
+ LZCNT:| unsigned __int64 _lzcnt_u64(unsigned
+       | __int64 src);                       
 
 ```
 
@@ -46,20 +62,6 @@ LZCNT, the instruction byte encoding is executed as BSR. In 64-bit mode 64-bit
 operand size requires REX.W=1.
 
 
-
-### Flags Affected
-ZF flag is set to 1 in case of zero output (most significant bit of the source
-is set), and to 0 otherwise, CF flag is set to 1 if input was zero and cleared
-otherwise. OF, SF, PF and AF flags are undefined.
-
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- LZCNT:| unsigned __int32 _lzcnt_u32(unsigned
-       | __int32 src);                       
- LZCNT:| unsigned __int64 _lzcnt_u64(unsigned
-       | __int64 src);                       
 
 ### Protected Mode Exceptions
    | |  

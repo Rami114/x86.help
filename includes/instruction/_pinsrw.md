@@ -5,7 +5,40 @@
 ``` slim
 PINSRW (with 64-bit source operand)
   SEL <- COUNT AND 3H;
+     CASE (Determine word position) OF```
+
+###        SEL <- 0
+###        SEL <- 1
+###        SEL <- 2
+###        SEL <- 3
+  DEST <- (DEST AND NOT MASK) OR (((SRC << (SEL * 16)) AND MASK);
+PINSRW (with 128-bit source operand)
+  SEL <- COUNT AND 7H;
      CASE (Determine word position) OF
+###        SEL <- 0
+###        SEL <- 1
+###        SEL <- 2
+###        SEL <- 3
+###        SEL <- 4
+###        SEL <- 5
+###        SEL <- 6
+###        SEL <- 7
+  DEST <- (DEST AND NOT MASK) OR (((SRC << (SEL * 16)) AND MASK);
+VPINSRW (VEX.128 encoded version)
+SEL <- imm8[2:0]
+DEST[127:0] <- write_w_element(SEL, SRC2, SRC1)
+DEST[VLMAX-1:128] <- 0
+
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ PINSRW:| __m64 _mm_insert_pi16 (__m64 a, int  
+        | d, int n)                            
+ PINSRW:| __m128i _mm_insert_epi16 ( __m128i a,
+        | int b, int imm)                      
+
 ```
 
  Opcode/Instruction                   | Op/En| 64/32 bit Mode Support| CPUID Feature Flag| Description                               
@@ -51,39 +84,9 @@ In 64-bit mode, using a REX prefix in the form of REX.R permits this instruction
 ### to access additional registers (XMM8-XMM15, R8-15). 128-bit Legacy SSE version
 Bits (VLMAX-1:128) of the corresponding YMM destination register remain unchanged.
 VEX.128 encoded version: Bits (VLMAX-1:128) of the destination YMM register
-are zeroed. VEX.L must be 0, otherwise the instruction will #UD.
+are zeroed. VEX.L must be 0, otherwise the instruction will **``#UD.``**
 
 
-
-###        SEL <- 0
-###        SEL <- 1
-###        SEL <- 2
-###        SEL <- 3
-  DEST <- (DEST AND NOT MASK) OR (((SRC << (SEL \* 16)) AND MASK);
-PINSRW (with 128-bit source operand)
-  SEL <- COUNT AND 7H;
-     CASE (Determine word position) OF
-###        SEL <- 0
-###        SEL <- 1
-###        SEL <- 2
-###        SEL <- 3
-###        SEL <- 4
-###        SEL <- 5
-###        SEL <- 6
-###        SEL <- 7
-  DEST <- (DEST AND NOT MASK) OR (((SRC << (SEL \* 16)) AND MASK);
-VPINSRW (VEX.128 encoded version)
-SEL <- imm8[2:0]
-DEST[127:0] <- write_w_element(SEL, SRC2, SRC1)
-DEST[VLMAX-1:128] <- 0
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- PINSRW:| __m64 _mm_insert_pi16 (__m64 a, int  
-        | d, int n)                            
- PINSRW:| __m128i _mm_insert_epi16 ( __m128i a,
-        | int b, int imm)                      
 
 ### Flags Affected
 None.

@@ -17,6 +17,15 @@ DEST[127:64] <- SRC1[127:64] \* SRC2[127:64]
 DEST[191:128] <- SRC1[191:128] \* SRC2[191:128]
 DEST[255:192] <- SRC1[255:192] \* SRC2[255:192]
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ MULPD: | __m128d _mm_mul_pd (m128d a, m128d b)    
+ VMULPD:| __m256d _mm256_mul_pd (__m256d a, __m256d
+        | b);                                      
+
 ```
 
  Opcode/Instruction                           | Op/En| 64/32-bit Mode| CPUID Feature Flag| Description                                    
@@ -57,13 +66,6 @@ operand is a YMM register. The second source operand can be a YMM register or
 a 256-bit memory location. The destination operand is a YMM register.
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- MULPD: | __m128d _mm_mul_pd (m128d a, m128d b)    
- VMULPD:| __m256d _mm256_mul_pd (__m256d a, __m256d
-        | b);                                      
 
 ### SIMD Floating-Point Exceptions
 Overflow, Underflow, Invalid, Precision, Denormal.

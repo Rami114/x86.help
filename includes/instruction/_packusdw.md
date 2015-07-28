@@ -72,6 +72,16 @@ DEST[239:224] <- (SRC2[223:192] > FFFFH) ? FFFFH : TMP[239:224] ;
 TMP[255:240] <- (SRC2[255:224] < 0) ? 0 : SRC2[239:224];
 DEST[255:240] <- (SRC2[255:224] > FFFFH) ? FFFFH : TMP[255:240] ;
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+(V)PACKUSDW: __m128i _mm_packus_epi32(__m128i m1, __m128i m2);
+
+   | |  
+---- | -----
+ VPACKUSDW:| __m256i _mm256_packus_epi32(__m256i
+           | m1, __m256i m2);                   
+
 ```
 
  Opcode/Instruction                     | Op/En| 64/32 bit Mode Support| CPUID Feature Flag| Description                                
@@ -132,14 +142,6 @@ using unsigned saturation to
  must be 0, otherwise the instruction         |                                         
  will **``#UD.``**                                    |                                         
 
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-(V)PACKUSDW: __m128i _mm_packus_epi32(__m128i m1, __m128i m2);
-
-   | |  
----- | -----
- VPACKUSDW:| __m256i _mm256_packus_epi32(__m256i
-           | m1, __m256i m2);                   
 
 ### Flags Affected
 None.

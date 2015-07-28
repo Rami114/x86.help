@@ -20,6 +20,32 @@ IF (SRC[255:0] BITWISE AND NOT DEST[255:0] = 0) THEN CF <- 1;
 DEST (unmodified)
 AF <- OF <- PF <- SF <- 0;
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+PTEST
+
+int _mm_testz_si128 (__m128i s1, __m128i s2);
+
+int _mm_testc_si128 (__m128i s1, __m128i s2);
+
+int _mm_testnzc_si128 (__m128i s1, __m128i s2);
+
+VPTEST
+
+int _mm256_testz_si256 (__m256i s1, __m256i s2);
+
+int _mm256_testc_si256 (__m256i s1, __m256i s2);
+
+int _mm256_testnzc_si256 (__m256i s1, __m256i s2);
+
+int _mm_testz_si128 (__m128i s1, __m128i s2);
+
+int _mm_testc_si128 (__m128i s1, __m128i s2);
+
+int _mm_testnzc_si128 (__m128i s1, __m128i s2);
+
+
 ```
 
  Opcode/Instruction                    | Op/En| 64/32 bit Mode Support| CPUID Feature Flag| Description                           
@@ -49,32 +75,8 @@ The destination register is not modified. VEX.256 encoded version: The first
 source register is a YMM register. The second source register can be a YMM register
 ### or a 256-bit memory location. The destination register is not modified. Note
 In VEX-encoded versions, VEX.vvvv is reserved and must be 1111b, otherwise instructions
-will #UD.
+will **``#UD.``**
 
-
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-PTEST
-
-int _mm_testz_si128 (__m128i s1, __m128i s2);
-
-int _mm_testc_si128 (__m128i s1, __m128i s2);
-
-int _mm_testnzc_si128 (__m128i s1, __m128i s2);
-
-VPTEST
-
-int _mm256_testz_si256 (__m256i s1, __m256i s2);
-
-int _mm256_testc_si256 (__m256i s1, __m256i s2);
-
-int _mm256_testnzc_si256 (__m256i s1, __m256i s2);
-
-int _mm_testz_si128 (__m128i s1, __m128i s2);
-
-int _mm_testc_si128 (__m128i s1, __m128i s2);
-
-int _mm_testnzc_si128 (__m128i s1, __m128i s2);
 
 
 ### Flags Affected

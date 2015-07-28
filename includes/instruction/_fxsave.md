@@ -63,8 +63,8 @@ is operating in legacy modes.
    |   |   |   |   |   |  | Available Available                  |  |  |  |  |  |  |  |                                      
 The destination operand contains the first byte of the memory image, and it
 must be aligned on a 16-byte boundary. A misaligned destination operand will
-result in a general-protection (#GP) exception being generated (or in some cases,
-an alignment check exception [#AC]).
+result in a general-protection (**``#GP)``** exception being generated (or in some cases,
+an alignment check exception [**``#AC]).``**
 
 The FXSAVE instruction is used when an operating system needs to perform a context
 switch or when an exception handler needs to save and examine the current state
@@ -381,7 +381,7 @@ Same exceptions as in protected mode.
                 | or 16-byte misalignments).                  
 
 ### Implementation Note
-The order in which the processor signals general-protection (#GP) and page-fault
-(#PF) exceptions when they both occur on an instruction boundary is given in
+The order in which the processor signals general-protection (**``#GP)``** and page-fault
+(**``#PF)``** exceptions when they both occur on an instruction boundary is given in
 Table 5-2 in the Intel® 64 and IA-32 Architectures Software Developer's Manual,
 Volume 3B. This order vary for FXSAVE for different processor implementations.

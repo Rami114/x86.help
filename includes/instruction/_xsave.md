@@ -19,7 +19,19 @@ FI;
 IF RFBM[1] = 1 or RFBM[2] = 1
   THEN store MXCSR and MXCSR_MASK into legacy region of XSAVE area;
 FI;
-XSTATE_BV field in XSAVE header <- (OLD_BV AND ~RFBM) OR (XINUSE AND RFBM);
+XSTATE_BV field in XSAVE header <- (OLD_BV AND ~RFBM) OR (XINUSE AND RFBM);```
+
+### Flags Affected
+None.
+
+
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ XSAVE:| void _xsave( void * , unsigned __int64);  
+ XSAVE:| void _xsave64( void * , unsigned __int64);
 
 ```
 
@@ -64,20 +76,10 @@ XSTATE_BV field.
 (see Section 13.4.3, “Extended Region of an XSAVE Area”).
 
 Use of a destination operand not aligned to 64-byte boundary (in either 64-bit
-or 32-bit modes) results in a general-protection (#GP) exception. In 64-bit
+or 32-bit modes) results in a general-protection (**``#GP)``** exception. In 64-bit
 mode, the upper 32 bits of RDX and RAX are ignored.
 
 
-
-### Flags Affected
-None.
-
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- XSAVE:| void _xsave( void \* , unsigned __int64);  
- XSAVE:| void _xsave64( void \* , unsigned __int64);
 
 ### Protected Mode Exceptions
    | |  

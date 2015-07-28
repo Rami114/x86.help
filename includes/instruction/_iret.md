@@ -8,9 +8,9 @@ IF PE = 0
      GOTO REAL-ADDRESS-MODE;
   ELSE
      IF (IA32_EFER.LMA = 0)
-          THEN (\* Protected mode \*)
+          THEN (* Protected mode *)
              GOTO PROTECTED-MODE;
-          ELSE (\* IA-32e mode \*)
+          ELSE (* IA-32e mode *)
              GOTO IA-32e-MODE;
      FI;
 FI;
@@ -22,14 +22,14 @@ REAL-ADDRESS-MODE;
        tempEIP <- 4 bytes at end of stack
        IF tempEIP[31:16] is not zero THEN #GP(0); FI;
        EIP <- Pop();
-       CS <- Pop(); (\* 32-bit pop, high-order 16 bits discarded \*)
+       CS <- Pop(); (* 32-bit pop, high-order 16 bits discarded *)
        tempEFLAGS <- Pop();
        EFLAGS <- (tempEFLAGS AND 257FD5H) OR (EFLAGS AND 1A0000H);
-     ELSE (\* OperandSize = 16 \*)
+     ELSE (* OperandSize = 16 *)
        IF top 6 bytes of stack are not within stack limits
           THEN #SS; FI;
-       EIP <- Pop(); (\* 16-bit pop; clear upper 16 bits \*)
-       CS <- Pop(); (\* 16-bit pop \*)
+       EIP <- Pop(); (* 16-bit pop; clear upper 16 bits *)
+       CS <- Pop(); (* 16-bit pop *)
        EFLAGS[15:0] <- Pop();
   FI;
   END;
@@ -113,24 +113,24 @@ operation.
 
 
 ### PROTECTED-MODE
-  IF VM = 1 (\* Virtual-8086 mode: PE = 1, VM = 1 \*)
+  IF VM = 1 (* Virtual-8086 mode: PE = 1, VM = 1 *)
      THEN
-       GOTO RETURN-FROM-VIRTUAL-8086-MODE; (\* PE = 1, VM = 1 \*)
+       GOTO RETURN-FROM-VIRTUAL-8086-MODE; (* PE = 1, VM = 1 *)
   FI;
   IF NT = 1
      THEN
-       GOTO TASK-RETURN; (\* PE = 1, VM = 0, NT = 1 \*)
+       GOTO TASK-RETURN; (* PE = 1, VM = 0, NT = 1 *)
   FI;
   IF OperandSize = 32
      THEN
        IF top 12 bytes of stack not within stack limits
-          THEN #SS(0); FI;
+          THEN **``#SS(0);``** FI;
        tempEIP <- Pop();
        tempCS <- Pop();
        tempEFLAGS <- Pop();
-     ELSE (\* OperandSize = 16 \*)
+     ELSE (* OperandSize = 16 *)
        IF top 6 bytes of stack are not within stack limits
-          THEN #SS(0); FI;
+          THEN **``#SS(0);``** FI;
        tempEIP <- Pop();
        tempCS <- Pop();
        tempEFLAGS <- Pop();
@@ -145,25 +145,25 @@ operation.
   FI;
 ### IA-32e-MODE
   IF NT = 1
-     THEN #GP(0);
+     THEN **``#GP(0);``**
   ELSE IF OperandSize = 32
      THEN
        IF top 12 bytes of stack not within stack limits
-          THEN #SS(0); FI;
+          THEN **``#SS(0);``** FI;
        tempEIP <- Pop();
        tempCS <- Pop();
        tempEFLAGS <- Pop();
      ELSE IF OperandSize = 16
        THEN
           IF top 6 bytes of stack are not within stack limits
-             THEN #SS(0); FI;
+             THEN **``#SS(0);``** FI;
           tempEIP <- Pop();
           tempCS <- Pop();
           tempEFLAGS <- Pop();
           tempEIP <- tempEIP AND FFFFH;
           tempEFLAGS <- tempEFLAGS AND FFFFH;
        FI;
-     ELSE (\* OperandSize = 64 \*)
+     ELSE (* OperandSize = 64 *)
        THEN
              tempRIP <- Pop();
              tempCS <- Pop();
@@ -173,104 +173,104 @@ operation.
   FI;
   GOTO IA-32e-MODE-RETURN;
 ### RETURN-FROM-VIRTUAL-8086-MODE
-(\* Processor is in virtual-8086 mode when IRET is executed and stays in virtual-8086 mode \*)
-  IF IOPL = 3 (\* Virtual mode: PE = 1, VM = 1, IOPL = 3 \*)
+(* Processor is in virtual-8086 mode when IRET is executed and stays in virtual-8086 mode *)
+  IF IOPL = 3 (* Virtual mode: PE = 1, VM = 1, IOPL = 3 *)
      THEN IF OperandSize = 32
        THEN
           IF top 12 bytes of stack not within stack limits
-             THEN #SS(0); FI;
+             THEN **``#SS(0);``** FI;
           IF instruction pointer not within code segment limits
-             THEN #GP(0); FI;
+             THEN **``#GP(0);``** FI;
           EIP <- Pop();
-          CS <- Pop(); (\* 32-bit pop, high-order 16 bits discarded \*)
+          CS <- Pop(); (* 32-bit pop, high-order 16 bits discarded *)
           EFLAGS <- Pop();
-          (\* VM, IOPL,VIP and VIF EFLAG bits not modified by pop \*)
-       ELSE (\* OperandSize = 16 \*)
+          (* VM, IOPL,VIP and VIF EFLAG bits not modified by pop *)
+       ELSE (* OperandSize = 16 *)
           IF top 6 bytes of stack are not within stack limits
-             THEN #SS(0); FI;
+             THEN **``#SS(0);``** FI;
           IF instruction pointer not within code segment limits
-             THEN #GP(0); FI;
+             THEN **``#GP(0);``** FI;
           EIP <- Pop();
           EIP <- EIP AND 0000FFFFH;
-          CS <- Pop(); (\* 16-bit pop \*)
-          EFLAGS[15:0] <- Pop(); (\* IOPL in EFLAGS not modified by pop \*)
+          CS <- Pop(); (* 16-bit pop *)
+          EFLAGS[15:0] <- Pop(); (* IOPL in EFLAGS not modified by pop *)
        FI;
      ELSE
-       #GP(0); (\* Trap to virtual-8086 monitor: PE = 1, VM = 1, IOPL < 3 \*)
+       **``#GP(0);``** (* Trap to virtual-8086 monitor: PE = 1, VM = 1, IOPL < 3 *)
   FI;
 END;
 ### RETURN-TO-VIRTUAL-8086-MODE
-  (\* Interrupted procedure was in virtual-8086 mode: PE = 1, CPL=0, VM = 1 in flag image \*)
+  (* Interrupted procedure was in virtual-8086 mode: PE = 1, CPL=0, VM = 1 in flag image *)
   IF top 24 bytes of stack are not within stack segment limits
-     THEN #SS(0); FI;
+     THEN **``#SS(0);``** FI;
   IF instruction pointer not within code segment limits
-     THEN #GP(0); FI;
+     THEN **``#GP(0);``** FI;
   CS <- tempCS;
   EIP <- tempEIP & FFFFH;
   EFLAGS <- tempEFLAGS;
   TempESP <- Pop();
   TempSS <- Pop();
-  ES <- Pop(); (\* Pop 2 words; throw away high-order word \*)
-  DS <- Pop(); (\* Pop 2 words; throw away high-order word \*)
-  FS <- Pop(); (\* Pop 2 words; throw away high-order word \*)
-  GS <- Pop(); (\* Pop 2 words; throw away high-order word \*)
+  ES <- Pop(); (* Pop 2 words; throw away high-order word *)
+  DS <- Pop(); (* Pop 2 words; throw away high-order word *)
+  FS <- Pop(); (* Pop 2 words; throw away high-order word *)
+  GS <- Pop(); (* Pop 2 words; throw away high-order word *)
   SS:ESP <- TempSS:TempESP;
   CPL <- 3;
-  (\* Resume execution in Virtual-8086 mode \*)
+  (* Resume execution in Virtual-8086 mode *)
 END;
-TASK-RETURN: (\* PE = 1, VM = 0, NT = 1 \*)
+TASK-RETURN: (* PE = 1, VM = 0, NT = 1 *)
   Read segment selector in link field of current TSS;
   IF local/global bit is set to local
   or index not within GDT limits
-     THEN #TS (TSS selector); FI;
+     THEN **``#TS``** (TSS selector); FI;
   Access TSS for task specified in link field of current TSS;
   IF TSS descriptor type is not TSS or if the TSS is marked not busy
-     THEN #TS (TSS selector); FI;
+     THEN **``#TS``** (TSS selector); FI;
   IF TSS not present
-     THEN #NP(TSS selector); FI;
+     THEN **``#NP(TSS``** selector); FI;
   SWITCH-TASKS (without nesting) to TSS specified in link field of current TSS;
   Mark the task just abandoned as NOT BUSY;
   IF EIP is not within code segment limit
-     THEN #GP(0); FI;
+     THEN **``#GP(0);``** FI;
 END;
-PROTECTED-MODE-RETURN: (\* PE = 1 \*)
+PROTECTED-MODE-RETURN: (* PE = 1 *)
   IF return code segment selector is NULL
      THEN GP(0); FI;
   IF return code segment selector addresses descriptor beyond descriptor table limit
      THEN GP(selector); FI;
   Read segment descriptor pointed to by the return code segment selector;
   IF return code segment descriptor is not a code segment
-     THEN #GP(selector); FI;
+     THEN **``#GP(selector);``** FI;
   IF return code segment selector RPL < CPL
-     THEN #GP(selector); FI;
+     THEN **``#GP(selector);``** FI;
   IF return code segment descriptor is conforming
   and return code segment DPL > return code segment selector RPL
-     THEN #GP(selector); FI;
+     THEN **``#GP(selector);``** FI;
   IF return code segment descriptor is not present
-     THEN #NP(selector); FI;
+     THEN **``#NP(selector);``** FI;
   IF return code segment selector RPL > CPL
      THEN GOTO RETURN-OUTER-PRIVILEGE-LEVEL;
      ELSE GOTO RETURN-TO-SAME-PRIVILEGE-LEVEL; FI;
 END;
-RETURN-TO-SAME-PRIVILEGE-LEVEL: (\* PE = 1, RPL = CPL \*)
+RETURN-TO-SAME-PRIVILEGE-LEVEL: (* PE = 1, RPL = CPL *)
   IF new mode != 64-Bit Mode
      THEN
        IF tempEIP is not within code segment limits
-          THEN #GP(0); FI;
+          THEN **``#GP(0);``** FI;
        EIP <- tempEIP;
-     ELSE (\* new mode = 64-bit mode \*)
+     ELSE (* new mode = 64-bit mode *)
        IF tempRIP is non-canonical
-             THEN #GP(0); FI;
+             THEN **``#GP(0);``** FI;
        RIP <- tempRIP;
   FI;
-  CS <- tempCS; (\* Segment descriptor information also loaded \*)
+  CS <- tempCS; (* Segment descriptor information also loaded *)
   EFLAGS (CF, PF, AF, ZF, SF, TF, DF, OF, NT) <- tempEFLAGS;
   IF OperandSize = 32 or OperandSize = 64
      THEN EFLAGS(RF, AC, ID) <- tempEFLAGS; FI;
   IF CPL ≤ IOPL
      THEN EFLAGS(IF) <- tempEFLAGS; FI;
   IF CPL = 0
-     THEN (\* VM = 0 in flags image \*)
+     THEN (* VM = 0 in flags image *)
      EFLAGS(IOPL) <- tempEFLAGS;
      IF OperandSize = 32 or OperandSize = 64
        THEN EFLAGS(VIF, VIP) <- tempEFLAGS; FI;
@@ -280,31 +280,31 @@ END;
   IF OperandSize = 32
      THEN
        IF top 8 bytes on stack are not within limits
-          THEN #SS(0); FI;
-     ELSE (\* OperandSize = 16 \*)
+          THEN **``#SS(0);``** FI;
+     ELSE (* OperandSize = 16 *)
        IF top 4 bytes on stack are not within limits
-          THEN #SS(0); FI;
+          THEN **``#SS(0);``** FI;
   FI;
   Read return segment selector;
   IF stack segment selector is NULL
-     THEN #GP(0); FI;
+     THEN **``#GP(0);``** FI;
   IF return stack segment selector index is not within its descriptor table limits
-     THEN #GP(SSselector); FI;
+     THEN **``#GP(SSselector);``** FI;
   Read segment descriptor pointed to by return segment selector;
   IF stack segment selector RPL != RPL of the return code segment selector
   or the stack segment descriptor does not indicate a a writable data segment;
   or the stack segment DPL != RPL of the return code segment selector
-     THEN #GP(SS selector); FI;
+     THEN **``#GP(SS``** selector); FI;
   IF stack segment is not present
-     THEN #SS(SS selector); FI;
+     THEN **``#SS(SS``** selector); FI;
   IF new mode != 64-Bit Mode
      THEN
        IF tempEIP is not within code segment limits
-          THEN #GP(0); FI;
+          THEN **``#GP(0);``** FI;
        EIP <- tempEIP;
-     ELSE (\* new mode = 64-bit mode \*)
+     ELSE (* new mode = 64-bit mode *)
        IF tempRIP is non-canonical
-             THEN #GP(0); FI;
+             THEN **``#GP(0);``** FI;
        RIP <- tempRIP;
   FI;
   CS <- tempCS;
@@ -325,13 +325,13 @@ END;
   FOR each of segment register (ES, FS, GS, and DS)
      DO
        IF segment register points to data or non-conforming code segment
-       and CPL > segment descriptor DPL (\* Stored in hidden part of segment register \*)
-          THEN (\* Segment register invalid \*)
-             SegmentSelector <- 0; (\* NULL segment selector \*)
+       and CPL > segment descriptor DPL (* Stored in hidden part of segment register *)
+          THEN (* Segment register invalid *)
+             SegmentSelector <- 0; (* NULL segment selector *)
        FI;
      OD;
 END;
-IA-32e-MODE-RETURN: (\* IA32_EFER.LMA = 1, PE = 1 \*)
+IA-32e-MODE-RETURN: (* IA32_EFER.LMA = 1, PE = 1 *)
   IF ( (return code segment selector is NULL) or (return RIP is non-canonical) or
        (SS selector is NULL going back to compatibility mode) or
        (SS selector is NULL going back to CPL3 64-bit mode) or
@@ -341,14 +341,14 @@ IA-32e-MODE-RETURN: (\* IA32_EFER.LMA = 1, PE = 1 \*)
      THEN GP(selector); FI;
   Read segment descriptor pointed to by the return code segment selector;
   IF return code segment descriptor is not a code segment
-     THEN #GP(selector); FI;
+     THEN **``#GP(selector);``** FI;
   IF return code segment selector RPL < CPL
-     THEN #GP(selector); FI;
+     THEN **``#GP(selector);``** FI;
   IF return code segment descriptor is conforming
   and return code segment DPL > return code segment selector RPL
-     THEN #GP(selector); FI;
+     THEN **``#GP(selector);``** FI;
   IF return code segment descriptor is not present
-     THEN #NP(selector); FI;
+     THEN **``#NP(selector);``** FI;
   IF return code segment selector RPL > CPL
      THEN GOTO RETURN-OUTER-PRIVILEGE-LEVEL;
      ELSE GOTO RETURN-TO-SAME-PRIVILEGE-LEVEL; FI;

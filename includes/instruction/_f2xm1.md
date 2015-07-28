@@ -32,7 +32,7 @@ occurs.
  + 0 to +1.0| + 0 to 1.0  
 ### Values other than 2 can be exponentiated using the following formula
 
-xy ← 2(y \* log2x)
+xy ← 2(y * log2x)
 
 This instruction's operation is the same in non-64-bit modes and 64-bit mode.
 

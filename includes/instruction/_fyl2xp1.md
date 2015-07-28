@@ -1,16 +1,16 @@
-## FYL2XP1 - Compute y \* log2(x +1)
+## FYL2XP1 - Compute y * log2(x +1)
 
 > Operation
 
 ``` slim
-ST(1) <- ST(1) \* log<sub>2</sub>(ST(0) + 1.0);
+ST(1) <- ST(1) * log<sub>2</sub>(ST(0) + 1.0);
 PopRegisterStack;
 
 ```
 
  Opcode| Instruction| 64-Bit Mode| Compat/Leg Mode| Description                                     
  ---  | --- | --- | --- | ---
- D9 F9 | FYL2XP1    | Valid      | Valid          | Replace ST(1) with ST(1) \* log<sub>2</sub>(ST(0)
+ D9 F9 | FYL2XP1    | Valid      | Valid          | Replace ST(1) with ST(1) * log<sub>2</sub>(ST(0)
        |            |            |                | + 1.0) and pop the register stack.              
 
 ### Description
@@ -36,8 +36,8 @@ ST(1), and pops the FPU register stack. The source operand in ST(0) must be
       |                    | Results ST(0) NaN NaN                      
  ST(1)| − F − 0 +0 +F +∞NaN| NaN NaN NaN NaN NaN NaN                    
 <aside class="notification">
-F Means finite floating-point value. \* Indicates floating-point invalid-operation
-(#IA) exception.
+F Means finite floating-point value. * Indicates floating-point invalid-operation
+(**``#IA)``** exception.
 </aside>
 
 This instruction provides optimal accuracy for values of epsilon [the value

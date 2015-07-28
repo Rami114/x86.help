@@ -31,6 +31,16 @@ Temp5[63:0] <- SRC1[191:160] \* SRC2[191:160]
 Temp6[63:0] <- SRC1[223:192] \* SRC2[223:192]
 Temp7[63:0] <- SRC1[255:224] \* SRC2[255:224]
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ (V)PMULLUD:| __m128i _mm_mullo_epi32(__m128i a, __m128i
+            | b);                                       
+ VPMULLD:   | __m256i _mm256_mullo_epi32(__m256i a,     
+            | __m256i b);                               
+
 ```
 
  Opcode/Instruction                   | Op/En| 64/32 bit Mode Support| CPUID Feature Flag| Description                              
@@ -71,14 +81,6 @@ VEX.L must be 0, otherwise the instruction will #UD.
 </aside>
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- (V)PMULLUD:| __m128i _mm_mullo_epi32(__m128i a, __m128i
-            | b);                                       
- VPMULLD:   | __m256i _mm256_mullo_epi32(__m256i a,     
-            | __m256i b);                               
 
 ### Flags Affected
 None.

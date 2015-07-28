@@ -12,7 +12,7 @@ DEST <- FPUStatusWord;
  9B DD /7            | FSTSW m2byte                      | Valid            | Valid            | Store FPU status word at m2byte after       
                      |                                   |                  |                  | checking for pending unmasked floating-point
                      |                                   |                  |                  | exceptions.                                 
- 9B DF E0 DD /7 DF E0| FSTSW AX FNSTSW\* m2byte FNSTSW\* AX| Valid Valid Valid| Valid Valid Valid| Store FPU status word in AX register        
+ 9B DF E0 DD /7 DF E0| FSTSW AX FNSTSW* m2byte FNSTSW* AX| Valid Valid Valid| Valid Valid Valid| Store FPU status word in AX register        
                      |                                   |                  |                  | after checking for pending unmasked         
                      |                                   |                  |                  | floating-point exceptions. Store FPU        
                      |                                   |                  |                  | status word at m2byte without checking      
@@ -21,7 +21,7 @@ DEST <- FPUStatusWord;
                      |                                   |                  |                  | AX register without checking for pending    
                      |                                   |                  |                  | unmasked floating-point exceptions.         
 <aside class="notification">
-\* See IA-32 Architecture Compatibility section below.
+* See IA-32 Architecture Compatibility section below.
 </aside>
 
 

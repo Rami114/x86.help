@@ -8,6 +8,14 @@ DEST[31:16] <- (SRC >> (ORDER[3:2] \* 16))[15:0];
 DEST[47:32] <- (SRC >> (ORDER[5:4] \* 16))[15:0];
 DEST[63:48] <- (SRC >> (ORDER[7:6] \* 16))[15:0];
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ PSHUFW:| __m64 _mm_shuffle_pi16(__m64 a, int
+        | n)                                 
+
 ```
 
  Opcode/Instruction                   | Op/En| 64-Bit Mode| Compat/Leg Mode| Description                              
@@ -40,12 +48,6 @@ In 64-bit mode, using a REX prefix in the form of REX.R permits this instruction
 to access additional registers (XMM8-XMM15).
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- PSHUFW:| __m64 _mm_shuffle_pi16(__m64 a, int
-        | n)                                 
 
 ### Flags Affected
 None.

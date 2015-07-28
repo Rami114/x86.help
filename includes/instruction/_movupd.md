@@ -14,6 +14,18 @@ DEST[VLMAX-1:128] <- 0
 VMOVUPD (VEX.256 encoded version)
 DEST[255:0] <- SRC[255:0]
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ MOVUPD: | __m128 _mm_loadu_pd(double * p)       
+ MOVUPD: | void _mm_storeu_pd(double *p, __m128  
+         | a)                                    
+ VMOVUPD:| __m256d _mm256_loadu_pd (__m256d * p);
+ VMOVUPD:| _mm256_storeu_pd(_m256d *p, __m256d   
+         | a);                                   
+
 ```
 
  Opcode/Instruction                        | Op/En| 64/32-bit Mode| CPUID Feature Flag| Description                                
@@ -52,7 +64,7 @@ corresponding YMM destination register remain unchanged.
 
 When the source or destination operand is a memory operand, the operand may
 be unaligned on a 16-byte boundary without causing a general-protection exception
-(#GP) to be generated.1
+(**``#GP)``** to be generated.1
 
 To move double-precision floating-point values to and from memory locations
 that are known to be aligned on 16byte boundaries, use the MOVAPD instruction.
@@ -60,7 +72,7 @@ that are known to be aligned on 16byte boundaries, use the MOVAPD instruction.
 While executing in 16-bit addressing mode, a linear address for a 128-bit data
 access that overlaps the end of a 16bit segment is not allowed and is defined
 as reserved behavior. A specific processor implementation may or may not generate
-a general-protection exception (#GP) in this situation, and the address that
+a general-protection exception (**``#GP)``** in this situation, and the address that
 spans the end of the segment may or may not wrap around to the beginning of
 the segment. VEX.128 encoded version: Bits (VLMAX-1:128) of the destination
 YMM register are zeroed. VEX.256 encoded version: Moves 256 bits of packed double-precision
@@ -79,27 +91,17 @@ a 256-bit memory location, or to move data between two YMM registers.
    | is not aligned on an 8-byte boundary.     
 <aside class="notification">
 In VEX-encoded versions, VEX.vvvv is reserved and must be 1111b otherwise
-instructions will #UD.
+instructions will **``#UD.``**
 </aside>
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- MOVUPD: | __m128 _mm_loadu_pd(double \* p)       
- MOVUPD: | void _mm_storeu_pd(double \*p, __m128  
-         | a)                                    
- VMOVUPD:| __m256d _mm256_loadu_pd (__m256d \* p);
- VMOVUPD:| _mm256_storeu_pd(_m256d \*p, __m256d   
-         | a);                                   
 
 ### SIMD Floating-Point Exceptions
 None.
 
 
 ### Other Exceptions
-See Exceptions Type 4 Note treatment of #AC varies; additionally
+See Exceptions Type 4 Note treatment of **``#AC``** varies; additionally
 
    | |  
 ---- | -----

@@ -5,29 +5,29 @@
 ``` slim
 IF PE = 0
   THEN
-     IF <- 0; (\* Reset Interrupt Flag \*)
+     IF <- 0; (* Reset Interrupt Flag *)
   ELSE
      IF VM = 0;
        THEN
           IF IOPL ≥ CPL
              THEN
-               IF <- 0; (\* Reset Interrupt Flag \*)
+               IF <- 0; (* Reset Interrupt Flag *)
           ELSE
              IF ((IOPL < CPL) and (CPL = 3) and (PVI = 1))
                THEN
-                  VIF <- 0; (\* Reset Virtual Interrupt Flag \*)
+                  VIF <- 0; (* Reset Virtual Interrupt Flag *)
                ELSE
                   #GP(0);
              FI;
           FI;
-       ELSE (\* VM = 1 \*)
+       ELSE (* VM = 1 *)
           IF IOPL = 3
              THEN
-               IF <- 0; (\* Reset Interrupt Flag \*)
+               IF <- 0; (* Reset Interrupt Flag *)
              ELSE
                IF (IOPL < 3) AND (VME = 1)
                   THEN
-                     VIF <- 0; (\* Reset Virtual Interrupt Flag \*)
+                     VIF <- 0; (* Reset Virtual Interrupt Flag *)
                   ELSE
                      #GP(0);
                FI;
@@ -74,7 +74,7 @@ CLI operation is the same in non-64-bit modes and 64-bit mode.
  1 | 1 | < 3  | X  | X  | X  | 1  | VIF = 0   
  1 | 1 | < 3  | X  | X  | X  | 0  | GP Fault  
 <aside class="notification">
-\* X = This setting has no impact.
+* X = This setting has no impact.
 </aside>
 
 

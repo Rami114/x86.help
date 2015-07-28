@@ -5,9 +5,9 @@
 ``` slim
 IF Instruction = FIMUL
   THEN
-     DEST <- DEST \* ConvertToDoubleExtendedPrecisionFP(SRC);
-  ELSE (\* Source operand is floating-point value \*)
-     DEST <- DEST \* SRC;
+     DEST <- DEST * ConvertToDoubleExtendedPrecisionFP(SRC);
+  ELSE (* Source operand is floating-point value *)
+     DEST <- DEST * SRC;
 FI;
 IF Instruction = FMULP
   THEN
@@ -86,7 +86,7 @@ F Means finite floating-point value.
 
    | |  
 ---- | -----
- I \* Indicates invalid-arithmetic-operand| Means Integer.
+ I * Indicates invalid-arithmetic-operand| Means Integer.
  (**``#IA)``** exception.                        |               
 This instruction's operation is the same in non-64-bit modes and 64-bit mode.
 

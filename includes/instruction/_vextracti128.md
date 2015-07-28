@@ -15,6 +15,14 @@ CASE (imm8[0]) OF
 ESAC.
 DEST[VLMAX-1:128] <- 0
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ VEXTRACTI128:| __m128i _mm256_extracti128_si256(__m256i
+              | a, int offset);                         
+
 ```
 
  Opcode/Instruction                      | Op/En| 64/32-bit Mode| CPUID Feature Flag| Description                          
@@ -31,17 +39,11 @@ DEST[VLMAX-1:128] <- 0
 Extracts 128-bits of packed integer values from the source operand (second operand)
 at a 128-bit offset from imm8[0] into the destination operand (first operand).
 The destination may be either an XMM register or a 128-bit memory location.
-VEX.vvvv is reserved and must be 1111b otherwise instructions will #UD. The
+VEX.vvvv is reserved and must be 1111b otherwise instructions will **``#UD.``** The
 high 7 bits of the immediate are ignored. An attempt to execute VEXTRACTI128
-encoded with VEX.L= 0 will cause an #UD exception.
+encoded with VEX.L= 0 will cause an **``#UD``** exception.
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- VEXTRACTI128:| __m128i _mm256_extracti128_si256(__m256i
-              | a, int offset);                         
 
 ### SIMD Floating-Point Exceptions
 None

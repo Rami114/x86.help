@@ -4,40 +4,40 @@
 
 ``` slim
 IF ((PE = 1) and ((CPL > IOPL) or (VM = 1)))
-  THEN (\* Protected mode with CPL > IOPL or virtual-8086 mode \*)
+  THEN (* Protected mode with CPL > IOPL or virtual-8086 mode *)
      IF (Any I/O Permission Bit for I/O port being accessed = 1)
-       THEN (\* I/O operation is not allowed \*)
+       THEN (* I/O operation is not allowed *)
           #GP(0);
-       ELSE (\* I/O operation is allowed \*)
-          DEST <- SRC; (\* Writes to I/O port \*)
+       ELSE (* I/O operation is allowed *)
+          DEST <- SRC; (* Writes to I/O port *)
      FI;
-  ELSE (Real Mode or Protected Mode or 64-Bit Mode with CPL ≤ IOPL \*)
-     DEST <- SRC; (\* Writes to I/O port \*)
+  ELSE (Real Mode or Protected Mode or 64-Bit Mode with CPL ≤ IOPL *)
+     DEST <- SRC; (* Writes to I/O port *)
 FI;
 ```
 
- Opcode\*| Instruction | Op/En| 64-Bit Mode| Compat/Leg Mode| Description                               
+ Opcode*| Instruction | Op/En| 64-Bit Mode| Compat/Leg Mode| Description                               
  ---  | --- | --- | --- | --- | ---
  6E     | OUTS DX, m8 | NP   | Valid      | Valid          | Output byte from memory location specified
         |             |      |            |                | in DS:(E)SI or RSI to I/O port specified  
-        |             |      |            |                | in DX\*\*.                                  
+        |             |      |            |                | in DX**.                                  
  6F     | OUTS DX, m16| NP   | Valid      | Valid          | Output word from memory location specified
         |             |      |            |                | in DS:(E)SI or RSI to I/O port specified  
-        |             |      |            |                | in DX\*\*.                                  
+        |             |      |            |                | in DX**.                                  
  6F     | OUTS DX, m32| NP   | Valid      | Valid          | Output doubleword from memory location    
         |             |      |            |                | specified in DS:(E)SI or RSI to I/O       
-        |             |      |            |                | port specified in DX\*\*.                   
+        |             |      |            |                | port specified in DX**.                   
  6E     | OUTSB       | NP   | Valid      | Valid          | Output byte from memory location specified
         |             |      |            |                | in DS:(E)SI or RSI to I/O port specified  
-        |             |      |            |                | in DX\*\*.                                  
+        |             |      |            |                | in DX**.                                  
  6F     | OUTSW       | NP   | Valid      | Valid          | Output word from memory location specified
         |             |      |            |                | in DS:(E)SI or RSI to I/O port specified  
-        |             |      |            |                | in DX\*\*.                                  
+        |             |      |            |                | in DX**.                                  
  6F     | OUTSD       | NP   | Valid      | Valid          | Output doubleword from memory location    
         |             |      |            |                | specified in DS:(E)SI or RSI to I/O       
-        |             |      |            |                | port specified in DX\*\*.                   
+        |             |      |            |                | port specified in DX**.                   
 <aside class="notification">
-\* See IA-32 Architecture Compatibility section below. \*\* In 64-bit mode,
+* See IA-32 Architecture Compatibility section below. ** In 64-bit mode,
 only 64-bit (RSI) and 32-bit (ESI) address sizes are supported. In non-64-bit
 mode, only 32-bit (ESI) and 16-bit (SI) address sizes are supported.
 </aside>
@@ -103,7 +103,7 @@ mode.
 
 ### IA-32 Architecture Compatibility
 After executing an OUTS, OUTSB, OUTSW, or OUTSD instruction, the Pentium processor
-ensures that the EWBE#pin has been sampled active before it begins to execute
+ensures that the EWBE**``#pin``** has been sampled active before it begins to execute
 the next instruction. (Note that the instruction can be prefetched if EWBE#
 is not active, but it will not be executed until the EWBE# pin is sampled active.)
 Only the Pentium processor family has the EWBE# pin. For the Pentium 4, Intel®
@@ -122,7 +122,7 @@ the data phase of the transaction is complete.
                THEN RSI <- RSI RSI + 1;
                ELSE RSI <- RSI or - 1;
              FI;
-          ELSE (\* 32-Bit Address Size \*)
+          ELSE (* 32-Bit Address Size *)
              IF DF = 0
                THEN
                ELSE
@@ -143,7 +143,7 @@ the data phase of the transaction is complete.
                THEN RSI <- RSI RSI + 2;
                ELSE RSI <- RSI or - 2;
              FI;
-          ELSE (\* 32-Bit Address Size \*)
+          ELSE (* 32-Bit Address Size *)
              IF DF = 0
                THEN
                ELSE
@@ -164,7 +164,7 @@ the data phase of the transaction is complete.
                THEN RSI <- RSI RSI + 4;
                ELSE RSI <- RSI or - 4;
              FI;
-          ELSE (\* 32-Bit Address Size \*)
+          ELSE (* 32-Bit Address Size *)
              IF DF = 0
                THEN
                ELSE

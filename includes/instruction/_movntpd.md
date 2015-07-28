@@ -5,6 +5,16 @@
 ``` slim
 DEST <- SRC;
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ MOVNTPD: | void _mm_stream_pd(double \*p, __m128d     
+          | a)                                        
+ VMOVNTPD:| void _mm256_stream_pd (double \* p, __m256d
+          | a);                                       
+
 ```
 
  Opcode/Instruction                    | Op/En| 64/32-bit Mode| CPUID Feature Flag| Description                                
@@ -30,7 +40,7 @@ is an XMM register or YMM register, which is assumed to contain packed double-pr
 floatingpointing data. The destination operand is a 128-bit or 256-bit memory
 location. The memory operand must be aligned on a 16-byte (128-bit version)
 or 32-byte (VEX.256 encoded version) boundary otherwise a generalprotection
-exception (#GP) will be generated.
+exception (**``#GP)``** will be generated.
 
 The non-temporal hint is implemented by using a write combining (WC) memory
 type protocol when writing the data to memory. Using this protocol, the processor
@@ -49,17 +59,9 @@ memory types to read/write the destination memory locations.
 
 In 64-bit mode, use of the REX.R prefix permits this instruction to access additional
 registers (XMM8-XMM15). Note: In VEX-128 encoded versions, VEX.vvvv is reserved
-and must be 1111b, VEX.L must be 0; otherwise instructions will #UD.
+and must be 1111b, VEX.L must be 0; otherwise instructions will **``#UD.``**
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- MOVNTPD: | void _mm_stream_pd(double \*p, __m128d     
-          | a)                                        
- VMOVNTPD:| void _mm256_stream_pd (double \* p, __m256d
-          | a);                                       
 
 ### SIMD Floating-Point Exceptions
 None.

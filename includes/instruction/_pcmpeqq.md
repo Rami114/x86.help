@@ -16,6 +16,16 @@ VPCMPEQQ (VEX.256 encoded version)
 DEST[127:0] <-COMPARE_QWORDS_EQUAL(SRC1[127:0],SRC2[127:0])
 DEST[255:128] <-COMPARE_QWORDS_EQUAL(SRC1[255:128],SRC2[255:128])
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ (V)PCMPEQQ:| __m128i _mm_cmpeq_epi64(__m128i a, __m128i
+            | b);                                       
+ VPCMPEQQ:  | __m256i _mm256_cmpeq_epi64( __m256i       
+            | a, __m256i b);                            
+
 ```
 
  Opcode/Instruction                    | Op/En| 64/32 bit Mode Support| CPUID Feature Flag| Description                           
@@ -63,14 +73,6 @@ operand (first operand) and the
  must be 0, otherwise the instruction          |                                      
  will **``#UD.``**                                     |                                      
 
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- (V)PCMPEQQ:| __m128i _mm_cmpeq_epi64(__m128i a, __m128i
-            | b);                                       
- VPCMPEQQ:  | __m256i _mm256_cmpeq_epi64( __m256i       
-            | a, __m256i b);                            
 
 ### Flags Affected
 None.

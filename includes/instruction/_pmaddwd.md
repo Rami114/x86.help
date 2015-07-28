@@ -27,6 +27,18 @@ DEST[191:160] <- (SRC1[175:160] \* SRC2[175:160]) + (SRC1[191:176] \* SRC2[191:1
 DEST[223:192] <- (SRC1[207:192] \* SRC2[207:192]) + (SRC1[223:208] \* SRC2[223:208])
 DEST[255:224] <- (SRC1[239:224] \* SRC2[239:224]) + (SRC1[255:240] \* SRC2[255:240])
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ PMADDWD:   | __m64 _mm_madd_pi16(__m64 m1, __m64
+            | m2)                                
+ (V)PMADDWD:| __m128i _mm_madd_epi16 ( __m128i a,
+            | __m128i b)                         
+ VPMADDWD:  | __m256i _mm256_madd_epi16 ( __m256i
+            | a, __m256i b)                      
+
 ```
 
  Opcode/Instruction                  | Op/En| 64/32 bit Mode Support| CPUID Feature Flag| Description                                
@@ -109,16 +121,6 @@ DEST
  Operands                            |                  
  ---  | ---
 
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- PMADDWD:   | __m64 _mm_madd_pi16(__m64 m1, __m64
-            | m2)                                
- (V)PMADDWD:| __m128i _mm_madd_epi16 ( __m128i a,
-            | __m128i b)                         
- VPMADDWD:  | __m256i _mm256_madd_epi16 ( __m256i
-            | a, __m256i b)                      
 
 ### Flags Affected
 None.

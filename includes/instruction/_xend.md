@@ -18,7 +18,33 @@ ELSE
      FI;
   FI;
 FI;
-(\* For any RTM abort condition encountered during RTM execution \*)
+(\* For any RTM abort condition encountered during RTM execution \*)```
+
+### RTM_ABORT_PROCESSING
+  Restore architectural register state
+  Discard memory updates performed in transaction
+  Update EAX with status
+  RTM_NEST_COUNT <- 0
+  RTM_ACTIVE <- 0
+  IF 64-bit Mode
+     THEN
+       RIP <- fallbackRIP
+     ELSE
+       EIP <- fallbackEIP
+  FI;
+END
+
+### Flags Affected
+None
+
+
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ XEND:| void _xend( void );
+
 ```
 
  Opcode/Instruction| Op/En| 64/32bit Mode Support| CPUID Feature Flag| Description                             
@@ -39,33 +65,10 @@ the commit fails, the logical processor will rollback all architectural register
 and memory updates performed during the RTM execution. The logical processor
 will resume execution at the fallback address computed from the outermost XBEGIN
 instruction. The EAX register is updated to reflect RTM abort information. XEND
-executed outside a transactional region will cause a #GP (General Protection
+executed outside a transactional region will cause a **``#GP``** (General Protection
 Fault).
 
 
-
-### RTM_ABORT_PROCESSING
-  Restore architectural register state
-  Discard memory updates performed in transaction
-  Update EAX with status
-  RTM_NEST_COUNT <- 0
-  RTM_ACTIVE <- 0
-  IF 64-bit Mode
-     THEN
-       RIP <- fallbackRIP
-     ELSE
-       EIP <- fallbackEIP
-  FI;
-END
-
-### Flags Affected
-None
-
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- XEND:| void _xend( void );
 
 ### SIMD Floating-Point Exceptions
 None

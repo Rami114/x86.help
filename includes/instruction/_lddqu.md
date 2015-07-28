@@ -12,6 +12,15 @@ DEST[VLMAX-1:128] <- 0
 VLDDQU (VEX.256 encoded version)
 DEST[255:0] <- SRC[255:0]
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ LDDQU:| __m128i _mm_lddqu_si128 (__m128i * p);
+ LDDQU:| __m256i _mm256_lddqu_si256 (__m256i   
+       | * p);                                 
+
 ```
 
  Opcode/Instruction                  | Op/En| 64/32-bit Mode| CPUID Feature Flag| Description                            
@@ -60,25 +69,18 @@ implementations may issue multiple loads to access the appropriate 32/16 bytes.
 Developers of multi-threaded or multi-processor software should be aware that
 on these processors the loads will be performed in a non-atomic way.
  - If alignment checking is enabled (CR0.AM = 1, RFLAGS.AC = 1, and CPL = 3), an
-alignment-check exception (#AC) may or may not be generated (depending on processor
+alignment-check exception (**``#AC)``** may or may not be generated (depending on processor
 implementation) when the memory address is not aligned on an 8-byte boundary.
 
 In 64-bit mode, use of the REX.R prefix permits this instruction to access additional
 registers (XMM8-XMM15). Note: In VEX-encoded versions, VEX.vvvv is reserved
-and must be 1111b otherwise instructions will #UD.
+and must be 1111b otherwise instructions will **``#UD.``**
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- LDDQU:| __m128i _mm_lddqu_si128 (__m128i \* p);
- LDDQU:| __m256i _mm256_lddqu_si256 (__m256i   
-       | \* p);                                 
 
 ### Numeric Exceptions
 None.
 
 
 ### Other Exceptions
-See Exceptions Type 4; Note treatment of #AC varies.
+See Exceptions Type 4; Note treatment of **``#AC``** varies.

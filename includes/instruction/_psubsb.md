@@ -5,38 +5,55 @@
 ``` slim
 PSUBSB (with 64-bit operands)
   DEST[7:0] <- SaturateToSignedByte (DEST[7:0] − SRC (7:0]);
-  (\* Repeat subtract operation for 2nd through 7th bytes \*)
+  (* Repeat subtract operation for 2nd through 7th bytes *)
   DEST[63:56] <- SaturateToSignedByte (DEST[63:56] − SRC[63:56] );
 PSUBSB (with 128-bit operands)
   DEST[7:0] <- SaturateToSignedByte (DEST[7:0] − SRC[7:0]);
-  (\* Repeat subtract operation for 2nd through 14th bytes \*)
+  (* Repeat subtract operation for 2nd through 14th bytes *)
   DEST[127:120] <- SaturateToSignedByte (DEST[127:120] − SRC[127:120]);
 VPSUBSB (VEX.128 encoded version)
 DEST[7:0] <- SaturateToSignedByte (SRC1[7:0] - SRC2[7:0]);
-(\* Repeat subtract operation for 2nd through 14th bytes \*)
+(* Repeat subtract operation for 2nd through 14th bytes *)
 DEST[127:120] <- SaturateToSignedByte (SRC1[127:120] - SRC2[127:120]);
 DEST[VLMAX-1:128] <- 0
 VPSUBSB (VEX.256 encoded version)
 DEST[7:0] <- SaturateToSignedByte (SRC1[7:0] - SRC2[7:0]);
-(\* Repeat subtract operation for 2nd through 31th bytes \*)
+(* Repeat subtract operation for 2nd through 31th bytes *)
 DEST[255:248] <- SaturateToSignedByte (SRC1[255:248] - SRC2[255:248]);
 PSUBSW (with 64-bit operands)
   DEST[15:0] <- SaturateToSignedWord (DEST[15:0] − SRC[15:0] );
-  (\* Repeat subtract operation for 2nd and 7th words \*)
+  (* Repeat subtract operation for 2nd and 7th words *)
   DEST[63:48] <- SaturateToSignedWord (DEST[63:48] − SRC[63:48] );
 PSUBSW (with 128-bit operands)
   DEST[15:0]
-  (\* Repeat subtract operation for 2nd through 7th words \*)
+  (* Repeat subtract operation for 2nd through 7th words *)
   DEST[127:112] <- SaturateToSignedWord (DEST[127:112] − SRC[127:112]);
 VPSUBSW (VEX.128 encoded version)
 DEST[15:0] <- SaturateToSignedWord (SRC1[15:0] - SRC2[15:0]);
-(\* Repeat subtract operation for 2nd through 7th words \*)
+(* Repeat subtract operation for 2nd through 7th words *)
 DEST[127:112] <- SaturateToSignedWord (SRC1[127:112] - SRC2[127:112]);
 DEST[VLMAX-1:128] <- 0
 VPSUBSW (VEX.256 encoded version)
 DEST[15:0] <- SaturateToSignedWord (SRC1[15:0] - SRC2[15:0]);
-(\* Repeat subtract operation for 2nd through 15th words \*)
+(* Repeat subtract operation for 2nd through 15th words *)
 DEST[255:240] <- SaturateToSignedWord (SRC1[255:240] - SRC2[255:240]);
+
+> Intel C/C++ Compiler Intrinsic Equivalents
+
+``` slim
+   | |  
+---- | -----
+ PSUBSB:   | __m64 _mm_subs_pi8(__m64 m1, __m64 m2)    
+ (V)PSUBSB:| __m128i _mm_subs_epi8(__m128i m1, __m128i 
+           | m2)                                       
+ VPSUBSB:  | __m256i _mm256_subs_epi8(__m256i m1,      
+           | __m256i m2)                               
+ PSUBSW:   | __m64 _mm_subs_pi16(__m64 m1, __m64       
+           | m2)                                       
+ (V)PSUBSW:| __m128i _mm_subs_epi16(__m128i m1, __m128i
+           | m2)                                       
+ VPSUBSW:  | __m256i _mm256_subs_epi16(__m256i m1,     
+           | __m256i m2)                               
 
 ```
 
@@ -119,21 +136,6 @@ VEX.L must be 0, otherwise instructions will #UD.
 </aside>
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalents
-   | |  
----- | -----
- PSUBSB:   | __m64 _mm_subs_pi8(__m64 m1, __m64 m2)    
- (V)PSUBSB:| __m128i _mm_subs_epi8(__m128i m1, __m128i 
-           | m2)                                       
- VPSUBSB:  | __m256i _mm256_subs_epi8(__m256i m1,      
-           | __m256i m2)                               
- PSUBSW:   | __m64 _mm_subs_pi16(__m64 m1, __m64       
-           | m2)                                       
- (V)PSUBSW:| __m128i _mm_subs_epi16(__m128i m1, __m128i
-           | m2)                                       
- VPSUBSW:  | __m256i _mm256_subs_epi16(__m256i m1,     
-           | __m256i m2)                               
 
 ### Flags Affected
 None.

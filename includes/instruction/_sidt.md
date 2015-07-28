@@ -8,20 +8,20 @@ IF instruction is SIDT
      IF OperandSize = 16
        THEN
           DEST[0:15] <- IDTR(Limit);
-          DEST[16:39] <- IDTR(Base); (\* 24 bits of base address stored; \*)
+          DEST[16:39] <- IDTR(Base); (* 24 bits of base address stored; *)
           DEST[40:47] <- 0;
        ELSE IF (32-bit Operand Size)
           DEST[0:15] <- IDTR(Limit);
-          DEST[16:47] <- IDTR(Base); FI; (\* Full 32-bit base address stored \*)
-       ELSE (\* 64-bit Operand Size \*)
+          DEST[16:47] <- IDTR(Base); FI; (* Full 32-bit base address stored *)
+       ELSE (* 64-bit Operand Size *)
           DEST[0:15] <- IDTR(Limit);
-          DEST[16:79] <- IDTR(Base); (\* Full 64-bit base address stored \*)
+          DEST[16:79] <- IDTR(Base); (* Full 64-bit base address stored *)
      FI;
 FI;
 
 ```
 
- Opcode\* | Instruction| Op/En| 64-Bit Mode| Compat/Leg Mode| Description     
+ Opcode* | Instruction| Op/En| 64-Bit Mode| Compat/Leg Mode| Description     
  ---  | --- | --- | --- | --- | ---
  0F 01 /1| SIDT m     | M    | Valid      | Valid          | Store IDTR to m.
 

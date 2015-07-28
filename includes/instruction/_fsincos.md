@@ -10,7 +10,7 @@ IF ST(0) < 263
      ST(0) <- sine(ST(0));
      TOP <- TOP − 1;
      ST(0) <- TEMP;
-  ELSE (\* Source operand out of range \*)
+  ELSE (* Source operand out of range *)
      C2 <- 1;
 FI;
 
@@ -42,8 +42,8 @@ does not occur.
  + F + ∞| − 1 to + 1     
  NaN    | NaN            
 <aside class="notification">
-F Means finite floating-point value. \* Indicates floating-point invalid-arithmetic-operand
-(#IA) exception.
+F Means finite floating-point value. * Indicates floating-point invalid-arithmetic-operand
+(**``#IA)``** exception.
 </aside>
 
 If the source operand is outside the acceptable range, the C2 flag in the FPU

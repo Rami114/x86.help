@@ -34,14 +34,14 @@ FI;
 
  Opcode/Instruction                   | Op/En| 64-Bit Mode| Compat/Leg Mode| Description                             
  ---  | --- | --- | --- | ---
- 0F C7 /1 m64 CMPXCHG8B m64           | M    | Valid      | Valid\*         | Compare EDX:EAX with m64. If equal,     
+ 0F C7 /1 m64 CMPXCHG8B m64           | M    | Valid      | Valid*         | Compare EDX:EAX with m64. If equal,     
                                       |      |            |                | set ZF and load ECX:EBX into m64. Else, 
                                       |      |            |                | clear ZF and load m64 into EDX:EAX.     
  REX.W + 0F C7 /1 m128 CMPXCHG16B m128| M    | Valid      | N.E.           | Compare RDX:RAX with m128. If equal,    
                                       |      |            |                | set ZF and load RCX:RBX into m128. Else,
                                       |      |            |                | clear ZF and load m128 into RDX:RAX.    
 <aside class="notification">
-\*See IA-32 Architecture Compatibility section below.
+*See IA-32 Architecture Compatibility section below.
 </aside>
 
 

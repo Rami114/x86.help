@@ -42,7 +42,21 @@ DEST[127:0]<-DP_Primitive(SRC1[127:0], SRC2[127:0]);
 DEST[VLMAX-1:128] <- 0
 VDPPS (VEX.256 encoded version)
 DEST[127:0]<-DP_Primitive(SRC1[127:0], SRC2[127:0]);
-DEST[255:128]<-DP_Primitive(SRC1[255:128], SRC2[255:128]);
+DEST[255:128]<-DP_Primitive(SRC1[255:128], SRC2[255:128]);```
+
+### Flags Affected
+None
+
+
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ (V)DPPS:| __m128 _mm_dp_ps ( __m128 a, __m128   
+         | b, const int mask);                   
+ VDPPS:  | __m256 _mm256_dp_ps ( __m256 a, __m256
+         | b, const int mask);                   
 
 ```
 
@@ -101,18 +115,6 @@ source operand can be a YMM register or a 256-bit memory location. The destinati
 operand is a YMM register.
 
 
-
-### Flags Affected
-None
-
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- (V)DPPS:| __m128 _mm_dp_ps ( __m128 a, __m128   
-         | b, const int mask);                   
- VDPPS:  | __m256 _mm256_dp_ps ( __m256 a, __m256
-         | b, const int mask);                   
 
 ### SIMD Floating-Point Exceptions
 Overflow, Underflow, Invalid, Precision, Denormal Exceptions are determined

@@ -4,11 +4,11 @@
 
 ``` slim
 DEST <- CR0[15:0];
-(\* Machine status word \*)
+(* Machine status word *)
 
 ```
 
- Opcode\*         | Instruction | Op/En| 64-Bit Mode| Compat/Leg Mode| Description                           
+ Opcode*         | Instruction | Op/En| 64-Bit Mode| Compat/Leg Mode| Description                           
  ---  | --- | --- | --- | --- | ---
  0F 01 /4        | SMSW r/m16  | M    | Valid      | Valid          | Store machine status word to r/m16.   
  0F 01 /4        | SMSW r32/m16| M    | Valid      | Valid          | Store machine status word in low-order

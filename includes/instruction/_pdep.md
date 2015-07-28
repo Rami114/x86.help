@@ -13,7 +13,21 @@ DO WHILE m< OperandSize
        k <- k+ 1;
      FI
      m <- m+ 1;
-OD
+OD```
+
+### Flags Affected
+None.
+
+
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ PDEP:| unsigned __int32 _pdep_u32(unsigned 
+      | __int32 src, unsigned __int32 mask);
+ PDEP:| unsigned __int64 _pdep_u64(unsigned 
+      | __int64 src, unsigned __int32 mask);
 
 ```
 
@@ -51,21 +65,9 @@ SRC2
 This instruction is not supported in real mode and virtual-8086 mode. The operand
 size is always 32 bits if not in 64-bit mode. In 64-bit mode operand size 64
 requires VEX.W1. VEX.W1 is ignored in non-64-bit modes. An attempt to execute
-this instruction with VEX.L not equal to 0 will cause #UD.
+this instruction with VEX.L not equal to 0 will cause **``#UD.``**
 
 
-
-### Flags Affected
-None.
-
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- PDEP:| unsigned __int32 _pdep_u32(unsigned 
-      | __int32 src, unsigned __int32 mask);
- PDEP:| unsigned __int64 _pdep_u64(unsigned 
-      | __int64 src, unsigned __int32 mask);
 
 ### SIMD Floating-Point Exceptions
 None

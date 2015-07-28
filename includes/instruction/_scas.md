@@ -8,23 +8,23 @@
  Opcode    | Instruction| Op/En| 64-Bit Mode| Compat/Leg Mode| Description                            
  ---  | --- | --- | --- | --- | ---
  AE        | SCAS m8    | NP   | Valid      | Valid          | Compare AL with byte at ES:(E)DI or    
-           |            |      |            |                | RDI, then set status flags.\*           
+           |            |      |            |                | RDI, then set status flags.*           
  AF        | SCAS m16   | NP   | Valid      | Valid          | Compare AX with word at ES:(E)DI or    
-           |            |      |            |                | RDI, then set status flags.\*           
+           |            |      |            |                | RDI, then set status flags.*           
  AF        | SCAS m32   | NP   | Valid      | Valid          | Compare EAX with doubleword at ES(E)DI 
-           |            |      |            |                | or RDI then set status flags.\*         
+           |            |      |            |                | or RDI then set status flags.*         
  REX.W + AF| SCAS m64   | NP   | Valid      | N.E.           | Compare RAX with quadword at RDI or    
            |            |      |            |                | EDI then set status flags.             
  AE        | SCASB      | NP   | Valid      | Valid          | Compare AL with byte at ES:(E)DI or    
-           |            |      |            |                | RDI then set status flags.\*            
+           |            |      |            |                | RDI then set status flags.*            
  AF        | SCASW      | NP   | Valid      | Valid          | Compare AX with word at ES:(E)DI or    
-           |            |      |            |                | RDI then set status flags.\*            
+           |            |      |            |                | RDI then set status flags.*            
  AF        | SCASD      | NP   | Valid      | Valid          | Compare EAX with doubleword at ES:(E)DI
-           |            |      |            |                | or RDI then set status flags.\*         
+           |            |      |            |                | or RDI then set status flags.*         
  REX.W + AF| SCASQ      | NP   | Valid      | N.E.           | Compare RAX with quadword at RDI or    
            |            |      |            |                | EDI then set status flags.             
 <aside class="notification">
-\* In 64-bit mode, only 64-bit (RDI) and 32-bit (EDI) address sizes are
+* In 64-bit mode, only 64-bit (RDI) and 32-bit (EDI) address sizes are
 supported. In non-64-bit mode, only 32-bit (EDI) and 16-bit (DI) address sizes
 are supported.
 </aside>

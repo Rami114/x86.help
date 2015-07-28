@@ -10,7 +10,7 @@ IF SRC = 0
      IF Instruction is FIDIV
        THEN
           DEST <- DEST / ConvertToDoubleExtendedPrecisionFP(SRC);
-       ELSE (\* Source operand is floating-point value \*)
+       ELSE (* Source operand is floating-point value *)
           DEST <- DEST / SRC;
      FI;
 FI;
@@ -65,7 +65,7 @@ The FIDIV instructions convert an integer source operand to double extended-prec
 floating-point format before performing the division. When the source operand
 is an integer 0, it is treated as a +0.
 
-If an unmasked divide-by-zero exception (#Z) is generated, no result is stored;
+If an unmasked divide-by-zero exception (**``#Z)``** is generated, no result is stored;
 if the exception is masked, an ∞ of the appropriate sign is stored in the destination
 operand.
 
@@ -80,7 +80,7 @@ DEST
 ---- | -----
  − ∞      | − F + 0 | − 0 + 0| + 0 − 0| + F − 0 | + ∞      | NaN NaN    
  + ∞      | + F     | + 0    | − 0    | − F     | − ∞      | NaN        
- + ∞+ ∞− ∞| + F \*\*\*\*| + 0    | − 0    | − F \*\*\*\*| − ∞− ∞+ ∞| NaN NaN NaN
+ + ∞+ ∞− ∞| + F ****| + 0    | − 0    | − F ****| − ∞− ∞+ ∞| NaN NaN NaN
  − ∞      | − F     | − 0    | + 0    | + F     | + ∞      | NaN        
  − ∞      | − F − 0 | − 0 − 0| + 0 + 0| + F + 0 | + ∞      | NaN NaN    
  NaN      | NaN     | NaN    | NaN    | NaN     | NaN      | NaN        
@@ -90,8 +90,8 @@ F Means finite floating-point value.
 
    | |  
 ---- | -----
- I \* Indicates floating-point invalid-arithmetic-operand| Means integer.
- (**``#IA)``** exception. \*\* Indicates floating-point           |               
+ I * Indicates floating-point invalid-arithmetic-operand| Means integer.
+ (**``#IA)``** exception. ** Indicates floating-point           |               
  zero-divide (**``#Z)``** exception.                            |               
 This instruction's operation is the same in non-64-bit modes and 64-bit mode.
 

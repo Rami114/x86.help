@@ -3,7 +3,7 @@
 > Operation
 
 ``` slim
-(\* Intel Core i7 processor family and Intel Xeon processor 3400, 5500 series\*)
+(* Intel Core i7 processor family and Intel Xeon processor 3400, 5500 series*)
 Most significant counter bit (MSCB) = 47
 IF ((CR4.PCE = 1) or (CPL = 0) or (CR0.PE = 0))
   THEN IF (ECX[30] = 1 and ECX[29:0] in valid fixed-counter range)
@@ -12,10 +12,10 @@ IF ((CR4.PCE = 1) or (CPL = 0) or (CR0.PE = 0))
   ELSE IF (ECX[30] = 0 and ECX[29:0] in valid general-purpose counter range)
      EAX <- PMC(ECX[30:0])[31:0];
      EDX <- PMC(ECX[30:0])[MSCB:32];
-  ELSE (\* ECX is not valid or CR4.PCE is 0 and CPL is 1, 2, or 3 and CR0.PE is 1 \*)
+  ELSE (* ECX is not valid or CR4.PCE is 0 and CPL is 1, 2, or 3 and CR0.PE is 1 *)
      #GP(0);
 FI;
-(\* Intel Core 2 Duo processor family and Intel Xeon processor 3000, 5100, 5300, 7400 series\*)
+(* Intel Core 2 Duo processor family and Intel Xeon processor 3000, 5100, 5300, 7400 series*)
 Most significant counter bit (MSCB) = 39
 IF ((CR4.PCE = 1) or (CPL = 0) or (CR0.PE = 0))
   THEN IF (ECX[30] = 1 and ECX[29:0] in valid fixed-counter range)
@@ -25,41 +25,41 @@ IF ((CR4.PCE = 1) or (CPL = 0) or (CR0.PE = 0))
      EAX <- PMC(ECX[30:0])[31:0];
      EDX <- PMC(ECX[30:0])[MSCB:32];
   ELSE IF (ECX[30] = 0 and ECX[29:0] in valid special-purpose counter range)
-     EAX <- PMC(ECX[30:0])[31:0]; (\* 32-bit read \*)
-  ELSE (\* ECX is not valid or CR4.PCE is 0 and CPL is 1, 2, or 3 and CR0.PE is 1 \*)
+     EAX <- PMC(ECX[30:0])[31:0]; (* 32-bit read *)
+  ELSE (* ECX is not valid or CR4.PCE is 0 and CPL is 1, 2, or 3 and CR0.PE is 1 *)
      #GP(0);
 FI;
-(\* P6 family processors and Pentium processor with MMX technology \*)
+(* P6 family processors and Pentium processor with MMX technology *)
 IF (ECX = 0 or 1) and ((CR4.PCE = 1) or (CPL = 0) or (CR0.PE = 0))
   THEN
      EAX <- PMC(ECX)[31:0];
      EDX <- PMC(ECX)[39:32];
-  ELSE (\* ECX is not 0 or 1 or CR4.PCE is 0 and CPL is 1, 2, or 3 and CR0.PE is 1 \*)
+  ELSE (* ECX is not 0 or 1 or CR4.PCE is 0 and CPL is 1, 2, or 3 and CR0.PE is 1 *)
      #GP(0);
 FI;
-(\* Processors with CPUID family 15 \*)
+(* Processors with CPUID family 15 *)
 IF ((CR4.PCE = 1) or (CPL = 0) or (CR0.PE = 0))
   THEN IF (ECX[30:0] = 0:17)
      THEN IF ECX[31] = 0
        THEN
-          EAX <- PMC(ECX[30:0])[31:0]; (\* 40-bit read \*)
+          EAX <- PMC(ECX[30:0])[31:0]; (* 40-bit read *)
           EDX <- PMC(ECX[30:0])[39:32];
-     ELSE (\* ECX[31] = 1\*)
+     ELSE (* ECX[31] = 1*)
        THEN
-          EAX <- PMC(ECX[30:0])[31:0]; (\* 32-bit read \*)
+          EAX <- PMC(ECX[30:0])[31:0]; (* 32-bit read *)
           EDX <- 0;
      FI;
-  ELSE IF (\*64-bit Intel Xeon processor with L3 \*)
+  ELSE IF (*64-bit Intel Xeon processor with L3 *)
      THEN IF (ECX[30:0] = 18:25 )
-       EAX <- PMC(ECX[30:0])[31:0]; (\* 32-bit read \*)
+       EAX <- PMC(ECX[30:0])[31:0]; (* 32-bit read *)
        EDX <- 0;
      FI;
-  ELSE IF (\*Intel Xeon processor 7100 series with L3 \*)
+  ELSE IF (*Intel Xeon processor 7100 series with L3 *)
      THEN IF (ECX[30:0] = 18:25 )
-       EAX <- PMC(ECX[30:0])[31:0]; (\* 32-bit read \*)
+       EAX <- PMC(ECX[30:0])[31:0]; (* 32-bit read *)
        EDX <- 0;
      FI;
-  ELSE (\* Invalid PMC index in ECX[30:0], see Table 4-15. \*)
+  ELSE (* Invalid PMC index in ECX[30:0], see Table 4-15. *)
      GP(0);
   FI;
 ELSE
@@ -68,7 +68,7 @@ FI;
 
 ```
 
- Opcode\*| Instruction| Op/En| 64-Bit Mode| Compat/Leg Mode| Description                        
+ Opcode*| Instruction| Op/En| 64-Bit Mode| Compat/Leg Mode| Description                        
  ---  | --- | --- | --- | --- | ---
  0F 33  | RDPMC      | NP   | Valid      | Valid          | Read performance-monitoring counter
         |            |      |            |                | specified by ECX into EDX:EAX.     

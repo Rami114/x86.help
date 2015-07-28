@@ -53,7 +53,7 @@ of this unmasked exception will result in the exception being generated.
 
 Bits 16 through 32 of the MXCSR register are defined as reserved and should
 be set to 0. Attempting to write a 1 in any of these bits from the saved state
-image will result in a general protection exception (#GP) being generated.
+image will result in a general protection exception (**``#GP)``** being generated.
 
 Bytes 464:511 of an FXSAVE image are available for software use. FXRSTOR ignores
 the content of bytes 464:511 in an FXSAVE state image.

@@ -5,6 +5,15 @@
 ``` slim
 DEST <- SRC;
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ MOVNTI:| void _mm_stream_si32 (int \*p, int a)    
+ MOVNTI:| void _mm_stream_si64(__int64 \*p, __int64
+        | a)                                      
+
 ```
 
  Opcode          | Instruction    | Op/En| 64-Bit Mode| Compat/Leg Mode| Description                          
@@ -46,13 +55,6 @@ REX.W prefix promotes operation to 64 bits. See the summary chart at the beginni
 of this section for encoding data and limits.
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- MOVNTI:| void _mm_stream_si32 (int \*p, int a)    
- MOVNTI:| void _mm_stream_si64(__int64 \*p, __int64
-        | a)                                      
 
 ### SIMD Floating-Point Exceptions
 None.

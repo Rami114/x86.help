@@ -88,6 +88,34 @@ FOR j<- 0 to 3
 ENDFOR
 (non-masked elements of the mask register have the content of respective element
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+VGATHERDPD: __m128d _mm_i32gather_pd (double const \* base, __m128i index, const
+int scale);
+
+VGATHERDPD: __m128d _mm_mask_i32gather_pd (__m128d src, double const \* base,
+__m128i index, __m128d mask, const int scale);
+
+VGATHERDPD: __m256d _mm256_i32gather_pd (double const \* base, __m128i index,
+const int scale);
+
+VGATHERDPD: __m256d _mm256_mask_i32gather_pd (__m256d src, double const \* base,
+__m128i index, __m256d mask, const int scale);
+
+VGATHERQPD: __m128d _mm_i64gather_pd (double const \* base, __m128i index, const
+int scale);
+
+VGATHERQPD: __m128d _mm_mask_i64gather_pd (__m128d src, double const \* base,
+__m128i index, __m128d mask, const int scale);
+
+VGATHERQPD: __m256d _mm256_i64gather_pd (double const \* base, __m256i index,
+const int scale);
+
+VGATHERQPD: __m256d _mm256_mask_i64gather_pd (__m256d src, double const \* base,
+__m256i index, __m256d mask, const int scale);
+
+
 ```
 
  Opcode/Instruction                     | Op/En| 64/3 2-bit Mode| CPUID Feature Flag| Description                             
@@ -201,32 +229,6 @@ lower two indices in the vector index register are used.
                                               | by the processor (e.g., in 32-              
  bit mode, if the scale is greater than       | In this case, the most significant bits     
  one). bits are ignored.                      | beyond the number of address                
-
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-VGATHERDPD: __m128d _mm_i32gather_pd (double const \* base, __m128i index, const
-int scale);
-
-VGATHERDPD: __m128d _mm_mask_i32gather_pd (__m128d src, double const \* base,
-__m128i index, __m128d mask, const int scale);
-
-VGATHERDPD: __m256d _mm256_i32gather_pd (double const \* base, __m128i index,
-const int scale);
-
-VGATHERDPD: __m256d _mm256_mask_i32gather_pd (__m256d src, double const \* base,
-__m128i index, __m256d mask, const int scale);
-
-VGATHERQPD: __m128d _mm_i64gather_pd (double const \* base, __m128i index, const
-int scale);
-
-VGATHERQPD: __m128d _mm_mask_i64gather_pd (__m128d src, double const \* base,
-__m128i index, __m128d mask, const int scale);
-
-VGATHERQPD: __m256d _mm256_i64gather_pd (double const \* base, __m256i index,
-const int scale);
-
-VGATHERQPD: __m256d _mm256_mask_i64gather_pd (__m256d src, double const \* base,
-__m256i index, __m256d mask, const int scale);
 
 
 ### SIMD Floating-Point Exceptions

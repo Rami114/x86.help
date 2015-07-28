@@ -17,6 +17,16 @@ DEST[127:64] <- SRC1[95:64] \* SRC2[95:64]
 DEST[191:128] <- SRC1[159:128] \* SRC2[159:128]
 DEST[255:192] <- SRC1[223:192] \* SRC2[223:192]
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ (V)PMULDQ:| __m128i _mm_mul_epi32( __m128i a, __m128i
+           | b);                                      
+ VPMULDQ:  | __m256i _mm256_mul_epi32( __m256i a,     
+           | __m256i b);                              
+
 ```
 
  Opcode/Instruction                   | Op/En| 64/32 bit Mode Support| CPUID Feature Flag| Description                               
@@ -65,19 +75,11 @@ of the corresponding YMM destination register remain unchanged. VEX.128 encoded
 version: The first source and destination operands are XMM registers. The second
 source operand is an XMM register or a 128-bit memory location. Bits (VLMAX-1:128)
 of the destination YMM register are zeroed. VEX.L must be 0, otherwise the instruction
-will #UD. VEX.256 encoded version: The second source operand can be an YMM register
+will **``#UD.``** VEX.256 encoded version: The second source operand can be an YMM register
 or a 256-bit memory location. The first source and destination operands are
 YMM registers.
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- (V)PMULDQ:| __m128i _mm_mul_epi32( __m128i a, __m128i
-           | b);                                      
- VPMULDQ:  | __m256i _mm256_mul_epi32( __m256i a,     
-           | __m256i b);                              
 
 ### Flags Affected
 None.

@@ -18,9 +18,19 @@ DEST[63:0] <- RoundToInteger(SRC2[63:0], ROUND_CONTROL)
 DEST[127:64] <- SRC1[127:64]
 DEST[VLMAX-1:128] <- 0
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ ROUNDSD:| __m128d mm_round_sd(__m128d dst, __m128d        
+         | s1, int iRoundMode); __m128d mm_floor_sd(__m128d
+         | dst, __m128d s1); __m128d mm_ceil_sd(__m128d    
+         | dst, __m128d s1);                               
+
 ```
 
- Opcode\*/Instruction                      | Op/En| 64/32 bit Mode Support| CPUID Feature Flag| Description                             
+ Opcode*/Instruction                      | Op/En| 64/32 bit Mode Support| CPUID Feature Flag| Description                             
  ---  | --- | --- | --- | ---
  66 0F 3A 0B /r ib ROUNDSD xmm1, xmm2/m64,| RMI  | V/V                   | SSE4_1            | Round the low packed double precision   
  imm8                                     |      |                       |                   | floating-point value in xmm2/m64 and    
@@ -64,14 +74,6 @@ remain unchanged. VEX.128 encoded version: Bits (VLMAX-1:128) of the destination
 YMM register are zeroed.
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- ROUNDSD:| __m128d mm_round_sd(__m128d dst, __m128d        
-         | s1, int iRoundMode); __m128d mm_floor_sd(__m128d
-         | dst, __m128d s1); __m128d mm_ceil_sd(__m128d    
-         | dst, __m128d s1);                               
 
 ### SIMD Floating-Point Exceptions
 Invalid (signaled only if SRC = SNaN) Precision (signaled only if imm[3] = ‘0;

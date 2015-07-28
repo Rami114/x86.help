@@ -118,7 +118,7 @@ IF 64-Bit Mode (StackSize = 64)
      THEN
        EBP <- FrameTemp;
        ESP <- ESP − Size; FI;
-  ELSE (\* StackSize = 16 \*)
+  ELSE (* StackSize = 16 *)
        BP <- FrameTemp;
        SP <- SP − Size;
 FI;

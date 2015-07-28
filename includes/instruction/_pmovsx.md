@@ -68,6 +68,36 @@ VPMOVSXDQ (VEX.256 encoded version)
 Packed_Sign_Extend_DWORD_to_QWORD(DEST[127:0], SRC[63:0])
 Packed_Sign_Extend_DWORD_to_QWORD(DEST[255:128], SRC[127:64])
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ (V)PMOVSXBW:| __m128i _mm_ cvtepi8_epi16 ( __m128i   
+             | a);                                    
+ VPMOVSXBW:  | __m256i _mm256_cvtepi8_epi16 ( __m128i 
+             | a);                                    
+ (V)PMOVSXBD:| __m128i _mm_ cvtepi8_epi32 ( __m128i   
+             | a);                                    
+ VPMOVSXBD:  | __m256i _mm256_cvtepi8_epi32 ( __m128i 
+             | a);                                    
+ (V)PMOVSXBQ:| __m128i _mm_ cvtepi8_epi64 ( __m128i   
+             | a);                                    
+ VPMOVSXBQ:  | __m256i _mm256_cvtepi8_epi64 ( __m128i 
+             | a);                                    
+ (V)PMOVSXWD:| __m128i _mm_ cvtepi16_epi32 ( __m128i  
+             | a);                                    
+ VPMOVSXWD:  | __m256i _mm256_cvtepi16_epi32 ( __m128i
+             | a);                                    
+ (V)PMOVSXWQ:| __m128i _mm_ cvtepi16_epi64 ( __m128i  
+             | a);                                    
+ VPMOVSXWQ:  | __m256i _mm256_cvtepi16_epi64 ( __m128i
+             | a);                                    
+ (V)PMOVSXDQ:| __m128i _mm_ cvtepi32_epi64 ( __m128i  
+             | a);                                    
+ VPMOVSXDQ:  | __m256i _mm256_cvtepi32_epi64 ( __m128i
+             | a);                                    
+
 ```
 
  Opcode/Instruction                    | Op/En| 64/32 bit Mode Support| CPUID Feature Flag| Description                                
@@ -142,37 +172,9 @@ version: Bits (VLMAX-1:128) of the corresponding YMM destination register remain
 unchanged. VEX.128 encoded version: Bits (VLMAX-1:128) of the destination YMM
 register are zeroed. VEX.256 encoded version: The destination register is YMM
 Register. Note: VEX.vvvv is reserved and must be 1111b, VEX.L must be 0, otherwise
-the instruction will #UD.
+the instruction will **``#UD.``**
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- (V)PMOVSXBW:| __m128i _mm_ cvtepi8_epi16 ( __m128i   
-             | a);                                    
- VPMOVSXBW:  | __m256i _mm256_cvtepi8_epi16 ( __m128i 
-             | a);                                    
- (V)PMOVSXBD:| __m128i _mm_ cvtepi8_epi32 ( __m128i   
-             | a);                                    
- VPMOVSXBD:  | __m256i _mm256_cvtepi8_epi32 ( __m128i 
-             | a);                                    
- (V)PMOVSXBQ:| __m128i _mm_ cvtepi8_epi64 ( __m128i   
-             | a);                                    
- VPMOVSXBQ:  | __m256i _mm256_cvtepi8_epi64 ( __m128i 
-             | a);                                    
- (V)PMOVSXWD:| __m128i _mm_ cvtepi16_epi32 ( __m128i  
-             | a);                                    
- VPMOVSXWD:  | __m256i _mm256_cvtepi16_epi32 ( __m128i
-             | a);                                    
- (V)PMOVSXWQ:| __m128i _mm_ cvtepi16_epi64 ( __m128i  
-             | a);                                    
- VPMOVSXWQ:  | __m256i _mm256_cvtepi16_epi64 ( __m128i
-             | a);                                    
- (V)PMOVSXDQ:| __m128i _mm_ cvtepi32_epi64 ( __m128i  
-             | a);                                    
- VPMOVSXDQ:  | __m256i _mm256_cvtepi32_epi64 ( __m128i
-             | a);                                    
 
 ### Flags Affected
 None.

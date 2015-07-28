@@ -105,6 +105,33 @@ DEST[255:0] <- LOGICAL_RIGHT_SHIFT_QWORDS_256b(SRC1, SRC2)
 VPSRLQ (ymm, imm8)
 DEST[255:0] <- LOGICAL_RIGHT_SHIFT_QWORDS_256b(SRC1, imm8)
 
+> Intel C/C++ Compiler Intrinsic Equivalents
+
+``` slim
+   | |  
+---- | -----
+ PSRLW: PSRLW: (V)PSRLW: (V)PSRLW: VPSRLW:| __m64 _mm_srli_pi16(__m64 m, int __m64         | count)
+ VPSRLW:                                  | _mm_srl_pi16 (__m64 m, __m64 count)            |       
+                                          | __m128i _mm_srli_epi16 (__m128i m, int         |       
+                                          | count) __m128i _mm_srl_epi16 (__m128i          |       
+                                          | m, __m128i count) __m256i _mm256_srli_epi16    |       
+                                          | (__m256i m, int count) __m256i _mm256_srl_epi16|       
+                                          | (__m256i m, __m128i count)                     |       
+ PSRLD: PSRLD:                            | __m64 _mm_srli_pi32 (__m64 m, int __m64        | count)
+                                          | _mm_srl_pi32 (__m64 m, __m64 count)            |       
+ (V)PSRLD: (V)PSRLD: VPSRLD: VPSRLD:      | __m128i _mm_srli_epi32 (__m128i m, int         | count)
+                                          | __m128i _mm_srl_epi32 (__m128i m, __m128i      |       
+                                          | count) __m256i _mm256_srli_epi32 (__m256i      |       
+                                          | m, int count) __m256i _mm256_srl_epi32         |       
+                                          | (__m256i m, __m128i count)                     |       
+ PSRLQ: PSRLQ:                            | __m64 _mm_srli_si64 (__m64 m, int __m64        | count)
+                                          | _mm_srl_si64 (__m64 m, __m64 count)            |       
+ (V)PSRLQ: (V)PSRLQ: VPSRLQ: VPSRLQ:      | __m128i _mm_srli_epi64 (__m128i m, int         | count)
+                                          | __m128i _mm_srl_epi64 (__m128i m, __m128i      |       
+                                          | count) __m256i _mm256_srli_epi64 (__m256i      |       
+                                          | m, int count) __m256i _mm256_srl_epi64         |       
+                                          | (__m256i m, __m128i count)                     |       
+
 ```
 
  Opcode/Instruction                      | Op/En| 64/32 bit Mode Support| CPUID Feature Flag| Description                                
@@ -233,35 +260,10 @@ or an 8-bit immediate.
 <aside class="notification">
 For shifts with an immediate count (VEX.128.66.0F 71-73 /2), VEX.vvvv
 encodes the destination register, and VEX.B + ModRM.r/m encodes the source register.
-VEX.L must be 0, otherwise instructions will #UD.
+VEX.L must be 0, otherwise instructions will **``#UD.``**
 </aside>
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalents
-   | |  
----- | -----
- PSRLW: PSRLW: (V)PSRLW: (V)PSRLW: VPSRLW:| __m64 _mm_srli_pi16(__m64 m, int __m64         | count)
- VPSRLW:                                  | _mm_srl_pi16 (__m64 m, __m64 count)            |       
-                                          | __m128i _mm_srli_epi16 (__m128i m, int         |       
-                                          | count) __m128i _mm_srl_epi16 (__m128i          |       
-                                          | m, __m128i count) __m256i _mm256_srli_epi16    |       
-                                          | (__m256i m, int count) __m256i _mm256_srl_epi16|       
-                                          | (__m256i m, __m128i count)                     |       
- PSRLD: PSRLD:                            | __m64 _mm_srli_pi32 (__m64 m, int __m64        | count)
-                                          | _mm_srl_pi32 (__m64 m, __m64 count)            |       
- (V)PSRLD: (V)PSRLD: VPSRLD: VPSRLD:      | __m128i _mm_srli_epi32 (__m128i m, int         | count)
-                                          | __m128i _mm_srl_epi32 (__m128i m, __m128i      |       
-                                          | count) __m256i _mm256_srli_epi32 (__m256i      |       
-                                          | m, int count) __m256i _mm256_srl_epi32         |       
-                                          | (__m256i m, __m128i count)                     |       
- PSRLQ: PSRLQ:                            | __m64 _mm_srli_si64 (__m64 m, int __m64        | count)
-                                          | _mm_srl_si64 (__m64 m, __m64 count)            |       
- (V)PSRLQ: (V)PSRLQ: VPSRLQ: VPSRLQ:      | __m128i _mm_srli_epi64 (__m128i m, int         | count)
-                                          | __m128i _mm_srl_epi64 (__m128i m, __m128i      |       
-                                          | count) __m256i _mm256_srli_epi64 (__m256i      |       
-                                          | m, int count) __m256i _mm256_srl_epi64         |       
-                                          | (__m256i m, __m128i count)                     |       
 
 ### Flags Affected
 None.

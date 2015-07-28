@@ -11,9 +11,16 @@ DEST[31:0] <- SQRT(SRC2[31:0])
 DEST[127:32] <- SRC1[127:32]
 DEST[VLMAX-1:128] <- 0
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ SQRTSS:| __m128 _mm_sqrt_ss(__m128 a)
+
 ```
 
- Opcode\*/Instruction                     | Op/En| 64/32 bit Mode Support| CPUID Feature Flag| Description                                    
+ Opcode*/Instruction                     | Op/En| 64/32 bit Mode Support| CPUID Feature Flag| Description                                    
  ---  | --- | --- | --- | ---
  F3 0F 51 /r SQRTSS xmm1, xmm2/m32       | RM   | V/V                   | SSE               | Computes square root of the low singleprecision
                                          |      |                       |                   | floating-point value in xmm2/m32 and           
@@ -37,7 +44,6 @@ the source operand (second operand) and stores the single-precision floating-poi
 result in the destination operand. The source operand can be an XMM register
 or a 32-bit memory location. The destination operand is an XMM register. The
 three high-order doublewords of the destination operand remain unchanged. See
-Figure 10-6 in the Intel® 64 and IA-32 Architectures Software Developer's Manual,
 Volume 1, for an illustration of a scalar single-precision floating-point operation.
 
 In 64-bit mode, using a REX prefix in the form of REX.R permits this instruction
@@ -47,11 +53,6 @@ of the corresponding YMM destination register remain unchanged. VEX.128 encoded
 version: Bits (VLMAX-1:128) of the destination YMM register are zeroed.
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- SQRTSS:| __m128 _mm_sqrt_ss(__m128 a)
 
 ### SIMD Floating-Point Exceptions
 Invalid, Precision, Denormal.

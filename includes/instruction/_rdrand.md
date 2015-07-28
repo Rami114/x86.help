@@ -19,11 +19,27 @@ IF HW_RND_GEN.ready = 1
      ESAC
      CF <- 0;
 FI
-OF, SF, ZF, AF, PF <- 0;
+OF, SF, ZF, AF, PF <- 0;```
+
+### Flags Affected
+The CF flag is set according to the result (see the “Operation” section above).
+The OF, SF, ZF, AF, and PF flags are set to 0.
+
+
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ RDRAND:| int _rdrand16_step( unsigned short * 
+        | );                                   
+ RDRAND:| int _rdrand32_step( unsigned int * );
+ RDRAND:| int _rdrand64_step( unsigned __int64 
+        | *);                                  
 
 ```
 
- Opcode\*/Instruction        | Op/En| 64/32 bit Mode Support| CPUID Feature Flag| Description                          
+ Opcode*/Instruction        | Op/En| 64/32 bit Mode Support| CPUID Feature Flag| Description                          
  ---  | --- | --- | --- | ---
  0F C7 /6 RDRAND r16        | M    | V/V                   | RDRAND            | Read a 16-bit random number and store
                             |      |                       |                   | in the destination register.         
@@ -55,20 +71,6 @@ promotes operation to 64 bit operands. See the summary chart at the beginning
 of this section for encoding data and limits.
 
 
-
-### Flags Affected
-The CF flag is set according to the result (see the “Operation” section above).
-The OF, SF, ZF, AF, and PF flags are set to 0.
-
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- RDRAND:| int _rdrand16_step( unsigned short \* 
-        | );                                   
- RDRAND:| int _rdrand32_step( unsigned int \* );
- RDRAND:| int _rdrand64_step( unsigned __int64 
-        | \*);                                  
 
 ### Protected Mode Exceptions
    | |  

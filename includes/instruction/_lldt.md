@@ -41,7 +41,7 @@ field in the task state segment (TSS) for the current task.
 If bits 2-15 of the source operand are 0, LDTR is marked invalid and the LLDT
 instruction completes silently. However, all subsequent references to descriptors
 in the LDT (except by the LAR, VERR, VERW or LSL instructions) cause a general
-protection exception (#GP).
+protection exception (**``#GP).``**
 
 The operand-size attribute has no effect on this instruction.
 

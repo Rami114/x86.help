@@ -32,22 +32,22 @@ of numbers in packed BCD format.
    | |  
 ---- | -----
  ST(0) | DEST − ∞ or Value Too Large for DEST
-       | Format −D \*\*                        
+       | Format −D **                        
  − 0   | − 0                                 
- + 0   | + 0 \*\*                              
+ + 0   | + 0 **                              
  F ≥ +1| + D + ∞ or Value Too Large for DEST 
        | Format                              
- NaN   | \*                                   
+ NaN   | *                                   
 <aside class="notification">
-F Means finite floating-point value. D Means packed-BCD number. \* Indicates
-floating-point invalid-operation (#IA) exception. \*\* ±0 or ±1, depending on
+F Means finite floating-point value. D Means packed-BCD number. * Indicates
+floating-point invalid-operation (**``#IA)``** exception. ** ±0 or ±1, depending on
 the rounding mode.
 </aside>
 
 If the converted value is too large for the destination format, or if the source
 operand is an ∞, SNaN, QNAN, or is in an unsupported format, an invalid-arithmetic-operand
 condition is signaled. If the invalid-operation exception is not masked, an
-invalid-arithmetic-operand exception (#IA) is generated and no value is stored
+invalid-arithmetic-operand exception (**``#IA)``** is generated and no value is stored
 in the destination operand. If the invalid-operation exception is masked, the
 packed BCD indefinite value is stored in memory.
 

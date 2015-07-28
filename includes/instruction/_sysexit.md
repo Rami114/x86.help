@@ -17,7 +17,7 @@ IF operand size is 64-bit
   ELSE CS.Selector <- IA32_SYSENTER_CS[15:0] + 16;
 FI;
 CS.Selector <- CS.Selector OR 3;
-(\* Set rest of CS to a fixed value \*)
+(* Set rest of CS to a fixed value *)
 CS.Base <- 0;
 CS.Limit <- FFFFFH;
 CS.Type <- 11;
@@ -35,7 +35,7 @@ FI;
 CS.G <- 1;
 CPL <- 3;
 SS.Selector <- CS.Selector + 8;
-(\* Set rest of SS to a fixed value \*)
+(* Set rest of SS to a fixed value *)
 SS.Base <- 0;
 SS.Limit <- FFFFFH;
 SS.Type <- 3;

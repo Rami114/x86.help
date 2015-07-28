@@ -91,6 +91,32 @@ MASK[VLMAX-1:128] <- 0;
 DEST[VLMAX-1:128] <- 0;
 (non-masked elements of the mask register have the content of respective element
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ VGATHERDPS:        | __m128 _mm_i32gather_ps (float const    
+                    | \* base, __m128i index, const int scale);
+ VGATHERDPS:        | __m128 _mm_mask_i32gather_ps (__m128    
+                    | src, float const \* base, __m128i index, 
+                    | __m128 mask, const int scale);          
+ VGATHERDPS:        | __m256 _mm256_i32gather_ps (float const 
+                    | \* base, __m256i index, const int scale);
+ VGATHERDPS: scale);| __m256 _mm256_mask_i32gather_ps (__m256 
+                    | src, float const \* base, __m256i index, 
+                    | __m256 mask, const int                  
+ VGATHERQPS:        | __m128 _mm_i64gather_ps (float const    
+                    | \* base, __m128i index, const int scale);
+ VGATHERQPS:        | __m128 _mm_mask_i64gather_ps (__m128    
+                    | src, float const \* base, __m128i index, 
+                    | __m128 mask, const int scale);          
+ VGATHERQPS:        | __m128 _mm256_i64gather_ps (float const 
+                    | \* base, __m256i index, const int scale);
+ VGATHERQPS: scale);| __m128 _mm256_mask_i64gather_ps (__m128 
+                    | src, float const \* base, __m256i index, 
+                    | __m128 mask, const int                  
+
 ```
 
  Opcode/Instruction                     | Op/En| 64/32 -bit Mode| CPUID Feature Flag| Description                             
@@ -207,30 +233,6 @@ bits of the destination.
  bit mode, if the scale is greater than            | In this case, the most significant bits    
  one). bits are ignored.                           | beyond the number of address               
 
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- VGATHERDPS:        | __m128 _mm_i32gather_ps (float const    
-                    | \* base, __m128i index, const int scale);
- VGATHERDPS:        | __m128 _mm_mask_i32gather_ps (__m128    
-                    | src, float const \* base, __m128i index, 
-                    | __m128 mask, const int scale);          
- VGATHERDPS:        | __m256 _mm256_i32gather_ps (float const 
-                    | \* base, __m256i index, const int scale);
- VGATHERDPS: scale);| __m256 _mm256_mask_i32gather_ps (__m256 
-                    | src, float const \* base, __m256i index, 
-                    | __m256 mask, const int                  
- VGATHERQPS:        | __m128 _mm_i64gather_ps (float const    
-                    | \* base, __m128i index, const int scale);
- VGATHERQPS:        | __m128 _mm_mask_i64gather_ps (__m128    
-                    | src, float const \* base, __m128i index, 
-                    | __m128 mask, const int scale);          
- VGATHERQPS:        | __m128 _mm256_i64gather_ps (float const 
-                    | \* base, __m256i index, const int scale);
- VGATHERQPS: scale);| __m128 _mm256_mask_i64gather_ps (__m128 
-                    | src, float const \* base, __m256i index, 
-                    | __m128 mask, const int                  
 
 ### SIMD Floating-Point Exceptions
 None

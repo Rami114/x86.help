@@ -9,6 +9,12 @@ DEST[127:64] <- (SRC[255:0] >> (IMM8[3:2] \* 64))[63:0];
 DEST[191:128] <- (SRC[255:0] >> (IMM8[5:4] \* 64))[63:0];
 DEST[255:192] <- (SRC[255:0] >> (IMM8[7:6] \* 64))[63:0];
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+VPERMQ: __m256i _mm256_permute4x64_epi64(__m256i a, int control)
+
+
 ```
 
  Opcode/Instruction                      | Op/En| 64/32 -bit Mode| CPUID Feature Flag| Description                              
@@ -27,12 +33,8 @@ the source operand, the resultant qword value from the source operand is copied
 to the corresponding element of the destination operand in the order of the
 index field. Note that this instruction permits a qword in the source operand
 to be copied to multiple locations in the destination operand. An attempt to
-execute VPERMQ encoded with VEX.L= 0 will cause an #UD exception.
+execute VPERMQ encoded with VEX.L= 0 will cause an **``#UD``** exception.
 
-
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-VPERMQ: __m256i _mm256_permute4x64_epi64(__m256i a, int control)
 
 
 ### SIMD Floating-Point Exceptions

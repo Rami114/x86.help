@@ -1,8 +1,15 @@
 ## BSWAP - Byte Swap
 
+> Intel486™ processor family. For compatibility with this instruction, software
+
+``` slim
+should include functionally equivalent code for execution on Intel processors
+earlier than the Intel486 processor family.
+
 > Operation
 
 ``` slim
+
 TEMP <- DEST
 IF 64-bit mode AND OperandSize = 64
   THEN
@@ -25,12 +32,12 @@ FI;
 
  Opcode          | Instruction| Op/En| 64-bit Mode| Compat/Leg Mode| Description                        
  ---  | --- | --- | --- | --- | ---
- 0F C8+rd        | BSWAP r32  | O    | Valid\*     | Valid          | Reverses the byte order of a 32-bit
+ 0F C8+rd        | BSWAP r32  | O    | Valid*     | Valid          | Reverses the byte order of a 32-bit
                  |            |      |            |                | register.                          
  REX.W + 0F C8+rd| BSWAP r64  | O    | Valid      | N.E.           | Reverses the byte order of a 64-bit
                  |            |      |            |                | register.                          
 <aside class="notification">
-\* See IA-32 Architecture Compatibility section below.
+* See IA-32 Architecture Compatibility section below.
 </aside>
 
 
@@ -53,10 +60,6 @@ summary chart at the beginning of this section for encoding data and limits.
 
 ### IA-32 Architecture Legacy Compatibility
 The BSWAP instruction is not supported on IA-32 processors earlier than the
-Intel486™ processor family. For compatibility with this instruction, software
-should include functionally equivalent code for execution on Intel processors
-earlier than the Intel486 processor family.
-
 
 
 ### Flags Affected

@@ -9,7 +9,19 @@ IF (RTM_ACTIVE = 1 OR HLE_ACTIVE = 1)
      ZF <- 0
   ELSE
      ZF <- 1
-FI;
+FI;```
+
+### Flags Affected
+The ZF flag is cleared if the instruction is executed transactionally; otherwise
+it is set to 1. The CF, OF, SF, PF, and AF, flags are cleared.
+
+
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ XTEST:| int _xtest( void );
 
 ```
 
@@ -29,16 +41,6 @@ executes inside a transactionally executing RTM region or a transactionally
 executing HLE region, then the ZF flag is cleared, else it is set.
 
 
-
-### Flags Affected
-The ZF flag is cleared if the instruction is executed transactionally; otherwise
-it is set to 1. The CF, OF, SF, PF, and AF, flags are cleared.
-
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- XTEST:| int _xtest( void );
 
 ### SIMD Floating-Point Exceptions
 None

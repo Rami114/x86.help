@@ -1,16 +1,16 @@
-## FYL2X - Compute y \* log2x
+## FYL2X - Compute y * log2x
 
 > Operation
 
 ``` slim
-ST(1) <- ST(1) \* log<sub>2</sub>ST(0);
+ST(1) <- ST(1) * log<sub>2</sub>ST(0);
 PopRegisterStack;
 
 ```
 
  Opcode| Instruction| 64-Bit Mode| Compat/Leg Mode| Description                                      
  ---  | --- | --- | --- | ---
- D9 F1 | FYL2X      | Valid      | Valid          | Replace ST(1) with (ST(1) \* log<sub>2</sub>ST(0))
+ D9 F1 | FYL2X      | Valid      | Valid          | Replace ST(1) with (ST(1) * log<sub>2</sub>ST(0))
        |            |            |                | and pop the register stack.                      
 
 ### Description
@@ -27,11 +27,11 @@ ST(0)
 
    | |  
 ---- | -----
- − ∞| − F| ±0 + ∞\*\*\*\*− ∞| +0<+F<+1 + ∞+ F + 0 − 0 − F − ∞| + 1 −0 −0 +0 +0| + F > + 1 − ∞− F − 0 + 0 + F + ∞| + ∞− ∞− ∞+∞+∞| NaN NaN NaN NaN NaN NaN NaN
+ − ∞| − F| ±0 + ∞****− ∞| +0<+F<+1 + ∞+ F + 0 − 0 − F − ∞| + 1 −0 −0 +0 +0| + F > + 1 − ∞− F − 0 + 0 + F + ∞| + ∞− ∞− ∞+∞+∞| NaN NaN NaN NaN NaN NaN NaN
  NaN| NaN| NaN          | NaN                            | NaN            | NaN                             | NaN          | NaN                        
 <aside class="notification">
-F Means finite floating-point value. \* Indicates floating-point invalid-operation
-(#IA) exception. \*\* Indicates floating-point zero-divide (#Z) exception.
+F Means finite floating-point value. * Indicates floating-point invalid-operation
+(**``#IA)``** exception. ** Indicates floating-point zero-divide (**``#Z)``** exception.
 </aside>
 
 If the divide-by-zero exception is masked and register ST(0) contains ±0, the
@@ -41,7 +41,7 @@ operand in register ST(1).
 The FYL2X instruction is designed with a built-in multiplication to optimize
 ### the calculation of logarithms with an arbitrary positive base (b)
 
-log<sub>b</sub>x ← (log<sub>2</sub>b)-1 \* log<sub>2</sub>x
+log<sub>b</sub>x ← (log<sub>2</sub>b)-1 * log<sub>2</sub>x
 
 This instruction's operation is the same in non-64-bit modes and 64-bit mode.
 

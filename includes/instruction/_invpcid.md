@@ -5,7 +5,33 @@
 ``` slim
 INVPCID_TYPE <- value of register operand;
 INVPCID_DESC <- value of memory operand;
-CASE INVPCID_TYPE OF
+CASE INVPCID_TYPE OF```
+
+###   0
+     PCID <- INVPCID_DESC[11:0];
+     L_ADDR <- INVPCID_DESC[127:64];
+     Invalidate mappings for L_ADDR associated with PCID except global translations;
+     BREAK;
+###   1
+     PCID <- INVPCID_DESC[11:0];
+     Invalidate all mappings associated with PCID except global translations;
+     BREAK;
+###   2
+     Invalidate all mappings for all PCIDs, including global translations;
+     BREAK;
+###   3
+     Invalidate all mappings for all PCIDs except global translations;
+     BREAK;
+ESAC;
+
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ INVPCID:| void _invpcid(unsigned __int32 type,
+         | void * descriptor);                 
+
 ```
 
  Opcode/Instruction              | Op/En| 64/32bit Mode| CPUID Feature Flag| Description                                  
@@ -71,29 +97,6 @@ Manual, Volume 3A).
 </aside>
 
 
-
-###   0
-     PCID <- INVPCID_DESC[11:0];
-     L_ADDR <- INVPCID_DESC[127:64];
-     Invalidate mappings for L_ADDR associated with PCID except global translations;
-     BREAK;
-###   1
-     PCID <- INVPCID_DESC[11:0];
-     Invalidate all mappings associated with PCID except global translations;
-     BREAK;
-###   2
-     Invalidate all mappings for all PCIDs, including global translations;
-     BREAK;
-###   3
-     Invalidate all mappings for all PCIDs except global translations;
-     BREAK;
-ESAC;
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- INVPCID:| void _invpcid(unsigned __int32 type,
-         | void \* descriptor);                 
 
 ### SIMD Floating-Point Exceptions
 None

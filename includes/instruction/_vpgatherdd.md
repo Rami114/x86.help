@@ -91,6 +91,34 @@ MASK[VLMAX-1:128] <- 0;
 DEST[VLMAX-1:128] <- 0;
 (non-masked elements of the mask register have the content of respective element
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+VPGATHERDD: __m128i _mm_i32gather_epi32 (int const \* base, __m128i index, const
+int scale);
+
+VPGATHERDD: __m128i _mm_mask_i32gather_epi32 (__m128i src, int const \* base,
+__m128i index, __m128i mask, const int scale);
+
+VPGATHERDD: __m256i _mm256_i32gather_epi32 ( int const \* base, __m256i index,
+const int scale);
+
+VPGATHERDD: __m256i _mm256_mask_i32gather_epi32 (__m256i src, int const \* base,
+__m256i index, __m256i mask, const int scale);
+
+VPGATHERQD: __m128i _mm_i64gather_epi32 (int const \* base, __m128i index, const
+int scale);
+
+VPGATHERQD: __m128i _mm_mask_i64gather_epi32 (__m128i src, int const \* base,
+__m128i index, __m128i mask, const int scale);
+
+VPGATHERQD: __m128i _mm256_i64gather_epi32 (int const \* base, __m256i index,
+const int scale);
+
+VPGATHERQD: __m128i _mm256_mask_i64gather_epi32 (__m128i src, int const \* base,
+__m256i index, __m128i mask, const int scale);
+
+
 ```
 
  Opcode/Instruction                     | Op/En| 64/32 -bit Mode| CPUID Feature Flag| Description                                
@@ -188,8 +216,8 @@ fault is delivered. A given implementation of this instruction is repeatable
 to the left of the faulting one will be gathered.
  - This instruction does not perform AC checks, and so will never deliver an AC
 fault.
- - This instruction will cause a #UD if the address size attribute is 16-bit.
- - This instruction will cause a #UD if the memory operand is encoded without the
+ - This instruction will cause a **``#UD``** if the address size attribute is 16-bit.
+ - This instruction will cause a **``#UD``** if the memory operand is encoded without the
 SIB byte.
  - This instruction should not be used to access memory mapped I/O as the ordering
 of the individual loads it does is implementation specific, and some implementations
@@ -199,32 +227,6 @@ number of times.
 by the processor (e.g., in 32bit mode, if the scale is greater than one). In
 this case, the most significant bits beyond the number of address bits are ignored.
 
-
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-VPGATHERDD: __m128i _mm_i32gather_epi32 (int const \* base, __m128i index, const
-int scale);
-
-VPGATHERDD: __m128i _mm_mask_i32gather_epi32 (__m128i src, int const \* base,
-__m128i index, __m128i mask, const int scale);
-
-VPGATHERDD: __m256i _mm256_i32gather_epi32 ( int const \* base, __m256i index,
-const int scale);
-
-VPGATHERDD: __m256i _mm256_mask_i32gather_epi32 (__m256i src, int const \* base,
-__m256i index, __m256i mask, const int scale);
-
-VPGATHERQD: __m128i _mm_i64gather_epi32 (int const \* base, __m128i index, const
-int scale);
-
-VPGATHERQD: __m128i _mm_mask_i64gather_epi32 (__m128i src, int const \* base,
-__m128i index, __m128i mask, const int scale);
-
-VPGATHERQD: __m128i _mm256_i64gather_epi32 (int const \* base, __m256i index,
-const int scale);
-
-VPGATHERQD: __m128i _mm256_mask_i64gather_epi32 (__m128i src, int const \* base,
-__m256i index, __m128i mask, const int scale);
 
 
 ### SIMD Floating-Point Exceptions

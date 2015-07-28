@@ -11,9 +11,17 @@ DEST[63:0] <- SQRT(SRC2[63:0])
 DEST[127:64] <- SRC1[127:64]
 DEST[VLMAX-1:128] <- 0
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ SQRTSD:| __m128d _mm_sqrt_sd (m128d a, m128d
+        | b)                                 
+
 ```
 
- Opcode\*/Instruction                          | Op/En| 64/32 bit Mode Support| CPUID Feature Flag| Description                                    
+ Opcode*/Instruction                          | Op/En| 64/32 bit Mode Support| CPUID Feature Flag| Description                                    
  ---  | --- | --- | --- | ---
  F2 0F 51 /r SQRTSD xmm1, xmm2/m64            | RM   | V/V                   | SSE2              | Computes square root of the low doubleprecision
                                               |      |                       |                   | floating-point value in xmm2/m64 and           
@@ -47,12 +55,6 @@ of the corresponding YMM destination register remain unchanged. VEX.128 encoded
 version: Bits (VLMAX-1:128) of the destination YMM register are zeroed.
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- SQRTSD:| __m128d _mm_sqrt_sd (m128d a, m128d
-        | b)                                 
 
 ### SIMD Floating-Point Exceptions
 Invalid, Precision, Denormal.

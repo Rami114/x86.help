@@ -52,6 +52,30 @@ temp <- SRC[127:0]
 DEST[127:0] <- temp
 DEST[VLMAX-1:128] <- temp
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ VPBROADCASTB:  | __m256i _mm256_broadcastb_epi8(__m128i     
+                | );                                         
+ VPBROADCASTW:  | __m256i _mm256_broadcastw_epi16(__m128i    
+                | );                                         
+ VPBROADCASTD:  | __m256i _mm256_broadcastd_epi32(__m128i    
+                | );                                         
+ VPBROADCASTQ:  | __m256i _mm256_broadcastq_epi64(__m128i    
+                | );                                         
+ VPBROADCASTB:  | __m128i _mm_broadcastb_epi8(__m128i        
+                | );                                         
+ VPBROADCASTW:  | __m128i _mm_broadcastw_epi16(__m128i       
+                | );                                         
+ VPBROADCASTD:  | __m128i _mm_broadcastd_epi32(__m128i       
+                | );                                         
+ VPBROADCASTQ:  | __m128i _mm_broadcastq_epi64(__m128i       
+                | );                                         
+ VBROADCASTI128:| __m256i _mm256_broadcastsi128_si256(__m128i
+                | );                                         
+
 ```
 
  Opcode/Instruction                     | Op/En| 64/32 -bit Mode| CPUID Feature Flag| Description                            
@@ -87,14 +111,14 @@ is a YMM register. The source operand is 8-bit, 16-bit 32-bit, 64-bit memory
 location or the low 8-bit, 16-bit 32-bit, 64-bit data in an XMM register. VPBROADCASTB/D/W/Q
 also support XMM register as the source operand. VBROADCASTI128: The destination
 operand is a YMM register. The source operand is 128-bit memory location. Register
-source encodings for VBROADCASTI128 are reserved and will #UD. VPBROADCASTB/W/D/Q
+source encodings for VBROADCASTI128 are reserved and will **``#UD.``** VPBROADCASTB/W/D/Q
 is supported in both 128-bit and 256-bit wide versions.
 
 VBROADCASTI128 is only supported as a 256-bit wide version. Note: In VEX-encoded
 versions, VEX.vvvv is reserved and must be 1111b otherwise instructions will
-#UD. Attempts to execute any VPBROADCAST\* instruction with VEX.W = 1 will cause
-#UD. If VBROADCASTI128 is encoded with VEX.L= 0, an attempt to execute the instruction
-encoded with VEX.L= 0 will cause an #UD exception.
+**``#UD.``** Attempts to execute any VPBROADCAST\* instruction with VEX.W = 1 will cause
+**``#UD.``** If VBROADCASTI128 is encoded with VEX.L= 0, an attempt to execute the instruction
+encoded with VEX.L= 0 will cause an **``#UD``** exception.
 
    | |  
 ---- | -----
@@ -108,28 +132,6 @@ encoded with VEX.L= 0 will cause an #UD exception.
  VPBROADCASTQ Operation                  | Figure 4-35. X0 X0
  VBROADCASTI128 Operation                | Figure 4-36.      
 
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- VPBROADCASTB:  | __m256i _mm256_broadcastb_epi8(__m128i     
-                | );                                         
- VPBROADCASTW:  | __m256i _mm256_broadcastw_epi16(__m128i    
-                | );                                         
- VPBROADCASTD:  | __m256i _mm256_broadcastd_epi32(__m128i    
-                | );                                         
- VPBROADCASTQ:  | __m256i _mm256_broadcastq_epi64(__m128i    
-                | );                                         
- VPBROADCASTB:  | __m128i _mm_broadcastb_epi8(__m128i        
-                | );                                         
- VPBROADCASTW:  | __m128i _mm_broadcastw_epi16(__m128i       
-                | );                                         
- VPBROADCASTD:  | __m128i _mm_broadcastd_epi32(__m128i       
-                | );                                         
- VPBROADCASTQ:  | __m128i _mm_broadcastq_epi64(__m128i       
-                | );                                         
- VBROADCASTI128:| __m256i _mm256_broadcastsi128_si256(__m128i
-                | );                                         
 
 ### SIMD Floating-Point Exceptions
 None

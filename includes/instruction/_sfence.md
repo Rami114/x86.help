@@ -5,9 +5,15 @@
 ``` slim
 Wait_On_Following_Stores_Until(preceding_stores_globally_visible);
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+void _mm_sfence(void)
+
+
 ```
 
- Opcode\* | Instruction| Op/En| 64-Bit Mode| Compat/Leg Mode| Description                 
+ Opcode* | Instruction| Op/En| 64-Bit Mode| Compat/Leg Mode| Description                 
  ---  | --- | --- | --- | --- | ---
  0F AE /7| SFENCE     | NP   | Valid      | Valid          | Serializes store operations.
 
@@ -36,10 +42,6 @@ and routines that consume this data.
 
 This instruction's operation is the same in non-64-bit modes and 64-bit mode.
 
-
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-void _mm_sfence(void)
 
 
 ### Exceptions (All Operating Modes)

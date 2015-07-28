@@ -27,7 +27,19 @@ DEST[15:0] <- vCvt_s2h(SRC1[31:0]);
 DEST[31:16] <- vCvt_s2h(SRC1[63:32]);
 DEST[47:32] <- vCvt_s2h(SRC1[95:64]);
 DEST[63:48] <- vCvt_s2h(SRC1[127:96]);
-DEST[VLMAX-1:64] <-0; // if DEST is a register
+DEST[VLMAX-1:64] <-0; // if DEST is a register```
+
+### Flags Affected
+None
+
+
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+__m128i _mm_cvtps_ph ( __m128 m1, const int imm);
+
+__m128i _mm256_cvtps_ph(__m256 m1, const int imm);
+
 
 ```
 
@@ -88,22 +100,12 @@ The effect and encoding of RC field are listed in Table 4-16.
                |                            | for rounding Ignored by processor     |                
 
 
-### Flags Affected
-None
-
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-__m128i _mm_cvtps_ph ( __m128 m1, const int imm);
-
-__m128i _mm256_cvtps_ph(__m256 m1, const int imm);
-
-
 ### SIMD Floating-Point Exceptions
 Invalid, Underflow, Overflow, Precision, Denormal (if MXCSR.DAZ=0);
 
 
 ### Other Exceptions
-Exceptions Type 11 (do not report #AC); additionally
+Exceptions Type 11 (do not report **``#AC);``** additionally
 
    | |  
 ---- | -----

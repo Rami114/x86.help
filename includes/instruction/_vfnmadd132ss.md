@@ -3,20 +3,30 @@
 > Operation
 
 ``` slim
-In the operations below, \"+\", \"-\", and \"\*\" symbols represent addition, subtraction, and multiplication operations
+In the operations below, \"+\", \"-\", and \"*\" symbols represent addition, subtraction, and multiplication operations
 with infinite precision inputs and outputs (no rounding).
 VFNMADD132SS DEST, SRC2, SRC3
-DEST[31:0] <- RoundFPControl_MXCSR(- (DEST[31:0]\*SRC3[31:0]) + SRC2[31:0])
+DEST[31:0] <- RoundFPControl_MXCSR(- (DEST[31:0]*SRC3[31:0]) + SRC2[31:0])
 DEST[127:32] <- DEST[127:32]
 DEST[VLMAX-1:128] <- 0
 VFNMADD213SS DEST, SRC2, SRC3
-DEST[31:0] <- RoundFPControl_MXCSR(- (SRC2[31:0]\*DEST[31:0]) + SRC3[31:0])
+DEST[31:0] <- RoundFPControl_MXCSR(- (SRC2[31:0]*DEST[31:0]) + SRC3[31:0])
 DEST[127:32] <- DEST[127:32]
 DEST[VLMAX-1:128] <- 0
 VFNMADD231SS DEST, SRC2, SRC3
-DEST[31:0] <- RoundFPControl_MXCSR(- (SRC2[31:0]\*SRC3[63:0]) + DEST[31:0])
+DEST[31:0] <- RoundFPControl_MXCSR(- (SRC2[31:0]*SRC3[63:0]) + DEST[31:0])
 DEST[127:32] <- DEST[127:32]
 DEST[VLMAX-1:128] <- 0
+
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+VFNMADD132SS: __m128 _mm_fnmadd_ss (__m128 a, __m128 b, __m128 c);
+
+VFNMADD213SS: __m128 _mm_fnmadd_ss (__m128 a, __m128 b, __m128 c);
+
+VFNMADD231SS: __m128 _mm_fnmadd_ss (__m128 a, __m128 b, __m128 c);
+
 
 ```
 
@@ -71,14 +81,6 @@ in the opcode/instruction column. See also Section 14.5.1, “FMA Instruction
 Operand Order and Arithmetic Behavior” in the Intel® 64 and IA-32 Architectures
 Software Developer's Manual, Volume 1.
 
-
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-VFNMADD132SS: __m128 _mm_fnmadd_ss (__m128 a, __m128 b, __m128 c);
-
-VFNMADD213SS: __m128 _mm_fnmadd_ss (__m128 a, __m128 b, __m128 c);
-
-VFNMADD231SS: __m128 _mm_fnmadd_ss (__m128 a, __m128 b, __m128 c);
 
 
 ### SIMD Floating-Point Exceptions

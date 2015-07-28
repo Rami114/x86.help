@@ -30,14 +30,14 @@ PMULHUW (with 128-bit operands)
   DEST[111:96] <-
   DEST[127:112] <- TEMP7[31:16];
 VPMULHUW (VEX.128 encoded version)
-TEMP0[31:0] <- SRC1[15:0] \* SRC2[15:0]
-TEMP1[31:0] <- SRC1[31:16] \* SRC2[31:16]
-TEMP2[31:0] <- SRC1[47:32] \* SRC2[47:32]
-TEMP3[31:0] <- SRC1[63:48] \* SRC2[63:48]
-TEMP4[31:0] <- SRC1[79:64] \* SRC2[79:64]
-TEMP5[31:0] <- SRC1[95:80] \* SRC2[95:80]
-TEMP6[31:0] <- SRC1[111:96] \* SRC2[111:96]
-TEMP7[31:0] <- SRC1[127:112] \* SRC2[127:112]
+TEMP0[31:0] <- SRC1[15:0] * SRC2[15:0]
+TEMP1[31:0] <- SRC1[31:16] * SRC2[31:16]
+TEMP2[31:0] <- SRC1[47:32] * SRC2[47:32]
+TEMP3[31:0] <- SRC1[63:48] * SRC2[63:48]
+TEMP4[31:0] <- SRC1[79:64] * SRC2[79:64]
+TEMP5[31:0] <- SRC1[95:80] * SRC2[95:80]
+TEMP6[31:0] <- SRC1[111:96] * SRC2[111:96]
+TEMP7[31:0] <- SRC1[127:112] * SRC2[127:112]
 DEST[15:0] <- TEMP0[31:16]
 DEST[31:16] <- TEMP1[31:16]
 DEST[47:32] <- TEMP2[31:16]
@@ -48,22 +48,22 @@ DEST[111:96] <- TEMP6[31:16]
 DEST[127:112] <- TEMP7[31:16]
 DEST[VLMAX-1:128] <- 0
 PMULHUW (VEX.256 encoded version)
-TEMP0[31:0] <- SRC1[15:0] \* SRC2[15:0]
-TEMP1[31:0] <- SRC1[31:16] \* SRC2[31:16]
-TEMP2[31:0] <- SRC1[47:32] \* SRC2[47:32]
-TEMP3[31:0] <- SRC1[63:48] \* SRC2[63:48]
-TEMP4[31:0] <- SRC1[79:64] \* SRC2[79:64]
-TEMP5[31:0] <- SRC1[95:80] \* SRC2[95:80]
-TEMP6[31:0] <- SRC1[111:96] \* SRC2[111:96]
-TEMP7[31:0] <- SRC1[127:112] \* SRC2[127:112]
-TEMP8[31:0] <- SRC1[143:128] \* SRC2[143:128]
-TEMP9[31:0] <- SRC1[159:144] \* SRC2[159:144]
-TEMP10[31:0] <- SRC1[175:160] \* SRC2[175:160]
-TEMP11[31:0] <- SRC1[191:176] \* SRC2[191:176]
-TEMP12[31:0] <- SRC1[207:192] \* SRC2[207:192]
-TEMP13[31:0] <- SRC1[223:208] \* SRC2[223:208]
-TEMP14[31:0] <- SRC1[239:224] \* SRC2[239:224]
-TEMP15[31:0] <- SRC1[255:240] \* SRC2[255:240]
+TEMP0[31:0] <- SRC1[15:0] * SRC2[15:0]
+TEMP1[31:0] <- SRC1[31:16] * SRC2[31:16]
+TEMP2[31:0] <- SRC1[47:32] * SRC2[47:32]
+TEMP3[31:0] <- SRC1[63:48] * SRC2[63:48]
+TEMP4[31:0] <- SRC1[79:64] * SRC2[79:64]
+TEMP5[31:0] <- SRC1[95:80] * SRC2[95:80]
+TEMP6[31:0] <- SRC1[111:96] * SRC2[111:96]
+TEMP7[31:0] <- SRC1[127:112] * SRC2[127:112]
+TEMP8[31:0] <- SRC1[143:128] * SRC2[143:128]
+TEMP9[31:0] <- SRC1[159:144] * SRC2[159:144]
+TEMP10[31:0] <- SRC1[175:160] * SRC2[175:160]
+TEMP11[31:0] <- SRC1[191:176] * SRC2[191:176]
+TEMP12[31:0] <- SRC1[207:192] * SRC2[207:192]
+TEMP13[31:0] <- SRC1[223:208] * SRC2[223:208]
+TEMP14[31:0] <- SRC1[239:224] * SRC2[239:224]
+TEMP15[31:0] <- SRC1[255:240] * SRC2[255:240]
 DEST[15:0] <- TEMP0[31:16]
 DEST[31:16] <- TEMP1[31:16]
 DEST[47:32] <- TEMP2[31:16]
@@ -80,6 +80,18 @@ DEST[207:192] <- TEMP12[31:16]
 DEST[223:208] <- TEMP13[31:16]
 DEST[239:224] <- TEMP14[31:16]
 DEST[255:240] <- TEMP15[31:16]
+
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ PMULHUW:   | __m64 _mm_mulhi_pu16(__m64 a, __m64 
+            | b)                                  
+ (V)PMULHUW:| __m128i _mm_mulhi_epu16 ( __m128i a,
+            | __m128i b)                          
+ VPMULHUW:  | __m256i _mm256_mulhi_epu16 ( __m256i
+            | a, __m256i b)                       
 
 ```
 
@@ -136,7 +148,7 @@ The first source and destination operands are YMM registers.
    | |  
 ---- | -----
  SRC | X3             | X2| X1             | X0             
- DEST| Y3 Z2 = X2 \* Y2| Y2| Y1 Z1 = X1 \* Y1| Y0 Z0 = X0 \* Y0
+ DEST| Y3 Z2 = X2 * Y2| Y2| Y1 Z1 = X1 * Y1| Y0 Z0 = X0 * Y0
 DEST
 
    | |  
@@ -145,16 +157,6 @@ DEST
  Operation Using 64-bit Operands        |          |          |                     
  ---  | --- | --- | ---
 
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- PMULHUW:   | __m64 _mm_mulhi_pu16(__m64 a, __m64 
-            | b)                                  
- (V)PMULHUW:| __m128i _mm_mulhi_epu16 ( __m128i a,
-            | __m128i b)                          
- VPMULHUW:  | __m256i _mm256_mulhi_epu16 ( __m256i
-            | a, __m256i b)                       
 
 ### Flags Affected
 None.

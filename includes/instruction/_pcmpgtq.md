@@ -16,6 +16,16 @@ VPCMPGTQ (VEX.256 encoded version)
 DEST[127:0] <-COMPARE_QWORDS_GREATER(SRC1[127:0],SRC2[127:0])
 DEST[255:128] <-COMPARE_QWORDS_GREATER(SRC1[255:128],SRC2[255:128])
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ (V)PCMPGTQ:| __m128i _mm_cmpgt_epi64(__m128i a, __m128i
+            | b)                                        
+ VPCMPGTQ:  | __m256i _mm256_cmpgt_epi64( __m256i       
+            | a, __m256i b);                            
+
 ```
 
  Opcode/Instruction                    | Op/En| 64/32 bit Mode Support| CPUID Feature Flag| Description                              
@@ -55,14 +65,6 @@ VEX.L must be 0, otherwise the instruction will #UD.
 </aside>
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- (V)PCMPGTQ:| __m128i _mm_cmpgt_epi64(__m128i a, __m128i
-            | b)                                        
- VPCMPGTQ:  | __m256i _mm256_cmpgt_epi64( __m256i       
-            | a, __m256i b);                            
 
 ### Flags Affected
 None.

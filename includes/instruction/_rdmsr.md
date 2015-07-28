@@ -7,11 +7,11 @@ EDX:EAX <- MSR[ECX];
 
 ```
 
- Opcode\*| Instruction| Op/En| 64-Bit Mode| Compat/Leg Mode| Description                            
+ Opcode*| Instruction| Op/En| 64-Bit Mode| Compat/Leg Mode| Description                            
  ---  | --- | --- | --- | --- | ---
  0F 32  | RDMSR      | NP   | Valid      | Valid          | Read MSR specified by ECX into EDX:EAX.
 <aside class="notification">
-\* See IA-32 Architecture Compatibility section below.
+* See IA-32 Architecture Compatibility section below.
 </aside>
 
 
@@ -31,7 +31,7 @@ bits are implemented in the MSR being read, the values returned to EDX:EAX in
 unimplemented bit locations are undefined.
 
 This instruction must be executed at privilege level 0 or in real-address mode;
-otherwise, a general protection exception #GP(0) will be generated. Specifying
+otherwise, a general protection exception **``#GP(0)``** will be generated. Specifying
 a reserved or unimplemented MSR address in ECX will also cause a general protection
 exception.
 
@@ -51,7 +51,7 @@ The CPUID instruction should be used to determine whether MSRs are supported
 The MSRs and the ability to read them with the RDMSR instruction were introduced
 into the IA-32 Architecture with the Pentium processor. Execution of this instruction
 by an IA-32 processor earlier than the Pentium processor results in an invalid
-opcode exception #UD.
+opcode exception **``#UD.``**
 
 See “Changes to Instruction Behavior in VMX Non-Root Operation” in Chapter 25
 of the Intel® 64 and IA-32 Architectures Software Developer's Manual, Volume

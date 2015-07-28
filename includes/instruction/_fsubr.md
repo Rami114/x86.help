@@ -6,7 +6,7 @@
 IF Instruction = FISUBR
   THEN
      DEST <- ConvertToDoubleExtendedPrecisionFP(SRC) − DEST;
-  ELSE (\* Source operand is floating-point value \*)
+  ELSE (* Source operand is floating-point value *)
      DEST <- SRC − DEST; FI;
 IF Instruction = FSUBRP
   THEN
@@ -90,7 +90,7 @@ F Means finite floating-point value.
 
    | |  
 ---- | -----
- I \* Indicates floating-point invalid-arithmetic-operand| Means integer.
+ I * Indicates floating-point invalid-arithmetic-operand| Means integer.
  (**``#IA)``** exception.                                       |               
 This instruction's operation is the same in non-64-bit modes and 64-bit mode.
 

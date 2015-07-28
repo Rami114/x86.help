@@ -3,7 +3,18 @@
 > Operation
 
 ``` slim
-EDX:EAX <- XCR[ECX];
+EDX:EAX <- XCR[ECX];```
+
+### Flags Affected
+None.
+
+
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ XGETBV:| unsigned __int64 _xgetbv( unsigned int);
 
 ```
 
@@ -34,18 +45,9 @@ used by XSAVEOPT and XSAVES. See Chapter 13, “Managing State Using the XSAVE
 Feature Set‚” in Intel® 64 and IA-32 Architectures Software Developer's Manual,
 Volume 1.
 
-Use of any other value for ECX results in a general-protection (#GP) exception.
+Use of any other value for ECX results in a general-protection (**``#GP)``** exception.
 
 
-
-### Flags Affected
-None.
-
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- XGETBV:| unsigned __int64 _xgetbv( unsigned int);
 
 ### Protected Mode Exceptions
    | |  

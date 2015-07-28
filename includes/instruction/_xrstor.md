@@ -15,7 +15,7 @@ FI;
 LAXA <- linear address of XSAVE area;
 IF COMPMASK[63] = 0
   THEN
-     /\* Standard form of XRSTOR \*/
+     /* Standard form of XRSTOR */
      If RFBM[0] = 1
        THEN
           IF RSTORMASK[0] = 1
@@ -42,7 +42,7 @@ IF COMPMASK[63] = 0
      FI;
 FI;
   ELSE
-     /\* Compacted form of XRSTOR \*/
+     /* Compacted form of XRSTOR */
      IF CPUID.(EAX=0DH,ECX=1):EAX.XSAVEC[bit 1] = 0
        THEN
           #GP(0);
@@ -69,7 +69,19 @@ FI;
           FI;
      FI;
 FI;
-XRSTOR_INFO <- CPL,VMXNR,LAXA,COMPMASK;
+XRSTOR_INFO <- CPL,VMXNR,LAXA,COMPMASK;```
+
+### Flags Affected
+None.
+
+
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ XRSTOR:| void _xrstor( void * , unsigned __int64);  
+ XRSTOR:| void _xrstor64( void * , unsigned __int64);
 
 ```
 
@@ -109,7 +121,7 @@ XRSTOR initializes state component i.
 XSAVE area.
  - The standard form of XRSTOR treats MXCSR (which is part of state component 1
  -  SSE) differently from the XMM registers. If either form attempts to load MXCSR
-with an illegal value, a general-protection exception (#GP) occurs.
+with an illegal value, a general-protection exception (**``#GP)``** occurs.
  - XRSTOR loads the internal value XRSTOR_INFO, which may be used to optimize a
 subsequent execution of XSAVEOPT or XSAVES.
  - Immediately following an execution of XRSTOR, the processor tracks as in-use
@@ -118,20 +130,10 @@ XSTATE_BV[i] = 1; it tracks as modified any state component i for which RFBM[i]
 = 0.
 
 Use of a source operand not aligned to 64-byte boundary (for 64-bit and 32-bit
-modes) results in a general-protection (#GP) exception. In 64-bit mode, the
+modes) results in a general-protection (**``#GP)``** exception. In 64-bit mode, the
 upper 32 bits of RDX and RAX are ignored.
 
 
-
-### Flags Affected
-None.
-
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- XRSTOR:| void _xrstor( void \* , unsigned __int64);  
- XRSTOR:| void _xrstor64( void \* , unsigned __int64);
 
 ### Protected Mode Exceptions
    | |  

@@ -20,7 +20,7 @@ FI;
  ---  | --- | --- | --- | --- | ---
  6C    | INS m8, DX | NP   | Valid      | Valid          | Input byte from I/O port specified in   
        |            |      |            |                | DX into memory location specified in    
-       |            |      |            |                | ES:(E)DI or RDI.\*                       
+       |            |      |            |                | ES:(E)DI or RDI.*                       
  6D    | INS m16, DX| NP   | Valid      | Valid          | Input word from I/O port specified in   
        |            |      |            |                | DX into memory location specified in    
        |            |      |            |                | ES:(E)DI or RDI.1                       
@@ -37,7 +37,7 @@ FI;
        |            |      |            |                | in DX into memory location specified    
        |            |      |            |                | in ES:(E)DI or RDI.1                    
 <aside class="notification">
-\* In 64-bit mode, only 64-bit (RDI) and 32-bit (EDI) address sizes are
+* In 64-bit mode, only 64-bit (RDI) and 32-bit (EDI) address sizes are
 supported. In non-64-bit mode, only 32-bit (EDI) and 16-bit (DI) address sizes
 are supported.
 </aside>
@@ -111,7 +111,7 @@ IF (Byte transfer)
      THEN IF DF = 0
        THEN (E)DI <- (E)DI + 2;
        ELSE (E)DI <- (E)DI - 2; FI;
-     ELSE (\* Doubleword transfer \*)
+     ELSE (* Doubleword transfer *)
        THEN IF DF = 0
           THEN (E)DI <- (E)DI + 4;
           ELSE (E)DI <- (E)DI - 4; FI;
@@ -126,7 +126,7 @@ IF (Byte transfer)
      THEN IF DF = 0
        THEN (E)DI <- (E)DI + 2;
        ELSE (E)DI <- (E)DI - 2; FI;
-     ELSE (\* Doubleword transfer \*)
+     ELSE (* Doubleword transfer *)
        THEN IF DF = 0
           THEN (E|R)DI <- (E|R)DI + 4;
           ELSE (E|R)DI <- (E|R)DI - 4; FI;

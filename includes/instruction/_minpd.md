@@ -26,6 +26,16 @@ DEST[127:64] <- MIN(SRC1[127:64], SRC2[127:64])
 DEST[191:128] <- MIN(SRC1[191:128], SRC2[191:128])
 DEST[255:192] <- MIN(SRC1[255:192], SRC2[255:192])
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ MINPD: | __m128d _mm_min_pd(__m128d a, __m128d    
+        | b);                                      
+ VMINPD:| __m256d _mm256_min_pd (__m256d a, __m256d
+        | b);                                      
+
 ```
 
  Opcode/Instruction                           | Op/En| 64/32-bit Mode| CPUID Feature Flag| Description                               
@@ -70,14 +80,6 @@ operand is an XMM register. The upper bits (VLMAX-1:128) of the corresponding
 YMM register destination are zeroed.
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- MINPD: | __m128d _mm_min_pd(__m128d a, __m128d    
-        | b);                                      
- VMINPD:| __m256d _mm256_min_pd (__m256d a, __m256d
-        | b);                                      
 
 ### SIMD Floating-Point Exceptions
 Invalid (including QNaN source operand), Denormal.

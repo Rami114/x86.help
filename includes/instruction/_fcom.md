@@ -36,13 +36,13 @@ in ST(1). The sign of zero is ignored, so that -0.0 is equal to +0.0.
 ---- | -----
  Condition| C3 0 0 1 1| C2 0 0 0 1| C0 0 1 0 1
 <aside class="notification">
-\* Flags not set if unmasked invalid-arithmetic-operand (#IA) exception
+* Flags not set if unmasked invalid-arithmetic-operand (#IA) exception
 is generated.
 </aside>
 
 This instruction checks the class of the numbers being compared (see “FXAM - Examine
 ModR/M” in this chapter). If either operand is a NaN or is in an unsupported
-format, an invalid-arithmetic-operand exception (#IA) is raised and, if the
+format, an invalid-arithmetic-operand exception (**``#IA)``** is raised and, if the
 exception is masked, the condition flags are set to “unordered.” If the invalid-arithmetic-operand
 exception is unmasked, the condition code flags are not set.
 
@@ -53,7 +53,7 @@ as empty and increments the stack pointer (TOP) by 1.
 
 The FCOM instructions perform the same operation as the FUCOM instructions.
 The only difference is how they handle QNaN operands. The FCOM instructions
-raise an invalid-arithmetic-operand exception (#IA) when either or both of the
+raise an invalid-arithmetic-operand exception (**``#IA)``** when either or both of the
 operands is a NaN value or is in an unsupported format. The FUCOM instructions
 perform the same operation as the FCOM instructions, except that they do not
 generate an invalid-arithmetic-operand exception for QNaNs.
@@ -68,7 +68,7 @@ This instruction's operation is the same in non-64-bit modes and 64-bit mode.
 ESAC;
 IF ST(0) or SRC = NaN or unsupported format
   THEN
-     #IA
+     **``#IA``**
      IF FPUControlWord.IM = 1
        THEN
           C3, C2, C0 <- 111;

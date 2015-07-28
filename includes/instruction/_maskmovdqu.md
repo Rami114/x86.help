@@ -4,12 +4,18 @@
 
 ``` slim
 IF (MASK[7] = 1)
-  THEN DEST[DI/EDI] <- SRC[7:0] ELSE (\* Memory location unchanged \*); FI;
+  THEN DEST[DI/EDI] <- SRC[7:0] ELSE (* Memory location unchanged *); FI;
 IF (MASK[15] = 1)
-  THEN DEST[DI/EDI +1] <- SRC[15:8] ELSE (\* Memory location unchanged \*); FI;
-  (\* Repeat operation for 3rd through 14th bytes in source operand \*)
+  THEN DEST[DI/EDI +1] <- SRC[15:8] ELSE (* Memory location unchanged *); FI;
+  (* Repeat operation for 3rd through 14th bytes in source operand *)
 IF (MASK[127] = 1)
-  THEN DEST[DI/EDI +15] <- SRC[127:120] ELSE (\* Memory location unchanged \*); FI;
+  THEN DEST[DI/EDI +15] <- SRC[127:120] ELSE (* Memory location unchanged *); FI;
+
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+void _mm_maskmoveu_si128(__m128i d, __m128i n, char * p)
+
 
 ```
 
@@ -71,16 +77,12 @@ to the store.
 
 In 64-bit mode, use of the REX.R prefix permits this instruction to access additional
 registers (XMM8-XMM15). Note: In VEX-encoded versions, VEX.vvvv is reserved
-and must be 1111b otherwise instructions will #UD. If VMASKMOVDQU is encoded
+and must be 1111b otherwise instructions will **``#UD.``** If VMASKMOVDQU is encoded
 with VEX.L= 1, an attempt to execute the instruction encoded with VEX.L= 1 will
-cause an #UD exception.
+cause an **``#UD``** exception.
 
 1.ModRM.MOD = 011B required
 
-
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-void _mm_maskmoveu_si128(__m128i d, __m128i n, char \* p)
 
 
 ### Other Exceptions

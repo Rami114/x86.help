@@ -4,12 +4,18 @@
 
 ``` slim
 IF (MASK[7] = 1)
-  THEN DEST[DI/EDI] <- SRC[7:0] ELSE (\* Memory location unchanged \*); FI;
+  THEN DEST[DI/EDI] <- SRC[7:0] ELSE (* Memory location unchanged *); FI;
 IF (MASK[15] = 1)
-  THEN DEST[DI/EDI +1] <- SRC[15:8] ELSE (\* Memory location unchanged \*); FI;
-  (\* Repeat operation for 3rd through 6th bytes in source operand \*)
+  THEN DEST[DI/EDI +1] <- SRC[15:8] ELSE (* Memory location unchanged *); FI;
+  (* Repeat operation for 3rd through 6th bytes in source operand *)
 IF (MASK[63] = 1)
-  THEN DEST[DI/EDI +15] <- SRC[63:56] ELSE (\* Memory location unchanged \*); FI;
+  THEN DEST[DI/EDI +15] <- SRC[63:56] ELSE (* Memory location unchanged *); FI;
+
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+void _mm_maskmove_si64(__m64d, __m64n, char * p)
+
 
 ```
 
@@ -69,10 +75,6 @@ doing so generates unnecessary bandwidth since data is to be written directly
 using the byte-mask without allocating old data prior to the store. In 64-bit
 mode, the memory address is specified by DS:RDI.
 
-
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-void _mm_maskmove_si64(__m64d, __m64n, char \* p)
 
 
 ### Other Exceptions

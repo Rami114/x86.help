@@ -34,7 +34,7 @@ IF (64-Bit Mode)
              (R|E)SI <- (R|E)SI - 4;
              (R|E)DI <- (R|E)DI - 4;
           FI;
-     ELSE (\* Quadword comparison \*)
+     ELSE (* Quadword comparison *)
        THEN IF DF = 0
           (R|E)SI <- (R|E)SI + 8;
           (R|E)DI <- (R|E)DI + 8;
@@ -43,7 +43,7 @@ IF (64-Bit Mode)
           (R|E)DI <- (R|E)DI - 8;
        FI;
      FI;
-  ELSE (\* Non-64-bit Mode \*)
+  ELSE (* Non-64-bit Mode *)
      IF (byte comparison)
      THEN IF DF = 0
        THEN
@@ -61,7 +61,7 @@ IF (64-Bit Mode)
           (E)SI <- (E)SI - 2;
           (E)DI <- (E)DI - 2;
        FI;
-     ELSE (\* Doubleword comparison \*)
+     ELSE (* Doubleword comparison *)
        THEN IF DF = 0
           (E)SI <- (E)SI + 4;
           (E)DI <- (E)DI + 4;

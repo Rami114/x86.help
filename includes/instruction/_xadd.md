@@ -13,7 +13,7 @@ DEST <- TEMP;
  ---  | --- | --- | --- | --- | ---
  0F C0 /r        | XADD r/m8, r8  | MR   | Valid      | Valid          | Exchange r8 and r/m8; load sum into  
                  |                |      |            |                | r/m8.                                
- REX + 0F C0 /r  | XADD r/m8\*, r8\*| MR   | Valid      | N.E.           | Exchange r8 and r/m8; load sum into  
+ REX + 0F C0 /r  | XADD r/m8*, r8*| MR   | Valid      | N.E.           | Exchange r8 and r/m8; load sum into  
                  |                |      |            |                | r/m8.                                
  0F C1 /r        | XADD r/m16, r16| MR   | Valid      | Valid          | Exchange r16 and r/m16; load sum into
                  |                |      |            |                | r/m16.                               
@@ -22,7 +22,7 @@ DEST <- TEMP;
  REX.W + 0F C1 /r| XADD r/m64, r64| MR   | Valid      | N.E.           | Exchange r64 and r/m64; load sum into
                  |                |      |            |                | r/m64.                               
 <aside class="notification">
-\* In 64-bit mode, r/m8 can not be encoded to access the following byte
+* In 64-bit mode, r/m8 can not be encoded to access the following byte
 registers if a REX prefix is used: AH, BH, CH, DH.
 </aside>
 

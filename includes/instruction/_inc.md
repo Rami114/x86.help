@@ -10,15 +10,15 @@ DEST <- DEST + 1;
  Opcode       | Instruction| Op/En| 64-Bit Mode| Compat/Leg Mode| Description                        
  ---  | --- | --- | --- | --- | ---
  FE /0        | INC r/m8   | M    | Valid      | Valid          | Increment r/m byte by 1.           
- REX + FE /0  | INC r/m8\*  | M    | Valid      | N.E.           | Increment r/m byte by 1.           
+ REX + FE /0  | INC r/m8*  | M    | Valid      | N.E.           | Increment r/m byte by 1.           
  FF /0        | INC r/m16  | M    | Valid      | Valid          | Increment r/m word by 1.           
  FF /0        | INC r/m32  | M    | Valid      | Valid          | Increment r/m doubleword by 1.     
  REX.W + FF /0| INC r/m64  | M    | Valid      | N.E.           | Increment r/m quadword by 1.       
- 40+ rw\*\*     | INC r16    | O    | N.E.       | Valid          | Increment word register by 1.      
+ 40+ rw**     | INC r16    | O    | N.E.       | Valid          | Increment word register by 1.      
  40+ rd       | INC r32    | O    | N.E.       | Valid          | Increment doubleword register by 1.
 <aside class="notification">
-\* In 64-bit mode, r/m8 can not be encoded to access the following byte
-registers if a REX prefix is used: AH, BH, CH, DH. \*\* 40H through 47H are REX
+* In 64-bit mode, r/m8 can not be encoded to access the following byte
+registers if a REX prefix is used: AH, BH, CH, DH. ** 40H through 47H are REX
 prefixes in 64-bit mode.
 </aside>
 

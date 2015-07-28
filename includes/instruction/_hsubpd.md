@@ -17,6 +17,16 @@ DEST[127:64] <- SRC2[63:0] - SRC2[127:64]
 DEST[191:128] <- SRC1[191:128] - SRC1[255:192]
 DEST[255:192] <- SRC2[191:128] - SRC2[255:192]
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ HSUBPD: | __m128d _mm_hsub_pd(__m128d a, __m128d    
+         | b)                                        
+ VHSUBPD:| __m256d _mm256_hsub_pd (__m256d a, __m256d
+         | b);                                       
+
 ```
 
  Opcode/Instruction                 | Op/En| 64/32-bit Mode| CPUID Feature Flag| Description                                
@@ -83,17 +93,9 @@ The destination operand is a YMM register.
 
 
 
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- HSUBPD: | __m128d _mm_hsub_pd(__m128d a, __m128d    
-         | b)                                        
- VHSUBPD:| __m256d _mm256_hsub_pd (__m256d a, __m256d
-         | b);                                       
-
 ### Exceptions
 When the source operand is a memory operand, the operand must be aligned on
-a 16-byte boundary or a generalprotection exception (#GP) will be generated.
+a 16-byte boundary or a generalprotection exception (**``#GP)``** will be generated.
 
 
 ### Numeric Exceptions

@@ -69,6 +69,30 @@ VPCMPEQD (VEX.256 encoded version)
 DEST[127:0] <-COMPARE_DWORDS_EQUAL(SRC1[127:0],SRC2[127:0])
 DEST[255:128] <-COMPARE_DWORDS_EQUAL(SRC1[255:128],SRC2[255:128])
 
+> Intel C/C++ Compiler Intrinsic Equivalents
+
+``` slim
+   | |  
+---- | -----
+ PCMPEQB:   | __m64 _mm_cmpeq_pi8 (__m64 m1, __m64 
+            | m2)                                  
+ PCMPEQW:   | __m64 _mm_cmpeq_pi16 (__m64 m1, __m64
+            | m2)                                  
+ PCMPEQD:   | __m64 _mm_cmpeq_pi32 (__m64 m1, __m64
+            | m2)                                  
+ (V)PCMPEQB:| __m128i _mm_cmpeq_epi8 ( __m128i a,  
+            | __m128i b)                           
+ (V)PCMPEQW:| __m128i _mm_cmpeq_epi16 ( __m128i a, 
+            | __m128i b)                           
+ (V)PCMPEQD:| __m128i _mm_cmpeq_epi32 ( __m128i a, 
+            | __m128i b)                           
+ VPCMPEQB:  | __m256i _mm256_cmpeq_epi8 ( __m256i  
+            | a, __m256i b)                        
+ VPCMPEQW:  | __m256i _mm256_cmpeq_epi16 ( __m256i 
+            | a, __m256i b)                        
+ VPCMPEQD:  | __m256i _mm256_cmpeq_epi32 ( __m256i 
+            | a, __m256i b)                        
+
 ```
 
  Opcode/Instruction                    | Op/En| 64/32 bit Mode Support| CPUID Feature Flag| Description                            
@@ -137,31 +161,9 @@ operands are XMM registers. Bits (VLMAX-1:128) of the corresponding YMM register
 are zeroed. VEX.256 encoded version: The first source operand is a YMM register.
 The second source operand is a YMM register or a 256-bit memory location. The
 destination operand is a YMM register. Note: VEX.L must be 0, otherwise the
-instruction will #UD.
+instruction will **``#UD.``**
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalents
-   | |  
----- | -----
- PCMPEQB:   | __m64 _mm_cmpeq_pi8 (__m64 m1, __m64 
-            | m2)                                  
- PCMPEQW:   | __m64 _mm_cmpeq_pi16 (__m64 m1, __m64
-            | m2)                                  
- PCMPEQD:   | __m64 _mm_cmpeq_pi32 (__m64 m1, __m64
-            | m2)                                  
- (V)PCMPEQB:| __m128i _mm_cmpeq_epi8 ( __m128i a,  
-            | __m128i b)                           
- (V)PCMPEQW:| __m128i _mm_cmpeq_epi16 ( __m128i a, 
-            | __m128i b)                           
- (V)PCMPEQD:| __m128i _mm_cmpeq_epi32 ( __m128i a, 
-            | __m128i b)                           
- VPCMPEQB:  | __m256i _mm256_cmpeq_epi8 ( __m256i  
-            | a, __m256i b)                        
- VPCMPEQW:  | __m256i _mm256_cmpeq_epi16 ( __m256i 
-            | a, __m256i b)                        
- VPCMPEQD:  | __m256i _mm256_cmpeq_epi32 ( __m256i 
-            | a, __m256i b)                        
 
 ### Flags Affected
 None.

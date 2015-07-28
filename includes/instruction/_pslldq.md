@@ -19,6 +19,16 @@ IF (TEMP > 15) THEN TEMP  16; FI
 DEST[127:0] <- SRC[127:0] << (TEMP \* 8)
 DEST[255:128] <- SRC[255:128] << (TEMP \* 8)
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ (V)PSLLDQ:| __m128i _mm_slli_si128 ( __m128i a,
+           | int imm)                           
+ VPSLLDQ:  | __m256i _mm256_slli_si256 ( __m256i
+           | a, const int imm)                  
+
 ```
 
  Opcode/Instruction                    | Op/En| 64/32 bit Mode Support| CPUID Feature Flag| Description                             
@@ -51,18 +61,10 @@ low and high 128-bit lanes.
 
 <aside class="notification">
 VEX.vvvv encodes the destination register, and VEX.B + ModRM.r/m encodes
-the source register. VEX.L must be 0, otherwise instructions will #UD.
+the source register. VEX.L must be 0, otherwise instructions will **``#UD.``**
 </aside>
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- (V)PSLLDQ:| __m128i _mm_slli_si128 ( __m128i a,
-           | int imm)                           
- VPSLLDQ:  | __m256i _mm256_slli_si256 ( __m256i
-           | a, const int imm)                  
 
 ### Flags Affected
 None.

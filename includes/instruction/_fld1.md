@@ -8,7 +8,7 @@ ST(0) <- CONSTANT;
 
 ```
 
- Opcode\*| Instruction| 64-Bit Mode| Compat/Leg Mode| Description                                
+ Opcode*| Instruction| 64-Bit Mode| Compat/Leg Mode| Description                                
  ---  | --- | --- | --- | ---
  D9 E8  | FLD1       | Valid      | Valid          | Push +1.0 onto the FPU register stack.     
  D9 E9  | FLDL2T     | Valid      | Valid          | Push log<sub>2</sub>10 onto the FPU        
@@ -22,7 +22,7 @@ ST(0) <- CONSTANT;
         |            |            |                | stack.                                     
  D9 EE  | FLDZ       | Valid      | Valid          | Push +0.0 onto the FPU register stack.     
 <aside class="notification">
-\* See IA-32 Architecture Compatibility section below.
+* See IA-32 Architecture Compatibility section below.
 </aside>
 
 
@@ -32,7 +32,7 @@ format) onto the FPU register stack. The constants that can be loaded with these
 instructions include +1.0, +0.0, log<sub>2</sub>10, log<sub>2</sub>e, π, log<sub>10</sub>2,
 and log<sub>e</sub>2. For each constant, an internal 66-bit constant is rounded
 (as specified by the RC field in the FPU control word) to double extended-precision
-floating-point format. The inexact-result exception (#P) is not generated as
+floating-point format. The inexact-result exception (**``#P)``** is not generated as
 a result of the rounding, nor is the C1 flag set in the x87 FPU status word
 if the value is rounded up.
 

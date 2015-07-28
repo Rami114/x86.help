@@ -45,6 +45,18 @@ DEST[223:208] = SaturateToSignedWord(SRC2[159:144] + SRC2[175:160])
 DEST[239:224] = SaturateToSignedWord(SRC2[191-160] + SRC2[159-128])
 DEST[255:240] = SaturateToSignedWord(SRC2[255:240] + SRC2[239:224])
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ PHADDSW:   | __m64 _mm_hadds_pi16 (__m64 a, __m64
+            | b)                                  
+ (V)PHADDSW:| __m128i _mm_hadds_epi16 (__m128i a, 
+            | __m128i b)                          
+ VPHADDSW:  | __m256i _mm256_hadds_epi16 (__m256i 
+            | a, __m256i b)                       
+
 ```
 
  Opcode/Instruction                    | Op/En| 64/32 bit Mode Support| CPUID Feature Flag| Description                             
@@ -77,7 +89,7 @@ Manual, Volume 3A.
 and destination operands and saturates the signed results; packs the signed,
 saturated 16-bit results to the destination operand (first operand) When the
 source operand is a 128-bit memory operand, the operand must be aligned on a
-16-byte boundary or a general-protection exception (#GP) will be generated.
+16-byte boundary or a general-protection exception (**``#GP)``** will be generated.
 Legacy SSE version: Both operands can be MMX registers. The second source operand
 can be an MMX register or a 64-bit memory location.
 
@@ -98,16 +110,6 @@ VEX.L must be 0, otherwise the instruction will #UD.
 </aside>
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- PHADDSW:   | __m64 _mm_hadds_pi16 (__m64 a, __m64
-            | b)                                  
- (V)PHADDSW:| __m128i _mm_hadds_epi16 (__m128i a, 
-            | __m128i b)                          
- VPHADDSW:  | __m256i _mm256_hadds_epi16 (__m256i 
-            | a, __m256i b)                       
 
 ### SIMD Floating-Point Exceptions
 None.

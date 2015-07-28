@@ -17,7 +17,7 @@ depending on the current rounding mode (setting of the RC field of the FPU contr
 word), and stores the result in ST(0).
 
 If the source value is ∞, the value is not changed. If the source value is not
-an integral value, the floating-point inexact-result exception (#P) is generated.
+an integral value, the floating-point inexact-result exception (**``#P)``** is generated.
 
 This instruction's operation is the same in non-64-bit modes and 64-bit mode.
 

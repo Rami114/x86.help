@@ -9,7 +9,17 @@ IF (OperandSize = 32)
 ELSEIF (OperandSize = 64 )
   y <- imm8 AND 3FH;
   DEST <- (SRC >> y) | (SRC << (64-y));
-ENDIF
+ENDIF```
+
+### Flags Affected
+None
+
+
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+Auto-generated from high-level language.
+
 
 ```
 
@@ -31,16 +41,8 @@ without affecting arithmetic flags. The RORX instruction does not read or write
 the arithmetic flags. This instruction is not supported in real mode and virtual-8086
 mode. The operand size is always 32 bits if not in 64-bit mode. In 64-bit mode
 operand size 64 requires VEX.W1. VEX.W1 is ignored in non-64-bit modes. An attempt
-to execute this instruction with VEX.L not equal to 0 will cause #UD.
+to execute this instruction with VEX.L not equal to 0 will cause **``#UD.``**
 
-
-
-### Flags Affected
-None
-
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-Auto-generated from high-level language.
 
 
 ### SIMD Floating-Point Exceptions

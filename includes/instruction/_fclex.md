@@ -8,16 +8,16 @@ FPUStatusWord[15] <- 0;
 
 ```
 
- Opcode\* | Instruction| 64-Bit Mode| Compat/Leg Mode| Description                          
+ Opcode* | Instruction| 64-Bit Mode| Compat/Leg Mode| Description                          
  ---  | --- | --- | --- | ---
  9B DB E2| FCLEX      | Valid      | Valid          | Clear floating-point exception flags 
          |            |            |                | after checking for pending unmasked  
          |            |            |                | floating-point exceptions.           
- DB E2   | FNCLEX\*    | Valid      | Valid          | Clear floating-point exception flags 
+ DB E2   | FNCLEX*    | Valid      | Valid          | Clear floating-point exception flags 
          |            |            |                | without checking for pending unmasked
          |            |            |                | floating-point exceptions.           
 <aside class="notification">
-\* See IA-32 Architecture Compatibility section below.
+* See IA-32 Architecture Compatibility section below.
 </aside>
 
 
@@ -35,7 +35,7 @@ the save EIP points to the instruction that caused the exception.
 
 
 ### IA-32 Architecture Compatibility
-When operating a Pentium or Intel486 processor in MS-DOS\* compatibility mode,
+When operating a Pentium or Intel486 processor in MS-DOS* compatibility mode,
 it is possible (under unusual circumstances) for an FNCLEX instruction to be
 interrupted prior to being executed to handle a pending FPU exception. See the
 section titled “No-Wait FPU Instructions Can Get FPU Interrupt in Window” in

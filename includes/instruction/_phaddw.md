@@ -68,6 +68,24 @@ DEST[191-160] <- SRC1[255-224] + SRC1[223-192]
 DEST[223-192] <- SRC2[191-160] + SRC2[159-128]
 DEST[255-224] <- SRC2[255-224] + SRC2[223-192]
 
+> Intel C/C++ Compiler Intrinsic Equivalents
+
+``` slim
+   | |  
+---- | -----
+ PHADDW:   | __m64 _mm_hadd_pi16 (__m64 a, __m64       
+           | b)                                        
+ PHADDD:   | __m64 _mm_hadd_pi32 (__m64 a, __m64       
+           | b)                                        
+ (V)PHADDW:| __m128i _mm_hadd_epi16 (__m128i a, __m128i
+           | b)                                        
+ (V)PHADDD:| __m128i _mm_hadd_epi32 (__m128i a, __m128i
+           | b)                                        
+ VPHADDW:  | __m256i _mm256_hadd_epi16 (__m256i a,     
+           | __m256i b)                                
+ VPHADDD:  | __m256i _mm256_hadd_epi32 (__m256i a,     
+           | __m256i b)                                
+
 ```
 
  Opcode/Instruction                   | Op/En| 64/32 bit Mode Support| CPUID Feature Flag| Description                             
@@ -110,7 +128,7 @@ operand (first operand). (V)PHADDD adds two adjacent 32-bit signed integers
 horizontally from the source and destination operands and packs the 32-bit signed
 results to the destination operand (first operand). When the source operand
 is a 128-bit memory operand, the operand must be aligned on a 16-byte boundary
-or a general-protection exception (#GP) will be generated.
+or a general-protection exception (**``#GP)``** will be generated.
 
 <aside class="notification">
 Note that these instructions can operate on either unsigned or signed (two's
@@ -147,22 +165,6 @@ VEX.L must be 0, otherwise the instruction will #UD.
  SRC2| Y7| Y6 S7| Y5 Figure 4-6.| Y4 S3| Y3 Dest| Y2 S3 255 256-bit VPHADDD Instruction| Y1| Y0 S4| X7 S3| X6| X5| X4 S2| X3 S1| X2 0| X1| X0 S0| SRC1
      |   |      |               |      |        | Operation                            |   |      |      |   |   |      |      |     |   |      |     
 
-
-### Intel C/C++ Compiler Intrinsic Equivalents
-   | |  
----- | -----
- PHADDW:   | __m64 _mm_hadd_pi16 (__m64 a, __m64       
-           | b)                                        
- PHADDD:   | __m64 _mm_hadd_pi32 (__m64 a, __m64       
-           | b)                                        
- (V)PHADDW:| __m128i _mm_hadd_epi16 (__m128i a, __m128i
-           | b)                                        
- (V)PHADDD:| __m128i _mm_hadd_epi32 (__m128i a, __m128i
-           | b)                                        
- VPHADDW:  | __m256i _mm256_hadd_epi16 (__m256i a,     
-           | __m256i b)                                
- VPHADDD:  | __m256i _mm256_hadd_epi32 (__m256i a,     
-           | __m256i b)                                
 
 ### SIMD Floating-Point Exceptions
 None.

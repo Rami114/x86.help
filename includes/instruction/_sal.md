@@ -16,23 +16,23 @@ DO
   IF instruction is SAL or SHL
      THEN
        CF <- MSB(DEST);
-     ELSE (\* Instruction is SAR or SHR \*)
+     ELSE (* Instruction is SAR or SHR *)
        CF <- LSB(DEST);
   FI;
   IF instruction is SAL or SHL
      THEN
-       DEST <- DEST \* 2;
+       DEST <- DEST * 2;
      ELSE
        IF instruction is SAR
           THEN
-             DEST <- DEST / 2; (\* Signed divide, rounding toward negative infinity \*)
-          ELSE (\* Instruction is SHR \*)
-             DEST <- DEST / 2 ; (\* Unsigned divide \*)
+             DEST <- DEST / 2; (* Signed divide, rounding toward negative infinity *)
+          ELSE (* Instruction is SHR *)
+             DEST <- DEST / 2 ; (* Unsigned divide *)
        FI;
   FI;
   tempCOUNT <- tempCOUNT - 1;
 OD;
-(\* Determine overflow for the various instructions \*)
+(* Determine overflow for the various instructions *)
 IF (COUNT and countMASK) = 1
   THEN
      IF instruction is SAL or SHL
@@ -42,28 +42,28 @@ IF (COUNT and countMASK) = 1
           IF instruction is SAR
              THEN
                OF <- 0;
-             ELSE (\* Instruction is SHR \*)
+             ELSE (* Instruction is SHR *)
                OF <- MSB(tempDEST);
           FI;
      FI;
   ELSE IF (COUNT AND countMASK) = 0
      THEN
        All flags unchanged;
-     ELSE (\* COUNT not 1 or 0 \*)
+     ELSE (* COUNT not 1 or 0 *)
        OF <- undefined;
   FI;
 FI;
 
 ```
 
- Opcode\*\*\*       | Instruction     | Op/En| 64-Bit Mode| Compat/Leg Mode| Description                            
+ Opcode***       | Instruction     | Op/En| 64-Bit Mode| Compat/Leg Mode| Description                            
  ---  | --- | --- | --- | --- | ---
  D0 /4           | SAL r/m8, 1     | M1   | Valid      | Valid          | Multiply r/m8 by 2, once.              
- REX + D0 /4     | SAL r/m8\*\*, 1   | M1   | Valid      | N.E.           | Multiply r/m8 by 2, once.              
+ REX + D0 /4     | SAL r/m8**, 1   | M1   | Valid      | N.E.           | Multiply r/m8 by 2, once.              
  D2 /4           | SAL r/m8, CL    | MC   | Valid      | Valid          | Multiply r/m8 by 2, CL times.          
- REX + D2 /4     | SAL r/m8\*\*, CL  | MC   | Valid      | N.E.           | Multiply r/m8 by 2, CL times.          
+ REX + D2 /4     | SAL r/m8**, CL  | MC   | Valid      | N.E.           | Multiply r/m8 by 2, CL times.          
  C0 /4 ib        | SAL r/m8, imm8  | MI   | Valid      | Valid          | Multiply r/m8 by 2, imm8 times.        
- REX + C0 /4 ib  | SAL r/m8\*\*, imm8| MI   | Valid      | N.E.           | Multiply r/m8 by 2, imm8 times.        
+ REX + C0 /4 ib  | SAL r/m8**, imm8| MI   | Valid      | N.E.           | Multiply r/m8 by 2, imm8 times.        
  D1 /4           | SAL r/m16, 1    | M1   | Valid      | Valid          | Multiply r/m16 by 2, once.             
  D3 /4           | SAL r/m16, CL   | MC   | Valid      | Valid          | Multiply r/m16 by 2, CL times.         
  C1 /4 ib        | SAL r/m16, imm8 | MI   | Valid      | Valid          | Multiply r/m16 by 2, imm8 times.       
@@ -73,27 +73,27 @@ FI;
  REX.W + D3 /4   | SAL r/m64, CL   | MC   | Valid      | N.E.           | Multiply r/m64 by 2, CL times.         
  C1 /4 ib        | SAL r/m32, imm8 | MI   | Valid      | Valid          | Multiply r/m32 by 2, imm8 times.       
  REX.W + C1 /4 ib| SAL r/m64, imm8 | MI   | Valid      | N.E.           | Multiply r/m64 by 2, imm8 times.       
- D0 /7           | SAR r/m8, 1     | M1   | Valid      | Valid          | Signed divide\* r/m8 by 2, once.        
- REX + D0 /7     | SAR r/m8\*\*, 1   | M1   | Valid      | N.E.           | Signed divide\* r/m8 by 2, once.        
- D2 /7           | SAR r/m8, CL    | MC   | Valid      | Valid          | Signed divide\* r/m8 by 2, CL times.    
- REX + D2 /7     | SAR r/m8\*\*, CL  | MC   | Valid      | N.E.           | Signed divide\* r/m8 by 2, CL times.    
- C0 /7 ib        | SAR r/m8, imm8  | MI   | Valid      | Valid          | Signed divide\* r/m8 by 2, imm8 time.   
- REX + C0 /7 ib  | SAR r/m8\*\*, imm8| MI   | Valid      | N.E.           | Signed divide\* r/m8 by 2, imm8 times.  
- D1 /7           | SAR r/m16,1     | M1   | Valid      | Valid          | Signed divide\* r/m16 by 2, once.       
- D3 /7           | SAR r/m16, CL   | MC   | Valid      | Valid          | Signed divide\* r/m16 by 2, CL times.   
- C1 /7 ib        | SAR r/m16, imm8 | MI   | Valid      | Valid          | Signed divide\* r/m16 by 2, imm8 times. 
- D1 /7           | SAR r/m32, 1    | M1   | Valid      | Valid          | Signed divide\* r/m32 by 2, once.       
- REX.W + D1 /7   | SAR r/m64, 1    | M1   | Valid      | N.E.           | Signed divide\* r/m64 by 2, once.       
- D3 /7           | SAR r/m32, CL   | MC   | Valid      | Valid          | Signed divide\* r/m32 by 2, CL times.   
- REX.W + D3 /7   | SAR r/m64, CL   | MC   | Valid      | N.E.           | Signed divide\* r/m64 by 2, CL times.   
- C1 /7 ib        | SAR r/m32, imm8 | MI   | Valid      | Valid          | Signed divide\* r/m32 by 2, imm8 times. 
- REX.W + C1 /7 ib| SAR r/m64, imm8 | MI   | Valid      | N.E.           | Signed divide\* r/m64 by 2, imm8 times  
+ D0 /7           | SAR r/m8, 1     | M1   | Valid      | Valid          | Signed divide* r/m8 by 2, once.        
+ REX + D0 /7     | SAR r/m8**, 1   | M1   | Valid      | N.E.           | Signed divide* r/m8 by 2, once.        
+ D2 /7           | SAR r/m8, CL    | MC   | Valid      | Valid          | Signed divide* r/m8 by 2, CL times.    
+ REX + D2 /7     | SAR r/m8**, CL  | MC   | Valid      | N.E.           | Signed divide* r/m8 by 2, CL times.    
+ C0 /7 ib        | SAR r/m8, imm8  | MI   | Valid      | Valid          | Signed divide* r/m8 by 2, imm8 time.   
+ REX + C0 /7 ib  | SAR r/m8**, imm8| MI   | Valid      | N.E.           | Signed divide* r/m8 by 2, imm8 times.  
+ D1 /7           | SAR r/m16,1     | M1   | Valid      | Valid          | Signed divide* r/m16 by 2, once.       
+ D3 /7           | SAR r/m16, CL   | MC   | Valid      | Valid          | Signed divide* r/m16 by 2, CL times.   
+ C1 /7 ib        | SAR r/m16, imm8 | MI   | Valid      | Valid          | Signed divide* r/m16 by 2, imm8 times. 
+ D1 /7           | SAR r/m32, 1    | M1   | Valid      | Valid          | Signed divide* r/m32 by 2, once.       
+ REX.W + D1 /7   | SAR r/m64, 1    | M1   | Valid      | N.E.           | Signed divide* r/m64 by 2, once.       
+ D3 /7           | SAR r/m32, CL   | MC   | Valid      | Valid          | Signed divide* r/m32 by 2, CL times.   
+ REX.W + D3 /7   | SAR r/m64, CL   | MC   | Valid      | N.E.           | Signed divide* r/m64 by 2, CL times.   
+ C1 /7 ib        | SAR r/m32, imm8 | MI   | Valid      | Valid          | Signed divide* r/m32 by 2, imm8 times. 
+ REX.W + C1 /7 ib| SAR r/m64, imm8 | MI   | Valid      | N.E.           | Signed divide* r/m64 by 2, imm8 times  
  D0 /4           | SHL r/m8, 1     | M1   | Valid      | Valid          | Multiply r/m8 by 2, once.              
- REX + D0 /4     | SHL r/m8\*\*, 1   | M1   | Valid      | N.E.           | Multiply r/m8 by 2, once.              
+ REX + D0 /4     | SHL r/m8**, 1   | M1   | Valid      | N.E.           | Multiply r/m8 by 2, once.              
  D2 /4           | SHL r/m8, CL    | MC   | Valid      | Valid          | Multiply r/m8 by 2, CL times.          
- REX + D2 /4     | SHL r/m8\*\*, CL  | MC   | Valid      | N.E.           | Multiply r/m8 by 2, CL times.          
+ REX + D2 /4     | SHL r/m8**, CL  | MC   | Valid      | N.E.           | Multiply r/m8 by 2, CL times.          
  C0 /4 ib        | SHL r/m8, imm8  | MI   | Valid      | Valid          | Multiply r/m8 by 2, imm8 times.        
- REX + C0 /4 ib  | SHL r/m8\*\*, imm8| MI   | Valid      | N.E.           | Multiply r/m8 by 2, imm8 times.        
+ REX + C0 /4 ib  | SHL r/m8**, imm8| MI   | Valid      | N.E.           | Multiply r/m8 by 2, imm8 times.        
  D1 /4           | SHL r/m16,1     | M1   | Valid      | Valid          | Multiply r/m16 by 2, once.             
  D3 /4           | SHL r/m16, CL   | MC   | Valid      | Valid          | Multiply r/m16 by 2, CL times.         
  C1 /4 ib        | SHL r/m16, imm8 | MI   | Valid      | Valid          | Multiply r/m16 by 2, imm8 times.       
@@ -106,11 +106,11 @@ FI;
  C1 /4 ib        | SHL r/m32, imm8 | MI   | Valid      | Valid          | Multiply r/m32 by 2, imm8 times.       
  REX.W + C1 /4 ib| SHL r/m64, imm8 | MI   | Valid      | N.E.           | Multiply r/m64 by 2, imm8 times.       
  D0 /5           | SHR r/m8,1      | M1   | Valid      | Valid          | Unsigned divide r/m8 by 2, once.       
- REX + D0 /5     | SHR r/m8\*\*, 1   | M1   | Valid      | N.E.           | Unsigned divide r/m8 by 2, once.       
+ REX + D0 /5     | SHR r/m8**, 1   | M1   | Valid      | N.E.           | Unsigned divide r/m8 by 2, once.       
  D2 /5           | SHR r/m8, CL    | MC   | Valid      | Valid          | Unsigned divide r/m8 by 2, CL times.   
- REX + D2 /5     | SHR r/m8\*\*, CL  | MC   | Valid      | N.E.           | Unsigned divide r/m8 by 2, CL times.   
+ REX + D2 /5     | SHR r/m8**, CL  | MC   | Valid      | N.E.           | Unsigned divide r/m8 by 2, CL times.   
  C0 /5 ib        | SHR r/m8, imm8  | MI   | Valid      | Valid          | Unsigned divide r/m8 by 2, imm8 times. 
- REX + C0 /5 ib  | SHR r/m8\*\*, imm8| MI   | Valid      | N.E.           | Unsigned divide r/m8 by 2, imm8 times. 
+ REX + C0 /5 ib  | SHR r/m8**, imm8| MI   | Valid      | N.E.           | Unsigned divide r/m8 by 2, imm8 times. 
  D1 /5           | SHR r/m16, 1    | M1   | Valid      | Valid          | Unsigned divide r/m16 by 2, once.      
  D3 /5           | SHR r/m16, CL   | MC   | Valid      | Valid          | Unsigned divide r/m16 by 2, CL times   
  C1 /5 ib        | SHR r/m16, imm8 | MI   | Valid      | Valid          | Unsigned divide r/m16 by 2, imm8 times.
@@ -121,9 +121,9 @@ FI;
  C1 /5 ib        | SHR r/m32, imm8 | MI   | Valid      | Valid          | Unsigned divide r/m32 by 2, imm8 times.
  REX.W + C1 /5 ib| SHR r/m64, imm8 | MI   | Valid      | N.E.           | Unsigned divide r/m64 by 2, imm8 times.
 <aside class="notification">
-\* Not the same form of division as IDIV; rounding is toward negative
-infinity. \*\* In 64-bit mode, r/m8 can not be encoded to access the following
-byte registers if a REX prefix is used: AH, BH, CH, DH. \*\*\*See IA-32 Architecture
+* Not the same form of division as IDIV; rounding is toward negative
+infinity. ** In 64-bit mode, r/m8 can not be encoded to access the following
+byte registers if a REX prefix is used: AH, BH, CH, DH. ***See IA-32 Architecture
 Compatibility section below.
 </aside>
 

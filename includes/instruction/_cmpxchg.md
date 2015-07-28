@@ -3,7 +3,7 @@
 > Operation
 
 ``` slim
-(\* Accumulator = AL, AX, EAX, or RAX depending on whether a byte, word, doubleword, or quadword comparison is being performed \*)
+(* Accumulator = AL, AX, EAX, or RAX depending on whether a byte, word, doubleword, or quadword comparison is being performed *)
 TEMP <- DEST
 IF accumulator = TEMP
   THEN
@@ -19,23 +19,23 @@ FI;
 
  Opcode/Instruction                | Op/En| 64-Bit Mode| Compat/Leg Mode| Description                            
  ---  | --- | --- | --- | ---
- 0F B0/r CMPXCHG r/m8, r8          | MR   | Valid      | Valid\*         | Compare AL with r/m8. If equal, ZF is  
+ 0F B0/r CMPXCHG r/m8, r8          | MR   | Valid      | Valid*         | Compare AL with r/m8. If equal, ZF is  
                                    |      |            |                | set and r8 is loaded into r/m8. Else,  
                                    |      |            |                | clear ZF and load r/m8 into AL.        
- REX + 0F B0/r CMPXCHG r/m8\*\*,r8   | MR   | Valid      | N.E.           | Compare AL with r/m8. If equal, ZF is  
+ REX + 0F B0/r CMPXCHG r/m8**,r8   | MR   | Valid      | N.E.           | Compare AL with r/m8. If equal, ZF is  
                                    |      |            |                | set and r8 is loaded into r/m8. Else,  
                                    |      |            |                | clear ZF and load r/m8 into AL.        
- 0F B1/r CMPXCHG r/m16, r16        | MR   | Valid      | Valid\*         | Compare AX with r/m16. If equal, ZF    
+ 0F B1/r CMPXCHG r/m16, r16        | MR   | Valid      | Valid*         | Compare AX with r/m16. If equal, ZF    
                                    |      |            |                | is set and r16 is loaded into r/m16.   
                                    |      |            |                | Else, clear ZF and load r/m16 into AX. 
- 0F B1/r CMPXCHG r/m32, r32        | MR   | Valid      | Valid\*         | Compare EAX with r/m32. If equal, ZF   
+ 0F B1/r CMPXCHG r/m32, r32        | MR   | Valid      | Valid*         | Compare EAX with r/m32. If equal, ZF   
                                    |      |            |                | is set and r32 is loaded into r/m32.   
                                    |      |            |                | Else, clear ZF and load r/m32 into EAX.
  REX.W + 0F B1/r CMPXCHG r/m64, r64| MR   | Valid      | N.E.           | Compare RAX with r/m64. If equal, ZF   
                                    |      |            |                | is set and r64 is loaded into r/m64.   
                                    |      |            |                | Else, clear ZF and load r/m64 into RAX.
 <aside class="notification">
-\* See the IA-32 Architecture Compatibility section below. \*\* In 64-bit
+* See the IA-32 Architecture Compatibility section below. ** In 64-bit
 mode, r/m8 can not be encoded to access the following byte registers if a REX
 prefix is used: AH, BH, CH, DH.
 </aside>

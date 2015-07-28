@@ -5,6 +5,12 @@
 ``` slim
 Wait_On_Following_Instructions_Until(preceding_instructions_complete);
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+void _mm_lfence(void)
+
+
 ```
 
  Opcode  | Instruction| Op/En| 64-Bit Mode| Compat/Leg Mode| Description                
@@ -44,10 +50,6 @@ an LFENCE instruction.
 
 This instruction's operation is the same in non-64-bit modes and 64-bit mode.
 
-
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-void _mm_lfence(void)
 
 
 ### Exceptions (All Modes of Operation)

@@ -7,7 +7,7 @@ WriteBack(InternalCaches);
 Flush(InternalCaches);
 SignalWriteBack(ExternalCaches);
 SignalFlush(ExternalCaches);
-Continue; (\* Continue execution \*)
+Continue; (* Continue execution *)
 
 ```
 

@@ -117,7 +117,7 @@ but privileged bits do not change.
 
 When operating in virtual-8086 mode, the IOPL must be equal to 3 to use POPF/POPFD
 instructions; VM, RF, IOPL, VIP, and VIF are unaffected. If the IOPL is less
-than 3, POPF/POPFD causes a general-protection exception (#GP).
+than 3, POPF/POPFD causes a general-protection exception (**``#GP).``**
 
 In 64-bit mode, use REX.W to pop the top of stack to RFLAGS. The mnemonic assigned
 is POPFQ (note that the 32bit operand is not encodable). POPFQ pops 64 bits

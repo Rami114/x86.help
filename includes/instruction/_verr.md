@@ -6,7 +6,7 @@
 IF SRC(Offset) > (GDTR(Limit) or (LDTR(Limit))
   THEN ZF <- 0; FI;
 Read segment descriptor;
-IF SegmentDescriptor(DescriptorType) = 0 (\* System segment \*)
+IF SegmentDescriptor(DescriptorType) = 0 (* System segment *)
 or (SegmentDescriptor(Type) != conforming code segment)
 and (CPL > DPL) or (RPL > DPL)
   THEN

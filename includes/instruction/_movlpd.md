@@ -13,6 +13,16 @@ DEST[VLMAX-1:128] <- 0
 VMOVLPD (store)
 DEST[63:0] <- SRC[63:0]
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ MOVLPD:| __m128d _mm_loadl_pd ( __m128d a, double
+        | *p)                                     
+ MOVLPD:| void _mm_storel_pd (double *p, __m128d  
+        | a)                                      
+
 ```
 
  Opcode/Instruction                 | Op/En| 64/32-bit Mode| CPUID Feature Flag| Description                             
@@ -54,19 +64,11 @@ a double-precision floating-point value from the low 64-bits of the XMM register
 ### source (second operand) to the 64-bit memory location (first operand). Note
 VMOVLPD (store) (VEX.128.66.0F 13 /r) is legal and has the same behavior as
 the existing 66 0F 13 store. For VMOVLPD (store) (VEX.128.66.0F 13 /r) instruction
-version, VEX.vvvv is reserved and must be 1111b otherwise instruction will #UD.
+version, VEX.vvvv is reserved and must be 1111b otherwise instruction will **``#UD.``**
 If VMOVLPD is encoded with VEX.L= 1, an attempt to execute the instruction encoded
-with VEX.L= 1 will cause an #UD exception.
+with VEX.L= 1 will cause an **``#UD``** exception.
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- MOVLPD:| __m128d _mm_loadl_pd ( __m128d a, double
-        | \*p)                                     
- MOVLPD:| void _mm_storel_pd (double \*p, __m128d  
-        | a)                                      
 
 ### SIMD Floating-Point Exceptions
 None.

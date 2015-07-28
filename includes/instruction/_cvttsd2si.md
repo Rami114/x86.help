@@ -12,6 +12,12 @@ IF 64-Bit Mode and OperandSize = 64
              Integer32_Truncate(SRC[63:0]);
 FI;
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+int _mm_cvttsd_si32(__m128d a) __int64 _mm_cvttsd_si64(__m128d a)
+
+
 ```
 
  Opcode/Instruction                      | Op/En| 64/32-bit Mode| CPUID Feature Flag| Description                                 
@@ -52,12 +58,8 @@ integer, the floating point invalid exception is raised. If this exception is
 In 64-bit mode, Use of the REX.W prefix promotes the instruction to 64-bit operation.
 See the summary chart at the beginning of this section for encoding data and
 limits. Note: In VEX-encoded versions, VEX.vvvv is reserved and must be 1111b,
-otherwise instructions will #UD.
+otherwise instructions will **``#UD.``**
 
-
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-int _mm_cvttsd_si32(__m128d a) __int64 _mm_cvttsd_si64(__m128d a)
 
 
 ### SIMD Floating-Point Exceptions

@@ -28,6 +28,13 @@ DEST[18:16] <- INDEX
 DEST[127:19] <- 0000000000000000000000000000H
 DEST[VLMAX-1:128] <- 0
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ PHMINPOSUW:| __m128i _mm_minpos_epu16( __m128i packed_words);
+
 ```
 
  Opcode/Instruction                       | Op/En| 64/32 bit Mode Support| CPUID Feature Flag| Description                                
@@ -65,11 +72,6 @@ and place the unsigned
  be 1111b, VEX.L must be 0, otherwise       |                                            
  the instruction will **``#UD.``**                  |                                            
 
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- PHMINPOSUW:| __m128i _mm_minpos_epu16( __m128i packed_words);
 
 ### Flags Affected
 None.

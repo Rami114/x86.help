@@ -14,7 +14,7 @@ DEST <- DEST XOR SRC;
  35 id           | XOR EAX, imm32  | I    | Valid      | Valid          | EAX XOR imm32.                  
  REX.W + 35 id   | XOR RAX, imm32  | I    | Valid      | N.E.           | RAX XOR imm32 (sign-extended).  
  80 /6 ib        | XOR r/m8, imm8  | MI   | Valid      | Valid          | r/m8 XOR imm8.                  
- REX + 80 /6 ib  | XOR r/m8\*, imm8 | MI   | Valid      | N.E.           | r/m8 XOR imm8.                  
+ REX + 80 /6 ib  | XOR r/m8*, imm8 | MI   | Valid      | N.E.           | r/m8 XOR imm8.                  
  81 /6 iw        | XOR r/m16, imm16| MI   | Valid      | Valid          | r/m16 XOR imm16.                
  81 /6 id        | XOR r/m32, imm32| MI   | Valid      | Valid          | r/m32 XOR imm32.                
  REX.W + 81 /6 id| XOR r/m64, imm32| MI   | Valid      | N.E.           | r/m64 XOR imm32 (sign-extended).
@@ -22,17 +22,17 @@ DEST <- DEST XOR SRC;
  83 /6 ib        | XOR r/m32, imm8 | MI   | Valid      | Valid          | r/m32 XOR imm8 (sign-extended). 
  REX.W + 83 /6 ib| XOR r/m64, imm8 | MI   | Valid      | N.E.           | r/m64 XOR imm8 (sign-extended). 
  30 /r           | XOR r/m8, r8    | MR   | Valid      | Valid          | r/m8 XOR r8.                    
- REX + 30 /r     | XOR r/m8\*, r8\*  | MR   | Valid      | N.E.           | r/m8 XOR r8.                    
+ REX + 30 /r     | XOR r/m8*, r8*  | MR   | Valid      | N.E.           | r/m8 XOR r8.                    
  31 /r           | XOR r/m16, r16  | MR   | Valid      | Valid          | r/m16 XOR r16.                  
  31 /r           | XOR r/m32, r32  | MR   | Valid      | Valid          | r/m32 XOR r32.                  
  REX.W + 31 /r   | XOR r/m64, r64  | MR   | Valid      | N.E.           | r/m64 XOR r64.                  
  32 /r           | XOR r8, r/m8    | RM   | Valid      | Valid          | r8 XOR r/m8.                    
- REX + 32 /r     | XOR r8\*, r/m8\*  | RM   | Valid      | N.E.           | r8 XOR r/m8.                    
+ REX + 32 /r     | XOR r8*, r/m8*  | RM   | Valid      | N.E.           | r8 XOR r/m8.                    
  33 /r           | XOR r16, r/m16  | RM   | Valid      | Valid          | r16 XOR r/m16.                  
  33 /r           | XOR r32, r/m32  | RM   | Valid      | Valid          | r32 XOR r/m32.                  
  REX.W + 33 /r   | XOR r64, r/m64  | RM   | Valid      | N.E.           | r64 XOR r/m64.                  
 <aside class="notification">
-\* In 64-bit mode, r/m8 can not be encoded to access the following byte
+* In 64-bit mode, r/m8 can not be encoded to access the following byte
 registers if a REX prefix is used: AH, BH, CH, DH.
 </aside>
 

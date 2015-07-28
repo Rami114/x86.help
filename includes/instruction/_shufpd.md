@@ -39,9 +39,19 @@ IF IMM0[3] = 0
   THEN DEST[255:192] <- SRC2[191:128]
   ELSE DEST[255:192] <- SRC2[255:192] FI;
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ SHUFPD: | __m128d _mm_shuffle_pd(__m128d a, __m128d
+         | b, unsigned int imm8)                    
+ VSHUFPD:| __m256d _mm256_shuffle_pd (__m256d a,    
+         | __m256d b, const int select);            
+
 ```
 
- Opcode\*/Instruction                   | Op/En| 64/32 bit Mode Support| CPUID Feature Flag| Description                                  
+ Opcode*/Instruction                   | Op/En| 64/32 bit Mode Support| CPUID Feature Flag| Description                                  
  ---  | --- | --- | --- | ---
  66 0F C6 /r ib SHUFPD xmm1, xmm2/m128,| RMI  | V/V                   | SSE2              | Shuffle packed double-precision floatingpoint
  imm8                                  |      |                       |                   | values selected by imm8 from xmm1 and        
@@ -92,14 +102,6 @@ selects which value is moved from the source operand to the result. Bits 2 throu
 7 of the select operand are reserved and must be set to 0.
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- SHUFPD: | __m128d _mm_shuffle_pd(__m128d a, __m128d
-         | b, unsigned int imm8)                    
- VSHUFPD:| __m256d _mm256_shuffle_pd (__m256d a,    
-         | __m256d b, const int select);            
 
 ### SIMD Floating-Point Exceptions
 None.

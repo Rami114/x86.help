@@ -12,7 +12,22 @@ IF (N > OperandSize - 1)
   CF <- 1
 ELSE
   CF <- 0
-FI
+FI```
+
+### Flags Affected
+ZF, CF and SF flags are updated based on the result. OF flag is cleared. AF
+and PF flags are undefined.
+
+
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ BZHI:| unsigned __int32 _bzhi_u32(unsigned  
+      | __int32 src, unsigned __int32 index);
+ BZHI:| unsigned __int64 _bzhi_u64(unsigned  
+      | __int64 src, unsigned __int32 index);
 
 ```
 
@@ -43,22 +58,9 @@ contained in the 8 low bits of the third operand is greater than OperandSize
 -1. This instruction is not supported in real mode and virtual-8086 mode. The
 operand size is always 32 bits if not in 64-bit mode. In 64-bit mode operand
 size 64 requires VEX.W1. VEX.W1 is ignored in non-64-bit modes. An attempt to
-execute this instruction with VEX.L not equal to 0 will cause #UD.
+execute this instruction with VEX.L not equal to 0 will cause **``#UD.``**
 
 
-
-### Flags Affected
-ZF, CF and SF flags are updated based on the result. OF flag is cleared. AF
-and PF flags are undefined.
-
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- BZHI:| unsigned __int32 _bzhi_u32(unsigned  
-      | __int32 src, unsigned __int32 index);
- BZHI:| unsigned __int64 _bzhi_u64(unsigned  
-      | __int64 src, unsigned __int32 index);
 
 ### SIMD Floating-Point Exceptions
 None

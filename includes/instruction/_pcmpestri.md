@@ -1,3 +1,30 @@
+## PCMPESTRI  -  Packed Compare Explicit Length Strings, Return Index
+
+> Intel C/C++ Compiler Intrinsic Equivalent For Returning Index
+
+``` slim
+| |  
+---- | -----
+ int| _mm_cmpestri (__m128i a, int la, __m128i
+    | b, int lb, const int mode);             
+
+> Intel C/C++ Compiler Intrinsics For Reading EFlag Results
+
+``` slim
+   | |  
+---- | -----
+ int| _mm_cmpestra (__m128i a, int la, __m128i
+    | b, int lb, const int mode);             
+ int| _mm_cmpestrc (__m128i a, int la, __m128i
+    | b, int lb, const int mode);             
+ int| _mm_cmpestro (__m128i a, int la, __m128i
+    | b, int lb, const int mode);             
+ int| _mm_cmpestrs (__m128i a, int la, __m128i
+    | b, int lb, const int mode);             
+ int| _mm_cmpestrz (__m128i a, int la, __m128i
+    | b, int lb, const int mode);             
+
+```
 
  Opcode/Instruction                     | Op/En| 64/32 bit Mode Support| CPUID Feature Flag| Description                           
  ---  | --- | --- | --- | ---
@@ -64,32 +91,14 @@ of EDX is < 16 (8), reset otherwise SFlag - Set if absolute-value of EAX is
  64 bit             | xmm      | xmm/m128 | EAX     | EDX     | ECX   
  64 bit + REX.W     | xmm      | xmm/m128 | RAX     | RDX     | RCX   
 
-### Intel C/C++ Compiler Intrinsic Equivalent For Returning Index
-   | |  
----- | -----
- int| _mm_cmpestri (__m128i a, int la, __m128i
-    | b, int lb, const int mode);             
 
-### Intel C/C++ Compiler Intrinsics For Reading EFlag Results
-   | |  
----- | -----
- int| _mm_cmpestra (__m128i a, int la, __m128i
-    | b, int lb, const int mode);             
- int| _mm_cmpestrc (__m128i a, int la, __m128i
-    | b, int lb, const int mode);             
- int| _mm_cmpestro (__m128i a, int la, __m128i
-    | b, int lb, const int mode);             
- int| _mm_cmpestrs (__m128i a, int la, __m128i
-    | b, int lb, const int mode);             
- int| _mm_cmpestrz (__m128i a, int la, __m128i
-    | b, int lb, const int mode);             
 
 ### SIMD Floating-Point Exceptions
 None.
 
 
 ### Other Exceptions
-See Exceptions Type 4; additionally, this instruction does not cause #GP if
+See Exceptions Type 4; additionally, this instruction does not cause **``#GP``** if
 the memory operand is not aligned to 16 Byte boundary, and
 
    | |  

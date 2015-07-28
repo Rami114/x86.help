@@ -13,7 +13,7 @@ FI;
 
 ```
 
- Opcode\* | Instruction| Op/En| 64-Bit Mode| Compat/Leg Mode| Description                              
+ Opcode* | Instruction| Op/En| 64-Bit Mode| Compat/Leg Mode| Description                              
  ---  | --- | --- | --- | --- | ---
  0F 01 F9| RDTSCP     | NP   | Valid      | Valid          | Read 64-bit time-stamp counter and 32-bit
          |            |      |            |                | IA32_TSC_AUX value into EDX:EAX and      

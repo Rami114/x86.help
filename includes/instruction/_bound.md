@@ -36,7 +36,7 @@ is 32) or a pair of signed word-integers (when the operand-size attribute is
 second doubleword (or word) is the upper bound of the array. The array index
 must be greater than or equal to the lower bound and less than or equal to the
 upper bound plus the operand size in bytes. If the index is not within bounds,
-a BOUND range exceeded exception (#BR) is signaled. When this exception is generated,
+a BOUND range exceeded exception (**``#BR)``** is signaled. When this exception is generated,
 the saved return instruction pointer points to the BOUND instruction.
 
 The bounds limit data structure (two words or doublewords containing the lower

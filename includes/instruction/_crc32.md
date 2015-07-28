@@ -5,52 +5,7 @@
 ``` slim
 <aside class="notification">
 
-</aside>
-
-```
-
- Opcode/Instruction                   | Op/En| 64-Bit Mode| Compat/Leg Mode| Description               
- ---  | --- | --- | --- | ---
- F2 0F 38 F0 /r CRC32 r32, r/m8       | RM   | Valid      | Valid          | Accumulate CRC32 on r/m8. 
- F2 REX 0F 38 F0 /r CRC32 r32, r/m8\*  | RM   | Valid      | N.E.           | Accumulate CRC32 on r/m8. 
- F2 0F 38 F1 /r CRC32 r32, r/m16      | RM   | Valid      | Valid          | Accumulate CRC32 on r/m16.
- F2 0F 38 F1 /r CRC32 r32, r/m32      | RM   | Valid      | Valid          | Accumulate CRC32 on r/m32.
- F2 REX.W 0F 38 F0 /r CRC32 r64, r/m8 | RM   | Valid      | N.E.           | Accumulate CRC32 on r/m8. 
- F2 REX.W 0F 38 F1 /r CRC32 r64, r/m64| RM   | Valid      | N.E.           | Accumulate CRC32 on r/m64.
-<aside class="notification">
-\*In 64-bit mode, r/m8 can not be encoded to access the following byte
-registers if a REX prefix is used: AH, BH, CH, DH.
-</aside>
-
-
-### Instruction Operand Encoding
- Op/En| Operand 1       | Operand 2    | Operand 3| Operand 4
- ---  | --- | --- | --- | ---
- RM   | ModRM:reg (r, w)| ModRM:r/m (r)| NA       | NA       
-
-### Description
-Starting with an initial value in the first operand (destination operand), accumulates
-a CRC32 (polynomial 0x11EDC6F41) value for the second operand (source operand)
-and stores the result in the destination operand. The source operand can be
-a register or a memory location. The destination operand must be an r32 or r64
-register. If the destination is an r64 register, then the 32-bit result is stored
-in the least significant double word and 00000000H is stored in the most significant
-double word of the r64 register.
-
-The initial value supplied in the destination operand is a double word integer
-stored in the r32 register or the least significant double word of the r64 register.
-To incrementally accumulate a CRC32 value, software retains the result of the
-previous CRC32 operation in the destination operand, then executes the CRC32
-instruction again with new input data in the source operand. Data contained
-in the source operand is processed in reflected bit order. This means that the
-most significant bit of the source operand is treated as the least significant
-bit of the quotient, and so on, for all the bits of the source operand. Likewise,
-the result of the CRC operation is stored in the destination operand in reflected
-bit order. This means that the most significant bit of the resulting CRC (bit
-31) is stored in the least significant bit of the destination operand (bit 0),
-and so on, for all the bits of the CRC.
-
-
+</aside>```
 
 ### BIT_REFLECT64: DST[63-0] = SRC[0-63]BIT_REFLECT32: DST[31-0] = SRC[0-31]BIT_REFLECT16
 DST[15-0] = SRC[0-15]BIT_REFLECT8: DST[7-0] = SRC[0-7]MOD2: Remainder from Polynomial
@@ -96,11 +51,58 @@ XOR TEMP4[39-0]TEMP6[31-0]  TEMP5[39-0] MOD2 11EDC6F41H DEST[31-0]  BIT_RE
 None
 
 
-### Intel C/C++ Compiler Intrinsic Equivalent
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
 unsigned int _mm_crc32_u8( unsigned int crc, unsigned char data ) unsigned int
 _mm_crc32_u16( unsigned int crc, unsigned short data ) unsigned int _mm_crc32_u32(
 unsigned int crc, unsigned int data ) unsinged __int64 _mm_crc32_u64( unsinged
 __int64 crc, unsigned __int64 data )
+
+
+```
+
+ Opcode/Instruction                   | Op/En| 64-Bit Mode| Compat/Leg Mode| Description               
+ ---  | --- | --- | --- | ---
+ F2 0F 38 F0 /r CRC32 r32, r/m8       | RM   | Valid      | Valid          | Accumulate CRC32 on r/m8. 
+ F2 REX 0F 38 F0 /r CRC32 r32, r/m8*  | RM   | Valid      | N.E.           | Accumulate CRC32 on r/m8. 
+ F2 0F 38 F1 /r CRC32 r32, r/m16      | RM   | Valid      | Valid          | Accumulate CRC32 on r/m16.
+ F2 0F 38 F1 /r CRC32 r32, r/m32      | RM   | Valid      | Valid          | Accumulate CRC32 on r/m32.
+ F2 REX.W 0F 38 F0 /r CRC32 r64, r/m8 | RM   | Valid      | N.E.           | Accumulate CRC32 on r/m8. 
+ F2 REX.W 0F 38 F1 /r CRC32 r64, r/m64| RM   | Valid      | N.E.           | Accumulate CRC32 on r/m64.
+<aside class="notification">
+*In 64-bit mode, r/m8 can not be encoded to access the following byte
+registers if a REX prefix is used: AH, BH, CH, DH.
+</aside>
+
+
+### Instruction Operand Encoding
+ Op/En| Operand 1       | Operand 2    | Operand 3| Operand 4
+ ---  | --- | --- | --- | ---
+ RM   | ModRM:reg (r, w)| ModRM:r/m (r)| NA       | NA       
+
+### Description
+Starting with an initial value in the first operand (destination operand), accumulates
+a CRC32 (polynomial 0x11EDC6F41) value for the second operand (source operand)
+and stores the result in the destination operand. The source operand can be
+a register or a memory location. The destination operand must be an r32 or r64
+register. If the destination is an r64 register, then the 32-bit result is stored
+in the least significant double word and 00000000H is stored in the most significant
+double word of the r64 register.
+
+The initial value supplied in the destination operand is a double word integer
+stored in the r32 register or the least significant double word of the r64 register.
+To incrementally accumulate a CRC32 value, software retains the result of the
+previous CRC32 operation in the destination operand, then executes the CRC32
+instruction again with new input data in the source operand. Data contained
+in the source operand is processed in reflected bit order. This means that the
+most significant bit of the source operand is treated as the least significant
+bit of the quotient, and so on, for all the bits of the source operand. Likewise,
+the result of the CRC operation is stored in the destination operand in reflected
+bit order. This means that the most significant bit of the resulting CRC (bit
+31) is stored in the least significant bit of the destination operand (bit 0),
+and so on, for all the bits of the CRC.
+
 
 
 ### SIMD Floating Point Exceptions

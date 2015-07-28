@@ -31,8 +31,8 @@ of numbers in integer format.
  − 1                               | − I 0 + I
  or Value Too Large for DEST Format| + ∞NaN   
 <aside class="notification">
-F Means finite floating-point value. Ι Means integer. \* Indicates floating-point
-invalid-operation (#IA) exception.
+F Means finite floating-point value. Ι Means integer. * Indicates floating-point
+invalid-operation (**``#IA)``** exception.
 </aside>
 
 This instruction's operation is the same in non-64-bit modes and 64-bit mode.

@@ -25,6 +25,15 @@ DEST[191:160] <- Convert_Single_Precision_Floating_Point_To_Integer_Truncate(SRC
 DEST[223:192] <- Convert_Single_Precision_Floating_Point_To_Integer_Truncate(SRC[223:192])
 DEST[255:224] <- Convert_Single_Precision_Floating_Point_To_Integer_Truncate(SRC[255:224])
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ CVTTPS2DQ: | __m128i _mm_cvttps_epi32(__m128 a) 
+ VCVTTPS2DQ:| __m256i _mm256_cvttps_epi32 (__m256
+            | a)                                 
+
 ```
 
  Opcode/Instruction                      | Op/En| 64/32-bit Mode| CPUID Feature Flag| Description                                  
@@ -64,16 +73,9 @@ upper bits (VLMAX-1:128) of the corresponding YMM register destination are zeroe
 VEX.256 encoded version: The source operand is a YMM register or 256- bit memory
 location. The destination operation is a YMM register. Note: In VEX-encoded
 versions, VEX.vvvv is reserved and must be 1111b otherwise instructions will
-#UD.
+**``#UD.``**
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- CVTTPS2DQ: | __m128i _mm_cvttps_epi32(__m128 a) 
- VCVTTPS2DQ:| __m256i _mm256_cvttps_epi32 (__m256
-            | a)                                 
 
 ### SIMD Floating-Point Exceptions
 Invalid, Precision.

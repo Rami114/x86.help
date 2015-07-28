@@ -32,7 +32,19 @@ If RFBM[2] = 1
        ELSE initialize AVX state;
      FI;
 FI;
-XRSTOR_INFO <- CPL,VMXNR,LAXA,COMPMASK;
+XRSTOR_INFO <- CPL,VMXNR,LAXA,COMPMASK;```
+
+### Flags Affected
+None.
+
+
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ XRSTORS: XRSTORS64: void _xrstors64(| void _xrstors( void * , unsigned __int64);
+ void * , unsigned __int64);         |                                           
 
 ```
 
@@ -75,7 +87,7 @@ XRSTORS initializes state component i.
  - If RFBM[i] = 1 and XSTATE_BV[i] = 1, XRSTORS loads state component i from the
 XSAVE area.
  - If XRSTORS attempts to load MXCSR with an illegal value, a general-protection
-exception (#GP) occurs.
+exception (**``#GP)``** occurs.
  - XRSTORS loads the internal value XRSTOR_INFO, which may be used to optimize
 a subsequent execution of XSAVEOPT or XSAVES.
  - Immediately following an execution of XRSTORS, the processor tracks as in-use
@@ -84,20 +96,10 @@ XSTATE_BV[i] = 1; it tracks as modified any state component i for which RFBM[i]
 = 0.
 
 Use of a source operand not aligned to 64-byte boundary (for 64-bit and 32-bit
-modes) results in a general-protection (#GP) exception. In 64-bit mode, the
+modes) results in a general-protection (**``#GP)``** exception. In 64-bit mode, the
 upper 32 bits of RDX and RAX are ignored.
 
 
-
-### Flags Affected
-None.
-
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- XRSTORS: XRSTORS64: void _xrstors64(| void _xrstors( void \* , unsigned __int64);
- void \* , unsigned __int64);         |                                           
 
 ### Protected Mode Exceptions
    | |  
@@ -131,12 +133,12 @@ None.
                 | if the memory operand is not aligned     
                 | on a 16-byte boundary, as described      
                 | above. If the alignment check            
-exception (#AC) is enabled (and the CPL is 3), signaling of #AC is not guaranteed
-and may vary with implementation, as follows. In all implementations where #AC
-is not signaled, a #GP is signaled in its place. In addition, the width of the
+exception (**``#AC)``** is enabled (and the CPL is 3), signaling of **``#AC``** is not guaranteed
+and may vary with implementation, as follows. In all implementations where **``#AC``**
+is not signaled, a **``#GP``** is signaled in its place. In addition, the width of the
 alignment check may also vary with implementation. For instance, for a given
 implementation, an alignment check exception might be signaled for a 2-byte
-misalignment, whereas a #GP might be signaled for all other misalignments (4-,
+misalignment, whereas a **``#GP``** might be signaled for all other misalignments (4-,
 8-, or 16-byte misalignments).
 
 

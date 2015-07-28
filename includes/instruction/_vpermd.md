@@ -13,6 +13,12 @@ DEST[191:160] <- (SRC2[255:0] >> (SRC1[162:160] \* 32))[31:0];
 DEST[223:192] <- (SRC2[255:0] >> (SRC1[194:192] \* 32))[31:0];
 DEST[255:224] <- (SRC2[255:0] >> (SRC1[226:224] \* 32))[31:0];
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+VPERMD: __m256i _mm256_permutevar8x32_epi32(__m256i a, __m256i offsets);
+
+
 ```
 
  Opcode/Instruction                 | Op/En| 64/32 -bit Mode| CPUID Feature Flag| Description                           
@@ -33,13 +39,9 @@ third operand), the resultant dword value from the second source operand is
 copied to the destination operand (the first operand) in the corresponding position
 of the index element. Note that this instruction permits a doubleword in the
 source operand to be copied to more than one doubleword location in the destination
-operand. An attempt to execute VPERMD encoded with VEX.L= 0 will cause an #UD
+operand. An attempt to execute VPERMD encoded with VEX.L= 0 will cause an **``#UD``**
 exception.
 
-
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-VPERMD: __m256i _mm256_permutevar8x32_epi32(__m256i a, __m256i offsets);
 
 
 ### SIMD Floating-Point Exceptions

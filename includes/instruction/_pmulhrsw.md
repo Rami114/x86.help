@@ -4,23 +4,23 @@
 
 ``` slim
 PMULHRSW (with 64-bit operands)
-  temp0[31:0] = INT32 ((DEST[15:0] \* SRC[15:0]) >>14) + 1;
-  temp1[31:0] = INT32 ((DEST[31:16] \* SRC[31:16]) >>14) + 1;
-  temp2[31:0] = INT32 ((DEST[47:32] \* SRC[47:32]) >> 14) + 1;
-  temp3[31:0] = INT32 ((DEST[63:48] \* SRc[63:48]) >> 14) + 1;
+  temp0[31:0] = INT32 ((DEST[15:0] * SRC[15:0]) >>14) + 1;
+  temp1[31:0] = INT32 ((DEST[31:16] * SRC[31:16]) >>14) + 1;
+  temp2[31:0] = INT32 ((DEST[47:32] * SRC[47:32]) >> 14) + 1;
+  temp3[31:0] = INT32 ((DEST[63:48] * SRc[63:48]) >> 14) + 1;
   DEST[15:0] = temp0[16:1];
   DEST[31:16] = temp1[16:1];
   DEST[47:32] = temp2[16:1];
   DEST[63:48] = temp3[16:1];
 PMULHRSW (with 128-bit operand)
-  temp0[31:0] = INT32 ((DEST[15:0] \* SRC[15:0]) >>14) + 1;
-  temp1[31:0] = INT32 ((DEST[31:16] \* SRC[31:16]) >>14) + 1;
-  temp2[31:0] = INT32 ((DEST[47:32] \* SRC[47:32]) >>14) + 1;
-  temp3[31:0] = INT32 ((DEST[63:48] \* SRC[63:48]) >>14) + 1;
-  temp4[31:0] = INT32 ((DEST[79:64] \* SRC[79:64]) >>14) + 1;
-  temp5[31:0] = INT32 ((DEST[95:80] \* SRC[95:80]) >>14) + 1;
-  temp6[31:0] = INT32 ((DEST[111:96] \* SRC[111:96]) >>14) + 1;
-  temp7[31:0] = INT32 ((DEST[127:112] \* SRC[127:112) >>14) + 1;
+  temp0[31:0] = INT32 ((DEST[15:0] * SRC[15:0]) >>14) + 1;
+  temp1[31:0] = INT32 ((DEST[31:16] * SRC[31:16]) >>14) + 1;
+  temp2[31:0] = INT32 ((DEST[47:32] * SRC[47:32]) >>14) + 1;
+  temp3[31:0] = INT32 ((DEST[63:48] * SRC[63:48]) >>14) + 1;
+  temp4[31:0] = INT32 ((DEST[79:64] * SRC[79:64]) >>14) + 1;
+  temp5[31:0] = INT32 ((DEST[95:80] * SRC[95:80]) >>14) + 1;
+  temp6[31:0] = INT32 ((DEST[111:96] * SRC[111:96]) >>14) + 1;
+  temp7[31:0] = INT32 ((DEST[127:112] * SRC[127:112) >>14) + 1;
   DEST[15:0] = temp0[16:1];
   DEST[31:16] = temp1[16:1];
   DEST[47:32] = temp2[16:1];
@@ -30,14 +30,14 @@ PMULHRSW (with 128-bit operand)
   DEST[111:96] = temp6[16:1];
   DEST[127:112] = temp7[16:1];
 VPMULHRSW (VEX.128 encoded version)
-temp0[31:0] <- INT32 ((SRC1[15:0] \* SRC2[15:0]) >>14) + 1
-temp1[31:0] <- INT32 ((SRC1[31:16] \* SRC2[31:16]) >>14) + 1
-temp2[31:0] <- INT32 ((SRC1[47:32] \* SRC2[47:32]) >>14) + 1
-temp3[31:0] <- INT32 ((SRC1[63:48] \* SRC2[63:48]) >>14) + 1
-temp4[31:0] <- INT32 ((SRC1[79:64] \* SRC2[79:64]) >>14) + 1
-temp5[31:0] <- INT32 ((SRC1[95:80] \* SRC2[95:80]) >>14) + 1
-temp6[31:0] <- INT32 ((SRC1[111:96] \* SRC2[111:96]) >>14) + 1
-temp7[31:0] <- INT32 ((SRC1[127:112] \* SRC2[127:112) >>14) + 1
+temp0[31:0] <- INT32 ((SRC1[15:0] * SRC2[15:0]) >>14) + 1
+temp1[31:0] <- INT32 ((SRC1[31:16] * SRC2[31:16]) >>14) + 1
+temp2[31:0] <- INT32 ((SRC1[47:32] * SRC2[47:32]) >>14) + 1
+temp3[31:0] <- INT32 ((SRC1[63:48] * SRC2[63:48]) >>14) + 1
+temp4[31:0] <- INT32 ((SRC1[79:64] * SRC2[79:64]) >>14) + 1
+temp5[31:0] <- INT32 ((SRC1[95:80] * SRC2[95:80]) >>14) + 1
+temp6[31:0] <- INT32 ((SRC1[111:96] * SRC2[111:96]) >>14) + 1
+temp7[31:0] <- INT32 ((SRC1[127:112] * SRC2[127:112) >>14) + 1
 DEST[15:0] <- temp0[16:1]
 DEST[31:16] <- temp1[16:1]
 DEST[47:32] <- temp2[16:1]
@@ -48,22 +48,34 @@ DEST[111:96] <- temp6[16:1]
 DEST[127:112] <- temp7[16:1]
 DEST[VLMAX-1:128] <- 0
 VPMULHRSW (VEX.256 encoded version)
-temp0[31:0] <- INT32 ((SRC1[15:0] \* SRC2[15:0]) >>14) + 1
-temp1[31:0] <- INT32 ((SRC1[31:16] \* SRC2[31:16]) >>14) + 1
-temp2[31:0] <- INT32 ((SRC1[47:32] \* SRC2[47:32]) >>14) + 1
-temp3[31:0] <- INT32 ((SRC1[63:48] \* SRC2[63:48]) >>14) + 1
-temp4[31:0] <- INT32 ((SRC1[79:64] \* SRC2[79:64]) >>14) + 1
-temp5[31:0] <- INT32 ((SRC1[95:80] \* SRC2[95:80]) >>14) + 1
-temp6[31:0] <- INT32 ((SRC1[111:96] \* SRC2[111:96]) >>14) + 1
-temp7[31:0] <- INT32 ((SRC1[127:112] \* SRC2[127:112) >>14) + 1
-temp8[31:0] <- INT32 ((SRC1[143:128] \* SRC2[143:128]) >>14) + 1
-temp9[31:0] <- INT32 ((SRC1[159:144] \* SRC2[159:144]) >>14) + 1
-temp10[31:0] <- INT32 ((SRC1[75:160] \* SRC2[175:160]) >>14) + 1
-temp11[31:0] <- INT32 ((SRC1[191:176] \* SRC2[191:176]) >>14) + 1
-temp12[31:0] <- INT32 ((SRC1[207:192] \* SRC2[207:192]) >>14) + 1
-temp13[31:0] <- INT32 ((SRC1[223:208] \* SRC2[223:208]) >>14) + 1
-temp14[31:0] <- INT32 ((SRC1[239:224] \* SRC2[239:224]) >>14) + 1
-temp15[31:0] <- INT32 ((SRC1[255:240] \* SRC2[255:240) >>14) + 1
+temp0[31:0] <- INT32 ((SRC1[15:0] * SRC2[15:0]) >>14) + 1
+temp1[31:0] <- INT32 ((SRC1[31:16] * SRC2[31:16]) >>14) + 1
+temp2[31:0] <- INT32 ((SRC1[47:32] * SRC2[47:32]) >>14) + 1
+temp3[31:0] <- INT32 ((SRC1[63:48] * SRC2[63:48]) >>14) + 1
+temp4[31:0] <- INT32 ((SRC1[79:64] * SRC2[79:64]) >>14) + 1
+temp5[31:0] <- INT32 ((SRC1[95:80] * SRC2[95:80]) >>14) + 1
+temp6[31:0] <- INT32 ((SRC1[111:96] * SRC2[111:96]) >>14) + 1
+temp7[31:0] <- INT32 ((SRC1[127:112] * SRC2[127:112) >>14) + 1
+temp8[31:0] <- INT32 ((SRC1[143:128] * SRC2[143:128]) >>14) + 1
+temp9[31:0] <- INT32 ((SRC1[159:144] * SRC2[159:144]) >>14) + 1
+temp10[31:0] <- INT32 ((SRC1[75:160] * SRC2[175:160]) >>14) + 1
+temp11[31:0] <- INT32 ((SRC1[191:176] * SRC2[191:176]) >>14) + 1
+temp12[31:0] <- INT32 ((SRC1[207:192] * SRC2[207:192]) >>14) + 1
+temp13[31:0] <- INT32 ((SRC1[223:208] * SRC2[223:208]) >>14) + 1
+temp14[31:0] <- INT32 ((SRC1[239:224] * SRC2[239:224]) >>14) + 1
+temp15[31:0] <- INT32 ((SRC1[255:240] * SRC2[255:240) >>14) + 1
+
+> Intel C/C++ Compiler Intrinsic Equivalents
+
+``` slim
+   | |  
+---- | -----
+ PMULHRSW:   | __m64 _mm_mulhrs_pi16 (__m64 a, __m64
+             | b)                                   
+ (V)PMULHRSW:| __m128i _mm_mulhrs_epi16 (__m128i a, 
+             | __m128i b)                           
+ VPMULHRSW:  | __m256i _mm256_mulhrs_epi16 (__m256i 
+             | a, __m256i b)                        
 
 ```
 
@@ -107,7 +119,7 @@ bits immediately to the right of the most significant bit of each 18-bit interme
 result and packed to the destination operand.
 
 When the source operand is a 128-bit memory operand, the operand must be aligned
-on a 16-byte boundary or a general-protection exception (#GP) will be generated.
+on a 16-byte boundary or a general-protection exception (**``#GP)``** will be generated.
 
 In 64-bit mode, use the REX prefix to access additional registers. Legacy SSE
 version: Both operands can be MMX registers. The second source operand is an
@@ -124,16 +136,6 @@ The second source operand can be an YMM register or a 256-bit memory location.
 The first source and destination operands are YMM registers.
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalents
-   | |  
----- | -----
- PMULHRSW:   | __m64 _mm_mulhrs_pi16 (__m64 a, __m64
-             | b)                                   
- (V)PMULHRSW:| __m128i _mm_mulhrs_epi16 (__m128i a, 
-             | __m128i b)                           
- VPMULHRSW:  | __m256i _mm256_mulhrs_epi16 (__m256i 
-             | a, __m256i b)                        
 
 ### SIMD Floating-Point Exceptions
 None.

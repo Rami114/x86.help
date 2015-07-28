@@ -3,13 +3,21 @@
 > Operation
 
 ``` slim
-(\* MWAIT takes the argument in EAX as a hint extension and is architected to take the argument in ECX as an instruction extension
-MWAIT EAX, ECX \*)
+(* MWAIT takes the argument in EAX as a hint extension and is architected to take the argument in ECX as an instruction extension
+MWAIT EAX, ECX *)
 {
 WHILE ( (“Monitor Hardware is in armed state”)) {
   implementation_dependent_optimized_state(EAX, ECX); }
 Set the state of Monitor Hardware as triggered;
 }
+
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ MWAIT:| void _mm_mwait(unsigned extensions,
+       | unsigned hints)                    
 
 ```
 
@@ -111,7 +119,7 @@ Table 3-67 describes the meaning of ECX and EAX registers for MWAIT extensions.
  Bits                                   | Description                     
  Sub C-state within a C-state, indicated| 3 : 0                           
  by bits [7:4]                          |                                 
- Target C-state\*Value of 0 means C1;    | 7 : 4                           
+ Target C-state*Value of 0 means C1;    | 7 : 4                           
  1 means C2 and so on Value of 01111B   |                                 
  means C0                               |                                 
 <aside class="notification">
@@ -136,12 +144,6 @@ Volume 3A.
 
 
 
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- MWAIT:| void _mm_mwait(unsigned extensions,
-       | unsigned hints)                    
-
 ### Example
 MONITOR/MWAIT instruction pair must be coded in the same loop because execution
 of the MWAIT instruction will trigger the monitor hardware. It is not a proper
@@ -150,7 +152,7 @@ without executing MWAIT has no adverse effects.
 
 ### Typically the MONITOR/MWAIT pair is used in a sequence, such as
 
-EAX = Logical Address(Trigger) ECX = 0 (\*Hints \*) EDX = 0 (\* Hints \*)
+EAX = Logical Address(Trigger) ECX = 0 (*Hints *) EDX = 0 (* Hints *)
 
 IF ( !trigger_store_happened) {MONITOR EAX, ECX, EDX IF ( !trigger_store_happened
 ) {MWAIT EAX, ECX }}

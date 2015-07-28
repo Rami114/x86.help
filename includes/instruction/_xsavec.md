@@ -20,7 +20,19 @@ IF RFBM[2] = 1 AND XINUSE[2] = 1
   THEN store AVX state into extended region of XSAVE area;
 FI;
 XSTATE_BV field in XSAVE header <- XINUSE AND RFBM;
-XCOMP_BV field in XSAVE header <- COMPMASK;
+XCOMP_BV field in XSAVE header <- COMPMASK;```
+
+### Flags Affected
+None.
+
+
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ XSAVEC:  | void _xsavec( void * , unsigned __int64);  
+ XSAVEC64:| void _xsavec64( void * , unsigned __int64);
 
 ```
 
@@ -66,20 +78,10 @@ fields.
 area (see Section 13.4.3, “Extended Region of an XSAVE Area”).
 
 Use of a destination operand not aligned to 64-byte boundary (in either 64-bit
-or 32-bit modes) results in a general-protection (#GP) exception. In 64-bit
+or 32-bit modes) results in a general-protection (**``#GP)``** exception. In 64-bit
 mode, the upper 32 bits of RDX and RAX are ignored.
 
 
-
-### Flags Affected
-None.
-
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- XSAVEC:  | void _xsavec( void \* , unsigned __int64);  
- XSAVEC64:| void _xsavec64( void \* , unsigned __int64);
 
 ### Protected Mode Exceptions
    | |  

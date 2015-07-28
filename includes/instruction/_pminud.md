@@ -15,7 +15,41 @@ IF (DEST[95:64] < SRC[95:64])
 IF (DEST[127:96] < SRC[127:96])
   THEN DEST[127:96] <- DEST[127:96];
   ELSE DEST[127:96] <- SRC[127:96]; FI;
-VPMINUD (VEX.128 encoded version)
+VPMINUD (VEX.128 encoded version)```
+
+### VPMINUD instruction for 128-bit operands
+  IF SRC1[31:0] < SRC2[31:0] THEN
+     DEST[31:0] <- SRC1[31:0];
+  ELSE
+     DEST[31:0] <- SRC2[31:0]; FI;
+  (* Repeat operation for 2nd through 3rd dwords in source and destination operands *)
+  IF SRC1[127:95] < SRC2[127:95] THEN
+     DEST[127:95] <- SRC1[127:95];
+  ELSE
+     DEST[127:95] <- SRC2[127:95]; FI;
+DEST[VLMAX-1:128] <- 0
+VPMINUD (VEX.256 encoded version)
+### VPMINUD instruction for 128-bit operands
+  IF SRC1[31:0] < SRC2[31:0] THEN
+     DEST[31:0] <- SRC1[31:0];
+  ELSE
+     DEST[31:0] <- SRC2[31:0]; FI;
+  (* Repeat operation for 2nd through 7th dwords in source and destination operands *)
+  IF SRC1[255:224] < SRC2[255:224] THEN
+     DEST[255:224] <- SRC1[255:224];
+  ELSE
+     DEST[255:224] <- SRC2[255:224]; FI;
+
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ (V)PMINUD:| __m128i _mm_min_epu32 ( __m128i a, __m128i
+           | b);                                       
+ VPMINUD:  | __m256i _mm256_min_epu32 ( __m256i a,     
+           | __m256i b);                               
+
 ```
 
  Opcode/Instruction                   | Op/En| 64/32 bit Mode Support| CPUID Feature Flag| Description                           
@@ -54,37 +88,6 @@ VEX.L must be 0, otherwise the instruction will #UD.
 </aside>
 
 
-
-### VPMINUD instruction for 128-bit operands
-  IF SRC1[31:0] < SRC2[31:0] THEN
-     DEST[31:0] <- SRC1[31:0];
-  ELSE
-     DEST[31:0] <- SRC2[31:0]; FI;
-  (\* Repeat operation for 2nd through 3rd dwords in source and destination operands \*)
-  IF SRC1[127:95] < SRC2[127:95] THEN
-     DEST[127:95] <- SRC1[127:95];
-  ELSE
-     DEST[127:95] <- SRC2[127:95]; FI;
-DEST[VLMAX-1:128] <- 0
-VPMINUD (VEX.256 encoded version)
-### VPMINUD instruction for 128-bit operands
-  IF SRC1[31:0] < SRC2[31:0] THEN
-     DEST[31:0] <- SRC1[31:0];
-  ELSE
-     DEST[31:0] <- SRC2[31:0]; FI;
-  (\* Repeat operation for 2nd through 7th dwords in source and destination operands \*)
-  IF SRC1[255:224] < SRC2[255:224] THEN
-     DEST[255:224] <- SRC1[255:224];
-  ELSE
-     DEST[255:224] <- SRC2[255:224]; FI;
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- (V)PMINUD:| __m128i _mm_min_epu32 ( __m128i a, __m128i
-           | b);                                       
- VPMINUD:  | __m256i _mm256_min_epu32 ( __m256i a,     
-           | __m256i b);                               
 
 ### Flags Affected
 None.

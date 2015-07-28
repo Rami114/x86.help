@@ -1,35 +1,8 @@
 ## LOCK - Assert LOCK# Signal Prefix
 
-> Operation
+> Intel Xeon, and P6 family processors), locking may occur without the LOCK# signal
 
 ``` slim
-AssertLOCK#(DurationOfAccompaningInstruction);
-
-```
-
- Opcode| Instruction| Op/En| 64-Bit Mode| Compat/Leg Mode| Description                         
- ---  | --- | --- | --- | --- | ---
- F0    | LOCK       | NP   | Valid      | Valid          | Asserts LOCK# signal for duration of
-       |            |      |            |                | the accompanying instruction.       
-<aside class="notification">
-\* See IA-32 Architecture Compatibility section below.
-</aside>
-
-
-### Instruction Operand Encoding
- Op/En| Operand 1| Operand 2| Operand 3| Operand 4
- ---  | --- | --- | --- | ---
- NP   | NA       | NA       | NA       | NA       
-
-### Description
-Causes the processor's LOCK# signal to be asserted during execution of the accompanying
-instruction (turns the instruction into an atomic instruction). In a multiprocessor
-environment, the LOCK# signal ensures that the processor has exclusive use of
-any shared memory while the signal is asserted.
-
-<aside class="notification">
-Note that, in later Intel 64 and IA-32 processors (including the Pentium 4,
-Intel Xeon, and P6 family processors), locking may occur without the LOCK# signal
 being asserted. See the “IA-32 Architecture Compatibility” section below.
 </aside>
 
@@ -49,8 +22,7 @@ operation on a memory location in shared memory environment.
 The integrity of the LOCK prefix is not affected by the alignment of the memory
 field. Memory locking is observed for arbitrarily misaligned fields.
 
-This instruction's operation is the same in non-64-bit modes and 64-bit mode.
-
+This instruction's operation is the same in non-64-bit modes and 64-bit mode.```
 
 ### IA-32 Architecture Compatibility
 Beginning with the P6 family processors, when the LOCK prefix is prefixed to
@@ -62,6 +34,36 @@ of a Locked Operation on Internal Processor Caches”in Chapter 8 of Intel® 64
 and IA-32 Architectures Software Developer's Manual, Volume 3A, the for more
 information on locking of caches.
 
+> Operation
+
+``` slim
+
+AssertLOCK#(DurationOfAccompaningInstruction);
+
+```
+
+ Opcode| Instruction| Op/En| 64-Bit Mode| Compat/Leg Mode| Description                         
+ ---  | --- | --- | --- | --- | ---
+ F0    | LOCK       | NP   | Valid      | Valid          | Asserts LOCK# signal for duration of
+       |            |      |            |                | the accompanying instruction.       
+<aside class="notification">
+* See IA-32 Architecture Compatibility section below.
+</aside>
+
+
+### Instruction Operand Encoding
+ Op/En| Operand 1| Operand 2| Operand 3| Operand 4
+ ---  | --- | --- | --- | ---
+ NP   | NA       | NA       | NA       | NA       
+
+### Description
+Causes the processor's LOCK# signal to be asserted during execution of the accompanying
+instruction (turns the instruction into an atomic instruction). In a multiprocessor
+environment, the LOCK# signal ensures that the processor has exclusive use of
+any shared memory while the signal is asserted.
+
+<aside class="notification">
+Note that, in later Intel 64 and IA-32 processors (including the Pentium 4,
 
 
 ### Flags Affected

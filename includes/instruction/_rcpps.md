@@ -25,9 +25,17 @@ DEST[191:160] <- APPROXIMATE(1/SRC[191:160])
 DEST[223:192] <- APPROXIMATE(1/SRC[223:192])
 DEST[255:224] <- APPROXIMATE(1/SRC[255:224])
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ RCCPS:| __m128 _mm_rcp_ps(__m128 a)     
+ RCPPS:| __m256 _mm256_rcp_ps (__m256 a);
+
 ```
 
- Opcode\*/Instruction                        | Op/En| 64/32 bit Mode Support| CPUID Feature Flag| Description                                  
+ Opcode*/Instruction                        | Op/En| 64/32 bit Mode Support| CPUID Feature Flag| Description                                  
  ---  | --- | --- | --- | ---
  0F 53 /r RCPPS xmm1, xmm2/m128             | RM   | V/V                   | SSE               | Computes the approximate reciprocals         
                                             |      |                       |                   | of the packed single-precision floating-point
@@ -58,14 +66,14 @@ of a SIMD single-precision floating-point operation.
 
    | |  
 ---- | -----
-Relative Error| ≤ 1.5 \* 2−12
+Relative Error| ≤ 1.5 * 2−12
 
 The RCPPS instruction is not affected by the rounding control bits in the MXCSR
 register. When a source value is a 0.0, an ∞ of the sign of the source value
 is returned. A denormal source value is treated as a 0.0 (of the same sign).
 Tiny results are always flushed to 0.0, with the sign of the operand. (Input
-values greater than or equal to |1.11111111110100000000000B\*2125| are guaranteed
-to not produce tiny results; input values less than or equal to |1.00000000000110000000001B\*2126|
+values greater than or equal to |1.11111111110100000000000B*2125| are guaranteed
+to not produce tiny results; input values less than or equal to |1.00000000000110000000001B*2126|
 are guaranteed to produce tiny results, which are in turn flushed to 0.0; and
 input values in between this range may or may not produce tiny results, depending
 on the implementation.) When a source value is an SNaN or QNaN, the SNaN is
@@ -82,15 +90,9 @@ The destination operand is an XMM register. The upper bits (VLMAX-1:128) of
 The first source operand is a YMM register. The second source operand can be
 a YMM register or a 256-bit memory location. The destination operand is a YMM
 register. Note: In VEX-encoded versions, VEX.vvvv is reserved and must be 1111b,
-otherwise instructions will #UD.
+otherwise instructions will **``#UD.``**
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- RCCPS:| __m128 _mm_rcp_ps(__m128 a)     
- RCPPS:| __m256 _mm256_rcp_ps (__m256 a);
 
 ### SIMD Floating-Point Exceptions
 None.

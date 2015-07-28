@@ -18,6 +18,16 @@ DEST[63:0] <- RoundFPControl_MXCSR(SRC2[63:0]\*SRC3[63:0] + DEST[63:0])
 DEST[127:64] <- DEST[127:64]
 DEST[VLMAX-1:128] <- 0
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+VFMADD132SD: __m128d _mm_fmadd_sd (__m128d a, __m128d b, __m128d c);
+
+VFMADD213SD: __m128d _mm_fmadd_sd (__m128d a, __m128d b, __m128d c);
+
+VFMADD231SD: __m128d _mm_fmadd_sd (__m128d a, __m128d b, __m128d c);
+
+
 ```
 
  Opcode/Instruction                          | Op/En| 64/32bit Mode| CPUID Feature Flag| Description                                    
@@ -72,14 +82,6 @@ in the opcode/instruction column. See also Section 14.5.1, “FMA Instruction
 Operand Order and Arithmetic Behavior” in the Intel® 64 and IA-32 Architectures
 Software Developer's Manual, Volume 1.
 
-
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-VFMADD132SD: __m128d _mm_fmadd_sd (__m128d a, __m128d b, __m128d c);
-
-VFMADD213SD: __m128d _mm_fmadd_sd (__m128d a, __m128d b, __m128d c);
-
-VFMADD231SD: __m128d _mm_fmadd_sd (__m128d a, __m128d b, __m128d c);
 
 
 ### SIMD Floating-Point Exceptions

@@ -11,6 +11,12 @@ CASE (imm8[0]) OF
 ESAC
 DEST <-TEMP
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+VINSERTI128: __m256i _mm256_inserti128_si256 (__m256i a, __m128i b, int offset);
+
+
 ```
 
  Opcode/Instruction                         | Op/En| 64/32 -bit Mode| CPUID Feature Flag| Description                           
@@ -31,12 +37,8 @@ operand (third operand) into an the destination operand (first operand) at a
 by the corresponding fields of the first source operand (second operand). The
 second source operand can be either an XMM register or a 128-bit memory location.
 The high 7 bits of the immediate are ignored. VEX.L must be 1; an attempt to
-execute this instruction with VEX.L=0 will cause #UD.
+execute this instruction with VEX.L=0 will cause **``#UD.``**
 
-
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-VINSERTI128: __m256i _mm256_inserti128_si256 (__m256i a, __m128i b, int offset);
 
 
 ### SIMD Floating-Point Exceptions

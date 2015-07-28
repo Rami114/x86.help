@@ -5,11 +5,11 @@
 ``` slim
 IF (Source = m64)
   THEN
-     (\* Load instruction \*)
+     (* Load instruction *)
      xmm1[63:0] = m64;
      xmm1[127:64] = m64;
   ELSE
-     (\* Move instruction \*)
+     (* Move instruction *)
      xmm1[63:0] = xmm2[63:0];
      xmm1[127:64] = xmm2[63:0];
 FI;
@@ -26,6 +26,15 @@ DEST[63:0] <- SRC[63:0]
 DEST[127:64] <- SRC[63:0]
 DEST[191:128] <- SRC[191:128]
 DEST[255:192] <- SRC[191:128]
+
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ MOVDDUP:| __m128d _mm_movedup_pd(__m128d a)  
+ MOVDDUP:| __m128d _mm_loaddup_pd(double const
+         | * dp)                              
 
 ```
 
@@ -72,13 +81,6 @@ In 64-bit mode, use of the REX.R prefix permits this instruction to access addit
 registers (XMM8-XMM15).
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- MOVDDUP:| __m128d _mm_movedup_pd(__m128d a)  
- MOVDDUP:| __m128d _mm_loaddup_pd(double const
-         | \* dp)                              
 
 ### SIMD Floating-Point Exceptions
 None

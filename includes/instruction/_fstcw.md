@@ -12,11 +12,11 @@ DEST <- FPUControlWord;
  9B D9 /7| FSTCW m2byte  | Valid      | Valid          | Store FPU control word to m2byte after      
          |               |            |                | checking for pending unmasked floating-point
          |               |            |                | exceptions.                                 
- D9 /7   | FNSTCW\* m2byte| Valid      | Valid          | Store FPU control word to m2byte without    
+ D9 /7   | FNSTCW* m2byte| Valid      | Valid          | Store FPU control word to m2byte without    
          |               |            |                | checking for pending unmasked floating-point
          |               |            |                | exceptions.                                 
 <aside class="notification">
-\* See IA-32 Architecture Compatibility section below.
+* See IA-32 Architecture Compatibility section below.
 </aside>
 
 

@@ -4,7 +4,60 @@
 
 ``` slim
 Select4(SRC, control) {
-CASE (control[1:0]) OF
+CASE (control[1:0]) OF```
+
+###   0
+###   1
+###   2
+###   3
+ESAC;
+RETURN TMP
+}
+VPERMILPS (256-bit immediate version)
+DEST[31:0] <- Select4(SRC1[127:0], imm8[1:0]);
+DEST[63:32] <- Select4(SRC1[127:0], imm8[3:2]);
+DEST[95:64] <- Select4(SRC1[127:0], imm8[5:4]);
+DEST[127:96] <- Select4(SRC1[127:0], imm8[7:6]);
+DEST[159:128] <- Select4(SRC1[255:128], imm8[1:0]);
+DEST[191:160] <- Select4(SRC1[255:128], imm8[3:2]);
+DEST[223:192] <- Select4(SRC1[255:128], imm8[5:4]);
+DEST[255:224] <- Select4(SRC1[255:128], imm8[7:6]);
+VPERMILPS (128-bit immediate version)
+DEST[31:0] <- Select4(SRC1[127:0], imm8[1:0]);
+DEST[63:32] <- Select4(SRC1[127:0], imm8[3:2]);
+DEST[95:64] <- Select4(SRC1[127:0], imm8[5:4]);
+DEST[127:96] <- Select4(SRC1[127:0], imm8[7:6]);
+DEST[VLMAX-1:128] <- 0
+VPERMILPS (256-bit variable version)
+DEST[31:0] <- Select4(SRC1[127:0], SRC2[1:0]);
+DEST[63:32] <- Select4(SRC1[127:0], SRC2[33:32]);
+DEST[95:64] <- Select4(SRC1[127:0], SRC2[65:64]);
+DEST[127:96] <- Select4(SRC1[127:0], SRC2[97:96]);
+DEST[159:128] <- Select4(SRC1[255:128], SRC2[129:128]);
+DEST[191:160] <- Select4(SRC1[255:128], SRC2[161:160]);
+DEST[223:192] <- Select4(SRC1[255:128], SRC2[193:192]);
+DEST[255:224] <- Select4(SRC1[255:128], SRC2[225:224]);
+VPERMILPS (128-bit variable version)
+DEST[31:0] <- Select4(SRC1[127:0], SRC2[1:0]);
+DEST[63:32] <- Select4(SRC1[127:0], SRC2[33:32]);
+DEST[95:64] <- Select4(SRC1[127:0], SRC2[65:64]);
+DEST[127:96] <- Select4(SRC1[127:0], SRC2[97:96]);
+DEST[VLMAX-1:128] <- 0
+
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ VPERM1LPS:| __m128 _mm_permute_ps (__m128 a, int
+           | control);                           
+ VPERM1LPS:| __m256 _mm256_permute_ps (__m256 a, 
+           | int control);                       
+ VPERM1LPS:| __m128 _mm_permutevar_ps (__m128 a, 
+           | __m128i control);                   
+ VPERM1LPS:| __m256 _mm256_permutevar_ps (__m256 
+           | a, __m256i control);                
+
 ```
 
  Opcode/Instruction                    | Op/En| 64/32 bit Mode Support| CPUID Feature Flag| Description                                
@@ -58,60 +111,10 @@ The source operand is a YMM register or 256-bit memory location and the destinat
 operand is a YMM register. This is similar to a wider version of PSHUFD, just
 operating on single-precision floating-point values. Note: For the VEX.128.66.0F3A
 04 instruction version, VEX.vvvv is reserved and must be 1111b otherwise instruction
-will #UD. Note: For the VEX.256.66.0F3A 04 instruction version, VEX.vvvv is
-reserved and must be 1111b otherwise instruction will #UD.
+will **``#UD.``** Note: For the VEX.256.66.0F3A 04 instruction version, VEX.vvvv is
+reserved and must be 1111b otherwise instruction will **``#UD.``**
 
 
-
-###   0
-###   1
-###   2
-###   3
-ESAC;
-RETURN TMP
-}
-VPERMILPS (256-bit immediate version)
-DEST[31:0] <- Select4(SRC1[127:0], imm8[1:0]);
-DEST[63:32] <- Select4(SRC1[127:0], imm8[3:2]);
-DEST[95:64] <- Select4(SRC1[127:0], imm8[5:4]);
-DEST[127:96] <- Select4(SRC1[127:0], imm8[7:6]);
-DEST[159:128] <- Select4(SRC1[255:128], imm8[1:0]);
-DEST[191:160] <- Select4(SRC1[255:128], imm8[3:2]);
-DEST[223:192] <- Select4(SRC1[255:128], imm8[5:4]);
-DEST[255:224] <- Select4(SRC1[255:128], imm8[7:6]);
-VPERMILPS (128-bit immediate version)
-DEST[31:0] <- Select4(SRC1[127:0], imm8[1:0]);
-DEST[63:32] <- Select4(SRC1[127:0], imm8[3:2]);
-DEST[95:64] <- Select4(SRC1[127:0], imm8[5:4]);
-DEST[127:96] <- Select4(SRC1[127:0], imm8[7:6]);
-DEST[VLMAX-1:128] <- 0
-VPERMILPS (256-bit variable version)
-DEST[31:0] <- Select4(SRC1[127:0], SRC2[1:0]);
-DEST[63:32] <- Select4(SRC1[127:0], SRC2[33:32]);
-DEST[95:64] <- Select4(SRC1[127:0], SRC2[65:64]);
-DEST[127:96] <- Select4(SRC1[127:0], SRC2[97:96]);
-DEST[159:128] <- Select4(SRC1[255:128], SRC2[129:128]);
-DEST[191:160] <- Select4(SRC1[255:128], SRC2[161:160]);
-DEST[223:192] <- Select4(SRC1[255:128], SRC2[193:192]);
-DEST[255:224] <- Select4(SRC1[255:128], SRC2[225:224]);
-VPERMILPS (128-bit variable version)
-DEST[31:0] <- Select4(SRC1[127:0], SRC2[1:0]);
-DEST[63:32] <- Select4(SRC1[127:0], SRC2[33:32]);
-DEST[95:64] <- Select4(SRC1[127:0], SRC2[65:64]);
-DEST[127:96] <- Select4(SRC1[127:0], SRC2[97:96]);
-DEST[VLMAX-1:128] <- 0
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- VPERM1LPS:| __m128 _mm_permute_ps (__m128 a, int
-           | control);                           
- VPERM1LPS:| __m256 _mm256_permute_ps (__m256 a, 
-           | int control);                       
- VPERM1LPS:| __m128 _mm_permutevar_ps (__m128 a, 
-           | __m128i control);                   
- VPERM1LPS:| __m256 _mm256_permutevar_ps (__m256 
-           | a, __m256i control);                
 
 ### SIMD Floating-Point Exceptions
 None.

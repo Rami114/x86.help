@@ -45,6 +45,22 @@ IF (VEX.128) THEN
   DEST[VLMAX-1:128] <- 0
 FI
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+VFMSUB132PS: __m128 _mm_fmsub_ps (__m128 a, __m128 b, __m128 c);
+
+VFMSUB213PS: __m128 _mm_fmsub_ps (__m128 a, __m128 b, __m128 c);
+
+VFMSUB231PS: __m128 _mm_fmsub_ps (__m128 a, __m128 b, __m128 c);
+
+VFMSUB132PS: __m256 _mm256_fmsub_ps (__m256 a, __m256 b, __m256 c);
+
+VFMSUB213PS: __m256 _mm256_fmsub_ps (__m256 a, __m256 b, __m256 c);
+
+VFMSUB231PS: __m256 _mm256_fmsub_ps (__m256 a, __m256 b, __m256 c);
+
+
 ```
 
  Opcode/Instruction                      | Op/En| 64/32 -bit Mode| CPUID Feature Flag| Description                                    
@@ -115,20 +131,6 @@ instruction mnemonic defined in the opcode/instruction column. See also Section
 14.5.1, “FMA Instruction Operand Order and Arithmetic Behavior” in the Intel®
 64 and IA-32 Architectures Software Developer's Manual, Volume 1.
 
-
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-VFMSUB132PS: __m128 _mm_fmsub_ps (__m128 a, __m128 b, __m128 c);
-
-VFMSUB213PS: __m128 _mm_fmsub_ps (__m128 a, __m128 b, __m128 c);
-
-VFMSUB231PS: __m128 _mm_fmsub_ps (__m128 a, __m128 b, __m128 c);
-
-VFMSUB132PS: __m256 _mm256_fmsub_ps (__m256 a, __m256 b, __m256 c);
-
-VFMSUB213PS: __m256 _mm256_fmsub_ps (__m256 a, __m256 b, __m256 c);
-
-VFMSUB231PS: __m256 _mm256_fmsub_ps (__m256 a, __m256 b, __m256 c);
 
 
 ### SIMD Floating-Point Exceptions

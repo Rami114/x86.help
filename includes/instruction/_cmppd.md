@@ -75,6 +75,38 @@ IF CMP3 = TRUE
   THEN DEST[255:192] <- FFFFFFFFFFFFFFFFH;
   ELSE DEST[255:192] <- 0000000000000000H; FI;
 
+> Intel C/C++ Compiler Intrinsic Equivalents
+
+``` slim
+   | |  
+---- | -----
+ CMPPD for equality:                               | __m128d _mm_cmpeq_pd(__m128d a, __m128d   
+                                                   | b)                                        
+ CMPPD for less-than: CMPPD for less-than-or-equal:| __m128d _mm_cmplt_pd(__m128d a, __m128d   
+ __m128d _mm_cmple_pd(__m128d a, __m128d           | b)                                        
+ b)                                                |                                           
+ CMPPD for greater-than:                           | __m128d _mm_cmpgt_pd(__m128d a, __m128d   
+                                                   | b)                                        
+ CMPPD for greater-than-or-equal:                  | __m128d _mm_cmpge_pd(__m128d a, __m128d   
+                                                   | b)                                        
+ CMPPD for inequality:                             | __m128d _mm_cmpneq_pd(__m128d a, __m128d  
+                                                   | b)                                        
+ CMPPD for not-less-than:                          | __m128d _mm_cmpnlt_pd(__m128d a, __m128d  
+                                                   | b)                                        
+ CMPPD for not-greater-than:                       | __m128d _mm_cmpngt_pd(__m128d a, __m128d  
+                                                   | b)                                        
+ CMPPD for not-greater-than-or-equal:              | __m128d _mm_cmpnge_pd(__m128d a, __m128d  
+                                                   | b)                                        
+ CMPPD for ordered:                                | __m128d _mm_cmpord_pd(__m128d a, __m128d  
+                                                   | b)                                        
+ CMPPD for unordered:                              | __m128d _mm_cmpunord_pd(__m128d a, __m128d
+                                                   | b)                                        
+ CMPPD for not-less-than-or-equal: __m256          | __m128d _mm_cmpnle_pd(__m128d a, __m128d  
+ _mm256_cmp_pd(__m256 a, __m256 b, const           | b)                                        
+ int imm)                                          |                                           
+ VCMPPD:                                           | __m128 _mm_cmp_pd(__m128 a, __m128 b,     
+                                                   | const int imm)                            
+
 ```
 
  Opcode/Instruction                   | Op/En| 64/32bit Mode| CPUID Feature Flag| Description                                  
@@ -265,36 +297,6 @@ to pre-defined constants to support a simpler intrinsic interface.
                                                 |                        | reg1, reg2, reg3, 1EH VCMPPD reg1, reg2, 
                                                 |                        | reg3, 1FH                                
 
-
-### Intel C/C++ Compiler Intrinsic Equivalents
-   | |  
----- | -----
- CMPPD for equality:                               | __m128d _mm_cmpeq_pd(__m128d a, __m128d   
-                                                   | b)                                        
- CMPPD for less-than: CMPPD for less-than-or-equal:| __m128d _mm_cmplt_pd(__m128d a, __m128d   
- __m128d _mm_cmple_pd(__m128d a, __m128d           | b)                                        
- b)                                                |                                           
- CMPPD for greater-than:                           | __m128d _mm_cmpgt_pd(__m128d a, __m128d   
-                                                   | b)                                        
- CMPPD for greater-than-or-equal:                  | __m128d _mm_cmpge_pd(__m128d a, __m128d   
-                                                   | b)                                        
- CMPPD for inequality:                             | __m128d _mm_cmpneq_pd(__m128d a, __m128d  
-                                                   | b)                                        
- CMPPD for not-less-than:                          | __m128d _mm_cmpnlt_pd(__m128d a, __m128d  
-                                                   | b)                                        
- CMPPD for not-greater-than:                       | __m128d _mm_cmpngt_pd(__m128d a, __m128d  
-                                                   | b)                                        
- CMPPD for not-greater-than-or-equal:              | __m128d _mm_cmpnge_pd(__m128d a, __m128d  
-                                                   | b)                                        
- CMPPD for ordered:                                | __m128d _mm_cmpord_pd(__m128d a, __m128d  
-                                                   | b)                                        
- CMPPD for unordered:                              | __m128d _mm_cmpunord_pd(__m128d a, __m128d
-                                                   | b)                                        
- CMPPD for not-less-than-or-equal: __m256          | __m128d _mm_cmpnle_pd(__m128d a, __m128d  
- _mm256_cmp_pd(__m256 a, __m256 b, const           | b)                                        
- int imm)                                          |                                           
- VCMPPD:                                           | __m128 _mm_cmp_pd(__m128 a, __m128 b,     
-                                                   | const int imm)                            
 
 ### SIMD Floating-Point Exceptions
 Invalid if SNaN operand and invalid if QNaN and predicate as listed in above

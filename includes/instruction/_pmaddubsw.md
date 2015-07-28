@@ -22,6 +22,18 @@ DEST[15:0] <- SaturateToSignedWord(SRC2[15:8]\* SRC1[15:8]+SRC2[7:0]\*SRC1[7:0])
 // Repeat operation for 2nd through 15th word
 DEST[255:240] <- SaturateToSignedWord(SRC2[255:248]\*SRC1[255:248]+ SRC2[247:240]\* SRC1[247:240])
 
+> Intel C/C++ Compiler Intrinsic Equivalents
+
+``` slim
+   | |  
+---- | -----
+ PMADDUBSW:   | __m64 _mm_maddubs_pi16 (__m64 a, __m64
+              | b)                                    
+ (V)PMADDUBSW:| __m128i _mm_maddubs_epi16 (__m128i a, 
+              | __m128i b)                            
+ VPMADDUBSW:  | __m256i _mm256_maddubs_epi16 (__m256i 
+              | a, __m256i b)                         
+
 ```
 
  Opcode/Instruction                      | Op/En| 64/32 bit Mode Support| CPUID Feature Flag| Description                         
@@ -65,7 +77,7 @@ the corresponding intermediate result from the 2nd lowest-order bytes (bits
 of the destination register (15-0). The same operation is performed on the other
 pairs of adjacent bytes. Both operands can be MMX register or XMM registers.
 When the source operand is a 128-bit memory operand, the operand must be aligned
-on a 16-byte boundary or a general-protection exception (#GP) will be generated.
+on a 16-byte boundary or a general-protection exception (**``#GP)``** will be generated.
 
 In 64-bit mode, use the REX prefix to access additional registers. 128-bit Legacy
 SSE version: Bits (VLMAX-1:128) of the corresponding YMM destination register
@@ -79,16 +91,6 @@ VEX.L must be 0, otherwise the instruction will #UD.
 </aside>
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalents
-   | |  
----- | -----
- PMADDUBSW:   | __m64 _mm_maddubs_pi16 (__m64 a, __m64
-              | b)                                    
- (V)PMADDUBSW:| __m128i _mm_maddubs_epi16 (__m128i a, 
-              | __m128i b)                            
- VPMADDUBSW:  | __m256i _mm256_maddubs_epi16 (__m256i 
-              | a, __m256i b)                         
 
 ### SIMD Floating-Point Exceptions
 None.

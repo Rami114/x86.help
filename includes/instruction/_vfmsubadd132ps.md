@@ -3,7 +3,7 @@
 > Operation
 
 ``` slim
-In the operations below, \"+\", \"-\", and \"\*\" symbols represent addition, subtraction, and multiplication operations
+In the operations below, \"+\", \"-\", and \"*\" symbols represent addition, subtraction, and multiplication operations
 with infinite precision inputs and outputs (no rounding).
 VFMSUBADD132PS DEST, SRC2, SRC3
 IF (VEX.128) THEN
@@ -12,9 +12,9 @@ ELSEIF (VEX.256)
   MAXVL = 4
 FI
 For i = 0 to MAXVL -1{
-  n = 64\*i;
-  DEST[n+31:n] <- RoundFPControl_MXCSR(DEST[n+31:n]\*SRC3[n+31:n] + SRC2[n+31:n])
-  DEST[n+63:n+32] <- RoundFPControl_MXCSR(DEST[n+63:n+32]\*SRC3[n+63:n+32] -SRC2[n+63:n+32])
+  n = 64*i;
+  DEST[n+31:n] <- RoundFPControl_MXCSR(DEST[n+31:n]*SRC3[n+31:n] + SRC2[n+31:n])
+  DEST[n+63:n+32] <- RoundFPControl_MXCSR(DEST[n+63:n+32]*SRC3[n+63:n+32] -SRC2[n+63:n+32])
 }
 IF (VEX.128) THEN
   DEST[VLMAX-1:128] <- 0
@@ -26,9 +26,9 @@ ELSEIF (VEX.256)
   MAXVL = 4
 FI
 For i = 0 to MAXVL -1{
-  n = 64\*i;
-  DEST[n+31:n] <- RoundFPControl_MXCSR(SRC2[n+31:n]\*DEST[n+31:n] +SRC3[n+31:n])
-  DEST[n+63:n+32] <- RoundFPControl_MXCSR(SRC2[n+63:n+32]\*DEST[n+63:n+32] -SRC3[n+63:n+32])
+  n = 64*i;
+  DEST[n+31:n] <- RoundFPControl_MXCSR(SRC2[n+31:n]*DEST[n+31:n] +SRC3[n+31:n])
+  DEST[n+63:n+32] <- RoundFPControl_MXCSR(SRC2[n+63:n+32]*DEST[n+63:n+32] -SRC3[n+63:n+32])
 }
 IF (VEX.128) THEN
   DEST[VLMAX-1:128] <- 0
@@ -40,13 +40,29 @@ ELSEIF (VEX.256)
   MAXVL = 4
 FI
 For i = 0 to MAXVL -1{
-  n = 64\*i;
-  DEST[n+31:n] <- RoundFPControl_MXCSR(SRC2[n+31:n]\*SRC3[n+31:n] + DEST[n+31:n])
-  DEST[n+63:n+32] <- RoundFPControl_MXCSR(SRC2[n+63:n+32]\*SRC3[n+63:n+32] -DEST[n+63:n+32])
+  n = 64*i;
+  DEST[n+31:n] <- RoundFPControl_MXCSR(SRC2[n+31:n]*SRC3[n+31:n] + DEST[n+31:n])
+  DEST[n+63:n+32] <- RoundFPControl_MXCSR(SRC2[n+63:n+32]*SRC3[n+63:n+32] -DEST[n+63:n+32])
 }
 IF (VEX.128) THEN
   DEST[VLMAX-1:128] <- 0
 FI
+
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+VFMSUBADD132PS: __m128 _mm_fmsubadd_ps (__m128 a, __m128 b, __m128 c);
+
+VFMSUBADD213PS: __m128 _mm_fmsubadd_ps (__m128 a, __m128 b, __m128 c);
+
+VFMSUBADD231PS: __m128 _mm_fmsubadd_ps (__m128 a, __m128 b, __m128 c);
+
+VFMSUBADD132PS: __m256 _mm256_fmsubadd_ps (__m256 a, __m256 b, __m256 c);
+
+VFMSUBADD213PS: __m256 _mm256_fmsubadd_ps (__m256 a, __m256 b, __m256 c);
+
+VFMSUBADD231PS: __m256 _mm256_fmsubadd_ps (__m256 a, __m256 b, __m256 c);
+
 
 ```
 
@@ -119,20 +135,6 @@ See also Section 14.5.1, “FMA Instruction Operand Order and Arithmetic Behavio
 in the Intel® 64 and IA-32 Architectures Software Developer's Manual, Volume
 1.
 
-
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-VFMSUBADD132PS: __m128 _mm_fmsubadd_ps (__m128 a, __m128 b, __m128 c);
-
-VFMSUBADD213PS: __m128 _mm_fmsubadd_ps (__m128 a, __m128 b, __m128 c);
-
-VFMSUBADD231PS: __m128 _mm_fmsubadd_ps (__m128 a, __m128 b, __m128 c);
-
-VFMSUBADD132PS: __m256 _mm256_fmsubadd_ps (__m256 a, __m256 b, __m256 c);
-
-VFMSUBADD213PS: __m256 _mm256_fmsubadd_ps (__m256 a, __m256 b, __m256 c);
-
-VFMSUBADD231PS: __m256 _mm256_fmsubadd_ps (__m256 a, __m256 b, __m256 c);
 
 
 ### SIMD Floating-Point Exceptions

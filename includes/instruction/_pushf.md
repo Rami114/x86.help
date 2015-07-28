@@ -27,7 +27,7 @@ FI;
 
 ```
 
- Opcode\*| Instruction| Op/En| 64-Bit Mode| Compat/Leg Mode| Description                  
+ Opcode*| Instruction| Op/En| 64-Bit Mode| Compat/Leg Mode| Description                  
  ---  | --- | --- | --- | --- | ---
  9C     | PUSHF      | NP   | Valid      | Valid          | Push lower 16 bits of EFLAGS.
  9C     | PUSHFD     | NP   | N.E.       | Valid          | Push EFLAGS.                 
@@ -67,12 +67,12 @@ and 17) are not copied; instead, values for these flags are cleared in the RFLAG
 image stored on the stack.
 
 When in virtual-8086 mode and the I/O privilege level (IOPL) is less than 3,
-the PUSHF/PUSHFD instruction causes a general protection exception (#GP).
+the PUSHF/PUSHFD instruction causes a general protection exception (**``#GP).``**
 
 In the real-address mode, if the ESP or SP register is 1 when PUSHF/PUSHFD instruction
-executes: an #SS exception is generated but not delivered (the stack error reported
-prevents #SS delivery). Next, the processor generates a #DF exception and enters
-a shutdown state as described in the #DF discussion in Chapter 6 of the Intel®
+executes: an **``#SS``** exception is generated but not delivered (the stack error reported
+prevents **``#SS``** delivery). Next, the processor generates a **``#DF``** exception and enters
+a shutdown state as described in the **``#DF``** discussion in Chapter 6 of the Intel®
 64 and IA-32 Architectures Software Developer's Manual, Volume 3A.
 
 

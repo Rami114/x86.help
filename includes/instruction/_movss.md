@@ -24,6 +24,17 @@ VMOVSS (VEX.NDS.128.F3.0F 10 /r when the source operand is memory and the destin
 DEST[31:0] <- SRC[31:0]
 DEST[VLMAX-1:32] <- 0
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ MOVSS:| __m128 _mm_load_ss(float \* p)      
+ MOVSS:| void _mm_store_ss(float \* p, __m128
+       | a)                                 
+ MOVSS:| __m128 _mm_move_ss(__m128 a, __m128
+       | b)                                 
+
 ```
 
  Opcode/Instruction                      | Op/En| 64/32-bit Mode| CPUID Feature Flag| Description                                 
@@ -72,19 +83,10 @@ operand stores the result of merging the low dword of the second source operand
 with three dwords in bits 127:32 of the first source operand. The upper bits
 of the destination operand are cleared. Note: For the “VMOVSS m32, xmm1” (memory
 store form) instruction version, VEX.vvvv is reserved and must be 1111b otherwise
-instruction will #UD. Note: For the “VMOVSS xmm1, m32” (memory load form) instruction
-version, VEX.vvvv is reserved and must be 1111b otherwise instruction will #UD.
+instruction will **``#UD.``** Note: For the “VMOVSS xmm1, m32” (memory load form) instruction
+version, VEX.vvvv is reserved and must be 1111b otherwise instruction will **``#UD.``**
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- MOVSS:| __m128 _mm_load_ss(float \* p)      
- MOVSS:| void _mm_store_ss(float \* p, __m128
-       | a)                                 
- MOVSS:| __m128 _mm_move_ss(__m128 a, __m128
-       | b)                                 
 
 ### SIMD Floating-Point Exceptions
 None.

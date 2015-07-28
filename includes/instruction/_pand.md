@@ -12,6 +12,18 @@ DEST[VLMAX-1:128] <- 0
 VPAND (VEX.256 encoded instruction)
 DEST[255:0] <- (SRC1[255:0] AND SRC2[255:0])
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ PAND:   | __m64 _mm_and_si64 (__m64 m1, __m64       
+         | m2)                                       
+ (V)PAND:| __m128i _mm_and_si128 ( __m128i a, __m128i
+         | b)                                        
+ VPAND:  | __m256i _mm256_and_si256 ( __m256i a,     
+         | __m256i b)                                
+
 ```
 
  Opcode/Instruction                     | Op/En| 64/32 bit Mode Support| CPUID Feature Flag| Description                           
@@ -66,16 +78,6 @@ VEX.L must be 0, otherwise the instruction will #UD.
 </aside>
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- PAND:   | __m64 _mm_and_si64 (__m64 m1, __m64       
-         | m2)                                       
- (V)PAND:| __m128i _mm_and_si128 ( __m128i a, __m128i
-         | b)                                        
- VPAND:  | __m256i _mm256_and_si256 ( __m256i a,     
-         | __m256i b)                                
 
 ### Flags Affected
 None.

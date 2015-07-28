@@ -13,7 +13,22 @@ ELSE IF (OperandSize = 64)
   SRC1 <- RDX;
      DEST2 <- (SRC1\*SRC2)[63:0];
      DEST1 <- (SRC1\*SRC2)[127:64];
-FI
+FI```
+
+### Flags Affected
+None
+
+
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+Auto-generated from high-level language when possible.
+
+unsigned int mulx_u32(unsigned int a, unsigned int b, unsigned int * hi);
+
+unsigned __int64 mulx_u64(unsigned __int64 a, unsigned __int64 b, unsigned __int64
+* hi);
+
 
 ```
 
@@ -40,21 +55,8 @@ second operand are identical, it will contain the high half of the multiplicatio
 result. This instruction is not supported in real mode and virtual-8086 mode.
 The operand size is always 32 bits if not in 64-bit mode. In 64-bit mode operand
 size 64 requires VEX.W1. VEX.W1 is ignored in non-64-bit modes. An attempt to
-execute this instruction with VEX.L not equal to 0 will cause #UD.
+execute this instruction with VEX.L not equal to 0 will cause **``#UD.``**
 
-
-
-### Flags Affected
-None
-
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-Auto-generated from high-level language when possible.
-
-unsigned int mulx_u32(unsigned int a, unsigned int b, unsigned int \* hi);
-
-unsigned __int64 mulx_u64(unsigned __int64 a, unsigned __int64 b, unsigned __int64
-\* hi);
 
 
 ### SIMD Floating-Point Exceptions

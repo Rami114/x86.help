@@ -31,6 +31,16 @@ IF (imm8[3] == 1) THEN DEST[127:96] <- SRC2[127:96]
 ELSE DEST[127:96] <- SRC1[127:96]
 DEST[VLMAX-1:128] <- 0
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ VPBLENDD:| __m128i _mm_blend_epi32 (__m128i v1,
+          | __m128i v2, const int mask)         
+ VPBLENDD:| __m256i _mm256_blend_epi32 (__m256i 
+          | v1, __m256i v2, const int mask)     
+
 ```
 
  Opcode/Instruction                      | Op/En| 64/32 -bit Mode| CPUID Feature Flag| Description                          
@@ -61,14 +71,6 @@ The second source operand is a YMM register or a 256-bit memory location. The
 destination operand is a YMM register.
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- VPBLENDD:| __m128i _mm_blend_epi32 (__m128i v1,
-          | __m128i v2, const int mask)         
- VPBLENDD:| __m256i _mm256_blend_epi32 (__m256i 
-          | v1, __m256i v2, const int mask)     
 
 ### SIMD Floating-Point Exceptions
 None

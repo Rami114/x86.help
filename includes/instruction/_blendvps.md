@@ -44,6 +44,18 @@ IF (MASK[223] = 0) THEN DEST[223:192] <- SRC1[223:192]
 IF (MASK[255] = 0) THEN DEST[255:224] <- SRC1[255:224]
      ELSE DEST [255:224] <- SRC2[255:224] FI
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ BLENDVPS: | __m128 _mm_blendv_ps(__m128 v1, __m128   
+           | v2, __m128 v3);                          
+ VBLENDVPS:| __m128 _mm_blendv_ps (__m128 a, __m128   
+           | b, __m128 mask);                         
+ VBLENDVPS:| __m256 _mm256_blendv_ps (__m256 a, __m256
+           | b, __m256 mask);                         
+
 ```
 
  Opcode/Instruction                         | Op/En| 64/32-bit Mode| CPUID Feature Flag| Description                                  
@@ -90,27 +102,17 @@ second source operand is an XMM register or 128-bit memory location. The mask
 operand is the third source register, and encoded in bits[7:4] of the immediate
 byte(imm8). The bits[3:0] of imm8 are ignored. In 32-bit mode, imm8[7] is ignored.
 The upper bits (VLMAX-1:128) of the corresponding YMM register (destination
-register) are zeroed. VEX.W must be 0, otherwise, the instruction will #UD.
+register) are zeroed. VEX.W must be 0, otherwise, the instruction will **``#UD.``**
 VEX.256 encoded version: The first source operand and destination operand are
 YMM registers. The second source operand can be a YMM register or a 256-bit
 memory location. The mask operand is the third source register, and encoded
 in bits[7:4] of the immediate byte(imm8). The bits[3:0] of imm8 are ignored.
 In 32-bit mode, imm8[7] is ignored. VEX.W must be 0, otherwise, the instruction
-will #UD. VBLENDVPS permits the mask to be any XMM or YMM register. In contrast,
+will **``#UD.``** VBLENDVPS permits the mask to be any XMM or YMM register. In contrast,
 BLENDVPS treats XMM0 implicitly as the mask and do not support non-destructive
 destination operation.
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- BLENDVPS: | __m128 _mm_blendv_ps(__m128 v1, __m128   
-           | v2, __m128 v3);                          
- VBLENDVPS:| __m128 _mm_blendv_ps (__m128 a, __m128   
-           | b, __m128 mask);                         
- VBLENDVPS:| __m256 _mm256_blendv_ps (__m256 a, __m256
-           | b, __m256 mask);                         
 
 ### SIMD Floating-Point Exceptions
 None

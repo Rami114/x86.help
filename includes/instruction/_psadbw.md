@@ -40,6 +40,17 @@ DEST[191:144] <- 000000000000H
 DEST[207:192] <- SUM(TEMP24:TEMP31)
 DEST[223:208] <- 00000000000H
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ PSADBW:   | __m64 _mm_sad_pu8(__m64 a,__m64 b)     
+ (V)PSADBW:| __m128i _mm_sad_epu8(__m128i a, __m128i
+           | b)                                     
+ VPSADBW:  | __m256i _mm256_sad_epu8( __m256i a,    
+           | __m256i b)                             
+
 ```
 
  Opcode/Instruction                 | Op/En| 64/32 bit Mode Support| CPUID Feature Flag| Description                               
@@ -125,15 +136,6 @@ VEX.L must be 0, otherwise the instruction will #UD.
  SRC Figure 4-10.| X7 Y7 ABS(X7:Y7) 00H| X6 Y6 ABS(X6:Y6) 00H PSADBW Instruction| X5 Y5 ABS(X5:Y5) 00H| X4 Y4 ABS(X4:Y4) 00H| X3 Y3 ABS(X3:Y3) 00H| X2 Y2 ABS(X2:Y2) 00H| X1 Y1 ABS(X1:Y1) SUM(TEMP7...TEMP0)| X0 Y0 ABS(X0:Y0) DEST
                  |                     | Operation Using 64-bit Operands        |                     |                     |                     |                     |                                    |                      
 
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- PSADBW:   | __m64 _mm_sad_pu8(__m64 a,__m64 b)     
- (V)PSADBW:| __m128i _mm_sad_epu8(__m128i a, __m128i
-           | b)                                     
- VPSADBW:  | __m256i _mm256_sad_epu8( __m256i a,    
-           | __m256i b)                             
 
 ### Flags Affected
 None.

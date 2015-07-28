@@ -11,6 +11,14 @@ DEST[63:0] <- SRC2[127:64]
 DEST[127:64] <- SRC1[127:64]
 DEST[VLMAX-1:128] <- 0
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ MOVHLPS:| __m128 _mm_movehl_ps(__m128 a, __m128
+         | b)                                   
+
 ```
 
  Opcode/Instruction                     | Op/En| 64/32-bit Mode| CPUID Feature Flag| Description                                    
@@ -43,15 +51,9 @@ register are zeroed.
 
 In 64-bit mode, use of the REX.R prefix permits this instruction to access additional
 registers (XMM8-XMM15). If VMOVHLPS is encoded with VEX.L= 1, an attempt to
-execute the instruction encoded with VEX.L= 1 will cause an #UD exception.
+execute the instruction encoded with VEX.L= 1 will cause an **``#UD``** exception.
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- MOVHLPS:| __m128 _mm_movehl_ps(__m128 a, __m128
-         | b)                                   
 
 ### SIMD Floating-Point Exceptions
 None.

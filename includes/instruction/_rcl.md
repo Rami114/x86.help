@@ -3,19 +3,19 @@
 > Operation
 
 ``` slim
-(\* RCL and RCR instructions \*)
+(* RCL and RCR instructions *)
 SIZE <- OperandSize;
 CASE (determine count) OF
 ```
 
- Opcode\*\*        | Instruction    | Op/En| 64-Bit Mode| Compat/Leg Mode| Description                              
+ Opcode**        | Instruction    | Op/En| 64-Bit Mode| Compat/Leg Mode| Description                              
  ---  | --- | --- | --- | --- | ---
  D0 /2           | RCL r/m8, 1    | M1   | Valid      | Valid          | Rotate 9 bits (CF, r/m8) left once.      
- REX + D0 /2     | RCL r/m8\*, 1   | M1   | Valid      | N.E.           | Rotate 9 bits (CF, r/m8) left once.      
+ REX + D0 /2     | RCL r/m8*, 1   | M1   | Valid      | N.E.           | Rotate 9 bits (CF, r/m8) left once.      
  D2 /2           | RCL r/m8, CL   | MC   | Valid      | Valid          | Rotate 9 bits (CF, r/m8) left CL times.  
- REX + D2 /2     | RCL r/m8\*, CL  | MC   | Valid      | N.E.           | Rotate 9 bits (CF, r/m8) left CL times.  
+ REX + D2 /2     | RCL r/m8*, CL  | MC   | Valid      | N.E.           | Rotate 9 bits (CF, r/m8) left CL times.  
  C0 /2 ib        | RCL r/m8, imm8 | MI   | Valid      | Valid          | Rotate 9 bits (CF, r/m8) left imm8 times.
- REX + C0 /2 ib  | RCL r/m8\*, imm8| MI   | Valid      | N.E.           | Rotate 9 bits (CF, r/m8) left imm8 times.
+ REX + C0 /2 ib  | RCL r/m8*, imm8| MI   | Valid      | N.E.           | Rotate 9 bits (CF, r/m8) left imm8 times.
  D1 /2           | RCL r/m16, 1   | M1   | Valid      | Valid          | Rotate 17 bits (CF, r/m16) left once.    
  D3 /2           | RCL r/m16, CL  | MC   | Valid      | Valid          | Rotate 17 bits (CF, r/m16) left CL times.
  C1 /2 ib        | RCL r/m16, imm8| MI   | Valid      | Valid          | Rotate 17 bits (CF, r/m16) left imm8     
@@ -31,12 +31,12 @@ CASE (determine count) OF
  REX.W + C1 /2 ib| RCL r/m64, imm8| MI   | Valid      | N.E.           | Rotate 65 bits (CF, r/m64) left imm8     
                  |                |      |            |                | times. Uses a 6 bit count.               
  D0 /3           | RCR r/m8, 1    | M1   | Valid      | Valid          | Rotate 9 bits (CF, r/m8) right once.     
- REX + D0 /3     | RCR r/m8\*, 1   | M1   | Valid      | N.E.           | Rotate 9 bits (CF, r/m8) right once.     
+ REX + D0 /3     | RCR r/m8*, 1   | M1   | Valid      | N.E.           | Rotate 9 bits (CF, r/m8) right once.     
  D2 /3           | RCR r/m8, CL   | MC   | Valid      | Valid          | Rotate 9 bits (CF, r/m8) right CL times. 
- REX + D2 /3     | RCR r/m8\*, CL  | MC   | Valid      | N.E.           | Rotate 9 bits (CF, r/m8) right CL times. 
+ REX + D2 /3     | RCR r/m8*, CL  | MC   | Valid      | N.E.           | Rotate 9 bits (CF, r/m8) right CL times. 
  C0 /3 ib        | RCR r/m8, imm8 | MI   | Valid      | Valid          | Rotate 9 bits (CF, r/m8) right imm8      
                  |                |      |            |                | times.                                   
- REX + C0 /3 ib  | RCR r/m8\*, imm8| MI   | Valid      | N.E.           | Rotate 9 bits (CF, r/m8) right imm8      
+ REX + C0 /3 ib  | RCR r/m8*, imm8| MI   | Valid      | N.E.           | Rotate 9 bits (CF, r/m8) right imm8      
                  |                |      |            |                | times.                                   
  D1 /3           | RCR r/m16, 1   | M1   | Valid      | Valid          | Rotate 17 bits (CF, r/m16) right once.   
  D3 /3           | RCR r/m16, CL  | MC   | Valid      | Valid          | Rotate 17 bits (CF, r/m16) right CL      
@@ -56,13 +56,13 @@ CASE (determine count) OF
  REX.W + C1 /3 ib| RCR r/m64, imm8| MI   | Valid      | N.E.           | Rotate 65 bits (CF, r/m64) right imm8    
                  |                |      |            |                | times. Uses a 6 bit count.               
  D0 /0           | ROL r/m8, 1    | M1   | Valid      | Valid          | Rotate 8 bits r/m8 left once.            
- REX + D0 /0     | ROL r/m8\*, 1   | M1   | Valid      | N.E.           | Rotate 8 bits r/m8 left once             
+ REX + D0 /0     | ROL r/m8*, 1   | M1   | Valid      | N.E.           | Rotate 8 bits r/m8 left once             
  D2 /0           | ROL r/m8, CL   | MC   | Valid      | Valid          | Rotate 8 bits r/m8 left CL times.        
- REX + D2 /0     | ROL r/m8\*, CL  | MC   | Valid      | N.E.           | Rotate 8 bits r/m8 left CL times.        
+ REX + D2 /0     | ROL r/m8*, CL  | MC   | Valid      | N.E.           | Rotate 8 bits r/m8 left CL times.        
  C0 /0 ib        | ROL r/m8, imm8 | MI   | Valid      | Valid          | Rotate 8 bits r/m8 left imm8 times.      
- Opcode\*\*        | Instruction    | Op/En| 64-Bit Mode| Compat/Leg Mode| Description                              
+ Opcode**        | Instruction    | Op/En| 64-Bit Mode| Compat/Leg Mode| Description                              
  ---  | --- | --- | --- | --- | ---
- REX + C0 /0 ib  | ROL r/m8\*, imm8| MI   | Valid      | N.E.           | Rotate 8 bits r/m8 left imm8 times.      
+ REX + C0 /0 ib  | ROL r/m8*, imm8| MI   | Valid      | N.E.           | Rotate 8 bits r/m8 left imm8 times.      
  D1 /0           | ROL r/m16, 1   | M1   | Valid      | Valid          | Rotate 16 bits r/m16 left once.          
  D3 /0           | ROL r/m16, CL  | MC   | Valid      | Valid          | Rotate 16 bits r/m16 left CL times.      
  C1 /0 ib        | ROL r/m16, imm8| MI   | Valid      | Valid          | Rotate 16 bits r/m16 left imm8 times.    
@@ -76,11 +76,11 @@ CASE (determine count) OF
  REX.W + C1 /0 ib| ROL r/m64, imm8| MI   | Valid      | N.E.           | Rotate 64 bits r/m64 left imm8 times.    
                  |                |      |            |                | Uses a 6 bit count.                      
  D0 /1           | ROR r/m8, 1    | M1   | Valid      | Valid          | Rotate 8 bits r/m8 right once.           
- REX + D0 /1     | ROR r/m8\*, 1   | M1   | Valid      | N.E.           | Rotate 8 bits r/m8 right once.           
+ REX + D0 /1     | ROR r/m8*, 1   | M1   | Valid      | N.E.           | Rotate 8 bits r/m8 right once.           
  D2 /1           | ROR r/m8, CL   | MC   | Valid      | Valid          | Rotate 8 bits r/m8 right CL times.       
- REX + D2 /1     | ROR r/m8\*, CL  | MC   | Valid      | N.E.           | Rotate 8 bits r/m8 right CL times.       
+ REX + D2 /1     | ROR r/m8*, CL  | MC   | Valid      | N.E.           | Rotate 8 bits r/m8 right CL times.       
  C0 /1 ib        | ROR r/m8, imm8 | MI   | Valid      | Valid          | Rotate 8 bits r/m16 right imm8 times.    
- REX + C0 /1 ib  | ROR r/m8\*, imm8| MI   | Valid      | N.E.           | Rotate 8 bits r/m16 right imm8 times.    
+ REX + C0 /1 ib  | ROR r/m8*, imm8| MI   | Valid      | N.E.           | Rotate 8 bits r/m16 right imm8 times.    
  D1 /1           | ROR r/m16, 1   | M1   | Valid      | Valid          | Rotate 16 bits r/m16 right once.         
  D3 /1           | ROR r/m16, CL  | MC   | Valid      | Valid          | Rotate 16 bits r/m16 right CL times.     
  C1 /1 ib        | ROR r/m16, imm8| MI   | Valid      | Valid          | Rotate 16 bits r/m16 right imm8 times.   
@@ -94,8 +94,8 @@ CASE (determine count) OF
  REX.W + C1 /1 ib| ROR r/m64, imm8| MI   | Valid      | N.E.           | Rotate 64 bits r/m64 right imm8 times.   
                  |                |      |            |                | Uses a 6 bit count.                      
 <aside class="notification">
-\* In 64-bit mode, r/m8 can not be encoded to access the following byte
-registers if a REX prefix is used: AH, BH, CH, DH. \*\* See IA-32 Architecture
+* In 64-bit mode, r/m8 can not be encoded to access the following byte
+registers if a REX prefix is used: AH, BH, CH, DH. ** See IA-32 Architecture
 Compatibility section below.
 </aside>
 
@@ -157,11 +157,11 @@ instructions.
 ###   SIZE <- 32
 ###   SIZE <- 64
 ESAC;
-(\* RCL instruction operation \*)
+(* RCL instruction operation *)
 WHILE (tempCOUNT != 0)
   DO
      tempCF <- MSB(DEST);
-     DEST <- (DEST \* 2) + CF;
+     DEST <- (DEST * 2) + CF;
      CF <- tempCF;
      tempCOUNT <- tempCOUNT - 1;
   OD;
@@ -170,7 +170,7 @@ IF COUNT = 1
   THEN OF <- MSB(DEST) XOR CF;
   ELSE OF is undefined;
 FI;
-(\* RCR instruction operation \*)
+(* RCR instruction operation *)
 IF COUNT = 1
   THEN OF <- MSB(DEST) XOR CF;
   ELSE OF is undefined;
@@ -178,21 +178,21 @@ FI;
 WHILE (tempCOUNT != 0)
   DO
      tempCF <- LSB(SRC);
-     DEST <- (DEST / 2) + (CF \* 2SIZE);
+     DEST <- (DEST / 2) + (CF * 2SIZE);
      CF <- tempCF;
      tempCOUNT <- tempCOUNT - 1;
   OD;
-(\* ROL and ROR instructions \*)
+(* ROL and ROR instructions *)
 IF OperandSize = 64
   THEN COUNTMASK = 3FH;
   ELSE COUNTMASK = 1FH;
 FI;
-(\* ROL instruction operation \*)
+(* ROL instruction operation *)
 tempCOUNT <- (COUNT & COUNTMASK) MOD SIZE
 WHILE (tempCOUNT != 0)
   DO
      tempCF <- MSB(DEST);
-     DEST <- (DEST \* 2) + tempCF;
+     DEST <- (DEST * 2) + tempCF;
      tempCOUNT <- tempCOUNT - 1;
   OD;
 ELIHW;
@@ -201,12 +201,12 @@ IF (COUNT & COUNTMASK) = 1
   THEN OF <- MSB(DEST) XOR CF;
   ELSE OF is undefined;
 FI;
-(\* ROR instruction operation \*)
+(* ROR instruction operation *)
 tempCOUNT <- (COUNT & COUNTMASK) MOD SIZE
 WHILE (tempCOUNT != 0)
   DO
      tempCF <- LSB(SRC);
-     DEST <- (DEST / 2) + (tempCF \* 2SIZE);
+     DEST <- (DEST / 2) + (tempCF * 2SIZE);
      tempCOUNT <- tempCOUNT - 1;
   OD;
 ELIHW;

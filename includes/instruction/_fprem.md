@@ -7,14 +7,14 @@ D <- exponent(ST(0)) - exponent(ST(1));
 IF D < 64
   THEN
      Q <- Integer(TruncateTowardZero(ST(0) / ST(1)));
-     ST(0) <- ST(0) - (ST(1) \* Q);
+     ST(0) <- ST(0) - (ST(1) * Q);
      C2 <- 0;
-     C0, C3, C1 <- LeastSignificantBits(Q); (\* Q2, Q1, Q0 \*)
+     C0, C3, C1 <- LeastSignificantBits(Q); (* Q2, Q1, Q0 *)
   ELSE
      C2 <- 1;
      N <- An implementation-dependent number between 32 and 63;
      QQ <- Integer(TruncateTowardZero((ST(0)
-     ST(0) <- ST(0) - (ST(1) \* QQ \* 2(D − N));
+     ST(0) <- ST(0) - (ST(1) * QQ * 2(D − N));
 FI;
 
 ```
@@ -29,7 +29,7 @@ Computes the remainder obtained from dividing the value in the ST(0) register
 (the dividend) by the value in the ST(1) register (the divisor or modulus),
 ### and stores the result in ST(0). The remainder represents the following value
 
-Remainder ← ST(0) − (Q \* ST(1))
+Remainder ← ST(0) − (Q * ST(1))
 
 Here, Q is an integer value that is obtained by truncating the floating-point
 number quotient of [ST(0) / ST(1)]toward zero. The sign of the remainder is
@@ -48,10 +48,10 @@ ST(1)
 
    | |  
 ---- | -----
- -∞-0 +0| -F -F or -0 -0 +0 +F or +0 NaN| -0 \*\*\*\*NaN| +0 \*\*\*\*NaN| +F -F or -0 -0 +0 +F or +0 NaN| +∞ST(0) -0 +0 ST(0) NaN| NaN NaN NaN NaN NaN NaN NaN NaN
+ -∞-0 +0| -F -F or -0 -0 +0 +F or +0 NaN| -0 ****NaN| +0 ****NaN| +F -F or -0 -0 +0 +F or +0 NaN| +∞ST(0) -0 +0 ST(0) NaN| NaN NaN NaN NaN NaN NaN NaN NaN
 <aside class="notification">
-F Means finite floating-point value. \* Indicates floating-point invalid-arithmetic-operand
-(#IA) exception. \*\* Indicates floating-point zero-divide (#Z) exception.
+F Means finite floating-point value. * Indicates floating-point invalid-arithmetic-operand
+(**``#IA)``** exception. ** Indicates floating-point zero-divide (**``#Z)``** exception.
 </aside>
 
 When the result is 0, its sign is the same as that of the dividend. When the

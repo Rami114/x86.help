@@ -29,6 +29,16 @@ DEST[223:208] <- (SRC1 >> (imm[3:2] \* 16))[207:192]
 DEST[239:224] <- (SRC1 >> (imm[5:4] \* 16))[207:192]
 DEST[255:240] <- (SRC1 >> (imm[7:6] \* 16))[207:192]
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ (V)PSHUFHW:| __m128i _mm_shufflehi_epi16(__m128i   
+            | a, int n)                             
+ VPSHUFHW:  | __m256i _mm256_shufflehi_epi16(__m256i
+            | a, const int n)                       
+
 ```
 
  Opcode/Instruction                     | Op/En| 64/32 bit Mode Support| CPUID Feature Flag| Description                            
@@ -71,20 +81,12 @@ register remain unchanged. VEX.128 encoded version: The destination operand
 is an XMM register. The source operand can be an XMM register or a 128-bit memory
 location. Bits (VLMAX-1:128) of the destination YMM register are zeroed. VEX.vvvv
 is reserved and must be 1111b, VEX.L must be 0, otherwise the instruction will
-#UD. VEX.256 encoded version: The destination operand is an YMM register. The
+**``#UD.``** VEX.256 encoded version: The destination operand is an YMM register. The
 source operand can be an YMM register or a 256-bit memory location. Note: In
 VEX encoded versions VEX.vvvv is reserved and must be 1111b otherwise instructions
-will #UD.
+will **``#UD.``**
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- (V)PSHUFHW:| __m128i _mm_shufflehi_epi16(__m128i   
-            | a, int n)                             
- VPSHUFHW:  | __m256i _mm256_shufflehi_epi16(__m256i
-            | a, const int n)                       
 
 ### Flags Affected
 None.

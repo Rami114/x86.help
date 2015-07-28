@@ -18,6 +18,17 @@ VPADDQ (VEX.256 encoded instruction)
   DEST[191:128]<- SRC1[191:128]
   DEST[255:192] <- SRC1[255:192] + SRC2[255:192];
 
+> Intel C/C++ Compiler Intrinsic Equivalents
+
+``` slim
+   | |  
+---- | -----
+ PADDQ:   | __m64 _mm_add_si64 (__m64 a, __m64 b)     
+ (V)PADDQ:| __m128i _mm_add_epi64 ( __m128i a, __m128i
+          | b)                                        
+ VPADDQ:  | __m256i _mm256_add_epi64 ( __m256i a,     
+          | __m256i b)                                
+
 ```
 
  Opcode/Instruction                      | Op/En| 64/32 bit Mode Support| CPUID Feature Flag| Description                            
@@ -81,15 +92,6 @@ VEX.L must be 0, otherwise the instruction will #UD.
 </aside>
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalents
-   | |  
----- | -----
- PADDQ:   | __m64 _mm_add_si64 (__m64 a, __m64 b)     
- (V)PADDQ:| __m128i _mm_add_epi64 ( __m128i a, __m128i
-          | b)                                        
- VPADDQ:  | __m256i _mm256_add_epi64 ( __m256i a,     
-          | __m256i b)                                
 
 ### Flags Affected
 None.

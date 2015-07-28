@@ -30,21 +30,21 @@ so that -0.0 is equal to +0.0.
 ### Table 3-32. FCOMI/FCOMIP/ FUCOMI/FUCOMIP Results
    | |  
 ---- | -----
- Comparison Results\*| ZF| PF| CF
+ Comparison Results*| ZF| PF| CF
  ST0 > ST(i)        | 0 | 0 | 0 
  ST0 < ST(i)        | 0 | 0 | 1 
  ST0 = ST(i)        | 1 | 0 | 0 
- Unordered\*\*        | 1 | 1 | 1 
+ Unordered**        | 1 | 1 | 1 
 <aside class="notification">
-\* See the IA-32 Architecture Compatibility section below. \*\* Flags not
-set if unmasked invalid-arithmetic-operand (#IA) exception is generated.
+* See the IA-32 Architecture Compatibility section below. ** Flags not
+set if unmasked invalid-arithmetic-operand (**``#IA)``** exception is generated.
 </aside>
 
 An unordered comparison checks the class of the numbers being compared (see
 “FXAM - Examine ModR/M” in this chapter). The FUCOMI/FUCOMIP instructions perform
 the same operations as the FCOMI/FCOMIP instructions. The only difference is
 that the FUCOMI/FUCOMIP instructions raise the invalid-arithmetic-operand exception
-(#IA) only when either or both operands are an SNaN or are in an unsupported
+(**``#IA)``** only when either or both operands are an SNaN or are in an unsupported
 format; QNaNs cause the condition code flags to be set to unordered, but do
 not cause an exception to be generated. The FCOMI/FCOMIP instructions raise
 an invalid-operation exception when either or both of the operands are a NaN
@@ -78,7 +78,7 @@ IF Instruction is FCOMI or FCOMIP
   THEN
      IF ST(0) or ST(i) = NaN or unsupported format
        THEN
-          #IA
+          **``#IA``**
           IF FPUControlWord.IM = 1
              THEN
                ZF, PF, CF <- 111;
@@ -90,8 +90,8 @@ IF Instruction is FUCOMI or FUCOMIP
      IF ST(0) or ST(i) = QNaN, but not SNaN or unsupported format
        THEN
           ZF, PF, CF <- 111;
-       ELSE (\* ST(0) or ST(i) is SNaN or unsupported format \*)
-          #IA;
+       ELSE (* ST(0) or ST(i) is SNaN or unsupported format *)
+          **``#IA;``**
           IF FPUControlWord.IM = 1
              THEN
                ZF, PF, CF <- 111;

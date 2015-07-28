@@ -3,25 +3,25 @@
 > Operation
 
 ``` slim
-IF AL <- SRC; (\* Byte load \*)
-  THEN AL <- SRC; (\* Byte load \*)
+IF AL <- SRC; (* Byte load *)
+  THEN AL <- SRC; (* Byte load *)
      IF DF = 0
        THEN (E)SI <- (E)SI + 1;
        ELSE (E)SI <- (E)SI - 1;
      FI;
-ELSE IF AX <- SRC; (\* Word load \*)
+ELSE IF AX <- SRC; (* Word load *)
   THEN IF DF = 0
        THEN (E)SI <- (E)SI + 2;
        ELSE (E)SI <- (E)SI - 2;
      IF;
   FI;
-ELSE IF EAX <- SRC; (\* Doubleword load \*)
+ELSE IF EAX <- SRC; (* Doubleword load *)
   THEN IF DF = 0
        THEN (E)SI <- (E)SI + 4;
        ELSE (E)SI <- (E)SI - 4;
      FI;
   FI;
-ELSE IF RAX <- SRC; (\* Quadword load \*)
+ELSE IF RAX <- SRC; (* Quadword load *)
   THEN IF DF = 0
        THEN (R)SI <- (R)SI + 8;
        ELSE (R)SI <- (R)SI - 8;

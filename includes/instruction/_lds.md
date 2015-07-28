@@ -76,7 +76,7 @@ operand is loaded in the hidden part of the selected segment register.
 Also in protected mode, a NULL selector (values 0000 through 0003) can be loaded
 into DS, ES, FS, or GS registers without causing a protection exception. (Any
 subsequent reference to a segment whose corresponding segment register is loaded
-with a NULL selector, causes a general-protection exception (#GP) and no memory
+with a NULL selector, causes a general-protection exception (**``#GP)``** and no memory
 reference to the segment occurs.)
 
 In 64-bit mode, the instruction's default operation size is 32 bits. Using a
@@ -91,22 +91,22 @@ limits.
 ###   ELSE IF FS, or GS is loaded with a NULL selector
      THEN
        SegmentRegister <- NULLSelector;
-       SegmentRegister(DescriptorValidBit) <- 0; FI; (\* Hidden flag;
-          not accessible by software \*)
+       SegmentRegister(DescriptorValidBit) <- 0; FI; (* Hidden flag;
+          not accessible by software *)
   FI;
   DEST <- Offset(SRC);
 PREOTECTED MODE OR COMPATIBILITY MODE;
   IF SS is loaded
      THEN
        IF SegementSelector = NULL
-          THEN #GP(0);
+          THEN **``#GP(0);``**
        ELSE IF Segment selector index is not within descriptor table limits
              or segment selector RPL != CPL
              or access rights indicate nonwritable data segment
              or DPL != CPL
-          THEN #GP(selector); FI;
+          THEN **``#GP(selector);``** FI;
        ELSE IF Segment marked not present
-          THEN #SS(selector); FI;
+          THEN **``#SS(selector);``** FI;
        FI;
        SS <- SegmentSelector(SRC);
        SS <- SegmentDescriptor([SRC]);
@@ -115,9 +115,9 @@ PREOTECTED MODE OR COMPATIBILITY MODE;
        or access rights indicate segment neither data nor readable code segment
        or segment is data or nonconforming-code segment
        and (RPL > DPL or CPL > DPL)
-          THEN #GP(selector); FI;
+          THEN **``#GP(selector);``** FI;
        ELSE IF Segment marked not present
-          THEN #NP(selector); FI;
+          THEN **``#NP(selector);``** FI;
        FI;
        SegmentRegister <- SegmentSelector(SRC) AND RPL;
        SegmentRegister <- SegmentDescriptor([SRC]);
@@ -125,8 +125,8 @@ PREOTECTED MODE OR COMPATIBILITY MODE;
 ###   ELSE IF DS, ES, FS, or GS is loaded with a NULL selector
      THEN
        SegmentRegister <- NULLSelector;
-       SegmentRegister(DescriptorValidBit) <- 0; FI; (\* Hidden flag;
-          not accessible by software \*)
+       SegmentRegister(DescriptorValidBit) <- 0; FI; (* Hidden flag;
+          not accessible by software *)
   FI;
   DEST <- Offset(SRC);
 Real-Address or Virtual-8086 Mode

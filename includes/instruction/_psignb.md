@@ -102,6 +102,29 @@ DEST[VLMAX-1:128] <- 0
 VPSIGND (VEX.256 encoded version)
 DEST[255:0] <-DWORD_SIGN(SRC1, SRC2)
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ PSIGNB:   | __m64 _mm_sign_pi8 (__m64 a, __m64 b)     
+ (V)PSIGNB:| __m128i _mm_sign_epi8 (__m128i a, __m128i 
+           | b)                                        
+ VPSIGNB:  | __m256i _mm256_sign_epi8 (__m256i a,      
+           | __m256i b)                                
+ PSIGNW:   | __m64 _mm_sign_pi16 (__m64 a, __m64       
+           | b)                                        
+ (V)PSIGNW:| __m128i _mm_sign_epi16 (__m128i a, __m128i
+           | b)                                        
+ VPSIGNW:  | __m256i _mm256_sign_epi16 (__m256i a,     
+           | __m256i b)                                
+ PSIGND:   | __m64 _mm_sign_pi32 (__m64 a, __m64       
+           | b)                                        
+ (V)PSIGND:| __m128i _mm_sign_epi32 (__m128i a, __m128i
+           | b)                                        
+ VPSIGND:  | __m256i _mm256_sign_epi32 (__m256i a,     
+           | __m256i b)                                
+
 ```
 
  Opcode/Instruction                   | Op/En| 64/32 bit Mode Support| CPUID Feature Flag| Description                                    
@@ -169,7 +192,7 @@ is set to zero.
 (V)PSIGNB operates on signed bytes. (V)PSIGNW operates on 16-bit signed words.
 (V)PSIGND operates on signed 32-bit integers. When the source operand is a 128bit
 memory operand, the operand must be aligned on a 16-byte boundary or a general-protection
-exception (#GP) will be generated.
+exception (**``#GP)``** will be generated.
 
 Legacy SSE instructions: Both operands can be MMX registers. In 64-bit mode,
 ### use the REX prefix to access additional registers. 128-bit Legacy SSE version
@@ -179,32 +202,11 @@ of the corresponding YMM destination register remain unchanged. VEX.128 encoded
 version: The first source and destination operands are XMM registers. The second
 source operand is an XMM register or a 128-bit memory location. Bits (VLMAX-1:128)
 of the destination YMM register are zeroed. VEX.L must be 0, otherwise instructions
-will #UD. VEX.256 encoded version: The first source and destination operands
+will **``#UD.``** VEX.256 encoded version: The first source and destination operands
 are YMM registers. The second source operand is an YMM register or a 256-bit
 memory location.
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- PSIGNB:   | __m64 _mm_sign_pi8 (__m64 a, __m64 b)     
- (V)PSIGNB:| __m128i _mm_sign_epi8 (__m128i a, __m128i 
-           | b)                                        
- VPSIGNB:  | __m256i _mm256_sign_epi8 (__m256i a,      
-           | __m256i b)                                
- PSIGNW:   | __m64 _mm_sign_pi16 (__m64 a, __m64       
-           | b)                                        
- (V)PSIGNW:| __m128i _mm_sign_epi16 (__m128i a, __m128i
-           | b)                                        
- VPSIGNW:  | __m256i _mm256_sign_epi16 (__m256i a,     
-           | __m256i b)                                
- PSIGND:   | __m64 _mm_sign_pi32 (__m64 a, __m64       
-           | b)                                        
- (V)PSIGND:| __m128i _mm_sign_epi32 (__m128i a, __m128i
-           | b)                                        
- VPSIGND:  | __m256i _mm256_sign_epi32 (__m256i a,     
-           | __m256i b)                                
 
 ### SIMD Floating-Point Exceptions
 None.

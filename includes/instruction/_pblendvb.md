@@ -140,6 +140,16 @@ ELSE DEST[247:240] <- SRC1[247:240];
 IF (MASK[255] == 1) THEN DEST[255:248] <- SRC2[255:248]
 ELSE DEST[255:248] <- SRC1[255:248]
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ (V)PBLENDVB:| __m128i _mm_blendv_epi8 (__m128i v1,
+             | __m128i v2, __m128i mask);          
+ VPBLENDVB:  | __m256i _mm256_blendv_epi8 (__m256i 
+             | v1, __m256i v2, __m256i mask);      
+
 ```
 
  Opcode/Instruction                         | Op/En| 64/32 bit Mode Support| CPUID Feature Flag| Description                               
@@ -175,31 +185,23 @@ register XMM0. 128-bit Legacy SSE version: The first source operand and the
 destination operand is the same. Bits (VLMAX-1:128) of the corresponding YMM
 destination register remain unchanged. The mask register operand is implicitly
 defined to be the architectural register XMM0. An attempt to execute PBLENDVB
-with a VEX prefix will cause #UD. VEX.128 encoded version: The first source
+with a VEX prefix will cause **``#UD.``** VEX.128 encoded version: The first source
 operand and the destination operand are XMM registers. The second source operand
 is an XMM register or 128-bit memory location. The mask operand is the third
 source register, and encoded in bits[7:4] of the immediate byte(imm8). The bits[3:0]
 of imm8 are ignored. In 32-bit mode, imm8[7] is ignored. The upper bits (VLMAX-1:128)
 of the corresponding YMM register (destination register) are zeroed. VEX.L must
-be 0, otherwise the instruction will #UD. VEX.W must be 0, otherwise, the instruction
-will #UD. VEX.256 encoded version: The first source operand and the destination
+be 0, otherwise the instruction will **``#UD.``** VEX.W must be 0, otherwise, the instruction
+will **``#UD.``** VEX.256 encoded version: The first source operand and the destination
 operand are YMM registers. The second source operand is an YMM register or 256-bit
 memory location. The third source register is an YMM register and encoded in
 bits[7:4] of the immediate byte(imm8). The bits[3:0] of imm8 are ignored. In
 32-bit mode, imm8[7] is ignored. VPBLENDVB permits the mask to be any XMM or
 YMM register. In contrast, PBLENDVB treats XMM0 implicitly as the mask and do
 not support non-destructive destination operation. An attempt to execute PBLENDVB
-encoded with a VEX prefix will cause a #UD exception.
+encoded with a VEX prefix will cause a **``#UD``** exception.
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- (V)PBLENDVB:| __m128i _mm_blendv_epi8 (__m128i v1,
-             | __m128i v2, __m128i mask);          
- VPBLENDVB:  | __m256i _mm256_blendv_epi8 (__m256i 
-             | v1, __m256i v2, __m256i mask);      
 
 ### Flags Affected
 None.

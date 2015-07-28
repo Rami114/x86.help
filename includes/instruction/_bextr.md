@@ -7,7 +7,24 @@ START <- SRC2[7:0];
 LEN <- SRC2[15:8];
 TEMP <- ZERO_EXTEND_TO_512 (SRC1 );
 DEST <- ZERO_EXTEND(TEMP[START+LEN -1: START]);
-ZF <- (DEST = 0);
+ZF <- (DEST = 0);```
+
+### Flags Affected
+ZF is updated based on the result. AF, SF, and PF are undefined. All other flags
+are cleared.
+
+
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ BEXTR:| unsigned __int32 _bextr_u32(unsigned
+       | __int32 src, unsigned __int32 start.
+       | unsigned __int32 len);              
+ BEXTR:| unsigned __int64 _bextr_u64(unsigned
+       | __int64 src, unsigned __int32 start.
+       | unsigned __int32 len);              
 
 ```
 
@@ -45,24 +62,9 @@ register is cleared if no bits are extracted. This instruction is not supported
 in real mode and virtual-8086 mode. The operand size is always 32 bits if not
 in 64-bit mode. In 64-bit mode operand size 64 requires VEX.W1. VEX.W1 is ignored
 in non-64-bit modes. An attempt to execute this instruction with VEX.L not equal
-to 0 will cause #UD.
+to 0 will cause **``#UD.``**
 
 
-
-### Flags Affected
-ZF is updated based on the result. AF, SF, and PF are undefined. All other flags
-are cleared.
-
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- BEXTR:| unsigned __int32 _bextr_u32(unsigned
-       | __int32 src, unsigned __int32 start.
-       | unsigned __int32 len);              
- BEXTR:| unsigned __int64 _bextr_u64(unsigned
-       | __int64 src, unsigned __int32 start.
-       | unsigned __int32 len);              
 
 ### SIMD Floating-Point Exceptions
 None

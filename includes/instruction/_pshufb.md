@@ -57,6 +57,18 @@ for i = 0 to 15 {
 ---- | -----
  Figure 4-11.| PSHUB with 64-Bit Operands
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ PSHUFB:   | __m64 _mm_shuffle_pi8 (__m64 a, __m64
+           | b)                                   
+ (V)PSHUFB:| __m128i _mm_shuffle_epi8 (__m128i a, 
+           | __m128i b)                           
+ VPSHUFB:  | __m256i _mm256_shuffle_epi8(__m256i  
+           | a, __m256i b)                        
+
 ```
 
  Opcode/Instruction                   | Op/En| 64/32 bit Mode Support| CPUID Feature Flag| Description                                
@@ -94,7 +106,7 @@ byte. Each byte in the shuffle control mask forms an index to permute the corres
 byte in the destination operand. The value of each index is the least significant
 4 bits (128-bit operation) or 3 bits (64-bit operation) of the shuffle control
 byte. When the source operand is a 128-bit memory operand, the operand must
-be aligned on a 16-byte boundary or a general-protection exception (#GP) will
+be aligned on a 16-byte boundary or a general-protection exception (**``#GP)``** will
 be generated.
 
 In 64-bit mode, use the REX prefix to access additional registers. Legacy SSE
@@ -117,16 +129,6 @@ VEX.L must be 0, otherwise the instruction will #UD.
 </aside>
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- PSHUFB:   | __m64 _mm_shuffle_pi8 (__m64 a, __m64
-           | b)                                   
- (V)PSHUFB:| __m128i _mm_shuffle_epi8 (__m128i a, 
-           | __m128i b)                           
- VPSHUFB:  | __m256i _mm256_shuffle_epi8(__m256i  
-           | a, __m256i b)                        
 
 ### SIMD Floating-Point Exceptions
 None.

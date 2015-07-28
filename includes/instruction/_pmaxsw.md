@@ -45,6 +45,17 @@ VPMAXSW (VEX.256 encoded version)
   ELSE
      DEST[255:240] <- SRC2[255:240]; FI;
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ PMAXSW:   | __m64 _mm_max_pi16(__m64 a, __m64 b)      
+ (V)PMAXSW:| __m128i _mm_max_epi16 ( __m128i a, __m128i
+           | b)                                        
+ VPMAXSW:  | __m256i _mm256_max_epi16 ( __m256i a,     
+           | __m256i b)                                
+
 ```
 
  Opcode/Instruction                 | Op/En| 64/32 bit Mode Support| CPUID Feature Flag| Description                              
@@ -99,15 +110,6 @@ VEX.L must be 0, otherwise the instruction will #UD.
 </aside>
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- PMAXSW:   | __m64 _mm_max_pi16(__m64 a, __m64 b)      
- (V)PMAXSW:| __m128i _mm_max_epi16 ( __m128i a, __m128i
-           | b)                                        
- VPMAXSW:  | __m256i _mm256_max_epi16 ( __m256i a,     
-           | __m256i b)                                
 
 ### Flags Affected
 None.

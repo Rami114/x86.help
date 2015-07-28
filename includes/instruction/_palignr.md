@@ -4,21 +4,33 @@
 
 ``` slim
 PALIGNR (with 64-bit operands)
-  temp1[127:0] = CONCATENATE(DEST,SRC)>>(imm8\*8)
+  temp1[127:0] = CONCATENATE(DEST,SRC)>>(imm8*8)
   DEST[63:0] = temp1[63:0]
 PALIGNR (with 128-bit operands)
-temp1[255:0] <- ((DEST[127:0] << 128) OR SRC[127:0])>>(imm8\*8);
+temp1[255:0] <- ((DEST[127:0] << 128) OR SRC[127:0])>>(imm8*8);
 DEST[127:0] <- temp1[127:0]
 DEST[VLMAX-1:128] (Unmodified)
 VPALIGNR (VEX.128 encoded version)
-temp1[255:0] <- ((SRC1[127:0] << 128) OR SRC2[127:0])>>(imm8\*8);
+temp1[255:0] <- ((SRC1[127:0] << 128) OR SRC2[127:0])>>(imm8*8);
 DEST[127:0] <- temp1[127:0]
 DEST[VLMAX-1:128] <- 0
 VPALIGNR (VEX.256 encoded version)
-temp1[255:0] <- ((SRC1[127:0] << 128) OR SRC2[127:0])>>(imm8[7:0]\*8);
+temp1[255:0] <- ((SRC1[127:0] << 128) OR SRC2[127:0])>>(imm8[7:0]*8);
 DEST[127:0] <- temp1[127:0]
-temp1[255:0] <- ((SRC1[255:128] << 128) OR SRC2[255:128])>>(imm8[7:0]\*8);
+temp1[255:0] <- ((SRC1[255:128] << 128) OR SRC2[255:128])>>(imm8[7:0]*8);
 DEST[255:128] <- temp1[127:0]
+
+> Intel C/C++ Compiler Intrinsic Equivalents
+
+``` slim
+   | |  
+---- | -----
+ PALIGNR:   | __m64 _mm_alignr_pi8 (__m64 a, __m64
+            | b, int n)                           
+ (V)PALIGNR:| __m128i _mm_alignr_epi8 (__m128i a, 
+            | __m128i b, int n)                   
+ VPALIGNR:  | __m256i _mm256_alignr_epi8 (__m256i 
+            | a, __m256i b, const int n)          
 
 ```
 
@@ -68,7 +80,7 @@ Immediate shift counts larger than the 2L (i.e. 32 for 128-bit operands, or
 16 for 64-bit operands) produce a zero result. Both operands can be MMX registers,
 XMM registers or YMM registers. When the source operand is a 128-bit memory
 operand, the operand must be aligned on a 16-byte boundary or a general-protection
-exception (#GP) will be generated.
+exception (**``#GP)``** will be generated.
 
 In 64-bit mode, use the REX prefix to access additional registers. 128-bit Legacy
 SSE version: Bits (VLMAX-1:128) of the corresponding YMM destination register
@@ -90,32 +102,22 @@ and second source operand for both 128-bit and 256-bit instructions. The high
 128-bits of the intermediate composite 256-bit result came from the 128-bit
 data from the first source operand; the low 128-bits of the intermediate result
 came from the 128-bit data of the second source operand. Note: VEX.L must be
-0, otherwise the instruction will #UD.
+0, otherwise the instruction will **``#UD.``**
 
    | |  
 ---- | -----
  127| 0| 127| 0 SRC2
-Imm8[7:0]\*8
+Imm8[7:0]*8
 
    | |  
 ---- | -----
  255| 128| 255| 128 SRC2
-Imm8[7:0]\*8
+Imm8[7:0]*8
 
    | |  
 ---- | -----
  255 Figure 4-3.| 128 256-bit VPALIGN Instruction Operation| 127| 0 DEST
 
-
-### Intel C/C++ Compiler Intrinsic Equivalents
-   | |  
----- | -----
- PALIGNR:   | __m64 _mm_alignr_pi8 (__m64 a, __m64
-            | b, int n)                           
- (V)PALIGNR:| __m128i _mm_alignr_epi8 (__m128i a, 
-            | __m128i b, int n)                   
- VPALIGNR:  | __m256i _mm256_alignr_epi8 (__m256i 
-            | a, __m256i b, const int n)          
 
 ### SIMD Floating-Point Exceptions
 None.

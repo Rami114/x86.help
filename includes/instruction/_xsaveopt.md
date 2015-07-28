@@ -19,20 +19,33 @@ IF XRSTOR_INFO = CPL,VMXNR,LAXA,COMPMASK
 FI;
 IF RFBM[0] = 1 and XINUSE[0] = 1
   THEN store x87 state into legacy region of XSAVE area;
-  /\* might avoid saving if x87 state is not modified and MODOPT = 1 \*/
+  /* might avoid saving if x87 state is not modified and MODOPT = 1 */
 FI;
 IF RFBM[1] = 1 and XINUSE[1]
   THEN store XMM registers into legacy region of XSAVE area;
-  /\* might avoid saving if XMM registers are not modified and MODOPT = 1 \*/
+  /* might avoid saving if XMM registers are not modified and MODOPT = 1 */
 FI;
 IF RFBM[2] = 1 AND XINUSE[2] = 1
   THEN store AVX state into extended region of XSAVE area;
-  /\* might avoid saving if AVX state is not modified and MODOPT = 1 \*/
+  /* might avoid saving if AVX state is not modified and MODOPT = 1 */
 FI;
 IF RFBM[1] = 1 or RFBM[2] = 1
   THEN store MXCSR and MXCSR_MASK into legacy region of XSAVE area;
 FI;
-XSTATE_BV field in XSAVE header <- (OLD_BV AND ~RFBM) OR (XINUSE AND RFBM);
+XSTATE_BV field in XSAVE header <- (OLD_BV AND ~RFBM) OR (XINUSE AND RFBM);```
+
+### Flags Affected
+None.
+
+
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ XSAVEOPT:| void _xsaveopt( void * , unsigned __int64);
+ XSAVEOPT:| void _xsaveopt64( void * , unsigned        
+          | __int64);                                  
 
 ```
 
@@ -86,21 +99,10 @@ other than the XSTATE_BV field.
 area (see Section 13.4.3, “Extended Region of an XSAVE Area”).
 
 Use of a destination operand not aligned to 64-byte boundary (in either 64-bit
-or 32-bit modes) will result in a general-protection (#GP) exception. In 64-bit
+or 32-bit modes) will result in a general-protection (**``#GP)``** exception. In 64-bit
 mode, the upper 32 bits of RDX and RAX are ignored.
 
 
-
-### Flags Affected
-None.
-
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- XSAVEOPT:| void _xsaveopt( void \* , unsigned __int64);
- XSAVEOPT:| void _xsaveopt64( void \* , unsigned        
-          | __int64);                                  
 
 ### Protected Mode Exceptions
    | |  

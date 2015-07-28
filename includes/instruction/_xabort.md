@@ -10,25 +10,7 @@ IF RTM_ACTIVE = 0
   ELSE
      GOTO RTM_ABORT_PROCESSING;
 FI;
-(\* For any RTM abort condition encountered during RTM execution \*)
-```
-
- Opcode/Instruction  | Op/En| 64/32bit Mode Support| CPUID Feature Flag| Description                            
- ---  | --- | --- | --- | ---
- C6 F8 ib XABORT imm8| A    | V/V                  | RTM               | Causes an RTM abort if in RTM execution
-
-### Instruction Operand Encoding
- Op/En| Operand 1| Operand2| Operand3| Operand4
- ---  | --- | --- | --- | ---
- A    | imm8     | NA      | NA      | NA      
-
-### Description
-XABORT forces an RTM abort. Following an RTM abort, the logical processor resumes
-execution at the fallback address computed through the outermost XBEGIN instruction.
-The EAX register is updated to reflect an XABORT instruction caused the abort,
-and the imm8 argument will be provided in bits 31:24 of EAX.
-
-
+(\* For any RTM abort condition encountered during RTM execution \*)```
 
 ### RTM_ABORT_PROCESSING
   Restore architectural register state;
@@ -48,10 +30,31 @@ END
 None
 
 
-### Intel C/C++ Compiler Intrinsic Equivalent
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
    | |  
 ---- | -----
  XABORT:| void _xabort( unsigned int);
+
+```
+
+ Opcode/Instruction  | Op/En| 64/32bit Mode Support| CPUID Feature Flag| Description                            
+ ---  | --- | --- | --- | ---
+ C6 F8 ib XABORT imm8| A    | V/V                  | RTM               | Causes an RTM abort if in RTM execution
+
+### Instruction Operand Encoding
+ Op/En| Operand 1| Operand2| Operand3| Operand4
+ ---  | --- | --- | --- | ---
+ A    | imm8     | NA      | NA      | NA      
+
+### Description
+XABORT forces an RTM abort. Following an RTM abort, the logical processor resumes
+execution at the fallback address computed through the outermost XBEGIN instruction.
+The EAX register is updated to reflect an XABORT instruction caused the abort,
+and the imm8 argument will be provided in bits 31:24 of EAX.
+
+
 
 ### SIMD Floating-Point Exceptions
 None

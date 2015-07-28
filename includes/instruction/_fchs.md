@@ -22,7 +22,7 @@ the results obtained when changing the sign of various classes of numbers.
 ---- | -----
  ST(0) SRC| ST(0) DEST + ∞+ F + 0 − 0 − F − ∞NaN
 <aside class="notification">
-\* F means finite floating-point value.
+* F means finite floating-point value.
 </aside>
 
 This instruction's operation is the same in non-64-bit modes and 64-bit mode.

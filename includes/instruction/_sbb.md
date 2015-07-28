@@ -5,6 +5,24 @@
 ``` slim
 DEST <- (DEST - (SRC + CF));
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ SBB:                    | extern unsigned char _subborrow_u8(unsigned 
+                         | char c_in, unsigned char src1, unsigned     
+                         | char src2, unsigned char \*diff_out);        
+ SBB: \*diff_out);        | extern unsigned char _subborrow_u16(unsigned
+                         | char c_in, unsigned short src1, unsigned    
+                         | short src2, unsigned short                  
+ SBB:                    | extern unsigned char _subborrow_u32(unsigned
+                         | char c_in, unsigned int src1, unsigned      
+                         | char int, unsigned int \*diff_out);          
+ SBB: __int64 \*diff_out);| extern unsigned char _subborrow_u64(unsigned
+                         | char c_in, unsigned __int64 src1, unsigned  
+                         | __int64 src2, unsigned                      
+
 ```
 
  Opcode          | Instruction     | Op/En| 64-Bit Mode| Compat/Leg Mode| Description                              
@@ -15,7 +33,7 @@ DEST <- (DEST - (SRC + CF));
  REX.W + 1D id   | SBB RAX, imm32  | I    | Valid      | N.E.           | Subtract with borrow sign-extended imm.32
                  |                 |      |            |                | to 64-bits from RAX.                     
  80 /3 ib        | SBB r/m8, imm8  | MI   | Valid      | Valid          | Subtract with borrow imm8 from r/m8.     
- REX + 80 /3 ib  | SBB r/m8\*, imm8 | MI   | Valid      | N.E.           | Subtract with borrow imm8 from r/m8.     
+ REX + 80 /3 ib  | SBB r/m8*, imm8 | MI   | Valid      | N.E.           | Subtract with borrow imm8 from r/m8.     
  81 /3 iw        | SBB r/m16, imm16| MI   | Valid      | Valid          | Subtract with borrow imm16 from r/m16.   
  81 /3 id        | SBB r/m32, imm32| MI   | Valid      | Valid          | Subtract with borrow imm32 from r/m32.   
  REX.W + 81 /3 id| SBB r/m64, imm32| MI   | Valid      | N.E.           | Subtract with borrow sign-extended imm32 
@@ -27,12 +45,12 @@ DEST <- (DEST - (SRC + CF));
  REX.W + 83 /3 ib| SBB r/m64, imm8 | MI   | Valid      | N.E.           | Subtract with borrow sign-extended imm8  
                  |                 |      |            |                | from r/m64.                              
  18 /r           | SBB r/m8, r8    | MR   | Valid      | Valid          | Subtract with borrow r8 from r/m8.       
- REX + 18 /r     | SBB r/m8\*, r8   | MR   | Valid      | N.E.           | Subtract with borrow r8 from r/m8.       
+ REX + 18 /r     | SBB r/m8*, r8   | MR   | Valid      | N.E.           | Subtract with borrow r8 from r/m8.       
  19 /r           | SBB r/m16, r16  | MR   | Valid      | Valid          | Subtract with borrow r16 from r/m16.     
  19 /r           | SBB r/m32, r32  | MR   | Valid      | Valid          | Subtract with borrow r32 from r/m32.     
  REX.W + 19 /r   | SBB r/m64, r64  | MR   | Valid      | N.E.           | Subtract with borrow r64 from r/m64.     
  1A /r           | SBB r8, r/m8    | RM   | Valid      | Valid          | Subtract with borrow r/m8 from r8.       
- REX + 1A /r     | SBB r8\*, r/m8\*  | RM   | Valid      | N.E.           | Subtract with borrow r/m8 from r8.       
+ REX + 1A /r     | SBB r8*, r/m8*  | RM   | Valid      | N.E.           | Subtract with borrow r/m8 from r8.       
  1B /r           | SBB r16, r/m16  | RM   | Valid      | Valid          | Subtract with borrow r/m16 from r16.     
  1B /r           | SBB r32, r/m32  | RM   | Valid      | Valid          | Subtract with borrow r/m32 from r32.     
  REX.W + 1B /r   | SBB r64, r/m64  | RM   | Valid      | N.E.           | Subtract with borrow r/m64 from r64.     
@@ -42,7 +60,7 @@ DEST <- (DEST - (SRC + CF));
 
    | |  
 ---- | -----
- \*| In 64-bit mode, r/m8 can not be encoded
+ *| In 64-bit mode, r/m8 can not be encoded
   | to access the following byte registers 
   | if a REX prefix is used: AH, BH, CH,   
   | DH.                                    
@@ -83,22 +101,6 @@ Using a REX prefix in the form of REX.W promotes operation to 64 bits. See the
 summary chart at the beginning of this section for encoding data and limits.
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- SBB:                    | extern unsigned char _subborrow_u8(unsigned 
-                         | char c_in, unsigned char src1, unsigned     
-                         | char src2, unsigned char \*diff_out);        
- SBB: \*diff_out);        | extern unsigned char _subborrow_u16(unsigned
-                         | char c_in, unsigned short src1, unsigned    
-                         | short src2, unsigned short                  
- SBB:                    | extern unsigned char _subborrow_u32(unsigned
-                         | char c_in, unsigned int src1, unsigned      
-                         | char int, unsigned int \*diff_out);          
- SBB: __int64 \*diff_out);| extern unsigned char _subborrow_u64(unsigned
-                         | char c_in, unsigned __int64 src1, unsigned  
-                         | __int64 src2, unsigned                      
 
 ### Flags Affected
 The OF, SF, ZF, AF, PF, and CF flags are set according to the result.

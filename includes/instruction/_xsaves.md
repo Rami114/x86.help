@@ -16,18 +16,30 @@ IF XRSTOR_INFO = CPL,VMXNR,LAXA,COMPMASK
 FI;
 IF RFBM[0] = 1 and XINUSE[0] = 1
   THEN store x87 state into legacy region of XSAVE area;
-  /\* might avoid saving if x87 state is not modified and MODOPT = 1 \*/
+  /* might avoid saving if x87 state is not modified and MODOPT = 1 */
 FI;
 IF RFBM[1] = 1 and (XINUSE[1] = 1 or MXCSR != 1F80H)
   THEN store SSE state into legacy region of XSAVE area;
-  /\* might avoid saving if SSE state is not modified and MODOPT = 1 \*/
+  /* might avoid saving if SSE state is not modified and MODOPT = 1 */
 FI;
 IF RFBM[2] = 1 AND XINUSE[2] = 1
   THEN store AVX state into extended region of XSAVE area;
-  /\* might avoid saving if AVX state is not modified and MODOPT = 1 \*/
+  /* might avoid saving if AVX state is not modified and MODOPT = 1 */
 FI;
 XSTATE_BV field in XSAVE header <- XINUSE AND RFBM;
-XCOMP_BV field in XSAVE header <- COMPMASK;
+XCOMP_BV field in XSAVE header <- COMPMASK;```
+
+### Flags Affected
+None.
+
+
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ XSAVES:  | void _xsaves( void * , unsigned __int64);  
+ XSAVES64:| void _xsaves64( void * , unsigned __int64);
 
 ```
 
@@ -81,7 +93,7 @@ fields.
 area (see Section 13.4.3, “Extended Region of an XSAVE Area”).
 
 Use of a destination operand not aligned to 64-byte boundary (in either 64-bit
-or 32-bit modes) results in a general-protection (#GP) exception. In 64-bit
+or 32-bit modes) results in a general-protection (**``#GP)``** exception. In 64-bit
 mode, the upper 32 bits of RDX and RAX are ignored.
 
    | |  
@@ -102,16 +114,6 @@ mode, the upper 32 bits of RDX and RAX are ignored.
    | In this case, XSAVES sets XSTATE_BV[1]   
    | to 1 as long as RFBM[1] = 1.             
 
-
-### Flags Affected
-None.
-
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- XSAVES:  | void _xsaves( void \* , unsigned __int64);  
- XSAVES64:| void _xsaves64( void \* , unsigned __int64);
 
 ### Protected Mode Exceptions
    | |  

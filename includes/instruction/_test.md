@@ -22,7 +22,7 @@ IF TEMP = 0
                  |                  |      |            |                | RAX; set SF, ZF, PF according to result.    
  F6 /0 ib        | TEST r/m8, imm8  | MI   | Valid      | Valid          | AND imm8 with r/m8; set SF, ZF, PF according
                  |                  |      |            |                | to result.                                  
- REX + F6 /0 ib  | TEST r/m8\*, imm8 | MI   | Valid      | N.E.           | AND imm8 with r/m8; set SF, ZF, PF according
+ REX + F6 /0 ib  | TEST r/m8*, imm8 | MI   | Valid      | N.E.           | AND imm8 with r/m8; set SF, ZF, PF according
                  |                  |      |            |                | to result.                                  
  F7 /0 iw        | TEST r/m16, imm16| MI   | Valid      | Valid          | AND imm16 with r/m16; set SF, ZF, PF        
                  |                  |      |            |                | according to result.                        
@@ -32,7 +32,7 @@ IF TEMP = 0
                  |                  |      |            |                | r/m64; set SF, ZF, PF according to result.  
  84 /r           | TEST r/m8, r8    | MR   | Valid      | Valid          | AND r8 with r/m8; set SF, ZF, PF according  
                  |                  |      |            |                | to result.                                  
- REX + 84 /r     | TEST r/m8\*, r8\*  | MR   | Valid      | N.E.           | AND r8 with r/m8; set SF, ZF, PF according  
+ REX + 84 /r     | TEST r/m8*, r8*  | MR   | Valid      | N.E.           | AND r8 with r/m8; set SF, ZF, PF according  
                  |                  |      |            |                | to result.                                  
  85 /r           | TEST r/m16, r16  | MR   | Valid      | Valid          | AND r16 with r/m16; set SF, ZF, PF according
                  |                  |      |            |                | to result.                                  
@@ -41,7 +41,7 @@ IF TEMP = 0
  REX.W + 85 /r   | TEST r/m64, r64  | MR   | Valid      | N.E.           | AND r64 with r/m64; set SF, ZF, PF according
                  |                  |      |            |                | to result.                                  
 <aside class="notification">
-\* In 64-bit mode, r/m8 can not be encoded to access the following byte
+* In 64-bit mode, r/m8 can not be encoded to access the following byte
 registers if a REX prefix is used: AH, BH, CH, DH.
 </aside>
 
@@ -69,7 +69,7 @@ data and limits.
 PF <- BitwiseXNOR(TEMP[0:7]);
 CF <- 0;
 OF <- 0;
-(\* AF is undefined \*)
+(* AF is undefined *)
 
 ### Flags Affected
 The OF and CF flags are set to 0. The SF, ZF, and PF flags are set according

@@ -8,7 +8,21 @@ For (i=0; i < OperandSize; i++)
 {
      THEN Count++; FI;
 }
-DEST <- Count;
+DEST <- Count;```
+
+### Flags Affected
+OF, SF, ZF, AF, CF, PF are all cleared. ZF is set if SRC = 0, otherwise ZF is
+cleared
+
+
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ POPCNT:| int _mm_popcnt_u32(unsigned int a);    
+ POPCNT:| int64_t _mm_popcnt_u64(unsigned __int64
+        | a);                                    
 
 ```
 
@@ -28,18 +42,6 @@ This instruction calculates of number of bits set to 1 in the second operand
 (source) and returns the count in the first operand (a destination register).
 
 
-
-### Flags Affected
-OF, SF, ZF, AF, CF, PF are all cleared. ZF is set if SRC = 0, otherwise ZF is
-cleared
-
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- POPCNT:| int _mm_popcnt_u32(unsigned int a);    
- POPCNT:| int64_t _mm_popcnt_u64(unsigned __int64
-        | a);                                    
 
 ### Protected Mode Exceptions
    | |  

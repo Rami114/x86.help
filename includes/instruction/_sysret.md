@@ -4,15 +4,15 @@
 
 ``` slim
 IF (CS.L != 1 ) or (IA32_EFER.LMA != 1) or (IA32_EFER.SCE != 1)
-(\* Not in 64-Bit Mode or SYSCALL/SYSRET not enabled in IA32_EFER \*)
+(* Not in 64-Bit Mode or SYSCALL/SYSRET not enabled in IA32_EFER *)
   THEN #UD; FI;
 IF (CPL != 0) OR (RCX is not canonical) THEN #GP(0); FI;
 1.
   in RFLAGS retain the fixed values.
 IF (operand size is 64-bit)
-  THEN (\* Return to 64-Bit Mode \*)
+  THEN (* Return to 64-Bit Mode *)
      RIP <- RCX;
-  ELSE (\* Return to Compatibility Mode \*)
+  ELSE (* Return to Compatibility Mode *)
      RIP <- ECX;
 FI;
 RFLAGS <- (R11 & 3C7FD7H) | 2;
@@ -21,7 +21,7 @@ IF (operand size is 64-bit)
   ELSE CS.Selector <- IA32_STAR[63:48];
 FI;
 CS.Selector <- CS.Selector OR 3;
-(\* Set rest of CS to a fixed value \*)
+(* Set rest of CS to a fixed value *)
 CS.Base <- 0;
 CS.Limit <- FFFFFH;
 CS.Type <- 11;
@@ -29,17 +29,17 @@ CS.S <- 1;
 CS.DPL <- 3;
 CS.P <- 1;
 IF (operand size is 64-bit)
-  THEN (\* Return to 64-Bit Mode \*)
+  THEN (* Return to 64-Bit Mode *)
      CS.L <- 1;
      CS.D <- 0;
-  ELSE (\* Return to Compatibility Mode \*)
+  ELSE (* Return to Compatibility Mode *)
      CS.L <- 0;
      CS.D <- 1;
 FI;
 CS.G <- 1;
 CPL <- 0;
 SS.Selector <- (IA32_STAR[63:48]+8) OR 3;
-(\* Set rest of SS to a fixed value \*)
+(* Set rest of SS to a fixed value *)
 SS.Base <- 0;
 SS.Limit <- FFFFFH;
 SS.Type <- 3;
@@ -96,12 +96,12 @@ by clearing EFLAGS.IF before loading the user stack pointer.
 with the correct stack by using the interrupt stack table (IST) mechanism for
 gate 2 (NMI) in the IDT (see Section 6.14.5, “Interrupt Stack Table,” in Intel®
 64 and IA-32 Architectures Software Developer's Manual, Volume 3A).
- - General-protection exceptions (#GP). The SYSRET instruction generates #GP(0)
+ - General-protection exceptions (**``#GP).``** The SYSRET instruction generates **``#GP(0)``**
 if the value of RCX is not canonical. The OS can address this possibility using
 one or more of the following approaches:  - Confirming that the value of RCX is
 canonical before executing SYSRET.  - Using paging to ensure that the SYSCALL
 instruction will never save a non-canonical value into RCX.  - Using the IST mechanism
-for gate 13 (#GP) in the IDT.
+for gate 13 (**``#GP)``** in the IDT.
 
 
 

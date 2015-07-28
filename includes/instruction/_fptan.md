@@ -9,7 +9,7 @@ IF ST(0) < 263
      ST(0) <- tan(ST(0));
      TOP <- TOP − 1;
      ST(0) <- 1.0;
-  ELSE (\* Source operand is out-of-range \*)
+  ELSE (* Source operand is out-of-range *)
      C2 <- 1;
 FI;
 
@@ -38,8 +38,8 @@ of numbers, assuming that underflow does not occur.
  + F + ∞      | − F to + F
  NaN          | NaN       
 <aside class="notification">
-F Means finite floating-point value. \* Indicates floating-point invalid-arithmetic-operand
-(#IA) exception.
+F Means finite floating-point value. * Indicates floating-point invalid-arithmetic-operand
+(**``#IA)``** exception.
 </aside>
 
 If the source operand is outside the acceptable range, the C2 flag in the FPU

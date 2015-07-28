@@ -11,13 +11,13 @@ DEST <- SignExtend(SRC);
  ---  | --- | --- | --- | --- | ---
  0F BE /r        | MOVSX r16, r/m8  | RM   | Valid      | Valid          | Move byte to word with sign-extension.         
  0F BE /r        | MOVSX r32, r/m8  | RM   | Valid      | Valid          | Move byte to doubleword with signextension.    
- REX + 0F BE /r  | MOVSX r64, r/m8\* | RM   | Valid      | N.E.           | Move byte to quadword with sign-extension.     
+ REX + 0F BE /r  | MOVSX r64, r/m8* | RM   | Valid      | N.E.           | Move byte to quadword with sign-extension.     
  0F BF /r        | MOVSX r32, r/m16 | RM   | Valid      | Valid          | Move word to doubleword, with signextension.   
  REX.W + 0F BF /r| MOVSX r64, r/m16 | RM   | Valid      | N.E.           | Move word to quadword with sign-extension.     
- REX.W\*\* + 63 /r | MOVSXD r64, r/m32| RM   | Valid      | N.E.           | Move doubleword to quadword with signextension.
+ REX.W** + 63 /r | MOVSXD r64, r/m32| RM   | Valid      | N.E.           | Move doubleword to quadword with signextension.
 <aside class="notification">
-\* In 64-bit mode, r/m8 can not be encoded to access the following byte
-registers if a REX prefix is used: AH, BH, CH, DH. \*\* The use of MOVSXD without
+* In 64-bit mode, r/m8 can not be encoded to access the following byte
+registers if a REX prefix is used: AH, BH, CH, DH. ** The use of MOVSXD without
 REX.W in 64-bit mode is discouraged, Regular MOV should be used instead of using
 MOVSXD without REX.W.
 </aside>
@@ -31,7 +31,6 @@ MOVSXD without REX.W.
 ### Description
 Copies the contents of the source operand (register or memory location) to the
 destination operand (register) and sign extends the value to 16 or 32 bits (see
-Figure 7-6 in the Intel® 64 and IA-32 Architectures Software Developer's Manual,
 Volume 1). The size of the converted value depends on the operand-size attribute.
 
 In 64-bit mode, the instruction's default operation size is 32 bits. Use of

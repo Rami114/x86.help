@@ -5,15 +5,15 @@
 ``` slim
 IF (Byte operation)
   THEN
-     AX <- AL \* SRC;
-  ELSE (\* Word or doubleword operation \*)
+     AX <- AL * SRC;
+  ELSE (* Word or doubleword operation *)
      IF OperandSize = 16
        THEN
-          DX:AX <- AX \* SRC;
+          DX:AX <- AX * SRC;
        ELSE IF OperandSize = 32
-          THEN EDX:EAX <- EAX \* SRC; FI;
-       ELSE (\* OperandSize = 64 \*)
-          RDX:RAX <- RAX \* SRC;
+          THEN EDX:EAX <- EAX * SRC; FI;
+       ELSE (* OperandSize = 64 *)
+          RDX:RAX <- RAX * SRC;
      FI;
 FI;
 
@@ -21,13 +21,13 @@ FI;
 
  Opcode       | Instruction| Op/En| 64-Bit Mode| Compat/Leg Mode| Description                               
  ---  | --- | --- | --- | --- | ---
- F6 /4        | MUL r/m8   | M    | Valid      | Valid          | Unsigned multiply (AX ← AL \* r/m8).       
- REX + F6 /4  | MUL r/m8\*  | M    | Valid      | N.E.           | Unsigned multiply (AX ← AL \* r/m8).       
- F7 /4        | MUL r/m16  | M    | Valid      | Valid          | Unsigned multiply (DX:AX ← AX \* r/m16).   
- F7 /4        | MUL r/m32  | M    | Valid      | Valid          | Unsigned multiply (EDX:EAX ← EAX \* r/m32).
- REX.W + F7 /4| MUL r/m64  | M    | Valid      | N.E.           | Unsigned multiply (RDX:RAX ← RAX \* r/m64).
+ F6 /4        | MUL r/m8   | M    | Valid      | Valid          | Unsigned multiply (AX ← AL * r/m8).       
+ REX + F6 /4  | MUL r/m8*  | M    | Valid      | N.E.           | Unsigned multiply (AX ← AL * r/m8).       
+ F7 /4        | MUL r/m16  | M    | Valid      | Valid          | Unsigned multiply (DX:AX ← AX * r/m16).   
+ F7 /4        | MUL r/m32  | M    | Valid      | Valid          | Unsigned multiply (EDX:EAX ← EAX * r/m32).
+ REX.W + F7 /4| MUL r/m64  | M    | Valid      | N.E.           | Unsigned multiply (RDX:RAX ← RAX * r/m64).
 <aside class="notification">
-\* In 64-bit mode, r/m8 can not be encoded to access the following byte
+* In 64-bit mode, r/m8 can not be encoded to access the following byte
 registers if a REX prefix is used: AH, BH, CH, DH.
 </aside>
 

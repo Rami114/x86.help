@@ -5,38 +5,53 @@
 ``` slim
 PSUBUSB (with 64-bit operands)
   DEST[7:0] <- SaturateToUnsignedByte (DEST[7:0] − SRC (7:0] );
-  (\* Repeat add operation for 2nd through 7th bytes \*)
+  (* Repeat add operation for 2nd through 7th bytes *)
   DEST[63:56] <- SaturateToUnsignedByte (DEST[63:56] − SRC[63:56];
 PSUBUSB (with 128-bit operands)
   DEST[7:0] <- SaturateToUnsignedByte (DEST[7:0] − SRC[7:0]);
-  (\* Repeat add operation for 2nd through 14th bytes \*)
+  (* Repeat add operation for 2nd through 14th bytes *)
   DEST[127:120] <- SaturateToUnSignedByte (DEST[127:120] − SRC[127:120]);
 VPSUBUSB (VEX.128 encoded version)
 DEST[7:0] <- SaturateToUnsignedByte (SRC1[7:0] - SRC2[7:0]);
-(\* Repeat subtract operation for 2nd through 14th bytes \*)
+(* Repeat subtract operation for 2nd through 14th bytes *)
 DEST[127:120] <- SaturateToUnsignedByte (SRC1[127:120] - SRC2[127:120]);
 DEST[VLMAX-1:128] <- 0
 VPSUBUSB (VEX.256 encoded version)
 DEST[7:0] <- SaturateToUnsignedByte (SRC1[7:0] - SRC2[7:0]);
-(\* Repeat subtract operation for 2nd through 31st bytes \*)
+(* Repeat subtract operation for 2nd through 31st bytes *)
 DEST[255:148] <- SaturateToUnsignedByte (SRC1[255:248] - SRC2[255:248]);
 PSUBUSW (with 64-bit operands)
   DEST[15:0] <- SaturateToUnsignedWord (DEST[15:0] − SRC[15:0] );
-  (\* Repeat add operation for 2nd and 3rd words \*)
+  (* Repeat add operation for 2nd and 3rd words *)
   DEST[63:48] <- SaturateToUnsignedWord (DEST[63:48] − SRC[63:48] );
 PSUBUSW (with 128-bit operands)
   DEST[15:0]
-  (\* Repeat add operation for 2nd through 7th words \*)
+  (* Repeat add operation for 2nd through 7th words *)
   DEST[127:112] <- SaturateToUnSignedWord (DEST[127:112] − SRC[127:112]);
 VPSUBUSW (VEX.128 encoded version)
 DEST[15:0] <- SaturateToUnsignedWord (SRC1[15:0] - SRC2[15:0]);
-(\* Repeat subtract operation for 2nd through 7th words \*)
+(* Repeat subtract operation for 2nd through 7th words *)
 DEST[127:112] <- SaturateToUnsignedWord (SRC1[127:112] - SRC2[127:112]);
 DEST[VLMAX-1:128] <- 0
 VPSUBUSW (VEX.256 encoded version)
 DEST[15:0] <- SaturateToUnsignedWord (SRC1[15:0] - SRC2[15:0]);
-(\* Repeat subtract operation for 2nd through 15th words \*)
+(* Repeat subtract operation for 2nd through 15th words *)
 DEST[255:240] <- SaturateToUnsignedWord (SRC1[255:240] - SRC2[255:240]);
+
+> Intel C/C++ Compiler Intrinsic Equivalents
+
+``` slim
+   | |  
+---- | -----
+ PSUBUSB:                                           | __m64 _mm_subs_pu8(__m64 m1, __m64 m2)   
+ (V)PSUBUSB:                                        | __m128i _mm_subs_epu8(__m128i m1, __m128i
+                                                    | m2)                                      
+ VPSUBUSB:                                          | __m256i _mm256_subs_epu8(__m256i m1,     
+                                                    | __m256i m2)                              
+ PSUBUSW: (V)PSUBUSW: __m128i _mm_subs_epu16(__m128i| __m64 _mm_subs_pu16(__m64 m1, __m64      
+ m1, __m128i m2)                                    | m2)                                      
+ VPSUBUSW:                                          | __m256i _mm256_subs_epu16(__m256i m1,    
+                                                    | __m256i m2)                              
 
 ```
 
@@ -119,19 +134,6 @@ VEX.L must be 0, otherwise instructions will #UD.
 </aside>
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalents
-   | |  
----- | -----
- PSUBUSB:                                           | __m64 _mm_subs_pu8(__m64 m1, __m64 m2)   
- (V)PSUBUSB:                                        | __m128i _mm_subs_epu8(__m128i m1, __m128i
-                                                    | m2)                                      
- VPSUBUSB:                                          | __m256i _mm256_subs_epu8(__m256i m1,     
-                                                    | __m256i m2)                              
- PSUBUSW: (V)PSUBUSW: __m128i _mm_subs_epu16(__m128i| __m64 _mm_subs_pu16(__m64 m1, __m64      
- m1, __m128i m2)                                    | m2)                                      
- VPSUBUSW:                                          | __m256i _mm256_subs_epu16(__m256i m1,    
-                                                    | __m256i m2)                              
 
 ### Flags Affected
 None.

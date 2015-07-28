@@ -4,20 +4,20 @@
 
 ``` slim
 IF ((PE = 1) and ((CPL > IOPL) or (VM = 1)))
-  THEN (\* Protected mode with CPL > IOPL or virtual-8086 mode \*)
+  THEN (* Protected mode with CPL > IOPL or virtual-8086 mode *)
      IF (Any I/O Permission Bit for I/O port being accessed = 1)
-       THEN (\* I/O operation is not allowed \*)
+       THEN (* I/O operation is not allowed *)
           #GP(0);
-       ELSE ( \* I/O operation is allowed \*)
-          DEST <- SRC; (\* Writes to selected I/O port \*)
+       ELSE ( * I/O operation is allowed *)
+          DEST <- SRC; (* Writes to selected I/O port *)
      FI;
-  ELSE (Real Mode or Protected Mode with CPL ≤ IOPL \*)
-     DEST <- SRC; (\* Writes to selected I/O port \*)
+  ELSE (Real Mode or Protected Mode with CPL ≤ IOPL *)
+     DEST <- SRC; (* Writes to selected I/O port *)
 FI;
 
 ```
 
- Opcode\*| Instruction  | Op/En| 64-Bit Mode| Compat/Leg Mode| Description                          
+ Opcode*| Instruction  | Op/En| 64-Bit Mode| Compat/Leg Mode| Description                          
  ---  | --- | --- | --- | --- | ---
  E6 ib  | OUT imm8, AL | I    | Valid      | Valid          | Output byte in AL to I/O port address
         |              |      |            |                | imm8.                                
@@ -32,7 +32,7 @@ FI;
  EF     | OUT DX, EAX  | NP   | Valid      | Valid          | Output doubleword in EAX to I/O port 
         |              |      |            |                | address in DX.                       
 <aside class="notification">
-\* See IA-32 Architecture Compatibility section below.
+* See IA-32 Architecture Compatibility section below.
 </aside>
 
 

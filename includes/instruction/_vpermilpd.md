@@ -34,6 +34,20 @@ IF (SRC2[65] = 0) THEN DEST[127:64]<-SRC1[63:0]
 IF (SRC2[65] = 1) THEN DEST[127:64]<-SRC1[127:64]
 DEST[VLMAX-1:128] <- 0
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ VPERMILPD:| __m128d _mm_permute_pd (__m128d a, int
+           | control)                              
+ VPERMILPD:| __m256d _mm256_permute_pd (__m256d a, 
+           | int control)                          
+ VPERMILPD:| __m128d _mm_permutevar_pd (__m128d a, 
+           | __m128i control);                     
+ VPERMILPD:| __m256d _mm256_permutevar_pd (__m256d 
+           | a, __m256i control);                  
+
 ```
 
  Opcode/Instruction                    | Op/En| 64/32 bit Mode Support| CPUID Feature Flag| Description                                
@@ -85,22 +99,10 @@ the low 2 bits of the 8-bit immediate and store results in the destination opera
 (first operand). The source operand is a YMM register or 256-bit memory location
 and the destination operand is a YMM register. Note: For the VEX.128.66.0F3A
 05 instruction version, VEX.vvvv is reserved and must be 1111b otherwise instruction
-will #UD. Note: For the VEX.256.66.0F3A 05 instruction version, VEX.vvvv is
-reserved and must be 1111b otherwise instruction will #UD.
+will **``#UD.``** Note: For the VEX.256.66.0F3A 05 instruction version, VEX.vvvv is
+reserved and must be 1111b otherwise instruction will **``#UD.``**
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- VPERMILPD:| __m128d _mm_permute_pd (__m128d a, int
-           | control)                              
- VPERMILPD:| __m256d _mm256_permute_pd (__m256d a, 
-           | int control)                          
- VPERMILPD:| __m128d _mm_permutevar_pd (__m128d a, 
-           | __m128i control);                     
- VPERMILPD:| __m256d _mm256_permutevar_pd (__m256d 
-           | a, __m256i control);                  
 
 ### SIMD Floating-Point Exceptions
 None.

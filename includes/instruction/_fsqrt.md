@@ -30,8 +30,8 @@ various classes of numbers, assuming that neither overflow nor underflow occurs.
  + ∞               | +∞          
  NaN               | NaN         
 <aside class="notification">
-F Means finite floating-point value. \* Indicates floating-point invalid-arithmetic-operand
-(#IA) exception.
+F Means finite floating-point value. * Indicates floating-point invalid-arithmetic-operand
+(**``#IA)``** exception.
 </aside>
 
 This instruction's operation is the same in non-64-bit modes and 64-bit mode.

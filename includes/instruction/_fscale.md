@@ -3,7 +3,7 @@
 > Operation
 
 ``` slim
-ST(0) <- ST(0) \* 2RoundTowardZero(ST(1));
+ST(0) <- ST(0) * 2RoundTowardZero(ST(1));
 
 ```
 

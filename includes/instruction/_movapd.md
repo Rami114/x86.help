@@ -14,6 +14,19 @@ DEST[VLMAX-1:128] <- 0
 VMOVAPD (VEX.256 encoded version)
 DEST[255:0] <- SRC[255:0]
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ MOVAPD: | __m128d _mm_load_pd (double const \* 
+         | p);                                 
+ MOVAPD: | _mm_store_pd(double \* p, __m128d a);
+ VMOVAPD:| __m256d _mm256_load_pd (double const
+         | \* p);                               
+ VMOVAPD:| _mm256_store_pd(double \* p, __m256d 
+         | a);                                 
+
 ```
 
  Opcode/Instruction                        | Op/En| 64/32-bit Mode| CPUID Feature Flag| Description                                
@@ -47,7 +60,7 @@ location, to store the contents of an XMM or YMM register into a 128-bit or
 256-bit memory location, or to move data between two XMM or two YMM registers.
 When the source or destination operand is a memory operand, the operand must
 be aligned on a 16-byte (128-bit version) or 32-byte (VEX.256 encoded version)
-boundary or a general-protection exception (#GP) will be generated.
+boundary or a general-protection exception (**``#GP)``** will be generated.
 
 To move double-precision floating-point values to and from unaligned memory
 locations, use the (V)MOVUPD instruction.
@@ -59,7 +72,7 @@ operand (first operand). This instruction can be used to load an XMM register
 from a 128-bit memory location, to store the contents of an XMM register into
 a 128-bit memory location, or to move data between two XMM registers. When the
 source or destination operand is a memory operand, the operand must be aligned
-on a 16-byte boundary or a general-protection exception (#GP) will be generated.
+on a 16-byte boundary or a general-protection exception (**``#GP)``** will be generated.
 To move single-precision floating-point values to and from unaligned memory
 locations, use the VMOVUPD instruction. 128-bit Legacy SSE version: Bits (VLMAX-1:128)
 of the corresponding YMM destination register remain unchanged. VEX.128 encoded
@@ -70,27 +83,16 @@ operand). This instruction can be used to load a YMM register from a 256-bit
 memory location, to store the contents of a YMM register into a 256-bit memory
 location, or to move data between two YMM registers. When the source or destination
 operand is a memory operand, the operand must be aligned on a 32-byte boundary
-or a general-protection exception (#GP) will be generated. To move single-precision
+or a general-protection exception (**``#GP)``** will be generated. To move single-precision
 floating-point values to and from unaligned memory locations, use the VMOVUPD
 instruction.
 
 <aside class="notification">
 In VEX-encoded versions, VEX.vvvv is reserved and must be 1111b otherwise
-instructions will #UD.
+instructions will **``#UD.``**
 </aside>
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- MOVAPD: | __m128d _mm_load_pd (double const \* 
-         | p);                                 
- MOVAPD: | _mm_store_pd(double \* p, __m128d a);
- VMOVAPD:| __m256d _mm256_load_pd (double const
-         | \* p);                               
- VMOVAPD:| _mm256_store_pd(double \* p, __m256d 
-         | a);                                 
 
 ### SIMD Floating-Point Exceptions
 None.

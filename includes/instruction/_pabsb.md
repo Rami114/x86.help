@@ -57,6 +57,21 @@ VPABSD (VEX.256 encoded version)
   Repeat operation for 2nd through 7th 32-bit double words
   Unsigned DEST[255:224] <- ABS(SRC[255:224])
 
+> Intel C/C++ Compiler Intrinsic Equivalents
+
+``` slim
+   | |  
+---- | -----
+ PABSB:   | __m64 _mm_abs_pi8 (__m64 a)         
+ (V)PABSB:| __m128i _mm_abs_epi8 (__m128i a)    
+ VPABSB:  | __m256i _mm256_abs_epi8 (__m256i a) 
+ PABSW:   | __m64 _mm_abs_pi16 (__m64 a)        
+ (V)PABSW:| __m128i _mm_abs_epi16 (__m128i a)   
+ VPABSW:  | __m256i _mm256_abs_epi16 (__m256i a)
+ PABSD:   | __m64 _mm_abs_pi32 (__m64 a)        
+ (V)PABSD:| __m128i _mm_abs_epi32 (__m128i a)   
+ VPABSD:  | __m256i _mm256_abs_epi32 (__m256i a)
+
 ```
 
  Opcode/Instruction                    | Op/En| 64/32 bit Mode Support| CPUID Feature Flag| Description                             
@@ -121,7 +136,7 @@ XMM register, a YMM register, a 128-bit memory location, or a 256-bit memory
 location. The destination operand can be an MMX, an XMM or a YMM register. Both
 operands can be MMX registers or XMM registers. When the source operand is a
 128-bit memory operand, the operand must be aligned on a 16byte boundary or
-a general-protection exception (#GP) will be generated.
+a general-protection exception (**``#GP)``** will be generated.
 
 In 64-bit mode, use the REX prefix to access additional registers. 128-bit Legacy
 SSE version: The source operand can be an XMM register or a 128-bit memory location.
@@ -135,23 +150,10 @@ destination operand is a YMM register.
 
 <aside class="notification">
 VEX.vvvv is reserved and must be 1111b, VEX.L must be 0; otherwise instructions
-will #UD.
+will **``#UD.``**
 </aside>
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalents
-   | |  
----- | -----
- PABSB:   | __m64 _mm_abs_pi8 (__m64 a)         
- (V)PABSB:| __m128i _mm_abs_epi8 (__m128i a)    
- VPABSB:  | __m256i _mm256_abs_epi8 (__m256i a) 
- PABSW:   | __m64 _mm_abs_pi16 (__m64 a)        
- (V)PABSW:| __m128i _mm_abs_epi16 (__m128i a)   
- VPABSW:  | __m256i _mm256_abs_epi16 (__m256i a)
- PABSD:   | __m64 _mm_abs_pi32 (__m64 a)        
- (V)PABSD:| __m128i _mm_abs_epi32 (__m128i a)   
- VPABSD:  | __m256i _mm256_abs_epi32 (__m256i a)
 
 ### SIMD Floating-Point Exceptions
 None.

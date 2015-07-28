@@ -13,7 +13,7 @@ FI
 
 ```
 
- Opcode\*| Instruction| Op/En| 64-Bit Mode| Compat/Leg Mode| Description                             
+ Opcode*| Instruction| Op/En| 64-Bit Mode| Compat/Leg Mode| Description                             
  ---  | --- | --- | --- | --- | ---
  0F AA  | RSM        | NP   | Invalid    | Valid          | Resume operation of interrupted program.
 

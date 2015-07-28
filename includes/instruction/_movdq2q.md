@@ -5,6 +5,13 @@
 ``` slim
 DEST <- SRC[63:0];
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ MOVDQ2Q:| __m64 _mm_movepi64_pi64 ( __m128i a)
+
 ```
 
  Opcode     | Instruction    | Op/En| 64-Bit Mode| Compat/Leg Mode| Description                                
@@ -31,11 +38,6 @@ In 64-bit mode, use of the REX.R prefix permits this instruction to access addit
 registers (XMM8-XMM15).
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- MOVDQ2Q:| __m64 _mm_movepi64_pi64 ( __m128i a)
 
 ### SIMD Floating-Point Exceptions
 None.

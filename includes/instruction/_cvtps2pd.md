@@ -17,6 +17,14 @@ DEST[127:64] <- Convert_Single_Precision_To_Double_Precision_Floating_Point(SRC[
 DEST[191:128] <- Convert_Single_Precision_To_Double_Precision_Floating_Point(SRC[95:64])
 DEST[255:192] <- Convert_Single_Precision_To_Double_Precision_Floating_Point(SRC[127:96)
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ CVTPS2PD: | __m128d _mm_cvtps_pd(__m128 a)    
+ VCVTPS2PD:| __m256d _mm256_cvtps_pd (__m128 a)
+
 ```
 
  Opcode/Instruction                  | Op/En| 64/32-bit Mode| CPUID Feature Flag| Description                                
@@ -54,7 +62,7 @@ upper bits (VLMAX-1:128) of the corresponding YMM register destination are zeroe
 VEX.256 encoded version: The source operand is an XMM register or 128- bit memory
 location. The destination operation is a YMM register. Note: In VEX-encoded
 versions, VEX.vvvv is reserved and must be 1111b otherwise instructions will
-#UD.
+**``#UD.``**
 
    | |  
 ---- | -----
@@ -66,12 +74,6 @@ DEST
  Figure 3-13.| CVTPS2PD (VEX.256 encoded version)
 
 
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- CVTPS2PD: | __m128d _mm_cvtps_pd(__m128 a)    
- VCVTPS2PD:| __m256d _mm256_cvtps_pd (__m128 a)
-
 ### SIMD Floating-Point Exceptions
 Invalid, Denormal.
 
@@ -79,4 +81,4 @@ Invalid, Denormal.
 ### Other Exceptions
 See Exceptions Type 3; additionally
 
-#UDIf VEX.vvvv != 1111B.
+**``#UDIf``** VEX.vvvv != 1111B.

@@ -10,7 +10,7 @@ DEST <- NOT DEST;
  Opcode       | Instruction| Op/En| 64-Bit Mode| Compat/Leg Mode| Description               
  ---  | --- | --- | --- | --- | ---
  F6 /2        | NOT r/m8   | M    | Valid      | Valid          | Reverse each bit of r/m8. 
- REX + F6 /2  | NOT r/m8\*  | M    | Valid      | N.E.           | Reverse each bit of r/m8. 
+ REX + F6 /2  | NOT r/m8*  | M    | Valid      | N.E.           | Reverse each bit of r/m8. 
  F7 /2        | NOT r/m16  | M    | Valid      | Valid          | Reverse each bit of r/m16.
  F7 /2        | NOT r/m32  | M    | Valid      | Valid          | Reverse each bit of r/m32.
  REX.W + F7 /2| NOT r/m64  | M    | Valid      | N.E.           | Reverse each bit of r/m64.
@@ -20,7 +20,7 @@ DEST <- NOT DEST;
 
    | |  
 ---- | -----
- \*| In 64-bit mode, r/m8 can not be encoded
+ *| In 64-bit mode, r/m8 can not be encoded
   | to access the following byte registers 
   | if a REX prefix is used: AH, BH, CH,   
   | DH.                                    

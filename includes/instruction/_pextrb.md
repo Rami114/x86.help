@@ -22,7 +22,45 @@ CASE of
        DEST <- TEMP;
   PEXTRQ: SEL <- COUNT[0];
        TEMP <- (Src >> SEL\*64);
-       DEST <- TEMP;
+       DEST <- TEMP;```
+
+### EASC
+(V)PEXTRTD/(V)PEXTRQ
+IF (64-Bit Mode and 64-bit dest operand)
+THEN
+  Src_Offset <- Imm8[0]
+  r64/m64 <-(Src >> Src_Offset * 64)
+ELSE
+  Src_Offset <- Imm8[1:0]
+  r32/m32 <- ((Src >> Src_Offset *32) AND 0FFFFFFFFh);
+FI
+(V)PEXTRB ( dest=m8)
+SRC_Offset <- Imm8[3:0]
+Mem8 <- (Src >> Src_Offset*8)
+(V)PEXTRB ( dest=reg)
+IF (64-Bit Mode )
+THEN
+  SRC_Offset <- Imm8[3:0]
+  DEST[7:0] <- ((Src >> Src_Offset*8) AND 0FFh)
+  DEST[63:8] <-ZERO_FILL;
+ELSE
+  SRC_Offset <-. Imm8[3:0];
+  DEST[7:0] <- ((Src >> Src_Offset*8) AND 0FFh);
+  DEST[31:8] <-ZERO_FILL;
+FI
+
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ PEXTRB:| int _mm_extract_epi8 (__m128i src, const
+        | int ndx);                               
+ PEXTRD:| int _mm_extract_epi32 (__m128i src,     
+        | const int ndx);                         
+ PEXTRQ:| __int64 _mm_extract_epi64 (__m128i src, 
+        | const int ndx);                         
+
 ```
 
  Opcode/Instruction                    | Op/En| 64/32 bit Mode Support| CPUID Feature Flag| Description                            
@@ -67,47 +105,12 @@ operand is a register, the default operand size in 64-bit mode for PEXTRB/PEXTRD
 is 64 bits, the bits above the least significant byte/dword data are filled
 with zeros. PEXTRQ is not encodable in non-64-bit modes and requires REX.W in
 64-bit mode. Note: In VEX.128 encoded versions, VEX.vvvv is reserved and must
-be 1111b, VEX.L must be 0, otherwise the instruction will #UD. If the destination
+be 1111b, VEX.L must be 0, otherwise the instruction will **``#UD.``** If the destination
 operand is a register, the default operand size in 64-bit mode for VPEXTRB/VPEXTRD
 is 64 bits, the bits above the least significant byte/word/dword data are filled
-with zeros. Attempt to execute VPEXTRQ in non-64-bit mode will cause #UD.
+with zeros. Attempt to execute VPEXTRQ in non-64-bit mode will cause **``#UD.``**
 
 
-
-### EASC
-(V)PEXTRTD/(V)PEXTRQ
-IF (64-Bit Mode and 64-bit dest operand)
-THEN
-  Src_Offset <- Imm8[0]
-  r64/m64 <-(Src >> Src_Offset \* 64)
-ELSE
-  Src_Offset <- Imm8[1:0]
-  r32/m32 <- ((Src >> Src_Offset \*32) AND 0FFFFFFFFh);
-FI
-(V)PEXTRB ( dest=m8)
-SRC_Offset <- Imm8[3:0]
-Mem8 <- (Src >> Src_Offset\*8)
-(V)PEXTRB ( dest=reg)
-IF (64-Bit Mode )
-THEN
-  SRC_Offset <- Imm8[3:0]
-  DEST[7:0] <- ((Src >> Src_Offset\*8) AND 0FFh)
-  DEST[63:8] <-ZERO_FILL;
-ELSE
-  SRC_Offset <-. Imm8[3:0];
-  DEST[7:0] <- ((Src >> Src_Offset\*8) AND 0FFh);
-  DEST[31:8] <-ZERO_FILL;
-FI
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- PEXTRB:| int _mm_extract_epi8 (__m128i src, const
-        | int ndx);                               
- PEXTRD:| int _mm_extract_epi32 (__m128i src,     
-        | const int ndx);                         
- PEXTRQ:| __int64 _mm_extract_epi64 (__m128i src, 
-        | const int ndx);                         
 
 ### Flags Affected
 None.

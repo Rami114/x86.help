@@ -12,6 +12,17 @@ DEST[VLMAX-1:128] <- 0
 VPOR (VEX.256 encoded version)
 DEST <- SRC1 OR SRC2
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ POR:   | __m64 _mm_or_si64(__m64 m1, __m64 m2)   
+ (V)POR:| __m128i _mm_or_si128(__m128i m1, __m128i
+        | m2)                                     
+ VPOR:  | __m256i _mm256_or_si256 ( __m256i a,    
+        | __m256i b)                              
+
 ```
 
  Opcode/Instruction                    | Op/En| 64/32 bit Mode Support| CPUID Feature Flag| Description                      
@@ -63,15 +74,6 @@ VEX.L must be 0, otherwise the instruction will #UD.
 </aside>
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- POR:   | __m64 _mm_or_si64(__m64 m1, __m64 m2)   
- (V)POR:| __m128i _mm_or_si128(__m128i m1, __m128i
-        | m2)                                     
- VPOR:  | __m256i _mm256_or_si256 ( __m256i a,    
-        | __m256i b)                              
 
 ### Flags Affected
 None.

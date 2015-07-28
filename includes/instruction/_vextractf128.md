@@ -15,6 +15,18 @@ CASE (imm8[0]) OF
 ESAC.
 DEST[VLMAX-1:128] <- 0
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ VEXTRACTF128:| __m128 _mm256_extractf128_ps (__m256   
+              | a, int offset);                        
+ VEXTRACTF128:| __m128d _mm256_extractf128_pd (__m256d 
+              | a, int offset);                        
+ VEXTRACTF128:| __m128i_mm256_extractf128_si256(__m256i
+              | a, int offset);                        
+
 ```
 
  Opcode/Instruction                      | Op/En| 64/32-bit Mode| CPUID Feature Flag| Description                              
@@ -33,21 +45,11 @@ Extracts 128-bits of packed floating-point values from the source operand (secon
 operand) at an 128-bit offset from imm8[0] into the destination operand (first
 operand). The destination may be either an XMM register or an 128-bit memory
 location. VEX.vvvv is reserved and must be 1111b otherwise instructions will
-#UD. The high 7 bits of the immediate are ignored. If VEXTRACTF128 is encoded
+**``#UD.``** The high 7 bits of the immediate are ignored. If VEXTRACTF128 is encoded
 with VEX.L= 0, an attempt to execute the instruction encoded with VEX.L= 0 will
-cause an #UD exception.
+cause an **``#UD``** exception.
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- VEXTRACTF128:| __m128 _mm256_extractf128_ps (__m256   
-              | a, int offset);                        
- VEXTRACTF128:| __m128d _mm256_extractf128_pd (__m256d 
-              | a, int offset);                        
- VEXTRACTF128:| __m128i_mm256_extractf128_si256(__m256i
-              | a, int offset);                        
 
 ### SIMD Floating-Point Exceptions
 None

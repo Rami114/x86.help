@@ -56,6 +56,18 @@ DEST[255:192] <- ZeroExtend(SRC1[255:192] << COUNT_3);
 ELSE
 DEST[255:192] <- 0;
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+VPSLLVD: __m256i _mm256_sllv_epi32 (__m256i m, __m256i count)
+
+VPSLLVD: __m128i _mm_sllv_epi32 (__m128i m, __m128i count)
+
+VPSLLVQ: __m256i _mm256_sllv_epi64 (__m256i m, __m256i count)
+
+VPSLLVQ: __m128i _mm_sllv_epi64 (__m128i m, __m128i count)
+
+
 ```
 
  Opcode/Instruction                  | Op/En| 64/32 -bit Mode| CPUID Feature Flag| Description                             
@@ -97,16 +109,6 @@ YMM register are zeroed. VEX.256 encoded version: The destination and first
 source operands are YMM registers. The count operand can be either an YMM register
 or a 256-bit memory location.
 
-
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-VPSLLVD: __m256i _mm256_sllv_epi32 (__m256i m, __m256i count)
-
-VPSLLVD: __m128i _mm_sllv_epi32 (__m128i m, __m128i count)
-
-VPSLLVQ: __m256i _mm256_sllv_epi64 (__m256i m, __m256i count)
-
-VPSLLVQ: __m128i _mm_sllv_epi64 (__m128i m, __m128i count)
 
 
 ### SIMD Floating-Point Exceptions

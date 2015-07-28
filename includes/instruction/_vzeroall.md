@@ -33,6 +33,13 @@ ELSE
   YMM8-15: Unmodified
 FI
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ VZEROALL:| _mm256_zeroall()
+
 ```
 
  Opcode/Instruction        | Op/En| 64/32 bit Mode Support| CPUID Feature Flag| Description            
@@ -46,15 +53,10 @@ FI
 
 ### Description
 The instruction zeros contents of all XMM or YMM registers. Note: VEX.vvvv is
-reserved and must be 1111b, otherwise instructions will #UD. In Compatibility
+reserved and must be 1111b, otherwise instructions will **``#UD.``** In Compatibility
 and legacy 32-bit mode only the lower 8 registers are modified.
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- VZEROALL:| _mm256_zeroall()
 
 ### SIMD Floating-Point Exceptions
 None.

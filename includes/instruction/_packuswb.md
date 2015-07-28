@@ -81,6 +81,18 @@ VPACKUSWB (VEX.256 encoded version)
   DEST[247:240] <- SaturateSignedWordToUnsignedByte (SRC2[239:224]);
   DEST[255:248] <- SaturateSignedWordToUnsignedByte (SRC2[255:240]);
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ PACKUSWB:   | __m64 _mm_packs_pu16(__m64 m1, __m64
+             | m2)                                 
+ (V)PACKUSWB:| __m128i _mm_packus_epi16(__m128i m1,
+             | __m128i m2)                         
+ VPACKUSWB:  | __m256i _mm256_packus_epi16(__m256i 
+             | m1, __m256i m2);                    
+
 ```
 
  Opcode/Instruction                   | Op/En| 64/32 bit Mode Support| CPUID Feature Flag| Description                              
@@ -142,16 +154,6 @@ a YMM register. The second source operand is a YMM register or a 256-bit memory
 location. The destination operand is a YMM register.
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- PACKUSWB:   | __m64 _mm_packs_pu16(__m64 m1, __m64
-             | m2)                                 
- (V)PACKUSWB:| __m128i _mm_packus_epi16(__m128i m1,
-             | __m128i m2)                         
- VPACKUSWB:  | __m256i _mm256_packus_epi16(__m256i 
-             | m1, __m256i m2);                    
 
 ### Flags Affected
 None.

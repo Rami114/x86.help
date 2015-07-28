@@ -15,8 +15,8 @@ ELSE
      EIP <- IA32_SYSENTER_EIP[31:0];
 FI;
 CS.Selector <- IA32_SYSENTER_CS[15:0] AND FFFCH;
-                          (\* Operating system provides CS; RPL forced to 0 \*)
-(\* Set rest of CS to a fixed value \*)
+                          (* Operating system provides CS; RPL forced to 0 *)
+(* Set rest of CS to a fixed value *)
 CS.Base <- 0;
 CS.Limit <- FFFFFH;
 CS.Type <- 11;
@@ -34,7 +34,7 @@ FI;
 CS.G <- 1;
 CPL <- 0;
 SS.Selector <- CS.Selector + 8;
-(\* Set rest of SS to a fixed value \*)
+(* Set rest of SS to a fixed value *)
 SS.Base <- 0;
 SS.Limit <- FFFFFH;
 SS.Type <- 3;

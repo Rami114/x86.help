@@ -68,6 +68,24 @@ DEST[191:160] <- SRC1[223:192] - SRC1[255:224]
 DEST[223:192] <- SRC2[159:128] - SRC2[191:160]
 DEST[255:224] <- SRC2[223:192] - SRC2[255:224]
 
+> Intel C/C++ Compiler Intrinsic Equivalents
+
+``` slim
+   | |  
+---- | -----
+ PHSUBW:   | __m64 _mm_hsub_pi16 (__m64 a, __m64       
+           | b)                                        
+ PHSUBD:   | __m64 _mm_hsub_pi32 (__m64 a, __m64       
+           | b)                                        
+ (V)PHSUBW:| __m128i _mm_hsub_epi16 (__m128i a, __m128i
+           | b)                                        
+ (V)PHSUBD:| __m128i _mm_hsub_epi32 (__m128i a, __m128i
+           | b)                                        
+ VPHSUBW:  | __m256i _mm256_hsub_epi16 (__m256i a,     
+           | __m256i b)                                
+ VPHSUBD:  | __m256i _mm256_hsub_epi32 (__m256i a,     
+           | __m256i b)                                
+
 ```
 
  Opcode/Instruction                   | Op/En| 64/32 bit Mode Support| CPUID Feature Flag| Description                                  
@@ -112,7 +130,7 @@ horizontal subtraction on each adjacent pair of 32-bit signed integers by subtra
 the most significant doubleword from the least significant doubleword of each
 pair, and packs the signed 32-bit result to the destination operand. When the
 source operand is a 128-bit memory operand, the operand must be aligned on a
-16-byte boundary or a general-protection exception (#GP) will be generated.
+16-byte boundary or a general-protection exception (**``#GP)``** will be generated.
 
 Legacy SSE version: Both operands can be MMX registers. The second source operand
 ### can be an MMX register or a 64-bit memory location. 128-bit Legacy SSE version
@@ -133,22 +151,6 @@ VEX.L must be 0, otherwise the instruction will #UD.
 </aside>
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalents
-   | |  
----- | -----
- PHSUBW:   | __m64 _mm_hsub_pi16 (__m64 a, __m64       
-           | b)                                        
- PHSUBD:   | __m64 _mm_hsub_pi32 (__m64 a, __m64       
-           | b)                                        
- (V)PHSUBW:| __m128i _mm_hsub_epi16 (__m128i a, __m128i
-           | b)                                        
- (V)PHSUBD:| __m128i _mm_hsub_epi32 (__m128i a, __m128i
-           | b)                                        
- VPHSUBW:  | __m256i _mm256_hsub_epi16 (__m256i a,     
-           | __m256i b)                                
- VPHSUBD:  | __m256i _mm256_hsub_epi32 (__m256i a,     
-           | __m256i b)                                
 
 ### SIMD Floating-Point Exceptions
 None.

@@ -23,6 +23,18 @@ IF (imm8[7])
 DEST[VLMAX-1:128] <- 0
 FI
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ VPERM2F128:| __m256 _mm256_permute2f128_ps (__m256     
+            | a, __m256 b, int control)                 
+ VPERM2F128:| __m256d _mm256_permute2f128_pd (__m256d   
+            | a, __m256d b, int control)                
+ VPERM2F128:| __m256i _mm256_permute2f128_si256 (__m256i
+            | a, __m256i b, int control)                
+
 ```
 
  Opcode/Instruction                        | Op/En| 64/32 bit Mode Support| CPUID Feature Flag| Description                          
@@ -52,19 +64,9 @@ register.
 Imm8[1:0] select the source for the first destination 128-bit field, imm8[5:4]
 select the source for the second destination field. If imm8[3] is set, the low
 128-bit field is zeroed. If imm8[7] is set, the high 128-bit field is zeroed.
-VEX.L must be 1, otherwise the instruction will #UD.
+VEX.L must be 1, otherwise the instruction will **``#UD.``**
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- VPERM2F128:| __m256 _mm256_permute2f128_ps (__m256     
-            | a, __m256 b, int control)                 
- VPERM2F128:| __m256d _mm256_permute2f128_pd (__m256d   
-            | a, __m256d b, int control)                
- VPERM2F128:| __m256i _mm256_permute2f128_si256 (__m256i
-            | a, __m256i b, int control)                
 
 ### SIMD Floating-Point Exceptions
 None.

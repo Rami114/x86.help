@@ -3,7 +3,7 @@
 > Operation
 
 ``` slim
-(\* Save FPU State and Registers \*)
+(* Save FPU State and Registers *)
 DEST[FPUControlWord] <- FPUControlWord;
 DEST[FPUStatusWord] <- FPUStatusWord;
 DEST[FPUTagWord] <- FPUTagWord;
@@ -18,7 +18,7 @@ DEST[ST(4)]<- ST(4);
 DEST[ST(5)] <- ST(5);
 DEST[ST(6)] <- ST(6);
 DEST[ST(7)] <- ST(7);
-(\* Initialize FPU \*)
+(* Initialize FPU *)
 FPUControlWord <- 037FH;
 FPUStatusWord <- 0;
 FPUTagWord <- FFFFH;
@@ -30,7 +30,7 @@ FPULastInstructionOpcode <- 0;
 
  Opcode        | Instruction                          | 64-Bit Mode| Compat/Leg Mode| Description                                  
  ---  | --- | --- | --- | ---
- 9B DD /6 DD /6| FSAVE m94/108byte FNSAVE\* m94/108byte| Valid Valid| Valid Valid    | Store FPU state to m94byte or m108byte       
+ 9B DD /6 DD /6| FSAVE m94/108byte FNSAVE* m94/108byte| Valid Valid| Valid Valid    | Store FPU state to m94byte or m108byte       
                |                                      |            |                | after checking for pending unmasked          
                |                                      |            |                | floating-point exceptions. Then re-initialize
                |                                      |            |                | the FPU. Store FPU environment to m94byte    
@@ -38,7 +38,7 @@ FPULastInstructionOpcode <- 0;
                |                                      |            |                | unmasked floatingpoint exceptions. Then      
                |                                      |            |                | re-initialize the FPU.                       
 <aside class="notification">
-\* See IA-32 Architecture Compatibility section below.
+* See IA-32 Architecture Compatibility section below.
 </aside>
 
 

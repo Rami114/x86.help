@@ -7,7 +7,7 @@ DF <- 1;
 
 ```
 
- Opcode\*| Instruction| Op/En| 64-Bit Mode| Compat/Leg Mode| Description 
+ Opcode*| Instruction| Op/En| 64-Bit Mode| Compat/Leg Mode| Description 
  ---  | --- | --- | --- | --- | ---
  FD     | STD        | NP   | Valid      | Valid          | Set DF flag.
 

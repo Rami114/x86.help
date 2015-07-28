@@ -38,6 +38,23 @@ VPADDUSW (VEX.256 encoded version)
   (\* Repeat add operation for 2nd through 15th words \*)
   DEST[255:240] <- SaturateToUnsignedWord (SRC1[255:240] + SRC2[255:240])
 
+> Intel C/C++ Compiler Intrinsic Equivalents
+
+``` slim
+   | |  
+---- | -----
+ PADDUSB:   | __m64 _mm_adds_pu8(__m64 m1, __m64 m2)    
+ PADDUSW:   | __m64 _mm_adds_pu16(__m64 m1, __m64       
+            | m2)                                       
+ (V)PADDUSB:| __m128i _mm_adds_epu8 ( __m128i a, __m128i
+            | b)                                        
+ (V)PADDUSW:| __m128i _mm_adds_epu16 ( __m128i a,       
+            | __m128i b)                                
+ VPADDUSB:  | __m256i _mm256_adds_epu8 ( __m256i a,     
+            | __m256i b)                                
+ VPADDUSW:  | __m256i _mm256_adds_epu16 ( __m256i       
+            | a, __m256i b)                             
+
 ```
 
  Opcode/Instruction                  | Op/En| 64/32 bit Mode Support| CPUID Feature Flag| Description                                
@@ -108,24 +125,9 @@ operand is an XMM register. The upper bits (VLMAX-1:128) of the corresponding
 YMM register destination are zeroed. VEX.256 encoded version: The first source
 operand is a YMM register. The second source operand is a YMM register or a
 256-bit memory location. The destination operand is a YMM register. Note: VEX.L
-must be 0, otherwise the instruction will #UD.
+must be 0, otherwise the instruction will **``#UD.``**
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalents
-   | |  
----- | -----
- PADDUSB:   | __m64 _mm_adds_pu8(__m64 m1, __m64 m2)    
- PADDUSW:   | __m64 _mm_adds_pu16(__m64 m1, __m64       
-            | m2)                                       
- (V)PADDUSB:| __m128i _mm_adds_epu8 ( __m128i a, __m128i
-            | b)                                        
- (V)PADDUSW:| __m128i _mm_adds_epu16 ( __m128i a,       
-            | __m128i b)                                
- VPADDUSB:  | __m256i _mm256_adds_epu8 ( __m256i a,     
-            | __m256i b)                                
- VPADDUSW:  | __m256i _mm256_adds_epu16 ( __m256i       
-            | a, __m256i b)                             
 
 ### Flags Affected
 None.

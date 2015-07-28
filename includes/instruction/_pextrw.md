@@ -48,6 +48,15 @@ ELSE
   DEST[31:16] <-ZERO_FILL;
 FI
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ PEXTRW:| int _mm_extract_pi16 (__m64 a, int n) 
+ PEXTRW:| int _mm_extract_epi16 ( __m128i a, int
+        | imm)                                  
+
 ```
 
  Opcode/Instruction                    | Op/En| 64/32 bit Mode Support| CPUID Feature Flag| Description                            
@@ -101,18 +110,11 @@ In 64-bit mode, using a REX prefix in the form of REX.R permits this instruction
 to access additional registers (XMM8-XMM15, R8-15). If the destination operand
 is a general-purpose register, the default operand size is 64-bits in 64-bit
 mode. Note: In VEX.128 encoded versions, VEX.vvvv is reserved and must be 1111b,
-VEX.L must be 0, otherwise the instruction will #UD. If the destination operand
+VEX.L must be 0, otherwise the instruction will **``#UD.``** If the destination operand
 is a register, the default operand size in 64-bit mode for VPEXTRW is 64 bits,
 the bits above the least significant byte/word/dword data are filled with zeros.
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- PEXTRW:| int _mm_extract_pi16 (__m64 a, int n) 
- PEXTRW:| int _mm_extract_epi16 ( __m128i a, int
-        | imm)                                  
 
 ### Flags Affected
 None.

@@ -28,7 +28,7 @@ and RDX are ignored.) Undefined or reserved bits in an MSR should be set to
 values previously read.
 
 This instruction must be executed at privilege level 0 or in real-address mode;
-otherwise, a general protection exception #GP(0) is generated. Specifying a
+otherwise, a general protection exception **``#GP(0)``** is generated. Specifying a
 reserved or unimplemented MSR address in ECX will also cause a general protection
 exception. The processor will also generate a general protection exception if
 software attempts to write to bits in a reserved MSR.
@@ -59,7 +59,7 @@ The CPUID instruction should be used to determine whether MSRs are supported
 The MSRs and the ability to read them with the WRMSR instruction were introduced
 into the IA-32 architecture with the Pentium processor. Execution of this instruction
 by an IA-32 processor earlier than the Pentium processor results in an invalid
-opcode exception #UD.
+opcode exception **``#UD.``**
 
 
 

@@ -19,11 +19,11 @@ SRC <- TEMP;
  REX.W + 90+rd| XCHG r64, RAX  | O    | Valid      | N.E.           | Exchange RAX with r64.                  
  86 /r        | XCHG r/m8, r8  | MR   | Valid      | Valid          | Exchange r8 (byte register) with byte   
               |                |      |            |                | from r/m8.                              
- REX + 86 /r  | XCHG r/m8\*, r8\*| MR   | Valid      | N.E.           | Exchange r8 (byte register) with byte   
+ REX + 86 /r  | XCHG r/m8*, r8*| MR   | Valid      | N.E.           | Exchange r8 (byte register) with byte   
               |                |      |            |                | from r/m8.                              
  86 /r        | XCHG r8, r/m8  | RM   | Valid      | Valid          | Exchange byte from r/m8 with r8 (byte   
               |                |      |            |                | register).                              
- REX + 86 /r  | XCHG r8\*, r/m8\*| RM   | Valid      | N.E.           | Exchange byte from r/m8 with r8 (byte   
+ REX + 86 /r  | XCHG r8*, r/m8*| RM   | Valid      | N.E.           | Exchange byte from r/m8 with r8 (byte   
               |                |      |            |                | register).                              
  87 /r        | XCHG r/m16, r16| MR   | Valid      | Valid          | Exchange r16 with word from r/m16.      
  87 /r        | XCHG r16, r/m16| RM   | Valid      | Valid          | Exchange word from r/m16 with r16.      
@@ -33,7 +33,7 @@ SRC <- TEMP;
               |                |      |            |                | r32.                                    
  REX.W + 87 /r| XCHG r64, r/m64| RM   | Valid      | N.E.           | Exchange quadword from r/m64 with r64.  
 <aside class="notification">
-\* In 64-bit mode, r/m8 can not be encoded to access the following byte
+* In 64-bit mode, r/m8 can not be encoded to access the following byte
 registers if a REX prefix is used: AH, BH, CH, DH.
 </aside>
 

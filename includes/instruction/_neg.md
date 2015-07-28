@@ -14,12 +14,12 @@ DEST <- [- (DEST)]
  Opcode       | Instruction| Op/En| 64-Bit Mode| Compat/Leg Mode| Description                   
  ---  | --- | --- | --- | --- | ---
  F6 /3        | NEG r/m8   | M    | Valid      | Valid          | Two's complement negate r/m8. 
- REX + F6 /3  | NEG r/m8\*  | M    | Valid      | N.E.           | Two's complement negate r/m8. 
+ REX + F6 /3  | NEG r/m8*  | M    | Valid      | N.E.           | Two's complement negate r/m8. 
  F7 /3        | NEG r/m16  | M    | Valid      | Valid          | Two's complement negate r/m16.
  F7 /3        | NEG r/m32  | M    | Valid      | Valid          | Two's complement negate r/m32.
  REX.W + F7 /3| NEG r/m64  | M    | Valid      | N.E.           | Two's complement negate r/m64.
 <aside class="notification">
-\* In 64-bit mode, r/m8 can not be encoded to access the following byte
+* In 64-bit mode, r/m8 can not be encoded to access the following byte
 registers if a REX prefix is used: AH, BH, CH, DH.
 </aside>
 

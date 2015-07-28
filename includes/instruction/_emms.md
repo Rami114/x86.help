@@ -5,6 +5,12 @@
 ``` slim
 x87FPUTagWord <- FFFFH;
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+void _mm_empty()
+
+
 ```
 
  Opcode| Instruction| Op/En| 64-Bit Mode| Compat/Leg Mode| Description                       
@@ -20,7 +26,6 @@ x87FPUTagWord <- FFFFH;
 Sets the values of all the tags in the x87 FPU tag word to empty (all 1s). This
 operation marks the x87 FPU data registers (which are aliased to the MMX technology
 registers) as available for use by x87 FPU floating-point instructions. (See
-Figure 8-7 in the Intel® 64 and IA-32 Architectures Software Developer's Manual,
 Volume 1, for the format of the x87 FPU tag word.) All other MMX instructions
 (other than the EMMS instruction) set all the tags in x87 FPU tag word to valid
 (all 0s).
@@ -35,10 +40,6 @@ exception or incorrect result.
 
 EMMS operation is the same in non-64-bit modes and 64-bit mode.
 
-
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-void _mm_empty()
 
 
 ### Flags Affected

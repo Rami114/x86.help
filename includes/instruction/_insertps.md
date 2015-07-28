@@ -68,6 +68,14 @@ IF (ZMASK[3] = 1) THEN DEST[127:96] <- 00000000H
   ELSE DEST[127:96] <- TMP2[127:96]
 DEST[VLMAX-1:128] <- 0
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ INSERTPS:| __m128 _mm_insert_ps(__m128 dst, __m128
+          | src, const int ndx);                   
+
 ```
 
  Opcode/Instruction                        | Op/En| 64/32-bit Mode| CPUID Feature Flag| Description                              
@@ -111,15 +119,9 @@ VEX.128 encoded version. The destination and first source register is an XMM
 register. The second source operand is either an XMM register or a 32-bit memory
 location. The upper bits (VLMAX-1:128) of the corresponding YMM register destination
 are zeroed. If VINSERTPS is encoded with VEX.L= 1, an attempt to execute the
-instruction encoded with VEX.L= 1 will cause an #UD exception.
+instruction encoded with VEX.L= 1 will cause an **``#UD``** exception.
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- INSERTPS:| __m128 _mm_insert_ps(__m128 dst, __m128
-          | src, const int ndx);                   
 
 ### SIMD Floating-Point Exceptions
 None

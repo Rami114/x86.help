@@ -72,6 +72,16 @@ ELSE DEST[239:224] <- SRC1[239:224]
 IF (imm8[7] == 1) THEN DEST[255:240] <- SRC2[255:240]
 ELSE DEST[255:240] <- SRC1[255:240]
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ (V)PBLENDW:| __m128i _mm_blend_epi16 (__m128i v1,
+            | __m128i v2, const int mask);        
+ VPBLENDW:  | __m256i _mm256_blend_epi16 (__m256i 
+            | v1, __m256i v2, const int mask)     
+
 ```
 
  Opcode/Instruction                        | Op/En| 64/32 bit Mode Support| CPUID Feature Flag| Description                          
@@ -110,14 +120,6 @@ source operand is a YMM register or a 256-bit memory location. The destination
 operand is a YMM register.
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- (V)PBLENDW:| __m128i _mm_blend_epi16 (__m128i v1,
-            | __m128i v2, const int mask);        
- VPBLENDW:  | __m256i _mm256_blend_epi16 (__m256i 
-            | v1, __m256i v2, const int mask)     
 
 ### Flags Affected
 None.

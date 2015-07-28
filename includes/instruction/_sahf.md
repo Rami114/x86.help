@@ -17,12 +17,12 @@ FI;
 
 ```
 
- Opcode\*| Instruction| Op/En| 64-Bit Mode| Compat/Leg Mode| Description                         
+ Opcode*| Instruction| Op/En| 64-Bit Mode| Compat/Leg Mode| Description                         
  ---  | --- | --- | --- | --- | ---
- 9E     | SAHF       | NP   | Invalid\*   | Valid          | Loads SF, ZF, AF, PF, and CF from AH
+ 9E     | SAHF       | NP   | Invalid*   | Valid          | Loads SF, ZF, AF, PF, and CF from AH
         |            |      |            |                | into EFLAGS register.               
 <aside class="notification">
-\* Valid in specific steppings. See Description section.
+* Valid in specific steppings. See Description section.
 </aside>
 
 

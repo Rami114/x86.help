@@ -16,10 +16,10 @@ FPULastInstructionOpcode <- 0;
  ---  | --- | --- | --- | ---
  9B DB E3| FINIT      | Valid      | Valid          | Initialize FPU after checking for pending  
          |            |            |                | unmasked floating-point exceptions.        
- DB E3   | FNINIT\*    | Valid      | Valid          | Initialize FPU without checking for        
+ DB E3   | FNINIT*    | Valid      | Valid          | Initialize FPU without checking for        
          |            |            |                | pending unmasked floating-point exceptions.
 <aside class="notification">
-\* See IA-32 Architecture Compatibility section below.
+* See IA-32 Architecture Compatibility section below.
 </aside>
 
 

@@ -13,6 +13,16 @@ DEST[VLMAX-1:128] <- 0
 VMOVLPS (store)
 DEST[63:0] <- SRC[63:0]
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ MOVLPS:| __m128 _mm_loadl_pi ( __m128 a, __m64
+        | \*p)                                  
+ MOVLPS:| void _mm_storel_pi (__m64 \*p, __m128 
+        | a)                                   
+
 ```
 
  Opcode/Instruction                    | Op/En| 64/32-bit Mode| CPUID Feature Flag| Description                                    
@@ -53,20 +63,12 @@ the low 64-bits of the XMM register source (second operand) to the 64-bit memory
 location (first operand). Note: VMOVLPS (store) (VEX.128.0F 13 /r) is legal
 and has the same behavior as the existing 0F 13 store. For VMOVLPS (store) (VEX.128.0F
 13 /r) instruction version, VEX.vvvv is reserved and must be 1111b otherwise
-instruction will #UD.
+instruction will **``#UD.``**
 
 If VMOVLPS is encoded with VEX.L= 1, an attempt to execute the instruction encoded
-with VEX.L= 1 will cause an #UD exception.
+with VEX.L= 1 will cause an **``#UD``** exception.
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- MOVLPS:| __m128 _mm_loadl_pi ( __m128 a, __m64
-        | \*p)                                  
- MOVLPS:| void _mm_storel_pi (__m64 \*p, __m128 
-        | a)                                   
 
 ### SIMD Floating-Point Exceptions
 None.

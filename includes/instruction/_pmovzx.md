@@ -66,7 +66,41 @@ Packed_Zero_Extend_WORD_to_QWORD(DEST[127:0], SRC[31:0])
 Packed_Zero_Extend_WORD_to_QWORD(DEST[255:128], SRC[63:32])
 VPMOVZXDQ (VEX.256 encoded version)
 Packed_Zero_Extend_DWORD_to_QWORD(DEST[127:0], SRC[63:0])
-Packed_Zero_Extend_DWORD_to_QWORD(DEST[255:128], SRC[127:64])
+Packed_Zero_Extend_DWORD_to_QWORD(DEST[255:128], SRC[127:64])```
+
+### Flags Affected
+None
+
+
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ (V)PMOVZXBW:| __m128i _mm_ cvtepu8_epi16 ( __m128i   
+             | a);                                    
+ VPMOVZXBW:  | __m256i _mm256_cvtepu8_epi16 ( __m128i 
+             | a);                                    
+ (V)PMOVZXBD:| __m128i _mm_ cvtepu8_epi32 ( __m128i   
+             | a);                                    
+ VPMOVZXBD:  | __m256i _mm256_cvtepu8_epi32 ( __m128i 
+             | a);                                    
+ (V)PMOVZXBQ:| __m128i _mm_ cvtepu8_epi64 ( __m128i   
+             | a);                                    
+ VPMOVZXBQ:  | __m256i _mm256_cvtepu8_epi64 ( __m128i 
+             | a);                                    
+ (V)PMOVZXWD:| __m128i _mm_ cvtepu16_epi32 ( __m128i  
+             | a);                                    
+ VPMOVZXWD:  | __m256i _mm256_cvtepu16_epi32 ( __m128i
+             | a);                                    
+ (V)PMOVZXWQ:| __m128i _mm_ cvtepu16_epi64 ( __m128i  
+             | a);                                    
+ VPMOVZXWQ:  | __m256i _mm256_cvtepu16_epi64 ( __m128i
+             | a);                                    
+ (V)PMOVZXDQ:| __m128i _mm_ cvtepu32_epi64 ( __m128i  
+             | a);                                    
+ VPMOVZXDQ:  | __m256i _mm256_cvtepu32_epi64 ( __m128i
+             | a);                                    
 
 ```
 
@@ -145,42 +179,10 @@ Register.
 
 <aside class="notification">
 VEX.vvvv is reserved and must be 1111b, VEX.L must be 0, otherwise the
-instruction will #UD.
+instruction will **``#UD.``**
 </aside>
 
 
-
-### Flags Affected
-None
-
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- (V)PMOVZXBW:| __m128i _mm_ cvtepu8_epi16 ( __m128i   
-             | a);                                    
- VPMOVZXBW:  | __m256i _mm256_cvtepu8_epi16 ( __m128i 
-             | a);                                    
- (V)PMOVZXBD:| __m128i _mm_ cvtepu8_epi32 ( __m128i   
-             | a);                                    
- VPMOVZXBD:  | __m256i _mm256_cvtepu8_epi32 ( __m128i 
-             | a);                                    
- (V)PMOVZXBQ:| __m128i _mm_ cvtepu8_epi64 ( __m128i   
-             | a);                                    
- VPMOVZXBQ:  | __m256i _mm256_cvtepu8_epi64 ( __m128i 
-             | a);                                    
- (V)PMOVZXWD:| __m128i _mm_ cvtepu16_epi32 ( __m128i  
-             | a);                                    
- VPMOVZXWD:  | __m256i _mm256_cvtepu16_epi32 ( __m128i
-             | a);                                    
- (V)PMOVZXWQ:| __m128i _mm_ cvtepu16_epi64 ( __m128i  
-             | a);                                    
- VPMOVZXWQ:  | __m256i _mm256_cvtepu16_epi64 ( __m128i
-             | a);                                    
- (V)PMOVZXDQ:| __m128i _mm_ cvtepu32_epi64 ( __m128i  
-             | a);                                    
- VPMOVZXDQ:  | __m256i _mm256_cvtepu32_epi64 ( __m128i
-             | a);                                    
 
 ### Flags Affected
 None.

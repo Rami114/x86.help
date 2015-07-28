@@ -3,41 +3,57 @@
 > Operation
 
 ``` slim
-In the operations below, \"+\", \"-\", and \"\*\" symbols represent addition, subtraction, and multiplication operations
+In the operations below, \"+\", \"-\", and \"*\" symbols represent addition, subtraction, and multiplication operations
 with infinite precision inputs and outputs (no rounding).
 VFMSUBADD132PD DEST, SRC2, SRC3
 IF (VEX.128) THEN
-  DEST[63:0] <- RoundFPControl_MXCSR(DEST[63:0]\*SRC3[63:0] + SRC2[63:0])
-  DEST[127:64] <- RoundFPControl_MXCSR(DEST[127:64]\*SRC3[127:64] - SRC2[127:64])
+  DEST[63:0] <- RoundFPControl_MXCSR(DEST[63:0]*SRC3[63:0] + SRC2[63:0])
+  DEST[127:64] <- RoundFPControl_MXCSR(DEST[127:64]*SRC3[127:64] - SRC2[127:64])
   DEST[VLMAX-1:128] <- 0
 ELSEIF (VEX.256)
-  DEST[63:0] <- RoundFPControl_MXCSR(DEST[63:0]\*SRC3[63:0] + SRC2[63:0])
-  DEST[127:64] <- RoundFPControl_MXCSR(DEST[127:64]\*SRC3[127:64] - SRC2[127:64])
-  DEST[191:128] <- RoundFPControl_MXCSR(DEST[191:128]\*SRC3[191:128] + SRC2[191:128])
-  DEST[255:192] <- RoundFPControl_MXCSR(DEST[255:192]\*SRC3[255:192] - SRC2[255:192]
+  DEST[63:0] <- RoundFPControl_MXCSR(DEST[63:0]*SRC3[63:0] + SRC2[63:0])
+  DEST[127:64] <- RoundFPControl_MXCSR(DEST[127:64]*SRC3[127:64] - SRC2[127:64])
+  DEST[191:128] <- RoundFPControl_MXCSR(DEST[191:128]*SRC3[191:128] + SRC2[191:128])
+  DEST[255:192] <- RoundFPControl_MXCSR(DEST[255:192]*SRC3[255:192] - SRC2[255:192]
 FI
 VFMSUBADD213PD DEST, SRC2, SRC3
 IF (VEX.128) THEN
-  DEST[63:0] <- RoundFPControl_MXCSR(SRC2[63:0]\*DEST[63:0] + SRC3[63:0])
-  DEST[127:64] <- RoundFPControl_MXCSR(SRC2[127:64]\*DEST[127:64] - SRC3[127:64])
+  DEST[63:0] <- RoundFPControl_MXCSR(SRC2[63:0]*DEST[63:0] + SRC3[63:0])
+  DEST[127:64] <- RoundFPControl_MXCSR(SRC2[127:64]*DEST[127:64] - SRC3[127:64])
   DEST[VLMAX-1:128] <- 0
 ELSEIF (VEX.256)
-  DEST[63:0] <- RoundFPControl_MXCSR(SRC2[63:0]\*DEST[63:0] + SRC3[63:0])
-  DEST[127:64] <- RoundFPControl_MXCSR(SRC2[127:64]\*DEST[127:64] - SRC3[127:64])
-  DEST[191:128] <- RoundFPControl_MXCSR(SRC2[191:128]\*DEST[191:128] + SRC3[191:128])
-  DEST[255:192] <- RoundFPControl_MXCSR(SRC2[255:192]\*DEST[255:192] - SRC3[255:192]
+  DEST[63:0] <- RoundFPControl_MXCSR(SRC2[63:0]*DEST[63:0] + SRC3[63:0])
+  DEST[127:64] <- RoundFPControl_MXCSR(SRC2[127:64]*DEST[127:64] - SRC3[127:64])
+  DEST[191:128] <- RoundFPControl_MXCSR(SRC2[191:128]*DEST[191:128] + SRC3[191:128])
+  DEST[255:192] <- RoundFPControl_MXCSR(SRC2[255:192]*DEST[255:192] - SRC3[255:192]
 FI
 VFMSUBADD231PD DEST, SRC2, SRC3
 IF (VEX.128) THEN
-  DEST[63:0] <- RoundFPControl_MXCSR(SRC2[63:0]\*SRC3[63:0] + DEST[63:0])
-  DEST[127:64] <- RoundFPControl_MXCSR(SRC2[127:64]\*SRC3[127:64] - DEST[127:64])
+  DEST[63:0] <- RoundFPControl_MXCSR(SRC2[63:0]*SRC3[63:0] + DEST[63:0])
+  DEST[127:64] <- RoundFPControl_MXCSR(SRC2[127:64]*SRC3[127:64] - DEST[127:64])
   DEST[VLMAX-1:128] <- 0
 ELSEIF (VEX.256)
-  DEST[63:0] <- RoundFPControl_MXCSR(SRC2[63:0]\*SRC3[63:0] + DEST[63:0])
-  DEST[127:64] <- RoundFPControl_MXCSR(SRC2[127:64]\*SRC3[127:64] - DEST[127:64])
-  DEST[191:128] <- RoundFPControl_MXCSR(SRC2[191:128]\*SRC3[191:128] + DEST[191:128])
-  DEST[255:192] <- RoundFPControl_MXCSR(SRC2[255:192]\*SRC3[255:192] - DEST[255:192]
+  DEST[63:0] <- RoundFPControl_MXCSR(SRC2[63:0]*SRC3[63:0] + DEST[63:0])
+  DEST[127:64] <- RoundFPControl_MXCSR(SRC2[127:64]*SRC3[127:64] - DEST[127:64])
+  DEST[191:128] <- RoundFPControl_MXCSR(SRC2[191:128]*SRC3[191:128] + DEST[191:128])
+  DEST[255:192] <- RoundFPControl_MXCSR(SRC2[255:192]*SRC3[255:192] - DEST[255:192]
 FI
+
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+VFMSUBADD132PD: __m128d _mm_fmsubadd_pd (__m128d a, __m128d b, __m128d c);
+
+VFMSUBADD213PD: __m128d _mm_fmsubadd_pd (__m128d a, __m128d b, __m128d c);
+
+VFMSUBADD231PD: __m128d _mm_fmsubadd_pd (__m128d a, __m128d b, __m128d c);
+
+VFMSUBADD132PD: __m256d _mm256_fmsubadd_pd (__m256d a, __m256d b, __m256d c);
+
+VFMSUBADD213PD: __m256d _mm256_fmsubadd_pd (__m256d a, __m256d b, __m256d c);
+
+VFMSUBADD231PD: __m256d _mm256_fmsubadd_pd (__m256d a, __m256d b, __m256d c);
+
 
 ```
 
@@ -110,20 +126,6 @@ See also Section 14.5.1, “FMA Instruction Operand Order and Arithmetic Behavio
 in the Intel® 64 and IA-32 Architectures Software Developer's Manual, Volume
 1.
 
-
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-VFMSUBADD132PD: __m128d _mm_fmsubadd_pd (__m128d a, __m128d b, __m128d c);
-
-VFMSUBADD213PD: __m128d _mm_fmsubadd_pd (__m128d a, __m128d b, __m128d c);
-
-VFMSUBADD231PD: __m128d _mm_fmsubadd_pd (__m128d a, __m128d b, __m128d c);
-
-VFMSUBADD132PD: __m256d _mm256_fmsubadd_pd (__m256d a, __m256d b, __m256d c);
-
-VFMSUBADD213PD: __m256d _mm256_fmsubadd_pd (__m256d a, __m256d b, __m256d c);
-
-VFMSUBADD231PD: __m256d _mm256_fmsubadd_pd (__m256d a, __m256d b, __m256d c);
 
 
 ### SIMD Floating-Point Exceptions

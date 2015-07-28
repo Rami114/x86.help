@@ -21,6 +21,16 @@ FI;
 DEST[127:64] <- SRC1[127:64]
 DEST[VLMAX-1:128] <- 0
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ CVTSI2SD:| __m128d _mm_cvtsi32_sd(__m128d a, int    
+          | b)                                       
+ CVTSI2SD:| __m128d _mm_cvtsi64_sd(__m128d a, __int64
+          | b)                                       
+
 ```
 
  Opcode/Instruction                   | Op/En| 64/32-bit Mode| CPUID Feature Flag| Description                                      
@@ -66,14 +76,6 @@ bits in the first source operand. Bits (VLMAX-1:128) of the destination YMM
 register are zeroed.
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- CVTSI2SD:| __m128d _mm_cvtsi32_sd(__m128d a, int    
-          | b)                                       
- CVTSI2SD:| __m128d _mm_cvtsi64_sd(__m128d a, __int64
-          | b)                                       
 
 ### SIMD Floating-Point Exceptions
 Precision.

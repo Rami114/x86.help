@@ -3,7 +3,7 @@
 > Operation
 
 ``` slim
-In the operations below, \"+\", \"-\", and \"\*\" symbols represent addition, subtraction, and multiplication operations
+In the operations below, \"+\", \"-\", and \"*\" symbols represent addition, subtraction, and multiplication operations
 with infinite precision inputs and outputs (no rounding).
 VFNMADD132PD DEST, SRC2, SRC3
 IF (VEX.128) THEN
@@ -12,8 +12,8 @@ ELSEIF (VEX.256)
   MAXVL = 4
 FI
 For i = 0 to MAXVL-1 {
-  n = 64\*i;
-  DEST[n+63:n] <- RoundFPControl_MXCSR(-(DEST[n+63:n]\*SRC3[n+63:n]) + SRC2[n+63:n])
+  n = 64*i;
+  DEST[n+63:n] <- RoundFPControl_MXCSR(-(DEST[n+63:n]*SRC3[n+63:n]) + SRC2[n+63:n])
 }
 IF (VEX.128) THEN
 DEST[VLMAX-1:128] <- 0
@@ -25,8 +25,8 @@ ELSEIF (VEX.256)
   MAXVL = 4
 FI
 For i = 0 to MAXVL-1 {
-  n = 64\*i;
-  DEST[n+63:n] <- RoundFPControl_MXCSR(-(SRC2[n+63:n]\*DEST[n+63:n]) + SRC3[n+63:n])
+  n = 64*i;
+  DEST[n+63:n] <- RoundFPControl_MXCSR(-(SRC2[n+63:n]*DEST[n+63:n]) + SRC3[n+63:n])
 }
 IF (VEX.128) THEN
 DEST[VLMAX-1:128] <- 0
@@ -38,12 +38,28 @@ ELSEIF (VEX.256)
   MAXVL = 4
 FI
 For i = 0 to MAXVL-1 {
-  n = 64\*i;
-  DEST[n+63:n] <- RoundFPControl_MXCSR(-(SRC2[n+63:n]\*SRC3[n+63:n]) + DEST[n+63:n])
+  n = 64*i;
+  DEST[n+63:n] <- RoundFPControl_MXCSR(-(SRC2[n+63:n]*SRC3[n+63:n]) + DEST[n+63:n])
 }
 IF (VEX.128) THEN
 DEST[VLMAX-1:128] <- 0
 FI
+
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+VFNMADD132PD: __m128d _mm_fnmadd_pd (__m128d a, __m128d b, __m128d c);
+
+VFNMADD213PD: __m128d _mm_fnmadd_pd (__m128d a, __m128d b, __m128d c);
+
+VFNMADD231PD: __m128d _mm_fnmadd_pd (__m128d a, __m128d b, __m128d c);
+
+VFNMADD132PD: __m256d _mm256_fnmadd_pd (__m256d a, __m256d b, __m256d c);
+
+VFNMADD213PD: __m256d _mm256_fnmadd_pd (__m256d a, __m256d b, __m256d c);
+
+VFNMADD231PD: __m256d _mm256_fnmadd_pd (__m256d a, __m256d b, __m256d c);
+
 
 ```
 
@@ -118,20 +134,6 @@ instruction mnemonic defined in the opcode/instruction column. See also Section
 14.5.1, “FMA Instruction Operand Order and Arithmetic Behavior” in the Intel®
 64 and IA-32 Architectures Software Developer's Manual, Volume 1.
 
-
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-VFNMADD132PD: __m128d _mm_fnmadd_pd (__m128d a, __m128d b, __m128d c);
-
-VFNMADD213PD: __m128d _mm_fnmadd_pd (__m128d a, __m128d b, __m128d c);
-
-VFNMADD231PD: __m128d _mm_fnmadd_pd (__m128d a, __m128d b, __m128d c);
-
-VFNMADD132PD: __m256d _mm256_fnmadd_pd (__m256d a, __m256d b, __m256d c);
-
-VFNMADD213PD: __m256d _mm256_fnmadd_pd (__m256d a, __m256d b, __m256d c);
-
-VFNMADD231PD: __m256d _mm256_fnmadd_pd (__m256d a, __m256d b, __m256d c);
 
 
 ### SIMD Floating-Point Exceptions

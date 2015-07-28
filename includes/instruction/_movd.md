@@ -27,6 +27,18 @@ VMOVQ (VEX-encoded version when destination is an XMM register)
   DEST[63:0] <- SRC[63:0]
   DEST[VLMAX-1:64] <- 0
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ MOVD:| __m64 _mm_cvtsi32_si64 (int i )    
+ MOVD:| int _mm_cvtsi64_si32 ( __m64m )    
+ MOVD:| __m128i _mm_cvtsi32_si128 (int a)  
+ MOVD:| int _mm_cvtsi128_si32 ( __m128i a) 
+ MOVQ:| __int64 _mm_cvtsi128_si64(__m128i);
+ MOVQ:| __m128i _mm_cvtsi64_si128(__int64);
+
 ```
 
  Opcode/Instruction                        | Op/En| 64/32-bit Mode| CPUID Feature Flag| Description                              
@@ -76,16 +88,6 @@ REX.W prefix promotes operation to 64 bits. See the summary chart at the beginni
 of this section for encoding data and limits.
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- MOVD:| __m64 _mm_cvtsi32_si64 (int i )    
- MOVD:| int _mm_cvtsi64_si32 ( __m64m )    
- MOVD:| __m128i _mm_cvtsi32_si128 (int a)  
- MOVD:| int _mm_cvtsi128_si32 ( __m128i a) 
- MOVQ:| __int64 _mm_cvtsi128_si64(__m128i);
- MOVQ:| __m128i _mm_cvtsi64_si128(__int64);
 
 ### Flags Affected
 None.

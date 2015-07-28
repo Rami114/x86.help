@@ -10,6 +10,18 @@ CASE (imm8[0]) OF
 ESAC
 DEST <-TEMP
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ INSERTF128:| __m256 _mm256_insertf128_ps (__m256     
+            | a, __m128 b, int offset);               
+ INSERTF128:| __m256d _mm256_insertf128_pd (__m256d   
+            | a, __m128d b, int offset);              
+ INSERTF128:| __m256i _mm256_insertf128_si256 (__m256i
+            | a, __m128i b, int offset);              
+
 ```
 
  Opcode/Instruction                         | Op/En| 64/32-bit Mode| CPUID Feature Flag| Description                              
@@ -35,16 +47,6 @@ operand). The second source operand can be either an XMM register or a 128-bit
 memory location. The high 7 bits of the immediate are ignored.
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- INSERTF128:| __m256 _mm256_insertf128_ps (__m256     
-            | a, __m128 b, int offset);               
- INSERTF128:| __m256d _mm256_insertf128_pd (__m256d   
-            | a, __m128d b, int offset);              
- INSERTF128:| __m256i _mm256_insertf128_si256 (__m256i
-            | a, __m128i b, int offset);              
 
 ### SIMD Floating-Point Exceptions
 None

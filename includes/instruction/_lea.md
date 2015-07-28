@@ -5,34 +5,34 @@
 ``` slim
 IF OperandSize = 16 and AddressSize = 16
   THEN
-     DEST <- EffectiveAddress(SRC); (\* 16-bit address \*)
+     DEST <- EffectiveAddress(SRC); (* 16-bit address *)
   ELSE IF OperandSize = 16 and AddressSize = 32
      THEN
-       temp <- EffectiveAddress(SRC); (\* 32-bit address \*)
-       DEST <- temp[0:15]; (\* 16-bit address \*)
+       temp <- EffectiveAddress(SRC); (* 32-bit address *)
+       DEST <- temp[0:15]; (* 16-bit address *)
      FI;
   ELSE IF OperandSize = 32 and AddressSize = 16
      THEN
-       temp <- EffectiveAddress(SRC); (\* 16-bit address \*)
-       DEST <- ZeroExtend(temp); (\* 32-bit address \*)
+       temp <- EffectiveAddress(SRC); (* 16-bit address *)
+       DEST <- ZeroExtend(temp); (* 32-bit address *)
      FI;
   ELSE IF OperandSize = 32 and AddressSize = 32
      THEN
-       DEST <- EffectiveAddress(SRC); (\* 32-bit address \*)
+       DEST <- EffectiveAddress(SRC); (* 32-bit address *)
      FI;
   ELSE IF OperandSize = 16 and AddressSize = 64
      THEN
-       temp <- EffectiveAddress(SRC); (\* 64-bit address \*)
-       DEST <- temp[0:15]; (\* 16-bit address \*)
+       temp <- EffectiveAddress(SRC); (* 64-bit address *)
+       DEST <- temp[0:15]; (* 16-bit address *)
      FI;
   ELSE IF OperandSize = 32 and AddressSize = 64
      THEN
-       temp <- EffectiveAddress(SRC); (\* 64-bit address \*)
-       DEST <- temp[0:31]; (\* 16-bit address \*)
+       temp <- EffectiveAddress(SRC); (* 64-bit address *)
+       DEST <- temp[0:31]; (* 16-bit address *)
      FI;
   ELSE IF OperandSize = 64 and AddressSize = 64
      THEN
-       DEST <- EffectiveAddress(SRC); (\* 64-bit address \*)
+       DEST <- EffectiveAddress(SRC); (* 64-bit address *)
      FI;
 FI;
 

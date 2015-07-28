@@ -38,11 +38,11 @@ will not be immediately generated. The exception will be generated only upon
 
 This instruction's operation is the same in non-64-bit modes and 64-bit mode.
 If VLDMXCSR is encoded with VEX.L= 1, an attempt to execute the instruction
-encoded with VEX.L= 1 will cause an #UD exception.
+encoded with VEX.L= 1 will cause an **``#UD``** exception.
 
 <aside class="notification">
 In VEX-encoded versions, VEX.vvvv is reserved and must be 1111b, otherwise
-instructions will #UD.
+instructions will **``#UD.``**
 </aside>
 
 

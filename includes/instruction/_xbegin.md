@@ -30,7 +30,33 @@ IF RTM_NEST_COUNT < MAX_RTM_NEST_COUNT
   ELSE (\* RTM_NEST_COUNT = MAX_RTM_NEST_COUNT \*)
      GOTO RTM_ABORT_PROCESSING
 FI;
-(\* For any RTM abort condition encountered during RTM execution \*)
+(\* For any RTM abort condition encountered during RTM execution \*)```
+
+### RTM_ABORT_PROCESSING
+  Restore architectural register state
+  Discard memory updates performed in transaction
+  Update EAX with status
+  RTM_NEST_COUNT <- 0
+  RTM_ACTIVE <- 0
+  IF 64-bit mode
+     THEN
+       RIP <- fallbackRIP
+     ELSE
+       EIP <- fallbackEIP
+  FI;
+END
+
+### Flags Affected
+None
+
+
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ XBEGIN:| unsigned int _xbegin( void );
+
 ```
 
  Opcode/Instruction| Op/En| 64/32bit Mode Support| CPUID Feature Flag| Description                           
@@ -65,29 +91,6 @@ outermost XBEGIN instruction. The fallback address following an abort is compute
 from the outermost XBEGIN instruction.
 
 
-
-### RTM_ABORT_PROCESSING
-  Restore architectural register state
-  Discard memory updates performed in transaction
-  Update EAX with status
-  RTM_NEST_COUNT <- 0
-  RTM_ACTIVE <- 0
-  IF 64-bit mode
-     THEN
-       RIP <- fallbackRIP
-     ELSE
-       EIP <- fallbackEIP
-  FI;
-END
-
-### Flags Affected
-None
-
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- XBEGIN:| unsigned int _xbegin( void );
 
 ### SIMD Floating-Point Exceptions
 None

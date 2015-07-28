@@ -7,7 +7,7 @@ CF <- 1;
 
 ```
 
- Opcode\*| Instruction| Op/En| 64-Bit Mode| Compat/Leg Mode| Description 
+ Opcode*| Instruction| Op/En| 64-Bit Mode| Compat/Leg Mode| Description 
  ---  | --- | --- | --- | --- | ---
  F9     | STC        | NP   | Valid      | Valid          | Set CF flag.
 

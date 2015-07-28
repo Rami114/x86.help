@@ -16,8 +16,8 @@ IF XACQUIRE-enabled instruction
              ELSE
                restartEIP <- instruction pointer of the XACQUIRE-enabled instruction
           FI;
-          Enter HLE Execution (\* record register state, start tracking memory state \*)
-       FI; (\* HLE_NEST_COUNT = 1\*)
+          Enter HLE Execution (* record register state, start tracking memory state *)
+       FI; (* HLE_NEST_COUNT = 1*)
        IF ElisionBufferAvailable
           THEN
              Allocate elision buffer
@@ -26,7 +26,7 @@ IF XACQUIRE-enabled instruction
           ELSE
              Perform lock acquire operation transactionally but without elision
        FI;
-     ELSE (\* HLE_NEST_COUNT = MAX_HLE_NEST_COUNT \*)
+     ELSE (* HLE_NEST_COUNT = MAX_HLE_NEST_COUNT *)
           GOTO HLE_ABORT_PROCESSING
      FI;
   ELSE
@@ -53,18 +53,18 @@ IF XRELEASE-enabled instruction
                      IF fail to commit transactional execution
                        THEN
                           GOTO HLE_ABORT_PROCESSING;
-                       ELSE (\* commit success \*)
+                       ELSE (* commit success *)
                           HLE_ACTIVE <- 0
                      FI;
                   ELSE
                      GOTO HLE_ABORT_PROCESSING
                FI;
           FI;
-     FI; (\* HLE_NEST_COUNT > 0 \*)
+     FI; (* HLE_NEST_COUNT > 0 *)
   ELSE
      Treat instruction as non-XRELEASE F3H prefixed legacy instruction
 FI;
-(\* For any HLE abort condition encountered during HLE execution \*)
+(* For any HLE abort condition encountered during HLE execution *)
 ```
 
  Opcode/Instruction| 64/32bit Mode Support| CPUID Feature Flag| Description                            
@@ -132,7 +132,7 @@ F3H prefix behaves the same way as in prior hardware, according to
 
  - REP/REPE/REPZ semantics for string instructions,
  - Serve as SIMD prefix for legacy SIMD instructions operating on XMM register
- - Cause #UD if prepending the VEX prefix.
+ - Cause **``#UD``** if prepending the VEX prefix.
  - Undefined for non-string instructions or other situations.
 
 

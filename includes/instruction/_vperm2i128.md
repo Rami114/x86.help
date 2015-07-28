@@ -23,6 +23,12 @@ IF (imm8[7])
 DEST[255:128] <- 0
 FI
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+VPERM2I128: __m256i _mm256_permute2x128_si256 (__m256i a, __m256i b, int control)
+
+
 ```
 
  Opcode/Instruction                        | Op/En| 64/32 -bit Mode| CPUID Feature Flag| Description                          
@@ -51,12 +57,8 @@ operand is a YMM register, the second source operand is a YMM register or a
 Imm8[1:0] select the source for the first destination 128-bit field, imm8[5:4]
 select the source for the second destination field. If imm8[3] is set, the low
 128-bit field is zeroed. If imm8[7] is set, the high 128-bit field is zeroed.
-VEX.L must be 1, otherwise the instruction will #UD.
+VEX.L must be 1, otherwise the instruction will **``#UD.``**
 
-
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-VPERM2I128: __m256i _mm256_permute2x128_si256 (__m256i a, __m256i b, int control)
 
 
 ### SIMD Floating-Point Exceptions

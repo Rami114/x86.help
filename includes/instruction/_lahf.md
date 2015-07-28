@@ -17,9 +17,9 @@ FI;
 
  Opcode| Instruction| Op/En| 64-Bit Mode| Compat/Leg Mode| Description                             
  ---  | --- | --- | --- | --- | ---
- 9F    | LAHF       | NP   | Invalid\*   | Valid          | Load: AH ← EFLAGS(SF:ZF:0:AF:0:PF:1:CF).
+ 9F    | LAHF       | NP   | Invalid*   | Valid          | Load: AH ← EFLAGS(SF:ZF:0:AF:0:PF:1:CF).
 <aside class="notification">
-\*Valid in specific steppings. See Description section.
+*Valid in specific steppings. See Description section.
 </aside>
 
 

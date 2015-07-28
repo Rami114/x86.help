@@ -31,7 +31,7 @@ FI;
 
 ```
 
- Opcode\*            | Instruction          | Op/En| 64-Bit Mode| Compat/Leg Mode| Description                             
+ Opcode*            | Instruction          | Op/En| 64-Bit Mode| Compat/Leg Mode| Description                             
  ---  | --- | --- | --- | --- | ---
  0F AC /r ib        | SHRD r/m16, r16, imm8| MRI  | Valid      | Valid          | Shift r/m16 to right imm8 places while  
                     |                      |      |            |                | shifting bits from r16 in from the left.

@@ -31,6 +31,19 @@ temp <- SRC[127:0]
 DEST[127:0] <- temp
 DEST[VLMAX-1:128] <- temp
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ VBROADCASTSS:  | __m128 _mm_broadcast_ss(float *a);     
+ VBROADCASTSS:  | __m256 _mm256_broadcast_ss(float *a);  
+ VBROADCASTSD:  | __m256d _mm256_broadcast_sd(double *a);
+ VBROADCASTF128:| __m256 _mm256_broadcast_ps(__m128 *    
+                | a);                                    
+ VBROADCASTF128:| __m256d _mm256_broadcast_pd(__m128d    
+                | * a);                                  
+
 ```
 
  Opcode/Instruction                     | Op/En| 64/32-bit Mode| CPUID Feature Flag| Description                                     
@@ -74,16 +87,16 @@ of the following conditions with respect to CPUID.1:ECX.AVX[bit 28] and CPUID.(E
  - If CPUID.1:ECX.AVX = 1 and CPUID.(EAX=07H, ECX=0H):EBX.AVX2 = 0: the destination
 operand is a YMM register. The source operand support can be either a 32-bit,
 64-bit, or 128-bit memory location. Register source encodings are reserved and
-will #UD.
+will **``#UD.``**
  - If CPUID.1:ECX.AVX = 1 and CPUID.(EAX=07H, ECX=0H):EBX.AVX2 = 1: the destination
 operand is a YMM register. The source operand support can be a register or memory
 location.
 
 <aside class="notification">
 In VEX-encoded versions, VEX.vvvv is reserved and must be 1111b otherwise
-instructions will #UD. An attempt to execute VBROADCASTSD or VBROADCASTF128
-encoded with VEX.L= 0 will cause an #UD exception. Attempts to execute any VBROADCAST\*
-instruction with VEX.W = 1 will cause #UD.
+instructions will **``#UD.``** An attempt to execute VBROADCASTSD or VBROADCASTF128
+encoded with VEX.L= 0 will cause an **``#UD``** exception. Attempts to execute any VBROADCAST*
+instruction with VEX.W = 1 will cause **``#UD.``**
 </aside>
 
    | |  
@@ -99,17 +112,6 @@ instruction with VEX.W = 1 will cause #UD.
  VBROADCASTSD Operation                  | Figure 4-29. X0 X0
  VBROADCASTF128 Operation                | Figure 4-30.      
 
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- VBROADCASTSS:  | __m128 _mm_broadcast_ss(float \*a);     
- VBROADCASTSS:  | __m256 _mm256_broadcast_ss(float \*a);  
- VBROADCASTSD:  | __m256d _mm256_broadcast_sd(double \*a);
- VBROADCASTF128:| __m256 _mm256_broadcast_ps(__m128 \*    
-                | a);                                    
- VBROADCASTF128:| __m256d _mm256_broadcast_pd(__m128d    
-                | \* a);                                  
 
 ### Flags Affected
 None.

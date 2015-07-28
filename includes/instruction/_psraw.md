@@ -8,7 +8,7 @@ PSRAW (with 64-bit operand)
      THEN COUNT <- 16;
   FI;
   DEST[15:0] <- SignExtend(DEST[15:0] >> COUNT);
-  (\* Repeat shift operation for 2nd and 3rd words \*)
+  (* Repeat shift operation for 2nd and 3rd words *)
   DEST[63:48] <- SignExtend(DEST[63:48] >> COUNT);
 PSRAD (with 64-bit operand)
   IF (COUNT > 31)
@@ -22,7 +22,7 @@ PSRAW (with 128-bit operand)
      THEN COUNT <- 16;
   FI;
   DEST[15:0]
-  (\* Repeat shift operation for 2nd through 7th words \*)
+  (* Repeat shift operation for 2nd through 7th words *)
   DEST[127:112] <- SignExtend(DEST[127:112] >> COUNT);
 PSRAD (with 128-bit operand)
   COUNT <- COUNT_SOURCE[63:0];
@@ -30,7 +30,7 @@ PSRAD (with 128-bit operand)
      THEN COUNT <- 32;
   FI;
   DEST[31:0]
-  (\* Repeat shift operation for 2nd and 3rd doublewords \*)
+  (* Repeat shift operation for 2nd and 3rd doublewords *)
   DEST[127:96] <- SignExtend(DEST[127:96] >>COUNT);
 PSRAW (xmm, xmm, xmm/m128)
 DEST[127:0] <- ARITHMETIC_RIGHT_SHIFT_WORDS(DEST, SRC)
@@ -64,6 +64,30 @@ VPSRAD (ymm, ymm, xmm/m128)
 DEST[255:0] <- ARITHMETIC_RIGHT_SHIFT_DWORDS_256b(SRC1, SRC2)
 VPSRAD (ymm, imm8)
 DEST[255:0] <- ARITHMETIC_RIGHT_SHIFT_DWORDS_256b(SRC1, imm8)
+
+> Intel C/C++ Compiler Intrinsic Equivalents
+
+``` slim
+   | |  
+---- | -----
+ PSRAW:   | __m64 _mm_srai_pi16 (__m64 m, int count) 
+ PSRAW:   | __m64 _mm_sra_pi16 (__m64 m, __m64 count)
+ (V)PSRAW:| count)                                   
+ (V)PSRAW:| __m128i _mm_sra_epi16(__m128i m, __m128i 
+          | count)                                   
+ VPSRAW:  | __m256i _mm256_srai_epi16 (__m256i m,    
+          | int count)                               
+ VPSRAW:  | __m256i _mm256_sra_epi16 (__m256i m,     
+          | __m128i count)                           
+ PSRAD:   | __m64 _mm_srai_pi32 (__m64 m, int count) 
+ PSRAD:   | __m64 _mm_sra_pi32 (__m64 m, __m64 count)
+ (V)PSRAD:| count)                                   
+ (V)PSRAD:| __m128i _mm_sra_epi32 (__m128i m, __m128i
+          | count)                                   
+ VPSRAD:  | __m256i _mm256_srai_epi32 (__m256i m,    
+          | int count)                               
+ VPSRAD:  | __m256i _mm256_sra_epi32 (__m256i m,     
+          | __m128i count)                           
 
 ```
 
@@ -168,32 +192,10 @@ or an 8-bit immediate.
 <aside class="notification">
 For shifts with an immediate count (VEX.128.66.0F 71-73 /4), VEX.vvvv
 encodes the destination register, and VEX.B + ModRM.r/m encodes the source register.
-VEX.L must be 0, otherwise instructions will #UD.
+VEX.L must be 0, otherwise instructions will **``#UD.``**
 </aside>
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalents
-   | |  
----- | -----
- PSRAW:   | __m64 _mm_srai_pi16 (__m64 m, int count) 
- PSRAW:   | __m64 _mm_sra_pi16 (__m64 m, __m64 count)
- (V)PSRAW:| count)                                   
- (V)PSRAW:| __m128i _mm_sra_epi16(__m128i m, __m128i 
-          | count)                                   
- VPSRAW:  | __m256i _mm256_srai_epi16 (__m256i m,    
-          | int count)                               
- VPSRAW:  | __m256i _mm256_sra_epi16 (__m256i m,     
-          | __m128i count)                           
- PSRAD:   | __m64 _mm_srai_pi32 (__m64 m, int count) 
- PSRAD:   | __m64 _mm_sra_pi32 (__m64 m, __m64 count)
- (V)PSRAD:| count)                                   
- (V)PSRAD:| __m128i _mm_sra_epi32 (__m128i m, __m128i
-          | count)                                   
- VPSRAD:  | __m256i _mm256_srai_epi32 (__m256i m,    
-          | int count)                               
- VPSRAD:  | __m256i _mm256_sra_epi32 (__m256i m,     
-          | __m128i count)                           
 
 ### Flags Affected
 None.

@@ -7,25 +7,25 @@ IF instruction is SGDT
      IF OperandSize = 16
        THEN
           DEST[0:15] <- GDTR(Limit);
-          DEST[16:39] <- GDTR(Base); (\* 24 bits of base address stored \*)
+          DEST[16:39] <- GDTR(Base); (* 24 bits of base address stored *)
           DEST[40:47] <- 0;
        ELSE IF (32-bit Operand Size)
           DEST[0:15] <- GDTR(Limit);
-          DEST[16:47] <- GDTR(Base); (\* Full 32-bit base address stored \*)
+          DEST[16:47] <- GDTR(Base); (* Full 32-bit base address stored *)
           FI;
-       ELSE (\* 64-bit Operand Size \*)
+       ELSE (* 64-bit Operand Size *)
           DEST[0:15] <- GDTR(Limit);
-          DEST[16:79] <- GDTR(Base); (\* Full 64-bit base address stored \*)
+          DEST[16:79] <- GDTR(Base); (* Full 64-bit base address stored *)
      FI;
 FI;
 
 ```
 
- Opcode\* | Instruction| Op/En| 64-Bit Mode| Compat/Leg Mode| Description     
+ Opcode* | Instruction| Op/En| 64-Bit Mode| Compat/Leg Mode| Description     
  ---  | --- | --- | --- | --- | ---
  0F 01 /0| SGDT m     | M    | Valid      | Valid          | Store GDTR to m.
 <aside class="notification">
-\* See IA-32 Architecture Compatibility section below.
+* See IA-32 Architecture Compatibility section below.
 </aside>
 
 

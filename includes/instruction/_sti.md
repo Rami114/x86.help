@@ -5,7 +5,7 @@
 ``` slim
 IF PE = 0
   THEN
-     IF <- 1; (\* Set Interrupt Flag \*)
+     IF <- 1; (* Set Interrupt Flag *)
   ELSE
      IF VM = 0
        THEN
@@ -29,7 +29,7 @@ IF PE = 0
                THEN
                   VIF <- 1;
              ELSE
-               #GP(0); (\* Trap to virtual-8086 monitor \*)
+               #GP(0); (* Trap to virtual-8086 monitor *)
              FI;)
           FI;
      FI;
@@ -37,7 +37,7 @@ FI;
 
 ```
 
- Opcode\*| Instruction| Op/En| 64-Bit Mode| Compat/Leg Mode| Description                           
+ Opcode*| Instruction| Op/En| 64-Bit Mode| Compat/Leg Mode| Description                           
  ---  | --- | --- | --- | --- | ---
  FB     | STI        | NP   | Valid      | Valid          | Set interrupt flag; external, maskable
         |            |      |            |                | interrupts enabled at the end of the  

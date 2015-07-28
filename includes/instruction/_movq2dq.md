@@ -6,6 +6,13 @@
 DEST[63:0] <- SRC[63:0];
 DEST[127:64] <- 00000000000000000H;
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ MOVQ2DQ:| __128i _mm_movpi64_pi64 ( __m64 a)
+
 ```
 
  Opcode     | Instruction    | Op/En| 64-Bit Mode| Compat/Leg Mode| Description                           
@@ -33,11 +40,6 @@ In 64-bit mode, use of the REX.R prefix permits this instruction to access addit
 registers (XMM8-XMM15).
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- MOVQ2DQ:| __128i _mm_movpi64_pi64 ( __m64 a)
 
 ### SIMD Floating-Point Exceptions
 None.

@@ -9,7 +9,7 @@ FI;
 
 ```
 
- Opcode\*| Instruction          | 64-Bit Mode| Compat/Leg Mode\*| Description                           
+ Opcode*| Instruction          | 64-Bit Mode| Compat/Leg Mode*| Description                           
  ---  | --- | --- | --- | ---
  DA C0+i| FCMOVB ST(0), ST(i)  | Valid      | Valid           | Move if below (CF=1).                 
  DA C8+i| FCMOVE ST(0), ST(i)  | Valid      | Valid           | Move if equal (ZF=1).                 
@@ -21,7 +21,7 @@ FI;
         |                      |            |                 | ZF=0).                                
  DB D8+i| FCMOVNU ST(0), ST(i) | Valid      | Valid           | Move if not unordered (PF=0).         
 <aside class="notification">
-\* See IA-32 Architecture Compatibility section below.
+* See IA-32 Architecture Compatibility section below.
 </aside>
 
 

@@ -117,6 +117,39 @@ DEST[255:0] <- LOGICAL_LEFT_SHIFT_QWORDS_256b(SRC1, SRC2)
 VPSLLQ (ymm, imm8)
 DEST[255:0] <- LOGICAL_LEFT_SHIFT_QWORDS_256b(SRC1, imm8)
 
+> Intel C/C++ Compiler Intrinsic Equivalents
+
+``` slim
+   | |  
+---- | -----
+ PSLLW:   | __m64 _mm_slli_pi16 (__m64 m, int count) 
+ PSLLW:   | __m64 _mm_sll_pi16(__m64 m, __m64 count) 
+ (V)PSLLW:| __m128i _mm_slli_pi16(__m64 m, int count)
+ (V)PSLLW:| __m128i _mm_slli_pi16(__m128i m, __m128i 
+          | count)                                   
+ VPSLLW:  | __m256i _mm256_slli_epi16 (__m256i m,    
+          | int count)                               
+ VPSLLW:  | __m256i _mm256_sll_epi16 (__m256i m,     
+          | __m128i count)                           
+ PSLLD:   | count)                                   
+ PSLLD:   | __m64 _mm_sll_pi32(__m64 m, __m64 count) 
+ (V)PSLLD:| count)                                   
+ (V)PSLLD:| __m128i _mm_sll_epi32(__m128i m, __m128i 
+          | count)                                   
+ VPSLLD:  | __m256i _mm256_slli_epi32 (__m256i m,    
+          | int count)                               
+ VPSLLD:  | __m256i _mm256_sll_epi32 (__m256i m,     
+          | __m128i count)                           
+ PSLLQ:   | count)                                   
+ PSLLQ:   | __m64 _mm_sll_si64(__m64 m, __m64 count) 
+ (V)PSLLQ:| count)                                   
+ (V)PSLLQ:| __m128i _mm_sll_epi64(__m128i m, __m128i 
+          | count)                                   
+ VPSLLQ:  | __m256i _mm256_slli_epi64 (__m256i m,    
+          | int count)                               
+ VPSLLQ:  | __m256i _mm256_sll_epi64 (__m256i m,     
+          | __m128i count)                           
+
 ```
 
  Opcode/Instruction                      | Op/En| 64/32 bit Mode Support| CPUID Feature Flag| Description                                 
@@ -233,41 +266,10 @@ or a 128-bit memory location or an 8-bit immediate.
 <aside class="notification">
 For shifts with an immediate count (VEX.128.66.0F 71-73 /6), VEX.vvvv
 encodes the destination register, and VEX.B + ModRM.r/m encodes the source register.
-VEX.L must be 0, otherwise instructions will #UD.
+VEX.L must be 0, otherwise instructions will **``#UD.``**
 </aside>
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalents
-   | |  
----- | -----
- PSLLW:   | __m64 _mm_slli_pi16 (__m64 m, int count) 
- PSLLW:   | __m64 _mm_sll_pi16(__m64 m, __m64 count) 
- (V)PSLLW:| __m128i _mm_slli_pi16(__m64 m, int count)
- (V)PSLLW:| __m128i _mm_slli_pi16(__m128i m, __m128i 
-          | count)                                   
- VPSLLW:  | __m256i _mm256_slli_epi16 (__m256i m,    
-          | int count)                               
- VPSLLW:  | __m256i _mm256_sll_epi16 (__m256i m,     
-          | __m128i count)                           
- PSLLD:   | count)                                   
- PSLLD:   | __m64 _mm_sll_pi32(__m64 m, __m64 count) 
- (V)PSLLD:| count)                                   
- (V)PSLLD:| __m128i _mm_sll_epi32(__m128i m, __m128i 
-          | count)                                   
- VPSLLD:  | __m256i _mm256_slli_epi32 (__m256i m,    
-          | int count)                               
- VPSLLD:  | __m256i _mm256_sll_epi32 (__m256i m,     
-          | __m128i count)                           
- PSLLQ:   | count)                                   
- PSLLQ:   | __m64 _mm_sll_si64(__m64 m, __m64 count) 
- (V)PSLLQ:| count)                                   
- (V)PSLLQ:| __m128i _mm_sll_epi64(__m128i m, __m128i 
-          | count)                                   
- VPSLLQ:  | __m256i _mm256_slli_epi64 (__m256i m,    
-          | int count)                               
- VPSLLQ:  | __m256i _mm256_sll_epi64 (__m256i m,     
-          | __m128i count)                           
 
 ### Flags Affected
 None.

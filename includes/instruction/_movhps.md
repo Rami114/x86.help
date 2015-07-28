@@ -14,6 +14,16 @@ DEST[VLMAX-1:128] <- 0
 VMOVHPS (store)
 DEST[63:0] <- SRC[127:64]
 
+> Intel C/C++ Compiler Intrinsic Equivalent
+
+``` slim
+   | |  
+---- | -----
+ MOVHPS:| __m128d _mm_loadh_pi ( __m128d a, __m64
+        | \*p)                                    
+ MOVHPS:| void _mm_storeh_pi (__m64 \*p, __m128d  
+        | a)                                     
+
 ```
 
  Opcode/Instruction                    | Op/En| 64/32-bit Mode| CPUID Feature Flag| Description                                    
@@ -56,18 +66,10 @@ the high 64-bits of the XMM register source (second operand) to the 64-bit memor
 location (first operand). Note: VMOVHPS (store) (VEX.NDS.128.0F 17 /r) is legal
 and has the same behavior as the existing 0F 17 store. For VMOVHPS (store) (VEX.NDS.128.0F
 17 /r) instruction version, VEX.vvvv is reserved and must be 1111b otherwise
-instruction will #UD. If VMOVHPS is encoded with VEX.L= 1, an attempt to execute
-the instruction encoded with VEX.L= 1 will cause an #UD exception.
+instruction will **``#UD.``** If VMOVHPS is encoded with VEX.L= 1, an attempt to execute
+the instruction encoded with VEX.L= 1 will cause an **``#UD``** exception.
 
 
-
-### Intel C/C++ Compiler Intrinsic Equivalent
-   | |  
----- | -----
- MOVHPS:| __m128d _mm_loadh_pi ( __m128d a, __m64
-        | \*p)                                    
- MOVHPS:| void _mm_storeh_pi (__m64 \*p, __m128d  
-        | a)                                     
 
 ### SIMD Floating-Point Exceptions
 None.

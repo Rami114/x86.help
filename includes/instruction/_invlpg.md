@@ -4,7 +4,7 @@
 
 ``` slim
 Flush(RelevantTLBEntries);
-Continue; (\* Continue execution \*)
+Continue; (* Continue execution *)
 
 ```
 
@@ -13,7 +13,7 @@ Continue; (\* Continue execution \*)
  0F 01/7| INVLPG m   | M    | Valid      | Valid          | Invalidate TLB Entry for page that contains
         |            |      |            |                | m.                                         
 <aside class="notification">
-\* See the IA-32 Architecture Compatibility section below.
+* See the IA-32 Architecture Compatibility section below.
 </aside>
 
 

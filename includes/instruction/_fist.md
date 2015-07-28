@@ -42,9 +42,9 @@ of numbers in integer format.
 ---- | -----
  ST(0)  | DEST − ∞ or Value Too Large for DEST   
         | Format                                 
- F ≤ −1 | − I \*\*                                 
+ F ≤ −1 | − I **                                 
  − 0    | 0                                      
- + 0 NaN| 0 \*\*+ I + ∞ or Value Too Large for DEST
+ + 0 NaN| 0 **+ I + ∞ or Value Too Large for DEST
         | Format                                 
 <aside class="notification">
 F Means finite floating-point value.
@@ -52,8 +52,8 @@ F Means finite floating-point value.
 
    | |  
 ---- | -----
- I \* Indicates floating-point invalid-operation| Means integer.
- (**``#IA)``** exception. \*\* 0 or ±1, depending        |               
+ I * Indicates floating-point invalid-operation| Means integer.
+ (**``#IA)``** exception. ** 0 or ±1, depending        |               
  on the rounding mode.                         |               
 If the source value is a non-integral value, it is rounded to an integer value,
 according to the rounding mode specified by the RC field of the FPU control
@@ -62,7 +62,7 @@ word.
 If the converted value is too large for the destination format, or if the source
 operand is an ∞, SNaN, QNAN, or is in an unsupported format, an invalid-arithmetic-operand
 condition is signaled. If the invalid-operation exception is not masked, an
-invalid-arithmetic-operand exception (#IA) is generated and no value is stored
+invalid-arithmetic-operand exception (**``#IA)``** is generated and no value is stored
 in the destination operand. If the invalid-operation exception is masked, the
 integer indefinite value is stored in memory.
 
