@@ -1,1 +1,1 @@
-<a href="#PACKSSWB">See PACKSSWB</a>
+<a href="http://x86.help/#PACKSSWB">See PACKSSWB</a>

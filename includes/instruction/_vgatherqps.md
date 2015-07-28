@@ -1,1 +1,1 @@
-<a href="#VGATHERDPS">See VGATHERDPS</a>
+<a href="http://x86.help/#VGATHERDPS">See VGATHERDPS</a>

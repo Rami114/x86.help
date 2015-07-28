@@ -1,1 +1,1 @@
-<a href="#XLAT">See XLAT</a>
+<a href="http://x86.help/#XLAT">See XLAT</a>

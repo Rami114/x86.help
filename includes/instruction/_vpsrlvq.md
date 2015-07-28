@@ -1,1 +1,1 @@
-<a href="#VPSRLVD">See VPSRLVD</a>
+<a href="http://x86.help/#VPSRLVD">See VPSRLVD</a>

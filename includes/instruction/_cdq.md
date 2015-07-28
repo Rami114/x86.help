@@ -1,1 +1,1 @@
-<a href="#CWD">See CWD</a>
+<a href="http://x86.help/#CWD">See CWD</a>

@@ -1,1 +1,1 @@
-<a href="#OUTS">See OUTS</a>
+<a href="http://x86.help/#OUTS">See OUTS</a>

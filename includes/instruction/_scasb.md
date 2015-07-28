@@ -1,1 +1,1 @@
-<a href="#SCAS">See SCAS</a>
+<a href="http://x86.help/#SCAS">See SCAS</a>

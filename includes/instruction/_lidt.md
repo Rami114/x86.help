@@ -1,1 +1,1 @@
-<a href="#LGDT">See LGDT</a>
+<a href="http://x86.help/#LGDT">See LGDT</a>

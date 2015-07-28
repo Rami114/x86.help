@@ -1,1 +1,1 @@
-<a href="#REP">See REP</a>
+<a href="http://x86.help/#REP">See REP</a>

@@ -1,1 +1,1 @@
-<a href="#FST">See FST</a>
+<a href="http://x86.help/#FST">See FST</a>

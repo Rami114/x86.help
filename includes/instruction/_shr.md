@@ -1,1 +1,1 @@
-<a href="#SAL">See SAL</a>
+<a href="http://x86.help/#SAL">See SAL</a>

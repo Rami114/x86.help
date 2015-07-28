@@ -1,1 +1,1 @@
-<a href="#PUSHA">See PUSHA</a>
+<a href="http://x86.help/#PUSHA">See PUSHA</a>

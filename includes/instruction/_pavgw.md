@@ -1,1 +1,1 @@
-<a href="#PAVGB">See PAVGB</a>
+<a href="http://x86.help/#PAVGB">See PAVGB</a>

@@ -1,1 +1,1 @@
-<a href="#FIST">See FIST</a>
+<a href="http://x86.help/#FIST">See FIST</a>

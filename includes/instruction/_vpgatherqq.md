@@ -1,1 +1,1 @@
-<a href="#VPGATHERDQ">See VPGATHERDQ</a>
+<a href="http://x86.help/#VPGATHERDQ">See VPGATHERDQ</a>

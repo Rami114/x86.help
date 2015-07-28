@@ -1,1 +1,1 @@
-<a href="#FUCOM">See FUCOM</a>
+<a href="http://x86.help/#FUCOM">See FUCOM</a>

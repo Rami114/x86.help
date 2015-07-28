@@ -1,1 +1,1 @@
-<a href="#FCOMI">See FCOMI</a>
+<a href="http://x86.help/#FCOMI">See FCOMI</a>

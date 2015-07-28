@@ -1,1 +1,1 @@
-<a href="#LODS">See LODS</a>
+<a href="http://x86.help/#LODS">See LODS</a>

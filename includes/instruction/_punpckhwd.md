@@ -1,1 +1,1 @@
-<a href="#PUNPCKHBW">See PUNPCKHBW</a>
+<a href="http://x86.help/#PUNPCKHBW">See PUNPCKHBW</a>

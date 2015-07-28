@@ -1,1 +1,1 @@
-<a href="#RDFSBASE">See RDFSBASE</a>
+<a href="http://x86.help/#RDFSBASE">See RDFSBASE</a>

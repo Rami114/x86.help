@@ -1,1 +1,1 @@
-<a href="#WRFSBASE">See WRFSBASE</a>
+<a href="http://x86.help/#WRFSBASE">See WRFSBASE</a>
