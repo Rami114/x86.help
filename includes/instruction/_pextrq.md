@@ -1,1 +1,1 @@
-<a href="http://x86.help/#PEXTRB">See PEXTRB</a>
+[See PEXTRB](#PEXTRB)

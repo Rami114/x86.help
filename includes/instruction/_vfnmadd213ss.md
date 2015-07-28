@@ -1,1 +1,1 @@
-<a href="http://x86.help/#VFNMADD132SS">See VFNMADD132SS</a>
+[See VFNMADD132SS](#VFNMADD132SS)

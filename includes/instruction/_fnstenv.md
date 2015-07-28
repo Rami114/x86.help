@@ -1,1 +1,1 @@
-<a href="http://x86.help/#FSTENV">See FSTENV</a>
+[See FSTENV](#FSTENV)

@@ -1,1 +1,1 @@
-<a href="http://x86.help/#FMUL">See FMUL</a>
+[See FMUL](#FMUL)

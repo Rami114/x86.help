@@ -1,1 +1,1 @@
-<a href="http://x86.help/#PHSUBW">See PHSUBW</a>
+[See PHSUBW](#PHSUBW)

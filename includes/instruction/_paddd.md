@@ -1,1 +1,1 @@
-<a href="http://x86.help/#PADDB">See PADDB</a>
+[See PADDB](#PADDB)

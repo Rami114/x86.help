@@ -1,1 +1,1 @@
-<a href="http://x86.help/#PCMPEQB">See PCMPEQB</a>
+[See PCMPEQB](#PCMPEQB)

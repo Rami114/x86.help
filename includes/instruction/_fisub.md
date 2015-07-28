@@ -1,1 +1,1 @@
-<a href="http://x86.help/#FSUB">See FSUB</a>
+[See FSUB](#FSUB)

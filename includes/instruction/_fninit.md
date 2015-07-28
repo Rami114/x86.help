@@ -1,1 +1,1 @@
-<a href="http://x86.help/#FINIT">See FINIT</a>
+[See FINIT](#FINIT)

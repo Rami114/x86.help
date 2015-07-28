@@ -1,1 +1,1 @@
-<a href="http://x86.help/#MOVD">See MOVD</a>
+[See MOVD](#MOVD)

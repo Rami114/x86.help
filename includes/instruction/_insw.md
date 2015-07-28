@@ -1,1 +1,1 @@
-<a href="http://x86.help/#INS">See INS</a>
+[See INS](#INS)

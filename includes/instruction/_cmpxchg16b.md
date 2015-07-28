@@ -1,1 +1,1 @@
-<a href="http://x86.help/#CMPXCHG8B">See CMPXCHG8B</a>
+[See CMPXCHG8B](#CMPXCHG8B)

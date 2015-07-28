@@ -1,1 +1,1 @@
-<a href="http://x86.help/#SARX">See SARX</a>
+[See SARX](#SARX)

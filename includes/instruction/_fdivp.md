@@ -1,1 +1,1 @@
-<a href="http://x86.help/#FDIV">See FDIV</a>
+[See FDIV](#FDIV)

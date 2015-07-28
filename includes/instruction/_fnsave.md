@@ -1,1 +1,1 @@
-<a href="http://x86.help/#FSAVE">See FSAVE</a>
+[See FSAVE](#FSAVE)

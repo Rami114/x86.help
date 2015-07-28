@@ -1,1 +1,1 @@
-<a href="http://x86.help/#FICOM">See FICOM</a>
+[See FICOM](#FICOM)

@@ -1,1 +1,1 @@
-<a href="http://x86.help/#FCOM">See FCOM</a>
+[See FCOM](#FCOM)

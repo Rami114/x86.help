@@ -1,1 +1,1 @@
-<a href="http://x86.help/#CMPS">See CMPS</a>
+[See CMPS](#CMPS)

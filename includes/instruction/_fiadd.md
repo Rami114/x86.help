@@ -1,1 +1,1 @@
-<a href="http://x86.help/#FADD">See FADD</a>
+[See FADD](#FADD)

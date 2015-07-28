@@ -1,1 +1,1 @@
-<a href="http://x86.help/#PADDUSB">See PADDUSB</a>
+[See PADDUSB](#PADDUSB)

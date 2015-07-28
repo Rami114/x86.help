@@ -1,1 +1,1 @@
-<a href="http://x86.help/#RCL">See RCL</a>
+[See RCL](#RCL)

@@ -1,1 +1,1 @@
-<a href="http://x86.help/#PHADDW">See PHADDW</a>
+[See PHADDW](#PHADDW)

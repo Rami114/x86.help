@@ -1,1 +1,1 @@
-<a href="http://x86.help/#FDIVR">See FDIVR</a>
+[See FDIVR](#FDIVR)

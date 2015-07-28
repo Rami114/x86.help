@@ -1,1 +1,1 @@
-<a href="http://x86.help/#SAL">See SAL</a>
+[See SAL](#SAL)

@@ -1,1 +1,1 @@
-<a href="http://x86.help/#FSTSW">See FSTSW</a>
+[See FSTSW](#FSTSW)

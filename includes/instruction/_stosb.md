@@ -1,1 +1,1 @@
-<a href="http://x86.help/#STOS">See STOS</a>
+[See STOS](#STOS)

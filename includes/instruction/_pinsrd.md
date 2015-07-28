@@ -1,1 +1,1 @@
-<a href="http://x86.help/#PINSRB">See PINSRB</a>
+[See PINSRB](#PINSRB)

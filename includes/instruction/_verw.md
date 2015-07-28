@@ -1,1 +1,1 @@
-<a href="http://x86.help/#VERR">See VERR</a>
+[See VERR](#VERR)

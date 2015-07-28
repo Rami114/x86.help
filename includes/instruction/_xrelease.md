@@ -1,1 +1,1 @@
-<a href="http://x86.help/#XACQUIRE">See XACQUIRE</a>
+[See XACQUIRE](#XACQUIRE)

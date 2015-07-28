@@ -1,1 +1,1 @@
-<a href="http://x86.help/#WAIT">See WAIT</a>
+[See WAIT](#WAIT)

@@ -1,1 +1,1 @@
-<a href="http://x86.help/#PSIGNB">See PSIGNB</a>
+[See PSIGNB](#PSIGNB)

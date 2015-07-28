@@ -1,1 +1,1 @@
-<a href="http://x86.help/#FLD1">See FLD1</a>
+[See FLD1](#FLD1)

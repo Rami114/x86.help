@@ -1,1 +1,1 @@
-<a href="http://x86.help/#IRET">See IRET</a>
+[See IRET](#IRET)

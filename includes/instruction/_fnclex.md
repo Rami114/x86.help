@@ -1,1 +1,1 @@
-<a href="http://x86.help/#FCLEX">See FCLEX</a>
+[See FCLEX](#FCLEX)

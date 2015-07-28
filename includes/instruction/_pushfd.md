@@ -1,1 +1,1 @@
-<a href="http://x86.help/#PUSHF">See PUSHF</a>
+[See PUSHF](#PUSHF)

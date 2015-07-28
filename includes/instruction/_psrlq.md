@@ -1,1 +1,1 @@
-<a href="http://x86.help/#PSRLW">See PSRLW</a>
+[See PSRLW](#PSRLW)

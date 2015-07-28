@@ -1,1 +1,1 @@
-<a href="http://x86.help/#CBW">See CBW</a>
+[See CBW](#CBW)

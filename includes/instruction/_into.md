@@ -1,1 +1,1 @@
-<a href="http://x86.help/#INT n">See INT n</a>
+[See INT n](#INT n)

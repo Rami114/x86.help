@@ -1,1 +1,1 @@
-<a href="http://x86.help/#VTESTPD">See VTESTPD</a>
+[See VTESTPD](#VTESTPD)
